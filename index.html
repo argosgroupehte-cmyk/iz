@@ -62,6 +62,9 @@ body{font-family:Segoe UI,Tahoma,sans-serif;background:#f4f6f8;color:#1a1a2e;pad
 </head>
 <body>
 
+<div id="installBanner" style="display:none;background:#e8f5e9;border:1px solid #66bb6a;border-radius:8px;padding:10px 16px;margin-bottom:10px;text-align:center">
+  <button id="installBtn" style="background:#2e7d32;color:#fff;border:none;border-radius:6px;padding:10px 24px;font-size:14px;font-weight:600;cursor:pointer">Installer sur l'ecran d'accueil</button>
+</div>
 <div class="header">
   <h1>Iz : Determination des courants admissibles</h1>
   <small>NF C 15-100-1 (V2024) — Tableaux 52.8A a 52.8H.2</small>
@@ -1156,6 +1159,26 @@ calculer();
 
 // Service Worker (PWA)
 if ('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js');
+
+// Installation PWA
+let deferredPrompt;
+window.addEventListener('beforeinstallprompt', function(e) {
+  e.preventDefault();
+  deferredPrompt = e;
+  document.getElementById('installBanner').style.display = 'block';
+});
+document.getElementById('installBtn').addEventListener('click', function() {
+  if (deferredPrompt) {
+    deferredPrompt.prompt();
+    deferredPrompt.userChoice.then(function() {
+      document.getElementById('installBanner').style.display = 'none';
+      deferredPrompt = null;
+    });
+  }
+});
+window.addEventListener('appinstalled', function() {
+  document.getElementById('installBanner').style.display = 'none';
+});
 </script>
 </body>
 </html>
