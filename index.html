@@ -64,6 +64,9 @@ body{font-family:Segoe UI,Tahoma,sans-serif;background:#f4f6f8;color:#1a1a2e;pad
 
 <div id="installBanner" style="display:none;background:#e8f5e9;border:1px solid #66bb6a;border-radius:8px;padding:10px 16px;margin-bottom:10px;text-align:center">
   <button id="installBtn" style="background:#2e7d32;color:#fff;border:none;border-radius:6px;padding:10px 24px;font-size:14px;font-weight:600;cursor:pointer">Installer sur l'ecran d'accueil</button>
+  <div id="installManual" style="display:none;margin-top:8px;font-size:12px;color:#333">
+    Dans Chrome : menu <b>&#8942;</b> puis <b>Ajouter a l'ecran d'accueil</b> ou <b>Installer l'application</b>
+  </div>
 </div>
 <div class="header">
   <h1>Iz : Determination des courants admissibles</h1>
@@ -1097,23 +1100,36 @@ if ('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js');
 
 // Installation PWA
 let deferredPrompt;
+const banner = document.getElementById('installBanner');
+const btnInstall = document.getElementById('installBtn');
+const manual = document.getElementById('installManual');
+
+// Détecter si déjà installé en standalone
+const isStandalone = window.matchMedia('(display-mode: standalone)').matches || navigator.standalone;
+
+if (!isStandalone && /Android|iPhone|iPad/i.test(navigator.userAgent)) {
+  banner.style.display = 'block';
+  // Attendre 3s : si pas de beforeinstallprompt, afficher instructions manuelles
+  setTimeout(function() {
+    if (!deferredPrompt) manual.style.display = 'block';
+  }, 3000);
+}
+
 window.addEventListener('beforeinstallprompt', function(e) {
   e.preventDefault();
   deferredPrompt = e;
-  document.getElementById('installBanner').style.display = 'block';
+  banner.style.display = 'block';
+  manual.style.display = 'none';
 });
-document.getElementById('installBtn').addEventListener('click', function() {
+btnInstall.addEventListener('click', function() {
   if (deferredPrompt) {
     deferredPrompt.prompt();
-    deferredPrompt.userChoice.then(function() {
-      document.getElementById('installBanner').style.display = 'none';
-      deferredPrompt = null;
-    });
+    deferredPrompt.userChoice.then(function() { banner.style.display = 'none'; deferredPrompt = null; });
+  } else {
+    manual.style.display = 'block';
   }
 });
-window.addEventListener('appinstalled', function() {
-  document.getElementById('installBanner').style.display = 'none';
-});
+window.addEventListener('appinstalled', function() { banner.style.display = 'none'; });
 </script>
 </body>
 </html>
