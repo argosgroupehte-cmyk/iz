@@ -337,25 +337,115 @@ body{font-family:Segoe UI,Tahoma,sans-serif;background:#f4f6f8;color:#1a1a2e;pad
 // DONNÉES NF C 15-100-1 V2024 — Version en ligne (pas de licence)
 // ═══════════════════════════════════════════════════════════════════════════════
 
-// Expiration 6 mois (10/09/2026) — sans verrouillage machine
+// ═══════════════════════════════════════════════════════════════════════════════
+// ACTIVATION — 1 lien = 1 appareil (Google Apps Script backend)
+// ═══════════════════════════════════════════════════════════════════════════════
+var ACTIVATION_URL = ''; // ← URL du Apps Script déployé (à remplir)
+
+// Expiration 6 mois (10/09/2026)
 (function(){
   var _k=[50,54,45,48,57,45,49,48];
   var _s='';for(var i=0;i<_k.length;i++)_s+=String.fromCharCode(_k[i]);
   var _p=_s.split('-');
   var _e=new Date(2000+parseInt(_p[0]),parseInt(_p[1])-1,parseInt(_p[2]));
   if(Date.now()>_e.getTime()){
-    var ov=document.createElement('div');
-    ov.style.cssText='position:fixed;inset:0;background:#1a1a2e;display:flex;align-items:center;justify-content:center;z-index:99999;flex-direction:column';
-    var bx=document.createElement('div');
-    bx.style.cssText='background:#fff;border-radius:12px;padding:40px 50px;text-align:center;box-shadow:0 4px 20px rgba(0,0,0,.3);max-width:500px';
-    var ic=document.createElement('div');ic.textContent='\u26A0';ic.style.cssText='font-size:48px;margin-bottom:16px';bx.appendChild(ic);
-    var ti=document.createElement('h1');ti.textContent='Acces bloque';ti.style.cssText='color:#c62828;font-size:20px;margin-bottom:12px';bx.appendChild(ti);
-    var pm=document.createElement('p');pm.textContent='La periode d\'utilisation de cet outil est terminee (6 mois).';pm.style.cssText='color:#555;font-size:14px;line-height:1.6;margin-bottom:16px';bx.appendChild(pm);
-    var co=document.createElement('p');co.textContent='ARGOS Bureau de Controle';co.style.cssText='color:#1a237e;font-size:14px;font-weight:700;margin-top:8px';bx.appendChild(co);
-    var em=document.createElement('p');em.textContent='argos@argos-controle.fr \u2014 06 23 65 27 03';em.style.cssText='color:#3949ab;font-size:13px;margin-top:4px';bx.appendChild(em);
-    ov.appendChild(bx);document.body.appendChild(ov);
+    showBlock('La periode d\'utilisation de cet outil est terminee (6 mois).');
+    showBlock('La periode d\'utilisation de cet outil est terminee (6 mois).');
     throw new Error('_');
   }
+})();
+
+// Écran de blocage
+function showBlock(msg) {
+  var ov=document.createElement('div');
+  ov.style.cssText='position:fixed;inset:0;background:#1a1a2e;display:flex;align-items:center;justify-content:center;z-index:99999;flex-direction:column';
+  var bx=document.createElement('div');
+  bx.style.cssText='background:#fff;border-radius:12px;padding:40px 50px;text-align:center;box-shadow:0 4px 20px rgba(0,0,0,.3);max-width:500px';
+  var ic=document.createElement('div');ic.textContent='\u26A0';ic.style.cssText='font-size:48px;margin-bottom:16px';bx.appendChild(ic);
+  var ti=document.createElement('h1');ti.textContent='Acces bloque';ti.style.cssText='color:#c62828;font-size:20px;margin-bottom:12px';bx.appendChild(ti);
+  var pm=document.createElement('p');pm.textContent=msg;pm.style.cssText='color:#555;font-size:14px;line-height:1.6;margin-bottom:16px';bx.appendChild(pm);
+  var co=document.createElement('p');co.textContent='ARGOS Bureau de Controle';co.style.cssText='color:#1a237e;font-size:14px;font-weight:700;margin-top:8px';bx.appendChild(co);
+  var em=document.createElement('p');em.textContent='argos@argos-controle.fr \u2014 06 23 65 27 03';em.style.cssText='color:#3949ab;font-size:13px;margin-top:4px';bx.appendChild(em);
+  ov.appendChild(bx);document.body.appendChild(ov);
+}
+
+// Empreinte appareil (djb2)
+function deviceFingerprint() {
+  var d = [];
+  d.push(navigator.userAgent || '');
+  d.push(screen.width + 'x' + screen.height + 'x' + screen.colorDepth);
+  d.push(navigator.language || '');
+  d.push(navigator.hardwareConcurrency || 0);
+  d.push(navigator.deviceMemory || 0);
+  d.push(new Date().getTimezoneOffset());
+  d.push(navigator.maxTouchPoints || 0);
+  d.push(navigator.platform || '');
+  try {
+    var cv = document.createElement('canvas'); cv.width = 200; cv.height = 50;
+    var cx = cv.getContext('2d');
+    cx.textBaseline = 'top'; cx.font = '14px Arial'; cx.fillStyle = '#3949ab';
+    cx.fillText('ARGOS-Iz-2024', 2, 2);
+    cx.fillStyle = 'rgba(200,40,40,.7)'; cx.fillRect(80, 5, 60, 20);
+    d.push(cv.toDataURL());
+  } catch(e) { d.push('nc'); }
+  var s = d.join('|');
+  var h = 5381;
+  for (var i = 0; i < s.length; i++) { h = ((h << 5) + h) + s.charCodeAt(i); h = h & h; }
+  return (h >>> 0).toString(36);
+}
+
+// Vérification activation (si ACTIVATION_URL configuré)
+(function() {
+  var token = new URLSearchParams(window.location.search).get('t');
+  if (!token) return; // pas de token = accès libre (Sébastien)
+  var fp = deviceFingerprint();
+  var storageKey = '_iz24_act_' + token.toUpperCase();
+
+  // Vérification locale d'abord
+  var stored = localStorage.getItem(storageKey);
+  if (stored && stored === fp) return; // déjà activé, même appareil → OK
+
+  if (!ACTIVATION_URL) {
+    // Pas de serveur configuré → fallback local uniquement
+    if (!stored) {
+      localStorage.setItem(storageKey, fp);
+    } else {
+      showBlock('Ce code est deja utilise sur un autre appareil.');
+      throw new Error('_');
+    }
+    return;
+  }
+
+  // Vérification serveur
+  var body = document.querySelector('.grid');
+  if (body) body.style.opacity = '0.3';
+
+  fetch(ACTIVATION_URL, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ token: token.toUpperCase(), fingerprint: fp })
+  })
+  .then(function(r) { return r.json(); })
+  .then(function(data) {
+    if (data.status === 'ok') {
+      localStorage.setItem(storageKey, fp);
+      if (body) body.style.opacity = '1';
+    } else {
+      showBlock(data.message || 'Activation refusee.');
+      throw new Error('_');
+    }
+  })
+  .catch(function(err) {
+    // Erreur réseau → fallback local
+    if (!stored) {
+      localStorage.setItem(storageKey, fp);
+      if (body) body.style.opacity = '1';
+    } else if (stored !== fp) {
+      showBlock('Verification impossible. Verifiez votre connexion.');
+    } else {
+      if (body) body.style.opacity = '1';
+    }
+  });
 })();
 
 // ═══════════════════════════════════════════════════════════════════════════════
