@@ -62,11 +62,9 @@ body{font-family:Segoe UI,Tahoma,sans-serif;background:#f4f6f8;color:#1a1a2e;pad
 </head>
 <body>
 
-<div id="installBanner" style="display:none;background:#e8f5e9;border:1px solid #66bb6a;border-radius:8px;padding:10px 16px;margin-bottom:10px;text-align:center">
+<div id="installBanner" style="background:#e8f5e9;border:1px solid #66bb6a;border-radius:8px;padding:10px 16px;margin-bottom:10px;text-align:center">
   <button id="installBtn" style="background:#2e7d32;color:#fff;border:none;border-radius:6px;padding:10px 24px;font-size:14px;font-weight:600;cursor:pointer">Installer sur l'ecran d'accueil</button>
-  <div id="installManual" style="display:none;margin-top:8px;font-size:12px;color:#333">
-    Dans Chrome : menu <b>&#8942;</b> puis <b>Ajouter a l'ecran d'accueil</b> ou <b>Installer l'application</b>
-  </div>
+  <div id="installStatus" style="margin-top:6px;font-size:10px;color:#666"></div>
 </div>
 <div class="header">
   <h1>Iz : Determination des courants admissibles</h1>
@@ -1098,37 +1096,65 @@ calculer();
 // Service Worker (PWA)
 if ('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js');
 
-// Installation PWA
+// Installation PWA + diagnostic
 let deferredPrompt;
 const banner = document.getElementById('installBanner');
 const btnInstall = document.getElementById('installBtn');
-const manual = document.getElementById('installManual');
+const statusEl = document.getElementById('installStatus');
+const diag = [];
 
-// Détecter si déjà installé en standalone
+// Détecter standalone
 const isStandalone = window.matchMedia('(display-mode: standalone)').matches || navigator.standalone;
+if (isStandalone) {
+  banner.style.display = 'none';
+} else {
+  // Service Worker
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('sw.js').then(function(reg) {
+      diag.push('SW: OK (' + reg.scope + ')');
+      statusEl.textContent = diag.join(' | ');
+    }).catch(function(err) {
+      diag.push('SW: ERREUR ' + err.message);
+      statusEl.textContent = diag.join(' | ');
+    });
+  } else {
+    diag.push('SW: non supporte');
+  }
 
-if (!isStandalone && /Android|iPhone|iPad/i.test(navigator.userAgent)) {
-  banner.style.display = 'block';
-  // Attendre 3s : si pas de beforeinstallprompt, afficher instructions manuelles
-  setTimeout(function() {
-    if (!deferredPrompt) manual.style.display = 'block';
-  }, 3000);
+  // Manifest
+  fetch('manifest.json').then(function(r) {
+    if (r.ok) { diag.push('Manifest: OK'); } else { diag.push('Manifest: ' + r.status); }
+    return fetch('icon-192.png');
+  }).then(function(r) {
+    diag.push('Icon192: ' + (r.ok ? 'OK ' + r.headers.get('content-type') : 'ERREUR'));
+    statusEl.textContent = diag.join(' | ');
+  });
+
+  diag.push('Mode: ' + (window.isSecureContext ? 'HTTPS' : 'HTTP'));
+  diag.push(navigator.userAgent.match(/Chrome\/(\d+)/)?.[0] || 'pas Chrome');
+  statusEl.textContent = diag.join(' | ');
 }
 
 window.addEventListener('beforeinstallprompt', function(e) {
   e.preventDefault();
   deferredPrompt = e;
-  banner.style.display = 'block';
-  manual.style.display = 'none';
+  diag.push('INSTALL: PRET');
+  statusEl.textContent = diag.join(' | ');
+  btnInstall.style.background = '#1b5e20';
 });
+
 btnInstall.addEventListener('click', function() {
   if (deferredPrompt) {
     deferredPrompt.prompt();
-    deferredPrompt.userChoice.then(function() { banner.style.display = 'none'; deferredPrompt = null; });
+    deferredPrompt.userChoice.then(function(r) {
+      if (r.outcome === 'accepted') banner.style.display = 'none';
+      deferredPrompt = null;
+    });
   } else {
-    manual.style.display = 'block';
+    statusEl.textContent = 'Installation pas encore disponible. Attendre 30s puis recharger la page. ' + diag.join(' | ');
   }
 });
+
 window.addEventListener('appinstalled', function() { banner.style.display = 'none'; });
 </script>
 </body>
