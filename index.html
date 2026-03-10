@@ -333,94 +333,10 @@ body{font-family:Segoe UI,Tahoma,sans-serif;background:#f4f6f8;color:#1a1a2e;pad
 
 <script>
 // ═══════════════════════════════════════════════════════════════════════════════
-// VALIDATION LICENCE — ARGOS Bureau de Contrôle
+// DONNÉES NF C 15-100-1 V2024 — Version en ligne (pas de licence)
 // ═══════════════════════════════════════════════════════════════════════════════
-(function(){
-  // --- Expiration 6 mois (10/09/2026) ---
-  var _k=[50,54,45,48,57,45,49,48];
-  var _s='';for(var i=0;i<_k.length;i++)_s+=String.fromCharCode(_k[i]);
-  var _p=_s.split('-');
-  var _e=new Date(2000+parseInt(_p[0]),parseInt(_p[1])-1,parseInt(_p[2]));
-  var _exp=Date.now()>_e.getTime();
 
-  // --- Empreinte machine ---
-  function _fp(){
-    var d=[];
-    d.push(navigator.userAgent||'');
-    d.push(screen.width+'x'+screen.height+'x'+screen.colorDepth);
-    d.push(navigator.language||'');
-    d.push(navigator.hardwareConcurrency||0);
-    d.push(navigator.deviceMemory||0);
-    d.push(new Date().getTimezoneOffset());
-    d.push(navigator.maxTouchPoints||0);
-    d.push(navigator.platform||'');
-    // Canvas fingerprint
-    try{
-      var cv=document.createElement('canvas');cv.width=200;cv.height=50;
-      var cx=cv.getContext('2d');
-      cx.textBaseline='top';cx.font='14px Arial';cx.fillStyle='#3949ab';
-      cx.fillText('ARGOS-Iz-2024',2,2);
-      cx.fillStyle='rgba(200,40,40,.7)';cx.fillRect(80,5,60,20);
-      d.push(cv.toDataURL());
-    }catch(e){d.push('nc');}
-    return d.join('|');
-  }
-
-  // --- Hash simple (djb2) ---
-  function _h(s){var h=5381;for(var i=0;i<s.length;i++){h=((h<<5)+h)+s.charCodeAt(i);h=h&h;}return(h>>>0).toString(36);}
-
-  var _lid='_iz24_l';
-  var _mid='_iz24_m';
-  var _cid='_iz24_c';
-  var fp=_h(_fp());
-  var stored=localStorage.getItem(_mid);
-  var lastCheck=localStorage.getItem(_cid);
-  var now=Date.now();
-  var semaine=7*24*60*60*1000;
-
-  // Premier lancement : activation auto
-  if(!stored){
-    localStorage.setItem(_mid,fp);
-    localStorage.setItem(_lid,now.toString());
-    localStorage.setItem(_cid,now.toString());
-    stored=fp;
-    lastCheck=now.toString();
-  }
-
-  // Vérification hebdomadaire empreinte
-  var checkNeeded=!lastCheck||(now-parseInt(lastCheck))>semaine;
-  if(checkNeeded){
-    localStorage.setItem(_cid,now.toString());
-  }
-
-  // Vérifications
-  var machineOk=(stored===fp);
-  var blocked=false;var msg='';
-
-  if(_exp){
-    blocked=true;
-    msg='La periode d\'utilisation de cet outil est terminee (6 mois).';
-  }else if(!machineOk){
-    blocked=true;
-    msg='Cet outil est lie a une autre machine. Installation non autorisee.';
-  }
-
-  if(blocked){
-    var ov=document.createElement('div');
-    ov.style.cssText='position:fixed;inset:0;background:#1a1a2e;display:flex;align-items:center;justify-content:center;z-index:99999;flex-direction:column';
-    var bx=document.createElement('div');
-    bx.style.cssText='background:#fff;border-radius:12px;padding:40px 50px;text-align:center;box-shadow:0 4px 20px rgba(0,0,0,.3);max-width:500px';
-    var ic=document.createElement('div');ic.textContent='\u26A0';ic.style.cssText='font-size:48px;margin-bottom:16px';bx.appendChild(ic);
-    var ti=document.createElement('h1');ti.textContent='Acces bloque';ti.style.cssText='color:#c62828;font-size:20px;margin-bottom:12px';bx.appendChild(ti);
-    var pm=document.createElement('p');pm.textContent=msg;pm.style.cssText='color:#555;font-size:14px;line-height:1.6;margin-bottom:16px';bx.appendChild(pm);
-    var ct=document.createElement('p');ct.textContent='Pour obtenir ou renouveler une licence :';ct.style.cssText='color:#555;font-size:13px';bx.appendChild(ct);
-    var co=document.createElement('p');co.textContent='ARGOS Bureau de Controle';co.style.cssText='color:#1a237e;font-size:14px;font-weight:700;margin-top:8px';bx.appendChild(co);
-    var em=document.createElement('p');em.textContent='argos@argos-controle.fr \u2014 06 23 65 27 03';em.style.cssText='color:#3949ab;font-size:13px;margin-top:4px';bx.appendChild(em);
-    var id=document.createElement('p');id.textContent='ID: '+fp;id.style.cssText='color:#bbb;font-size:10px;margin-top:20px;font-family:monospace';bx.appendChild(id);
-    ov.appendChild(bx);document.body.appendChild(ov);
-    throw new Error('_');
-  }
-})();
+/* LICENCE RETIREE — version GitHub Pages */
 
 // ═══════════════════════════════════════════════════════════════════════════════
 // DONNÉES NF C 15-100-1 V2024 — Tableaux 52.8A à 52.8H.2 (harmonisés IEC 60364-5-52)
