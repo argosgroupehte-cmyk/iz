@@ -3,6 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#1a237e">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="icon.svg">
 <title>Iz — Courants admissibles (NF C 15-100-1 V2024)</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
@@ -1149,6 +1153,9 @@ document.querySelectorAll('input[type=radio]').forEach(el => {
 // Init au chargement
 updateSituations();
 calculer();
+
+// Service Worker (PWA)
+if ('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js');
 </script>
 </body>
 </html>
