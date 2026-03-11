@@ -1,0 +1,12 @@
+{
+  "name": "ARGOS — Portail SMQ",
+  "short_name": "SMQ ARGOS",
+  "description": "Portail Qualité SMQ — ARGOS Bureau de Contrôle",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#1a237e",
+  "theme_color": "#1a237e",
+  "icons": [
+    { "src": "icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }
+  ]
+}

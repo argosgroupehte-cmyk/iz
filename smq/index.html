@@ -3,6 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#1a237e">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="icon.svg">
 <title>SMQ ARGOS – Portail Qualité</title>
 <style>
 /* =============================================
@@ -2946,5 +2950,36 @@ async function init() {
 }
 
 document.addEventListener('DOMContentLoaded', init);
+
+// ── PWA : Service Worker + Install ──
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('sw.js');
+}
+var _deferredInstall = null;
+window.addEventListener('beforeinstallprompt', function(e) {
+  e.preventDefault();
+  _deferredInstall = e;
+  var bar = document.createElement('div');
+  bar.id = 'pwa-install-bar';
+  bar.style.cssText = 'position:fixed;bottom:0;left:0;right:0;background:linear-gradient(135deg,#1a237e,#3949ab);padding:12px 16px;display:flex;align-items:center;justify-content:center;gap:12px;z-index:99999;box-shadow:0 -2px 10px rgba(0,0,0,.3)';
+  var label = document.createElement('span');
+  label.style.cssText = 'color:#fff;font-size:14px;font-weight:600';
+  label.textContent = 'Installer SMQ ARGOS sur votre appareil';
+  bar.appendChild(label);
+  var btn = document.createElement('button');
+  btn.style.cssText = 'background:#fff;color:#1a237e;border:none;border-radius:8px;padding:10px 24px;font-size:14px;font-weight:700;cursor:pointer';
+  btn.textContent = 'Installer';
+  btn.onclick = function() {
+    _deferredInstall.prompt();
+    _deferredInstall.userChoice.then(function() { bar.remove(); });
+  };
+  bar.appendChild(btn);
+  var close = document.createElement('button');
+  close.style.cssText = 'background:transparent;color:rgba(255,255,255,.7);border:none;font-size:20px;cursor:pointer;padding:4px 8px';
+  close.textContent = '\u2715';
+  close.onclick = function() { bar.remove(); };
+  bar.appendChild(close);
+  document.body.appendChild(bar);
+});
 </script>
 </html>

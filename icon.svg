@@ -1,6 +1,14 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-  <rect width="512" height="512" rx="80" fill="#1a237e"/>
-  <text x="256" y="200" text-anchor="middle" font-family="Arial,sans-serif" font-size="180" font-weight="700" fill="#fff">Iz</text>
-  <text x="256" y="340" text-anchor="middle" font-family="Arial,sans-serif" font-size="60" fill="#9fa8da">V2024</text>
-  <text x="256" y="420" text-anchor="middle" font-family="Arial,sans-serif" font-size="40" fill="#5c6bc0">NFC 15-100</text>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#1a237e"/>
+      <stop offset="100%" stop-color="#3949ab"/>
+    </linearGradient>
+  </defs>
+  <rect width="512" height="512" rx="80" fill="url(#bg)"/>
+  <text x="256" y="150" text-anchor="middle" font-family="Arial,sans-serif" font-size="80" font-weight="800" fill="#fff" letter-spacing="6">ARGOS</text>
+  <line x1="100" y1="178" x2="412" y2="178" stroke="#ef5350" stroke-width="5" stroke-linecap="round"/>
+  <text x="256" y="310" text-anchor="middle" font-family="Arial,sans-serif" font-size="180" font-weight="700" fill="#fff">Iz</text>
+  <text x="256" y="400" text-anchor="middle" font-family="Arial,sans-serif" font-size="56" font-weight="600" fill="#9fa8da">V2024</text>
+  <text x="256" y="460" text-anchor="middle" font-family="Arial,sans-serif" font-size="36" fill="rgba(255,255,255,0.5)">NFC 15-100-1</text>
 </svg>
