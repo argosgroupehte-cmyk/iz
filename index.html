@@ -427,8 +427,9 @@ function deviceFingerprint() {
 
   fetch(ACTIVATION_URL, {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ token: token.toUpperCase(), fingerprint: fp })
+    headers: { 'Content-Type': 'text/plain' },
+    body: JSON.stringify({ token: token.toUpperCase(), fingerprint: fp }),
+    redirect: 'follow'
   })
   .then(function(r) { return r.json(); })
   .then(function(data) {
