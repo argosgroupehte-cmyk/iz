@@ -354,6 +354,20 @@ body{font-family:Segoe UI,Tahoma,sans-serif;background:#f4f6f8;color:#1a1a2e;pad
 // DONNÉES NF C 15-100-1 V2024 — Version en ligne (pas de licence)
 // ═══════════════════════════════════════════════════════════════════════════════
 
+// Écran de blocage
+function showBlock(msg) {
+  var ov=document.createElement('div');
+  ov.style.cssText='position:fixed;inset:0;background:#1a1a2e;display:flex;align-items:center;justify-content:center;z-index:99999;flex-direction:column';
+  var bx=document.createElement('div');
+  bx.style.cssText='background:#fff;border-radius:12px;padding:40px 50px;text-align:center;box-shadow:0 4px 20px rgba(0,0,0,.3);max-width:500px';
+  var ic=document.createElement('div');ic.textContent='\u26A0';ic.style.cssText='font-size:48px;margin-bottom:16px';bx.appendChild(ic);
+  var ti=document.createElement('h1');ti.textContent='Acces bloque';ti.style.cssText='color:#c62828;font-size:20px;margin-bottom:12px';bx.appendChild(ti);
+  var pm=document.createElement('p');pm.textContent=msg;pm.style.cssText='color:#555;font-size:14px;line-height:1.6;margin-bottom:16px';bx.appendChild(pm);
+  var co=document.createElement('p');co.textContent='ARGOS Bureau de Controle';co.style.cssText='color:#1a237e;font-size:14px;font-weight:700;margin-top:8px';bx.appendChild(co);
+  var em=document.createElement('p');em.textContent='argos@argos-controle.fr \u2014 06 23 65 27 03';em.style.cssText='color:#3949ab;font-size:13px;margin-top:4px';bx.appendChild(em);
+  ov.appendChild(bx);document.body.appendChild(ov);
+}
+
 // Expiration 6 mois (10/09/2026)
 (function(){
   var _k=[50,54,45,48,57,45,49,48];
@@ -361,18 +375,44 @@ body{font-family:Segoe UI,Tahoma,sans-serif;background:#f4f6f8;color:#1a1a2e;pad
   var _p=_s.split('-');
   var _e=new Date(2000+parseInt(_p[0]),parseInt(_p[1])-1,parseInt(_p[2]));
   if(Date.now()>_e.getTime()){
-    var ov=document.createElement('div');
-    ov.style.cssText='position:fixed;inset:0;background:#1a1a2e;display:flex;align-items:center;justify-content:center;z-index:99999;flex-direction:column';
-    var bx=document.createElement('div');
-    bx.style.cssText='background:#fff;border-radius:12px;padding:40px 50px;text-align:center;box-shadow:0 4px 20px rgba(0,0,0,.3);max-width:500px';
-    var ic=document.createElement('div');ic.textContent='\u26A0';ic.style.cssText='font-size:48px;margin-bottom:16px';bx.appendChild(ic);
-    var ti=document.createElement('h1');ti.textContent='Acces bloque';ti.style.cssText='color:#c62828;font-size:20px;margin-bottom:12px';bx.appendChild(ti);
-    var pm=document.createElement('p');pm.textContent='La periode d\'utilisation de cet outil est terminee (6 mois).';pm.style.cssText='color:#555;font-size:14px;line-height:1.6;margin-bottom:16px';bx.appendChild(pm);
-    var co=document.createElement('p');co.textContent='ARGOS Bureau de Controle';co.style.cssText='color:#1a237e;font-size:14px;font-weight:700;margin-top:8px';bx.appendChild(co);
-    var em=document.createElement('p');em.textContent='argos@argos-controle.fr \u2014 06 23 65 27 03';em.style.cssText='color:#3949ab;font-size:13px;margin-top:4px';bx.appendChild(em);
-    ov.appendChild(bx);document.body.appendChild(ov);
+    showBlock('La periode d\'utilisation de cet outil est terminee (6 mois).');
     throw new Error('_');
   }
+})();
+
+// Token requis — 2 appareils max par personne (ordi + telephone)
+(function(){
+  var token = new URLSearchParams(window.location.search).get('t');
+  if (!token || token.trim().length < 2) {
+    showBlock('Lien personnel requis. Contactez ARGOS pour obtenir votre acces.');
+    throw new Error('_');
+  }
+  // Empreinte appareil (djb2)
+  function fp(){
+    var d=[];
+    d.push(navigator.userAgent||'');
+    d.push(screen.width+'x'+screen.height+'x'+screen.colorDepth);
+    d.push(navigator.language||'');
+    d.push(navigator.hardwareConcurrency||0);
+    d.push(navigator.deviceMemory||0);
+    d.push(new Date().getTimezoneOffset());
+    d.push(navigator.maxTouchPoints||0);
+    d.push(navigator.platform||'');
+    try{var cv=document.createElement('canvas');cv.width=200;cv.height=50;var cx=cv.getContext('2d');cx.textBaseline='top';cx.font='14px Arial';cx.fillStyle='#3949ab';cx.fillText('ARGOS-Iz-2024',2,2);cx.fillStyle='rgba(200,40,40,.7)';cx.fillRect(80,5,60,20);d.push(cv.toDataURL());}catch(e){d.push('nc');}
+    var s=d.join('|'),h=5381;for(var i=0;i<s.length;i++){h=((h<<5)+h)+s.charCodeAt(i);h=h&h;}return(h>>>0).toString(36);
+  }
+  var key='_iz24_devs_'+token.toUpperCase();
+  var myFp=fp();
+  var devs=JSON.parse(localStorage.getItem(key)||'[]');
+  if(devs.indexOf(myFp)!==-1) return; // appareil deja enregistre → OK
+  if(devs.length<2){
+    devs.push(myFp);
+    localStorage.setItem(key,JSON.stringify(devs));
+    return; // enregistre (slot libre)
+  }
+  // 2 appareils deja utilises
+  showBlock('Ce lien est deja utilise sur 2 appareils (1 ordi + 1 telephone). Contactez ARGOS pour un nouvel acces.');
+  throw new Error('_');
 })();
 
 // ═══════════════════════════════════════════════════════════════════════════════
