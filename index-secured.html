@@ -1,0 +1,1112 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#1a237e">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; connect-src 'self' https://script.google.com https://script.googleusercontent.com">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="icon.svg">
+<title>Iz — Courants admissibles (NF C 15-100-1 V2024)</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Segoe UI,Tahoma,sans-serif;background:#f4f6f8;color:#1a1a2e;padding:8px;font-size:13px}
+.header{background:linear-gradient(135deg,#1a237e,#3949ab);color:#fff;padding:8px 14px;border-radius:8px;margin-bottom:6px;text-align:center}
+.header h1{font-size:16px;font-weight:600;letter-spacing:.5px}
+.header small{font-size:11px;display:block;margin-top:1px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.card{background:#fff;border-radius:8px;padding:8px 10px;box-shadow:0 1px 4px rgba(0,0,0,.08)}
+.card h2{font-size:12px;color:#3949ab;border-bottom:2px solid #e8eaf6;padding-bottom:3px;margin-bottom:4px}
+.field{display:flex;align-items:center;margin-bottom:3px;gap:3px}
+.field label{flex:0 0 150px;font-size:11.5px;color:#444;font-weight:500}
+.field select{min-width:0}
+.field select,.field input[type=text]{flex:1;padding:3px 6px;border:1px solid #c5cae9;border-radius:4px;font-size:12px;background:#fafbff}
+.field select:focus,.field input:focus{outline:none;border-color:#3949ab;box-shadow:0 0 0 2px rgba(57,73,171,.15)}
+.radio-group{display:flex;gap:6px;flex:1}
+.radio-group label{flex:none;font-size:11.5px;cursor:pointer;display:flex;align-items:center;gap:2px}
+.radio-group input{margin:0}
+.izc-banner{background:linear-gradient(135deg,#c62828,#e53935);border-radius:6px;padding:6px 10px;margin-bottom:4px;display:flex;align-items:center;justify-content:center;gap:8px;min-height:34px}
+.izc-banner .izc-label{color:rgba(255,255,255,.9);font-size:12px;font-weight:600}
+.izc-banner .izc-value{color:#fff;font-size:20px;font-weight:800;letter-spacing:1px}
+.izc-banner .izc-unit{color:rgba(255,255,255,.85);font-size:13px;font-weight:700}
+.result-box{background:#e8eaf6;border-radius:6px;padding:6px 8px;margin-top:4px;transition:background .3s ease}
+.result-flash{background:#c8e6c9!important}
+.result-row{display:flex;align-items:center;margin-bottom:3px;gap:3px}
+.result-row label{flex:0 0 190px;font-size:11.5px;color:#283593;font-weight:600}
+.result-row input{flex:1;padding:3px 5px;border:1px solid #9fa8da;border-radius:4px;font-size:13px;font-weight:700;color:#1a237e;background:#fff;text-align:center}
+.result-row .unit{font-size:12px;font-weight:700;color:#c62828;margin-left:3px;flex:0 0 20px}
+.result-formula{font-size:10px;color:#5c6bc0;text-align:center;margin-bottom:3px}
+.buttons{display:flex;gap:5px;margin-top:6px;justify-content:center}
+.btn{padding:6px 16px;border:none;border-radius:6px;font-size:13px;font-weight:600;cursor:pointer;transition:all .15s}
+.btn-calc{background:#3949ab;color:#fff}.btn-calc:hover{background:#283593}
+.btn-raz{background:#ef5350;color:#fff}.btn-raz:hover{background:#c62828}
+.btn-def{background:#78909c;color:#fff}.btn-def:hover{background:#546e7a}
+.info-box{margin-top:4px;background:#fff3e0;border:1px solid #ffcc80;border-radius:6px;padding:6px}
+.info-box textarea{width:100%;border:none;background:transparent;font-size:11px;color:#e65100;resize:vertical;min-height:30px;font-family:inherit}
+.footer{text-align:center;margin-top:6px;font-size:10px;color:#9e9e9e}
+.hist-bar{display:flex;gap:5px;margin-top:6px;justify-content:center;align-items:center}
+.hist-bar button{padding:4px 12px;border:1px solid #c5cae9;border-radius:5px;font-size:11px;font-weight:600;cursor:pointer;background:#fafbff;color:#3949ab}
+.hist-bar button:hover{background:#e8eaf6}
+.hist-bar .hist-count{font-size:10px;color:#888}
+.hist-panel{display:none;margin-top:6px;background:#fff;border-radius:8px;box-shadow:0 1px 4px rgba(0,0,0,.08);overflow-x:auto}
+.hist-panel.open{display:block}
+.hist-panel table{width:100%;border-collapse:collapse;font-size:11px}
+.hist-panel th{background:#e8eaf6;color:#283593;padding:5px 6px;text-align:left;font-weight:600;white-space:nowrap}
+.hist-panel td{padding:4px 6px;border-top:1px solid #e8eaf6;white-space:nowrap}
+.hist-panel tr:hover td{background:#f3f4fb}
+.hist-panel .hist-izc{color:#c62828;font-weight:700}
+.izc-sticky{display:none}
+@media(max-width:768px){
+  body{padding:4px 4px 56px 4px;font-size:12px}
+  .grid{grid-template-columns:1fr;gap:4px}
+  .header{padding:6px 8px;margin-bottom:4px}
+  .header h1{font-size:14px}
+  .field{flex-wrap:wrap;gap:2px}
+  .field label{flex:0 0 100%;font-size:11px}
+  .field select,.field input[type=text]{width:100%;font-size:13px;padding:6px}
+  .radio-group{flex-wrap:wrap;gap:5px}
+  .radio-group label{font-size:12px;padding:3px 2px;min-height:40px;display:flex;align-items:center}
+  .izc-banner{display:none}
+  .izc-sticky{display:flex;position:fixed;bottom:0;left:0;right:0;z-index:9999;background:linear-gradient(135deg,#c62828,#e53935);padding:8px 16px;align-items:center;justify-content:center;gap:10px;box-shadow:0 -2px 8px rgba(0,0,0,.3);min-height:48px}
+  .izc-sticky .izc-label{color:rgba(255,255,255,.9);font-size:13px;font-weight:600}
+  .izc-sticky .izc-value{color:#fff;font-size:28px;font-weight:800;letter-spacing:1px}
+  .izc-sticky .izc-unit{color:rgba(255,255,255,.85);font-size:16px;font-weight:700}
+  .result-row{flex-wrap:wrap}
+  .result-row label{flex:0 0 100%;font-size:11px}
+  .result-row input{font-size:13px;padding:6px}
+  .result-formula{font-size:10px}
+  .buttons{flex-wrap:wrap}
+  .btn{padding:8px 12px;font-size:13px;flex:1;min-width:100px}
+  .info-box textarea{font-size:11px;min-height:40px}
+  .card{padding:6px 8px}
+  .card h2{font-size:11px;margin-bottom:3px;padding-bottom:2px}
+  .grp-btn{min-height:40px;padding:4px 6px!important}
+}
+</style>
+</head>
+<body>
+
+<div id="installBanner" style="background:#e8f5e9;border:1px solid #66bb6a;border-radius:8px;padding:10px 16px;margin-bottom:10px;text-align:center">
+  <button id="installBtn" style="background:#2e7d32;color:#fff;border:none;border-radius:6px;padding:10px 24px;font-size:14px;font-weight:600;cursor:pointer">Installer sur l'écran d'accueil</button>
+  <div id="installStatus" style="margin-top:6px;font-size:10px;color:#666"></div>
+</div>
+<div class="header">
+  <h1>Iz : Détermination des courants admissibles</h1>
+  <small>NF C 15-100-1 (V2024) — Tableaux 52.8A à 52.8H.2</small>
+</div>
+
+<div class="grid">
+  <!-- COLONNE GAUCHE : Caractéristiques principales -->
+  <div class="card">
+    <h2>Caractéristiques principales</h2>
+
+    <div class="field">
+      <label>Section (mm2)</label>
+      <select id="cSPh">
+        <option>1.5</option><option selected>2.5</option><option>4</option><option>6</option>
+        <option>10</option><option>16</option><option>25</option><option>35</option>
+        <option>50</option><option>70</option><option>95</option><option>120</option>
+        <option>150</option><option>185</option><option>240</option><option>300</option>
+      </select>
+    </div>
+
+    <div class="field">
+      <label>Isolation</label>
+      <div class="radio-group">
+        <label><input type="radio" name="cIsol" value="PR" checked> PR/XLPE</label>
+        <label><input type="radio" name="cIsol" value="PVC"> PVC</label>
+      </div>
+    </div>
+
+    <div class="field">
+      <label>Conducteurs chargés</label>
+      <div class="radio-group">
+        <label><input type="radio" name="cNbCond" value="2"> 2</label>
+        <label><input type="radio" name="cNbCond" value="3" checked> 3</label>
+        <label><input type="radio" name="cNbCond" value="4"> 4 <span style="font-size:10px;color:#555">(N chargé : harmoniques ou déséquilibre)</span></label>
+      </div>
+    </div>
+
+    <div class="field">
+      <label>Type de câble</label>
+      <div class="radio-group">
+        <label><input type="radio" name="cCable" value="multi" checked> Multipolaire
+          <svg width="18" height="18" viewBox="0 0 28 28" style="vertical-align:middle;margin-left:2px;opacity:.6">
+            <circle cx="14" cy="14" r="12" fill="#ddd" stroke="#555" stroke-width="1.5"/>
+            <circle cx="10" cy="10" r="3" fill="#c62828"/><circle cx="18" cy="10" r="3" fill="#1565c0"/>
+            <circle cx="14" cy="18" r="3" fill="#2e7d32"/><circle cx="14" cy="14" r="1.5" fill="#fdd835"/>
+          </svg></label>
+        <label><input type="radio" name="cCable" value="uni"> Unipolaire
+          <svg width="28" height="18" viewBox="0 0 40 28" style="vertical-align:middle;margin-left:2px;opacity:.6">
+            <circle cx="9" cy="14" r="7" fill="#ddd" stroke="#555" stroke-width="1.2"/><circle cx="9" cy="14" r="3" fill="#c62828"/>
+            <circle cx="23" cy="14" r="7" fill="#ddd" stroke="#555" stroke-width="1.2"/><circle cx="23" cy="14" r="3" fill="#1565c0"/>
+            <circle cx="36" cy="14" r="3.5" fill="#ddd" stroke="#555" stroke-width="1.2" opacity=".5"/>
+          </svg></label>
+        <label><input type="radio" name="cCable" value="isole"> Cond. isolés
+          <svg width="28" height="18" viewBox="0 0 40 28" style="vertical-align:middle;margin-left:2px;opacity:.6">
+            <line x1="6" y1="4" x2="6" y2="24" stroke="#c62828" stroke-width="2.5" stroke-linecap="round"/>
+            <line x1="20" y1="4" x2="20" y2="24" stroke="#1565c0" stroke-width="2.5" stroke-linecap="round"/>
+            <line x1="34" y1="4" x2="34" y2="24" stroke="#2e7d32" stroke-width="2.5" stroke-linecap="round"/>
+          </svg></label>
+      </div>
+    </div>
+
+    <div class="field">
+      <label>Nature</label>
+      <div class="radio-group">
+        <label><input type="radio" name="cNat" value="cu" checked> Cuivre</label>
+        <label><input type="radio" name="cNat" value="al"> Aluminium</label>
+      </div>
+    </div>
+
+    <div class="field">
+      <label>Mode de pose</label>
+      <select id="cMdP">
+        <option value="1">Chemin câble perforé ouvert (n°31 — E/F)</option>
+        <option value="2">Chemin câble plein ouvert (n°30 — C)</option>
+        <option value="3">Chemin câble perforé fermé (n°14 — B1)</option>
+        <option value="4">Chemin câble plein fermé (n°14 — B1)</option>
+        <option value="5">Sans fixation (n°20, 41, 72)</option>
+        <option value="6">Fixation directe (n°20 — C)</option>
+        <option value="7" selected>Sous conduit (n°3 — B1)</option>
+        <option value="8">Goulottes (n°14 — B1/B2)</option>
+        <option value="9">Plinthe rainurée (n°12 — A1)</option>
+        <option value="10">Conduit profilé (n°4 — B1)</option>
+        <option value="11">Échelles (n°34 — E/F)</option>
+        <option value="12">Corbeaux / Treillis soudés (n°32 — E/F)</option>
+        <option value="13">Isolateurs (n°36 — G)</option>
+        <option value="14">Câbles porteurs (n°38 — E/F)</option>
+        <option value="15">Colliers (n°20 — C)</option>
+        <option value="16">Moulures (n°12 — A1)</option>
+      </select>
+    </div>
+
+    <div class="field">
+      <label>Situation</label>
+      <select id="cSit">
+        <option value="1" selected>Apparent horiz. &amp; vertical (Tab. 52.3)</option>
+        <option value="2">Caniveau fermé (n°41)</option>
+        <option value="3">Caniveau ouvert / ventilé (n°42, 43)</option>
+        <option value="4">Enterré (n°70, 72, 73 — D1/D2)</option>
+        <option value="5">Vide de construction (n°20 — B1/B2)</option>
+        <option value="6">Faux plafond démontable (n°20, 21)</option>
+        <option value="7">Chambranle (n°47 — B1)</option>
+        <option value="8">Huisserie (n°47 — B1)</option>
+        <option value="9">Encastré paroi isolante (n°1, 2 — A1/A2)</option>
+        <option value="10">Encastré paroi &amp; plancher (n°5, 43 — B1)</option>
+        <option value="11">Aérien (Tab. 52.3)</option>
+      </select>
+    </div>
+
+    <div class="field">
+      <label>Pose sous plafond</label>
+      <div class="radio-group">
+        <label><input type="radio" name="cSP" value="1"> Oui</label>
+        <label><input type="radio" name="cSP" value="0" checked> Non</label>
+      </div>
+    </div>
+  </div>
+
+  <!-- COLONNE DROITE : Résultat Izc en bannière + Autres caractéristiques -->
+  <div class="card">
+    <div class="izc-banner" id="izcBanner">
+      <span class="izc-label">Izc =</span>
+      <span class="izc-value" id="rIzcTop">&mdash;</span>
+      <span class="izc-unit">A</span>
+    </div>
+    <h2>Autres caractéristiques</h2>
+
+    <div class="field">
+      <label>Local BE3 (explosion)</label>
+      <div class="radio-group">
+        <label><input type="radio" name="cBE3" value="1"> Oui</label>
+        <label><input type="radio" name="cBE3" value="0" checked> Non</label>
+      </div>
+    </div>
+
+    <div class="field">
+      <label>Température ambiante</label>
+      <select id="cTemp">
+        <option>10</option><option>15</option><option>20</option><option>25</option>
+        <option selected>30</option><option>35</option><option>40</option><option>45</option><option>50</option>
+      </select>
+      <span style="font-size:11px;font-weight:700;color:#c62828">°C</span>
+    </div>
+
+    <div class="field">
+      <label>Facteur de groupement</label>
+      <input type="text" id="cGroupe" value="0.8" style="max-width:70px">
+      <span style="display:inline-flex;gap:4px;margin-left:4px;align-items:center;flex-wrap:wrap">
+        <span role="button" tabindex="0" onclick="document.getElementById('cGroupe').value='1';calculer()" onkeydown="if(event.key==='Enter'){this.click()}" style="cursor:pointer;display:inline-flex;align-items:center;gap:2px;padding:4px 8px;border:1px solid #c5cae9;border-radius:3px;font-size:10px;color:#555;background:#fafbff" title="1 seul circuit multi (ex: 1 cable 3G16 seul)" class="grp-btn" aria-label="Groupement = 1 (1 circuit multipolaire)">
+          <svg width="30" height="22" viewBox="0 0 30 22" role="img" aria-hidden="true">
+            <rect x="1" y="1" width="28" height="20" rx="4" fill="none" stroke="#bbb" stroke-width="1" stroke-dasharray="3,2"/>
+            <circle cx="15" cy="11" r="7" fill="#e8eaf6" stroke="#3949ab" stroke-width="1.5"/>
+            <circle cx="12" cy="9" r="1.8" fill="#c62828"/><circle cx="18" cy="9" r="1.8" fill="#1565c0"/>
+            <circle cx="15" cy="14" r="1.8" fill="#fdd835"/>
+          </svg>= 1
+        </span>
+        <span role="button" tabindex="0" onclick="document.getElementById('cGroupe').value='1';calculer()" onkeydown="if(event.key==='Enter'){this.click()}" style="cursor:pointer;display:inline-flex;align-items:center;gap:2px;padding:4px 8px;border:1px solid #c5cae9;border-radius:3px;font-size:10px;color:#555;background:#fafbff" title="1 seul circuit uni (ex: 4x1x16 seul)" class="grp-btn" aria-label="Groupement = 1 (1 circuit unipolaire)">
+          <svg width="38" height="22" viewBox="0 0 38 22">
+            <rect x="1" y="1" width="36" height="20" rx="4" fill="none" stroke="#bbb" stroke-width="1" stroke-dasharray="3,2"/>
+            <circle cx="8" cy="11" r="4.5" fill="#e8eaf6" stroke="#c62828" stroke-width="1.2"/><circle cx="8" cy="11" r="1.8" fill="#c62828"/>
+            <circle cx="17" cy="11" r="4.5" fill="#e8eaf6" stroke="#1565c0" stroke-width="1.2"/><circle cx="17" cy="11" r="1.8" fill="#1565c0"/>
+            <circle cx="26" cy="11" r="4.5" fill="#e8eaf6" stroke="#2e7d32" stroke-width="1.2"/><circle cx="26" cy="11" r="1.8" fill="#2e7d32"/>
+          </svg>= 1
+        </span>
+        <span role="button" tabindex="0" onclick="document.getElementById('cGroupe').value='0.8';calculer()" onkeydown="if(event.key==='Enter'){this.click()}" style="cursor:pointer;display:inline-flex;align-items:center;gap:2px;padding:4px 8px;border:1px solid #ffcdd2;border-radius:3px;font-size:10px;color:#555;background:#fff8f8" title="Plusieurs circuits multi groupes (ex: 3 cables 3G16 dans le meme conduit)" class="grp-btn" aria-label="Groupement = 0.8 (plusieurs circuits multipolaires)">
+          <svg width="46" height="22" viewBox="0 0 46 22">
+            <rect x="1" y="1" width="44" height="20" rx="4" fill="none" stroke="#bbb" stroke-width="1" stroke-dasharray="3,2"/>
+            <circle cx="11" cy="11" r="6" fill="#e8eaf6" stroke="#3949ab" stroke-width="1.2"/>
+            <circle cx="9" cy="9.5" r="1.5" fill="#c62828"/><circle cx="13" cy="9.5" r="1.5" fill="#1565c0"/><circle cx="11" cy="13.5" r="1.5" fill="#fdd835"/>
+            <circle cx="24" cy="11" r="6" fill="#e8eaf6" stroke="#c62828" stroke-width="1.2"/>
+            <circle cx="22" cy="9.5" r="1.5" fill="#c62828"/><circle cx="26" cy="9.5" r="1.5" fill="#1565c0"/><circle cx="24" cy="13.5" r="1.5" fill="#fdd835"/>
+            <circle cx="37" cy="11" r="6" fill="#e8eaf6" stroke="#2e7d32" stroke-width="1.2"/>
+            <circle cx="35" cy="9.5" r="1.5" fill="#c62828"/><circle cx="39" cy="9.5" r="1.5" fill="#1565c0"/><circle cx="37" cy="13.5" r="1.5" fill="#fdd835"/>
+          </svg>= 0.8
+        </span>
+        <span role="button" tabindex="0" onclick="document.getElementById('cGroupe').value='0.8';calculer()" onkeydown="if(event.key==='Enter'){this.click()}" style="cursor:pointer;display:inline-flex;align-items:center;gap:2px;padding:4px 8px;border:1px solid #ffcdd2;border-radius:3px;font-size:10px;color:#555;background:#fff8f8" title="Plusieurs circuits uni groupes (ex: 2 jeux de 3x1x16 dans le meme conduit)" class="grp-btn" aria-label="Groupement = 0.8 (plusieurs circuits unipolaires)">
+          <svg width="60" height="22" viewBox="0 0 60 22">
+            <rect x="1" y="1" width="58" height="20" rx="4" fill="none" stroke="#bbb" stroke-width="1" stroke-dasharray="3,2"/>
+            <circle cx="7" cy="11" r="4" fill="#e8eaf6" stroke="#c62828" stroke-width="1"/><circle cx="7" cy="11" r="1.5" fill="#c62828"/>
+            <circle cx="15" cy="11" r="4" fill="#e8eaf6" stroke="#1565c0" stroke-width="1"/><circle cx="15" cy="11" r="1.5" fill="#1565c0"/>
+            <circle cx="23" cy="11" r="4" fill="#e8eaf6" stroke="#2e7d32" stroke-width="1"/><circle cx="23" cy="11" r="1.5" fill="#2e7d32"/>
+            <line x1="29" y1="3" x2="29" y2="19" stroke="#bbb" stroke-width="0.5" stroke-dasharray="2,2"/>
+            <circle cx="35" cy="11" r="4" fill="#e8eaf6" stroke="#c62828" stroke-width="1"/><circle cx="35" cy="11" r="1.5" fill="#c62828"/>
+            <circle cx="43" cy="11" r="4" fill="#e8eaf6" stroke="#1565c0" stroke-width="1"/><circle cx="43" cy="11" r="1.5" fill="#1565c0"/>
+            <circle cx="51" cy="11" r="4" fill="#e8eaf6" stroke="#2e7d32" stroke-width="1"/><circle cx="51" cy="11" r="1.5" fill="#2e7d32"/>
+          </svg>= 0.8
+        </span>
+      </span>
+    </div>
+
+    <div class="field">
+      <label>Protection</label>
+      <select id="cProt">
+        <option value="0" selected>Disjoncteur / Relais / Fu AM</option>
+        <option value="1">Fusible gI</option>
+        <option value="2">Fusible gG</option>
+      </select>
+    </div>
+
+    <div class="field">
+      <label>Harmoniques rang 3 (&gt;15%)</label>
+      <div class="radio-group">
+        <label><input type="radio" name="cH3" value="0" checked> Non</label>
+        <label><input type="radio" name="cH3" value="1"> Oui (x0.86)</label>
+      </div>
+    </div>
+
+    <div class="field">
+      <label>Rayonnement solaire direct</label>
+      <div class="radio-group">
+        <label><input type="radio" name="cSoleil" value="0" checked> Non</label>
+        <label><input type="radio" name="cSoleil" value="1"> Oui (x0.85)</label>
+      </div>
+    </div>
+
+    <div class="field">
+      <label>Résistivité sol (K.m/W)</label>
+      <select id="cRhoSol">
+        <option value="0.5">0.5 — sol très humide (saturé)</option>
+        <option value="0.7">0.7 — sol humide</option>
+        <option value="1.0">1.0 — sol mouillé</option>
+        <option value="1.5">1.5 — sol légèrement humide</option>
+        <option value="2.0">2.0 — sol frais</option>
+        <option value="2.5" selected>2.5 — sol sec (réf. V2024)</option>
+        <option value="3.0">3.0 — sol très sec</option>
+      </select>
+    </div>
+
+    <!-- RÉSULTATS -->
+    <div class="result-box" id="resultBox" role="region" aria-live="polite" aria-label="Resultats du calcul">
+      <h2 style="color:#c62828;border-color:#ef9a9a">Résultats du calcul</h2>
+      <div class="result-formula">Izc = Iz × K (K = K52E × Ctemp × Cgrp × Cprot × Cequil × CBE3 × Csp × Ch3 × Csol × Crhosol)</div>
+
+      <div class="result-row">
+        <label for="rIz">Iz (courant admissible)</label>
+        <input type="text" id="rIz" readonly value="—">
+        <span class="unit">A</span>
+      </div>
+      <div class="result-row">
+        <label for="rK">K (facteur correction global)</label>
+        <input type="text" id="rK" readonly value="—">
+      </div>
+      <div class="result-row">
+        <label for="rIzc">Izc (courant corrigé)</label>
+        <input type="text" id="rIzc" readonly value="—" style="color:#c62828;font-size:15px">
+        <span class="unit">A</span>
+      </div>
+      <div class="result-row">
+        <label for="rMethode">Mode de pose / Méthode</label>
+        <input type="text" id="rMethode" readonly value="—">
+      </div>
+    </div>
+
+    <div class="info-box">
+      <textarea id="rObs" readonly placeholder="Observations..."></textarea>
+    </div>
+  </div>
+</div>
+
+<div class="buttons">
+  <button type="button" class="btn btn-calc" disabled style="opacity:.5" onclick="calculer()">Calculer</button>
+  <button type="button" class="btn btn-def" onclick="defaut()">Valeurs par défaut</button>
+</div>
+<div class="buttons" style="margin-top:4px">
+  <button type="button" class="btn" style="background:#1565c0;color:#fff;font-size:11px;padding:6px 14px" onclick="openRef('norme')">Méthodologie selon NF C 15-100-1 V2024</button>
+  <button type="button" class="btn" style="background:#e65100;color:#fff;font-size:11px;padding:6px 14px" onclick="openRef('equiv')">Tables d'équivalence (preuve)</button>
+</div>
+
+<div class="hist-bar">
+  <button onclick="toggleHist()">Historique <span id="histCount" class="hist-count"></span></button>
+  <button onclick="exportHist()">Exporter CSV</button>
+  <button onclick="clearHist()">Vider</button>
+</div>
+<div class="hist-panel" id="histPanel"></div>
+
+<div class="footer">
+  ARGOS Bureau de Contrôle — Outil de calcul NF C 15-100-1 V2024 — Données tableaux 52.8A à 52.8H.2 — v9
+</div>
+
+<div class="izc-sticky" id="izcSticky">
+  <span class="izc-label">Izc =</span>
+  <span class="izc-value" id="rIzcBottom">&mdash;</span>
+  <span class="izc-unit">A</span>
+</div>
+
+<script>
+// ═══════════════════════════════════════════════════════════════════════════════
+// DONNÉES NF C 15-100-1 V2024 — Version en ligne (pas de licence)
+// ═══════════════════════════════════════════════════════════════════════════════
+
+// Écran de blocage
+function showBlock(msg) {
+  var ov=document.createElement('div');
+  ov.style.cssText='position:fixed;inset:0;background:#1a1a2e;display:flex;align-items:center;justify-content:center;z-index:99999;flex-direction:column';
+  var bx=document.createElement('div');
+  bx.style.cssText='background:#fff;border-radius:12px;padding:40px 50px;text-align:center;box-shadow:0 4px 20px rgba(0,0,0,.3);max-width:500px';
+  var ic=document.createElement('div');ic.textContent='\u26A0';ic.style.cssText='font-size:48px;margin-bottom:16px';bx.appendChild(ic);
+  var ti=document.createElement('h1');ti.textContent='Accès bloqué';ti.style.cssText='color:#c62828;font-size:20px;margin-bottom:12px';bx.appendChild(ti);
+  var pm=document.createElement('p');pm.textContent=msg;pm.style.cssText='color:#555;font-size:14px;line-height:1.6;margin-bottom:16px';bx.appendChild(pm);
+  var co=document.createElement('p');co.textContent='ARGOS Bureau de Contrôle';co.style.cssText='color:#1a237e;font-size:14px;font-weight:700;margin-top:8px';bx.appendChild(co);
+  var em=document.createElement('p');em.textContent='argos@argos-controle.fr \u2014 06 23 65 27 03';em.style.cssText='color:#3949ab;font-size:13px;margin-top:4px';bx.appendChild(em);
+  ov.appendChild(bx);document.body.appendChild(ov);
+}
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// DONNÉES CHIFFRÉES — AES-256-GCM + Validation serveur Apps Script
+// ═══════════════════════════════════════════════════════════════════════════════
+
+var _ENC = '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';
+var _ACT = 'PLACEHOLDER_ACTIVATION_URL';
+
+var SECTIONS, IZ, TEMP_AIR, TEMP_SOL, KTEMP_AIR, KTEMP_SOL, KRHOSOL, FACTORS;
+var _izReady = false;
+
+function _fp() {
+  var d = [];
+  d.push(navigator.userAgent || '');
+  d.push(screen.width + 'x' + screen.height + 'x' + screen.colorDepth);
+  d.push(navigator.language || '');
+  d.push(navigator.hardwareConcurrency || 0);
+  d.push(navigator.deviceMemory || 0);
+  d.push(new Date().getTimezoneOffset());
+  d.push(navigator.maxTouchPoints || 0);
+  d.push(navigator.platform || '');
+  try {
+    var cv = document.createElement('canvas'); cv.width = 200; cv.height = 50;
+    var cx = cv.getContext('2d'); cx.textBaseline = 'top'; cx.font = '14px Arial';
+    cx.fillStyle = '#3949ab'; cx.fillText('ARGOS-Iz-2024', 2, 2);
+    cx.fillStyle = 'rgba(200,40,40,.7)'; cx.fillRect(80, 5, 60, 20);
+    d.push(cv.toDataURL());
+  } catch(e) { d.push('nc'); }
+  var s = d.join('|'), h = 5381;
+  for (var i = 0; i < s.length; i++) { h = ((h << 5) + h) + s.charCodeAt(i); h = h & h; }
+  return (h >>> 0).toString(36);
+}
+
+function _showLoading() {
+  var ld = document.createElement('div'); ld.id = '_ld';
+  ld.style.cssText = 'position:fixed;inset:0;background:rgba(26,35,78,.95);display:flex;align-items:center;justify-content:center;z-index:99998';
+  var box = document.createElement('div');
+  box.style.cssText = 'text-align:center;color:#fff';
+  var icon = document.createElement('div');
+  icon.textContent = '\u23F3';
+  icon.style.cssText = 'font-size:32px;margin-bottom:16px';
+  var msg = document.createElement('p');
+  msg.textContent = 'Vérification de la licence...';
+  msg.style.cssText = 'font-size:16px;font-weight:600';
+  box.appendChild(icon);
+  box.appendChild(msg);
+  ld.appendChild(box);
+  document.body.appendChild(ld);
+}
+
+(async function() {
+  try {
+    var token = new URLSearchParams(location.search).get('t');
+    if (!token || token.trim().length < 2) {
+      showBlock('Lien personnel requis. Contactez ARGOS pour obtenir votre accès.');
+      throw new Error('_');
+    }
+    token = token.trim().toUpperCase();
+    var myFp = _fp();
+
+    // Cache session (1h)
+    var ck = '_iz24_a_' + token;
+    var aesKey = null;
+    try {
+      var c = JSON.parse(sessionStorage.getItem(ck) || 'null');
+      if (c && c.f === myFp && c.k && Date.now() - c.t < 3600000) aesKey = c.k;
+    } catch(e) {}
+
+    if (!aesKey) {
+      _showLoading();
+      var resp = await fetch(_ACT + '?t=' + encodeURIComponent(token) + '&fp=' + encodeURIComponent(myFp) + '&action=validate', { redirect: 'follow' });
+      var data = await resp.json();
+      var el = document.getElementById('_ld'); if (el) el.remove();
+
+      if (!data.ok) { showBlock(data.error || 'Licence invalide.'); throw new Error('_'); }
+      if (!data.key) { showBlock('Erreur serveur : clé manquante.'); throw new Error('_'); }
+      aesKey = data.key;
+      sessionStorage.setItem(ck, JSON.stringify({ f: myFp, k: aesKey, t: Date.now() }));
+    }
+
+    // Déchiffrement AES-256-GCM
+    var raw = Uint8Array.from(atob(_ENC), function(c) { return c.charCodeAt(0); });
+    var ivB = raw.slice(0, 12), tag = raw.slice(12, 28), ct = raw.slice(28);
+    var gcm = new Uint8Array(ct.length + tag.length);
+    gcm.set(ct); gcm.set(tag, ct.length);
+    var keyRaw = Uint8Array.from(atob(aesKey), function(c) { return c.charCodeAt(0); });
+    var ck2 = await crypto.subtle.importKey('raw', keyRaw, { name: 'AES-GCM' }, false, ['decrypt']);
+    var decBuf = await crypto.subtle.decrypt({ name: 'AES-GCM', iv: ivB }, ck2, gcm);
+    var obj = JSON.parse(new TextDecoder().decode(decBuf));
+
+    SECTIONS = obj.SECTIONS; IZ = obj.IZ;
+    TEMP_AIR = obj.TEMP_AIR; TEMP_SOL = obj.TEMP_SOL;
+    KTEMP_AIR = obj.KTEMP_AIR; KTEMP_SOL = obj.KTEMP_SOL;
+    KRHOSOL = obj.KRHOSOL; FACTORS = obj.FACTORS;
+
+    if (!IZ || !SECTIONS) throw new Error('Données incomplètes');
+    _izReady = true;
+    document.querySelectorAll('.btn-calc').forEach(function(b) { b.disabled = false; b.style.opacity = '1'; });
+
+  } catch(e) {
+    if (e.message === '_') return;
+    if (e.message === 'Failed to fetch') showBlock('Impossible de contacter le serveur. Vérifiez votre connexion internet.');
+    else showBlock('Erreur d\'activation : ' + e.message);
+  }
+})();
+
+
+function determinerMethode(mdp, sit, cable) {
+  // mdp: 1-16, sit: 1-11, cable: 'multi'/'uni'/'isole'
+  // Retourne { mode: string, methode: string, k52e: number } ou null si impossible
+
+  const isIsole = cable === 'isole';
+  const isUni = cable === 'uni';
+  const isMulti = cable === 'multi';
+  const EouF = isMulti ? 'E' : 'F';
+
+  // CC Perforé Ouvert
+  if (mdp === 1 && !isIsole) {
+    if ([1,6,11].includes(sit)) return { mode:'31', methode:EouF, k52e:1 };
+    if (sit === 2) return { mode:'41', methode:'B1', k52e:1 };
+    if (sit === 3) return { mode:'43', methode:'B1', k52e:1 };
+  }
+  // CC Plein Ouvert
+  if (mdp === 2 && !isIsole) {
+    if ([1,6,11].includes(sit)) return { mode:'30', methode:'C', k52e:1 };
+    if (sit === 2) return { mode:'41', methode:'B1', k52e:1 };
+    if (sit === 3) return { mode:'43', methode:'B1', k52e:1 };
+  }
+  // CC Perforé Fermé
+  if (mdp === 3 && !isIsole) {
+    if ([1,2,3,6].includes(sit)) return { mode:'14', methode:'B1', k52e:1 };
+    if (sit === 11) return { mode:'14', methode:'B1', k52e:1 };
+  }
+  // CC Plein Fermé
+  if (mdp === 4 && !isIsole) {
+    if ([1,2,3,6].includes(sit)) return { mode:'14', methode:'B1', k52e:1 };
+    if (sit === 11) return { mode:'14', methode:'B1', k52e:1 };
+  }
+  // Sans Fixation
+  if (mdp === 5 && !isIsole) {
+    if (sit === 2) return { mode:'41', methode:'B1', k52e:1 };
+    if (sit === 3) return { mode:'43', methode:'B1', k52e:1 };
+    if (sit === 4) return { mode:'72', methode:'D2', k52e:1 };
+    if (sit === 5) return { mode:'20', methode:'B1', k52e:0.95 };
+    if (sit === 6) return { mode:'20', methode:'B1', k52e:0.95 };
+    if ([7,8].includes(sit)) return { mode:'47', methode:'B1', k52e:1 };
+  }
+  // Fixation directe
+  if (mdp === 6 && !isIsole) {
+    if (sit === 1) return { mode:'20', methode:'C', k52e:1 };
+    if (sit === 2) return { mode:'41', methode:'B1', k52e:1 };
+    if (sit === 3) return { mode:'43', methode:'B1', k52e:1 };
+    if (sit === 6) return { mode:'21', methode:'C', k52e:0.95 };
+    if (sit === 9) return { mode:'1', methode:'A1', k52e:1 };
+  }
+  // Sous conduit
+  if (mdp === 7) {
+    if (sit === 1) return { mode:'3', methode:'B1', k52e:1 };
+    if (sit === 2) return { mode:'41', methode:'B1', k52e:1 };
+    if (sit === 3) return { mode:'42', methode:'B1', k52e:1 };
+    if (sit === 4) return { mode:'70', methode:'D1', k52e:1 };
+    if (sit === 5) return { mode:'41', methode:'B2', k52e:1 };
+    if (sit === 6) return { mode:'3', methode:'B1', k52e:1 };
+    if ([7,8].includes(sit)) return { mode:'47', methode:'B1', k52e:1 };
+    if (sit === 9) {
+      if (isIsole) return { mode:'1', methode:'A1', k52e:1 };
+      return { mode:'2', methode:'A2', k52e:1 };
+    }
+    if (sit === 10) return { mode:'5', methode:'B1', k52e:1 };
+  }
+  // Goulottes
+  if (mdp === 8) {
+    if ([1,2,3,6].includes(sit)) return { mode:'14', methode:'B1', k52e:1 };
+    if (sit === 10) return { mode:'14', methode:'B1', k52e:1 };
+    if (sit === 11) return { mode:'14', methode:'B1', k52e:1 };
+  }
+  // Plinthe rainurée
+  if (mdp === 9) {
+    if (sit === 1) return { mode:'12', methode:'A1', k52e:1 };
+  }
+  // Conduit profilé
+  if (mdp === 10) {
+    if (sit === 1) return { mode:'4', methode:'B1', k52e:1 };
+    if (sit === 2) return { mode:'41', methode:'B1', k52e:1 };
+    if (sit === 3) return { mode:'42', methode:'B1', k52e:1 };
+    if (sit === 4) return { mode:'70', methode:'D1', k52e:1 };
+    if (sit === 5) return { mode:'43', methode:'B2', k52e:1 };
+    if (sit === 6) return { mode:'4', methode:'B1', k52e:1 };
+    if (sit === 9) {
+      if (isIsole) return { mode:'1', methode:'A1', k52e:1 };
+      return { mode:'2', methode:'A2', k52e:1 };
+    }
+    if (sit === 10) return { mode:'43', methode:'B1', k52e:1 };
+  }
+  // Échelles
+  if (mdp === 11 && !isIsole) {
+    if ([1,6,11].includes(sit)) return { mode:'34', methode:EouF, k52e:1 };
+    if (sit === 2) return { mode:'41', methode:'B1', k52e:1 };
+    if (sit === 3) return { mode:'43', methode:'B1', k52e:1 };
+  }
+  // Corbeaux / Treillis soudés
+  if (mdp === 12 && !isIsole) {
+    if ([1,6,11].includes(sit)) return { mode:'32', methode:EouF, k52e:1 };
+    if (sit === 2) return { mode:'41', methode:'B1', k52e:1 };
+    if (sit === 3) return { mode:'43', methode:'B1', k52e:1 };
+  }
+  // Isolateurs
+  if (mdp === 13 && isIsole) {
+    if ([1,11].includes(sit)) return { mode:'36', methode:'G', k52e:1 };
+  }
+  // Câbles porteurs
+  if (mdp === 14 && !isIsole) {
+    if ([1,11].includes(sit)) return { mode:'38', methode:EouF, k52e:1 };
+  }
+  // Colliers
+  if (mdp === 15 && !isIsole) {
+    if ([1,6].includes(sit)) return { mode:'20', methode:'C', k52e:1 };
+    if (sit === 2) return { mode:'41', methode:'B1', k52e:1 };
+    if (sit === 3) return { mode:'43', methode:'B1', k52e:1 };
+  }
+  // Moulures
+  if (mdp === 16) {
+    if ([1,6].includes(sit)) return { mode:'12', methode:'A1', k52e:1 };
+  }
+
+  return null; // combinaison impossible
+}
+
+
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// HISTORIQUE DES CALCULS (localStorage)
+// ═══════════════════════════════════════════════════════════════════════════════
+
+const HIST_KEY = '_iz24_hist';
+const HIST_MAX = 50;
+
+function getHist() { try { return JSON.parse(localStorage.getItem(HIST_KEY) || '[]'); } catch(e) { return []; } }
+function saveHist(h) { localStorage.setItem(HIST_KEY, JSON.stringify(h.slice(-HIST_MAX))); updateHistCount(); }
+
+function addHist(entry) {
+  var h = getHist();
+  h.push(entry);
+  saveHist(h);
+}
+
+function updateHistCount() {
+  var c = document.getElementById('histCount');
+  var n = getHist().length;
+  if (c) c.textContent = n > 0 ? '(' + n + ')' : '';
+}
+
+function toggleHist() {
+  var p = document.getElementById('histPanel');
+  p.classList.toggle('open');
+  if (p.classList.contains('open')) renderHist();
+}
+
+function renderHist() {
+  var h = getHist();
+  var p = document.getElementById('histPanel');
+  if (!h.length) { p.textContent = ''; var em = document.createElement('p'); em.style.cssText = 'padding:12px;text-align:center;color:#888;font-size:12px'; em.textContent = 'Aucun calcul enregistré'; p.appendChild(em); return; }
+  var tbl = document.createElement('table');
+  var thead = document.createElement('thead');
+  var tr = document.createElement('tr');
+  ['Heure','Section','Nat','Isol','Cond','Câble','Mode','Méth.','Iz','K','Izc'].forEach(function(t) {
+    var th = document.createElement('th'); th.textContent = t; tr.appendChild(th);
+  });
+  thead.appendChild(tr);
+  tbl.appendChild(thead);
+  var tbody = document.createElement('tbody');
+  for (var i = h.length - 1; i >= 0; i--) {
+    var r = h[i], row = document.createElement('tr');
+    [r.time, r.section + ' mm²', r.nat.toUpperCase(), r.isol.toUpperCase(), r.nbCond, r.cable, r.mode, r.methode, r.Iz + ' A', r.K, r.Izc + ' A'].forEach(function(v, j) {
+      var td = document.createElement('td'); td.textContent = v; if (j === 10) td.className = 'hist-izc'; row.appendChild(td);
+    });
+    tbody.appendChild(row);
+  }
+  tbl.appendChild(tbody);
+  while (p.firstChild) p.removeChild(p.firstChild);
+  p.appendChild(tbl);
+}
+
+function exportHist() {
+  var h = getHist();
+  if (!h.length) return;
+  var csv = 'Heure;Section;Nature;Isolation;Conducteurs;Cable;Mode;Methode;Iz;K;Izc\n';
+  h.forEach(function(r) {
+    csv += [r.time, r.section, r.nat, r.isol, r.nbCond, r.cable, r.mode, r.methode, r.Iz, r.K, r.Izc].join(';') + '\n';
+  });
+  var blob = new Blob(['\ufeff' + csv], {type: 'text/csv;charset=utf-8'});
+  var a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'iz-calculs-' + new Date().toISOString().slice(0,10) + '.csv';
+  a.click();
+  URL.revokeObjectURL(a.href);
+}
+
+function clearHist() {
+  localStorage.removeItem(HIST_KEY);
+  updateHistCount();
+  var p = document.getElementById('histPanel');
+  if (p.classList.contains('open')) renderHist();
+}
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// CALCUL
+// ═══════════════════════════════════════════════════════════════════════════════
+
+function calculer() { if (!_izReady) { document.getElementById('rObs').value = 'Chargement en cours...'; return; } try {
+  const sphIdx = document.getElementById('cSPh').selectedIndex;
+  const sph = SECTIONS[sphIdx];
+  const isol = document.querySelector('input[name="cIsol"]:checked').value.toLowerCase();
+  const nbCond = parseInt(document.querySelector('input[name="cNbCond"]:checked').value);
+  const cable = document.querySelector('input[name="cCable"]:checked').value;
+  const nat = document.querySelector('input[name="cNat"]:checked').value;
+  const mdp = parseInt(document.getElementById('cMdP').value);
+  const sit = parseInt(document.getElementById('cSit').value);
+  const sousPlafond = document.querySelector('input[name="cSP"]:checked').value === '1';
+  const be3 = document.querySelector('input[name="cBE3"]:checked').value === '1';
+  const tempIdx = document.getElementById('cTemp').selectedIndex;
+  const temp = TEMP_AIR[tempIdx];
+  const prot = parseInt(document.getElementById('cProt').value);
+  let cGroupe = parseFloat(document.getElementById('cGroupe').value.replace(',','.'));
+
+  const obs = [];
+
+  // Validation groupement
+  if (isNaN(cGroupe)) { cGroupe = 1; obs.push('Facteur de groupement invalide, utilisation de 1.'); }
+  if (cGroupe > 1) { cGroupe = 1; obs.push('Facteur de groupement limité à 1.'); }
+  if (cGroupe < 0.1) { cGroupe = 0.1; obs.push('Facteur de groupement limité à 0.1.'); }
+  document.getElementById('cGroupe').value = cGroupe;
+
+  // Déterminer méthode
+  const m = determinerMethode(mdp, sit, cable);
+  if (!m) {
+    afficherResultat(0, 0, 0, '0 / 0', 'Mode de pose non prévu, inadapté ou impossible.');
+    return;
+  }
+
+  // Nombre de conducteurs effectif (4 → traité comme 3 avec facteur)
+  const nbEff = nbCond >= 4 ? 3 : nbCond;
+
+  // Vérifier que la table existe
+  const table = IZ[m.methode];
+  if (!table || !table[nat] || !table[nat][isol] || !table[nat][isol][nbEff]) {
+    afficherResultat(0, 0, 0, m.mode + ' / ' + m.methode, 'Données non disponibles pour cette configuration.');
+    return;
+  }
+
+  // Lire Iz
+  let Iz = table[nat][isol][nbEff][sphIdx];
+  if (!Iz || Iz === 0) {
+    afficherResultat(0, 0, 0, m.mode + ' / ' + m.methode,
+      nat === 'al' ? 'Section non disponible en aluminium pour cette méthode.' :
+      'Section non prévue pour cette méthode de référence.');
+    return;
+  }
+
+  // Facteur de température
+  const isEnterre = ['D1','D2'].includes(m.methode);
+  let Ctemp;
+  if (isEnterre) {
+    Ctemp = KTEMP_SOL[isol][tempIdx];
+    if (sit !== 4 && temp !== 20) obs.push('Attention : température de référence pour enterré = 20°C.');
+  } else {
+    Ctemp = KTEMP_AIR[isol][tempIdx];
+  }
+
+  // Facteur équilibre (4 conducteurs chargés)
+  const Cequil = nbCond === 4 ? FACTORS.EQUILIBRE : 1;
+  if (nbCond === 4) obs.push('Circuit 4 conducteurs chargés : facteur ' + FACTORS.EQUILIBRE + ' appliqué (§523.7).');
+
+  // Facteur BE3
+  let Cbe3 = 1;
+  if (be3) {
+    Cbe3 = FACTORS.BE3;
+    if (isol === 'pvc') {
+      obs.push('BE3 : isolation PVC normalement non autorisée en atmosphère explosive.');
+      afficherResultat(0, 0, 0, m.mode + ' / ' + m.methode, obs.join('\n'));
+      return;
+    }
+    if (cable === 'isole') {
+      obs.push('BE3 : conducteurs isolés non autorisés en atmosphère explosive.');
+      afficherResultat(0, 0, 0, m.mode + ' / ' + m.methode, obs.join('\n'));
+      return;
+    }
+    if ([8,9,10,16].includes(mdp)) {
+      obs.push('BE3 : mode de pose interdit en atmosphère explosive.');
+      afficherResultat(0, 0, 0, m.mode + ' / ' + m.methode, obs.join('\n'));
+      return;
+    }
+  }
+
+  // Facteur protection (fusibles)
+  let Cprot = 1;
+  if (prot > 0) {
+    Cprot = 0.91;
+    const Izc_test = Iz * m.k52e * Ctemp * cGroupe * Cequil * Cbe3;
+    if (prot === 1) { // gI
+      if (Izc_test / 1.21 <= 25) Cprot = 0.826;
+      if (Izc_test / 1.31 <= 10) Cprot = 0.763;
+    } else { // gG
+      if (Izc_test < 16 * 1.31) Cprot = 0.76;
+    }
+    if (Izc_test / 1.45 <= 4) Cprot = 0.69;
+  }
+
+  // Facteur harmoniques rang 3 (§523.6)
+  const h3 = document.querySelector('input[name="cH3"]:checked').value === '1';
+  const Ch3 = h3 ? FACTORS.H3 : 1;
+  if (h3) obs.push('Harmoniques rang 3 > 15% : facteur ' + FACTORS.H3 + ' appliqué (§523.6).');
+
+  // Facteur rayonnement solaire direct (§52.1.3.3)
+  const soleil = document.querySelector('input[name="cSoleil"]:checked').value === '1';
+  let Csol = 1;
+  if (soleil) {
+    if (['E','F','G'].includes(m.methode)) {
+      Csol = FACTORS.SOLAIRE;
+      obs.push('Rayonnement solaire direct : facteur ' + FACTORS.SOLAIRE + ' appliqué (méthodes E/F/G).');
+    } else {
+      obs.push('Rayonnement solaire : sans effet pour méthode ' + m.methode + ' (applicable E, F, G uniquement).');
+    }
+  }
+
+  // Facteur résistivité thermique sol (Tab. 52.11, réf. 2.5 K.m/W = sol sec)
+  let Crhosol = 1;
+  if (isEnterre) {
+    const rhoVal = document.getElementById('cRhoSol').value;
+    const rhoTable = KRHOSOL[m.methode] || KRHOSOL.D1;
+    Crhosol = rhoTable[rhoVal] || 1;
+    if (rhoVal !== '2.5') obs.push('Résistivité sol ' + rhoVal + ' K.m/W (' + m.methode + ') : facteur ' + Crhosol + ' appliqué (Tab. 52.11).');
+  } else {
+    const rhoVal = document.getElementById('cRhoSol').value;
+    if (rhoVal !== '2.5') obs.push('Résistivité sol : sans effet (applicable D1/D2 uniquement).');
+  }
+
+  // Facteur sous plafond (fixation directe apparente)
+  let Csp = 1;
+  if (sousPlafond && mdp === 6 && sit === 1) {
+    Csp = FACTORS.PLAFOND;
+    obs.push('Pose sous plafond : facteur ' + FACTORS.PLAFOND + ' appliqué (§52.1.4).');
+  } else if (sousPlafond && (mdp !== 6 || sit !== 1)) {
+    obs.push('Pose sous plafond : utile uniquement pour fixation directe en apparent.');
+  }
+
+  // K global
+  const K = m.k52e * Ctemp * cGroupe * Cprot * Cequil * Cbe3 * Csp * Ch3 * Csol * Crhosol;
+  const Izc = Iz * K;
+
+  // Vérifications
+  if (cable === 'isole' && sph > 35)
+    obs.push('Section des conducteurs isolés normalement limitée à 35 mm².');
+  if (cable === 'multi' && sph > 300)
+    obs.push('Section des câbles multipolaires normalement limitée à 300 mm².');
+  if (cable === 'uni' && sph < 25)
+    obs.push('Section des câbles unipolaires normalement >= 25 mm².');
+  if (nat === 'al' && sph < 2.5)
+    obs.push('Section minimale aluminium = 2.5 mm².');
+  if (sit === 4 && cable === 'isole') {
+    obs.push('Conducteurs isolés enterrés non autorisés.');
+    afficherResultat(0, 0, 0, m.mode + ' / ' + m.methode, obs.join('\n'));
+    return;
+  }
+
+  // Note par défaut si aucun facteur particulier n'a été modifié
+  if (cGroupe === 0.8 && !h3 && !soleil && !be3 && nbCond !== 4) {
+    obs.push('---');
+    obs.push('Valeurs par défaut : en première approche et sans information spécifique, le calcul retient un facteur de groupement de 0.8 (plusieurs circuits), sans harmoniques, sans rayonnement solaire (installation intérieure) et une résistivité de sol standard (2.5 K.m/W). Ajuster ces paramètres selon les conditions réelles de l\'installation.');
+  }
+
+  afficherResultat(Izc, K, Iz, m.mode + ' / ' + m.methode, obs.join('\n'));
+
+  // Enregistrer dans l'historique
+  var now = new Date();
+  addHist({
+    time: ('0'+now.getHours()).slice(-2)+':'+('0'+now.getMinutes()).slice(-2),
+    section: sph, nat: nat, isol: isol, nbCond: nbCond, cable: cable,
+    mode: m.mode, methode: m.methode,
+    Iz: Math.round(Iz), K: Math.round(K*1000)/1000, Izc: Math.round(Izc)
+  });
+
+} catch(e) { if (e.message !== '_') { document.getElementById('rObs').value = 'Erreur de calcul : ' + e.message; } } }
+
+function afficherResultat(Izc, K, Iz, methode, obsText) {
+  document.getElementById('rIz').value = Iz ? Math.round(Iz) : '—';
+  document.getElementById('rK').value = K ? (Math.round(K * 1000) / 1000) : '—';
+  document.getElementById('rIzc').value = Izc ? Math.round(Izc) : '—';
+  document.getElementById('rMethode').value = methode || '—';
+  document.getElementById('rObs').value = obsText || '';
+  // Bandeau Izc haut (desktop) + bas sticky (mobile)
+  var val = Izc ? Math.round(Izc) : '\u2014';
+  var top = document.getElementById('rIzcTop'); if (top) top.textContent = val;
+  var bot = document.getElementById('rIzcBottom'); if (bot) bot.textContent = val;
+  // Flash visuel
+  var rb = document.getElementById('resultBox');
+  var bn = document.getElementById('izcBanner');
+  var st = document.getElementById('izcSticky');
+  if (rb) { rb.classList.add('result-flash'); setTimeout(function(){ rb.classList.remove('result-flash'); }, 400); }
+  if (bn && Izc) { bn.style.background = 'linear-gradient(135deg,#1b5e20,#2e7d32)'; setTimeout(function(){ bn.style.background = ''; }, 500); }
+  if (st && Izc) { st.style.background = 'linear-gradient(135deg,#1b5e20,#2e7d32)'; setTimeout(function(){ st.style.background = ''; }, 500); }
+}
+
+
+function raz() {
+  document.getElementById('rIz').value = '—';
+  document.getElementById('rK').value = '—';
+  document.getElementById('rIzc').value = '—';
+  document.getElementById('rMethode').value = '—';
+  document.getElementById('rObs').value = '';
+  var top = document.getElementById('rIzcTop'); if (top) top.textContent = '\u2014';
+  var bot = document.getElementById('rIzcBottom'); if (bot) bot.textContent = '\u2014';
+}
+
+function defaut() {
+  document.getElementById('cSPh').selectedIndex = 1; // 2.5
+  document.querySelector('input[name="cIsol"][value="PR"]').checked = true;
+  document.querySelector('input[name="cNbCond"][value="3"]').checked = true;
+  document.querySelector('input[name="cCable"][value="multi"]').checked = true;
+  document.querySelector('input[name="cNat"][value="cu"]').checked = true;
+  document.getElementById('cMdP').selectedIndex = 6; // Sous conduit
+  document.getElementById('cSit').selectedIndex = 0; // Apparent
+  document.querySelector('input[name="cSP"][value="0"]').checked = true;
+  document.querySelector('input[name="cBE3"][value="0"]').checked = true;
+  document.getElementById('cTemp').selectedIndex = 4; // 30°C
+  document.getElementById('cGroupe').value = '0.8';
+  document.getElementById('cProt').selectedIndex = 0;
+  document.querySelector('input[name="cH3"][value="0"]').checked = true;
+  document.querySelector('input[name="cSoleil"][value="0"]').checked = true;
+  document.getElementById('cRhoSol').value = '2.5';
+  raz();
+}
+
+function openRef(type) {
+  // Chemin relatif depuis Calcul IE/
+  if (type === 'norme') {
+    window.open('NFC_15-100-1_V2024_Methodologie_Iz.pdf', '_blank');
+  } else {
+    window.open('Equivalences_V2024.htm', '_blank');
+  }
+}
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// FILTRAGE DYNAMIQUE — Combinaisons autorisées (mode de pose × situation)
+// Basé sur le Tableau 52.3 NF C 15-100-1 V2024
+// ═══════════════════════════════════════════════════════════════════════════════
+
+// Situations valides par mode de pose (index 1-16 → tableau de sit valides 1-11)
+// Câbles exigés : 'any' = tous, 'cable' = multi+uni (pas isolé), 'isole' = isolé uniquement
+// sits: situations autorisées, cable: type câble, defSit: situation par défaut terrain
+const VALID_SITS = {
+  1:  { sits:[1,2,3,6,11], cable:'cable', defSit:1 },        // CC perforé ouvert → apparent
+  2:  { sits:[1,2,3,6,11], cable:'cable', defSit:1 },        // CC plein ouvert → apparent
+  3:  { sits:[1,2,3,6,11], cable:'cable', defSit:1 },        // CC perforé fermé → apparent
+  4:  { sits:[1,2,3,6,11], cable:'cable', defSit:1 },        // CC plein fermé → apparent
+  5:  { sits:[2,3,4,5,6,7,8], cable:'cable', defSit:4 },     // Sans fixation → enterré
+  6:  { sits:[1,2,3,6,9], cable:'cable', defSit:1 },          // Fixation directe → apparent
+  7:  { sits:[1,2,3,4,5,6,7,8,9,10], cable:'any', defSit:4 },// Sous conduit → enterré
+  8:  { sits:[1,6,10,11], cable:'any', defSit:1 },            // Goulottes → apparent
+  9:  { sits:[1], cable:'any', defSit:1 },                     // Plinthe rainurée → apparent
+  10: { sits:[1,2,3,4,5,6,9,10], cable:'any', defSit:1 },    // Conduit profilé → apparent
+  11: { sits:[1,2,3,6,11], cable:'cable', defSit:1 },         // Échelles → apparent
+  12: { sits:[1,2,3,6,11], cable:'cable', defSit:1 },         // Corbeaux → apparent
+  13: { sits:[1,11], cable:'isole', defSit:1 },                // Isolateurs → apparent
+  14: { sits:[1,11], cable:'cable', defSit:1 },                // Câbles porteurs → apparent
+  15: { sits:[1,2,3,6], cable:'cable', defSit:1 },             // Colliers → apparent
+  16: { sits:[1,6], cable:'any', defSit:1 }                    // Moulures → apparent
+};
+
+function updateSituations(forceDefault) {
+  const mdp = parseInt(document.getElementById('cMdP').value);
+  const sitSel = document.getElementById('cSit');
+  const currentSit = parseInt(sitSel.value);
+  const rule = VALID_SITS[mdp];
+  if (!rule) return;
+
+  const validSits = rule.sits;
+
+  for (let i = 0; i < sitSel.options.length; i++) {
+    const opt = sitSel.options[i];
+    const val = parseInt(opt.value);
+    const isValid = validSits.includes(val);
+    opt.disabled = !isValid;
+    opt.style.color = isValid ? '' : '#bbb';
+  }
+
+  // Appliquer la situation par défaut du mode de pose (changement utilisateur ou init)
+  if (forceDefault || !validSits.includes(currentSit)) {
+    sitSel.value = rule.defSit;
+  }
+
+  // Mettre à jour les radio câble
+  updateCableTypes(mdp);
+
+  // Mettre à jour température si enterré
+  updateTempForSit();
+}
+
+function updateCableTypes(mdp) {
+  const rule = VALID_SITS[mdp];
+  if (!rule) return;
+
+  const radios = document.querySelectorAll('input[name="cCable"]');
+  radios.forEach(r => {
+    const val = r.value;
+    let enabled = true;
+    if (rule.cable === 'cable' && val === 'isole') enabled = false;
+    if (rule.cable === 'isole' && val !== 'isole') enabled = false;
+    r.disabled = !enabled;
+    r.parentElement.style.opacity = enabled ? '1' : '0.4';
+  });
+
+  // Si le type sélectionné est désactivé, basculer
+  const selected = document.querySelector('input[name="cCable"]:checked');
+  if (selected && selected.disabled) {
+    const first = document.querySelector('input[name="cCable"]:not(:disabled)');
+    if (first) first.checked = true;
+  }
+}
+
+function updateTempForSit() {
+  const sit = parseInt(document.getElementById('cSit').value);
+  const tempSel = document.getElementById('cTemp');
+  if (sit === 4 && tempSel.selectedIndex !== 2) {
+    tempSel.selectedIndex = 2; // 20°C pour enterré
+  } else if (sit !== 4 && tempSel.selectedIndex === 2) {
+    tempSel.selectedIndex = 4; // 30°C sinon
+  }
+}
+
+// Écouteurs
+document.getElementById('cMdP').addEventListener('change', function() {
+  updateSituations(true);
+  calculer();
+});
+document.getElementById('cSit').addEventListener('change', function() {
+  updateTempForSit();
+  calculer();
+});
+
+// Calcul automatique dès qu'un paramètre change
+document.querySelectorAll('select, input[type=text]').forEach(el => {
+  if (!['cMdP','cSit'].includes(el.id)) el.addEventListener('change', calculer);
+  if (el.type === 'text') el.addEventListener('input', calculer);
+});
+document.querySelectorAll('input[type=radio]').forEach(el => {
+  el.addEventListener('change', calculer);
+});
+
+// Init au chargement
+updateSituations();
+updateHistCount();
+calculer();
+
+// Installation PWA + diagnostic
+let deferredPrompt;
+const banner = document.getElementById('installBanner');
+const btnInstall = document.getElementById('installBtn');
+const statusEl = document.getElementById('installStatus');
+const diag = [];
+
+// Détecter standalone
+const isStandalone = window.matchMedia('(display-mode: standalone)').matches || navigator.standalone;
+if (isStandalone) {
+  banner.style.display = 'none';
+} else {
+  // Service Worker
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('sw.js').then(function(reg) {
+      diag.push('SW: OK (' + reg.scope + ')');
+      statusEl.textContent = diag.join(' | ');
+    }).catch(function(err) {
+      diag.push('SW: ERREUR ' + err.message);
+      statusEl.textContent = diag.join(' | ');
+    });
+  } else {
+    diag.push('SW: non supporte');
+  }
+
+  // Manifest
+  fetch('manifest.json').then(function(r) {
+    if (r.ok) { diag.push('Manifest: OK'); } else { diag.push('Manifest: ' + r.status); }
+    return fetch('icon-192.png');
+  }).then(function(r) {
+    diag.push('Icon192: ' + (r.ok ? 'OK ' + r.headers.get('content-type') : 'ERREUR'));
+    statusEl.textContent = diag.join(' | ');
+  });
+
+  diag.push('Mode: ' + (window.isSecureContext ? 'HTTPS' : 'HTTP'));
+  diag.push(navigator.userAgent.match(/Chrome\/(\d+)/)?.[0] || 'pas Chrome');
+  statusEl.textContent = diag.join(' | ');
+}
+
+window.addEventListener('beforeinstallprompt', function(e) {
+  e.preventDefault();
+  deferredPrompt = e;
+  diag.push('INSTALL: PRET');
+  statusEl.textContent = diag.join(' | ');
+  btnInstall.style.background = '#1b5e20';
+});
+
+btnInstall.addEventListener('click', function() {
+  if (deferredPrompt) {
+    deferredPrompt.prompt();
+    deferredPrompt.userChoice.then(function(r) {
+      if (r.outcome === 'accepted') banner.style.display = 'none';
+      deferredPrompt = null;
+    });
+  } else {
+    statusEl.textContent = 'Installation pas encore disponible. Attendre 30s puis recharger la page. ' + diag.join(' | ');
+  }
+});
+
+window.addEventListener('appinstalled', function() { banner.style.display = 'none'; });
+</script>
+</body>
+</html>
