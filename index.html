@@ -409,10 +409,12 @@ function showBlock(msg) {
 // Token requis — 2 appareils max par personne (ordi + telephone)
 (function(){
   var token = new URLSearchParams(window.location.search).get('t');
+  if (!token) token = localStorage.getItem('_iz24_token');
   if (!token || token.trim().length < 2) {
     showBlock('Lien personnel requis. Contactez ARGOS pour obtenir votre accès.');
     throw new Error('_');
   }
+  localStorage.setItem('_iz24_token', token.trim().toUpperCase());
   // Empreinte appareil (djb2)
   function fp(){
     var d=[];

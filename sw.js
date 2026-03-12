@@ -1,4 +1,4 @@
-var CACHE = 'iz-v9';
+var CACHE = 'iz-v10';
 self.addEventListener('install', function(e) {
   self.skipWaiting();
   e.waitUntil(caches.open(CACHE).then(function(c) { return c.addAll(['./', 'index.html']); }));
