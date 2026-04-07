@@ -682,7 +682,7 @@ async function sha256(str) {
 function p(path) {
   return path.split('/').map(seg => encodeURIComponent(seg).replace(/%2F/g,'/').replace(/%5C/g,'\\')).join('/');
 }
-function openDoc(path) { if (path.startsWith('http')) { window.open(path, '_blank'); } else { window.open('https://drive.google.com/drive/folders/1bW-O0LSkQZj2DoCIBngOQYNtkNVgpImA', '_blank'); } }
+function openDoc(path) { if (path.startsWith('http')) { window.open(path, '_blank'); } else { var name = path.split('/').pop(); window.open('https://drive.google.com/drive/search?q=' + encodeURIComponent(name), '_blank'); } }
 function ext(f) { return (f.split('.').pop() || '').toLowerCase(); }
 function extBadge(f) {
   const e = ext(f);
