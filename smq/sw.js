@@ -1,4 +1,4 @@
-var CACHE = 'smq-v2';
+var CACHE = 'smq-v3';
 var ASSETS = ['./', 'index.html', 'manifest.json', 'icon.svg'];
 
 self.addEventListener('install', function(e) {
@@ -12,7 +12,6 @@ self.addEventListener('activate', function(e) {
   }).then(function() { return self.clients.claim(); }));
 });
 
-// Cache-first + mise a jour silencieuse en arriere-plan
 self.addEventListener('fetch', function(e) {
   e.respondWith(
     caches.match(e.request).then(function(cached) {
@@ -23,7 +22,6 @@ self.addEventListener('fetch', function(e) {
         }
         return response;
       }).catch(function() { return cached; });
-
       return cached || fetchPromise;
     })
   );
