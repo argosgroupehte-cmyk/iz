@@ -367,6 +367,7 @@ body{font-family:Segoe UI,Tahoma,sans-serif;background:#f4f6f8;color:#1a1a2e;pad
 
 <div class="footer">
   ARGOS Bureau de Contrôle — Outil de calcul NF C 15-100-1 V2024 — Données tableaux 52.8A à 52.8H.2 — v9
+  <div style="margin-top:6px;font-size:10px;color:#999;line-height:1.4">Outil réservé aux détenteurs de la norme NF C 15-100-1 (AFNOR). Les données sont issues des tableaux normatifs — toute reproduction ou diffusion est interdite. © ARGOS Bureau de Contrôle.</div>
 </div>
 
 <div class="izc-sticky" id="izcSticky">
@@ -1172,11 +1173,11 @@ function defaut() {
 }
 
 function openRef(type) {
-  // Chemin relatif depuis Calcul IE/
+  // Documents sur Google Drive ARGOS (acces restreint aux comptes autorises)
   if (type === 'norme') {
-    window.open('NFC_15-100-1_V2024_Methodologie_Iz.pdf', '_blank');
+    window.open('https://drive.google.com/file/d/1ieCAVQzB7x53ZAfqkOTMVCRCLV9zy047/view', '_blank');
   } else {
-    window.open('Equivalences_V2024.htm', '_blank');
+    window.open('https://drive.google.com/file/d/1vtIMTQJEwUP8drlzh4oOuL72itiBzFm0/view', '_blank');
   }
 }
 
