@@ -1,10 +1,14 @@
-var CACHE = 'iz-v11';
+var CACHE = 'iz-v12';
 var ASSETS = ['./', 'index.html', 'manifest.json', 'icon-192.png', 'icon-512.png'];
 
-// Install : pre-cache tous les assets
+// Install : pre-cache (tolere les erreurs Cloudflare Access)
 self.addEventListener('install', function(e) {
   self.skipWaiting();
-  e.waitUntil(caches.open(CACHE).then(function(c) { return c.addAll(ASSETS); }));
+  e.waitUntil(caches.open(CACHE).then(function(c) {
+    return Promise.all(ASSETS.map(function(url) {
+      return c.add(url).catch(function() { /* ignore si Cloudflare Access bloque */ });
+    }));
+  }));
 });
 
 // Activate : nettoyer les anciens caches
@@ -14,21 +18,17 @@ self.addEventListener('activate', function(e) {
   }).then(function() { return self.clients.claim(); }));
 });
 
-// Fetch : cache-first + mise a jour en arriere-plan (stale-while-revalidate)
-// = chargement instantane depuis le cache, zero reseau, zero batterie
-// puis mise a jour silencieuse pour la prochaine ouverture
+// Fetch : network-first (Cloudflare Access peut bloquer le cache)
 self.addEventListener('fetch', function(e) {
   e.respondWith(
-    caches.match(e.request).then(function(cached) {
-      var fetchPromise = fetch(e.request).then(function(response) {
-        if (response && response.status === 200) {
-          var clone = response.clone();
-          caches.open(CACHE).then(function(c) { c.put(e.request, clone); });
-        }
-        return response;
-      }).catch(function() { return cached; });
-
-      return cached || fetchPromise;
+    fetch(e.request).then(function(response) {
+      if (response && response.status === 200) {
+        var clone = response.clone();
+        caches.open(CACHE).then(function(c) { c.put(e.request, clone); });
+      }
+      return response;
+    }).catch(function() {
+      return caches.match(e.request);
     })
   );
 });
