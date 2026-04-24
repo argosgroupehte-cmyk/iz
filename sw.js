@@ -1,4 +1,4 @@
-var CACHE = 'iz-v12';
+var CACHE = 'iz-v13';
 var ASSETS = ['./', 'index.html', 'manifest.json', 'icon-192.png', 'icon-512.png'];
 
 // Install : pre-cache (tolere les erreurs Cloudflare Access)

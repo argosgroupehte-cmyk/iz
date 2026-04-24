@@ -83,6 +83,12 @@ body{font-family:Segoe UI,Tahoma,sans-serif;background:#f4f6f8;color:#1a1a2e;pad
   .card h2{font-size:11px;margin-bottom:3px;padding-bottom:2px}
   .grp-btn{min-height:40px;padding:4px 6px!important}
 }
+.field.disabled-field{opacity:.5}
+.field.disabled-field label{color:#999;text-decoration:line-through}
+.field.disabled-field select,.field.disabled-field input{background:#f0f0f0!important;pointer-events:none;color:#999}
+.field.disabled-field .radio-group label{text-decoration:none}
+.field-na{font-size:10px;color:#c62828;font-style:italic;margin-left:6px;display:none}
+.field.disabled-field .field-na{display:inline}
 </style>
 </head>
 <body>
@@ -199,8 +205,8 @@ body{font-family:Segoe UI,Tahoma,sans-serif;background:#f4f6f8;color:#1a1a2e;pad
       </select>
     </div>
 
-    <div class="field">
-      <label>Pose sous plafond</label>
+    <div class="field" id="fieldSP">
+      <label>Pose sous plafond <span class="field-na">(N/A hors fix. directe app.)</span></label>
       <div class="radio-group">
         <label><input type="radio" name="cSP" value="1"> Oui</label>
         <label><input type="radio" name="cSP" value="0" checked> Non</label>
@@ -297,16 +303,16 @@ body{font-family:Segoe UI,Tahoma,sans-serif;background:#f4f6f8;color:#1a1a2e;pad
       </div>
     </div>
 
-    <div class="field">
-      <label>Rayonnement solaire direct</label>
+    <div class="field" id="fieldSoleil">
+      <label>Rayonnement solaire direct <span class="field-na">(N/A hors E/F/G)</span></label>
       <div class="radio-group">
         <label><input type="radio" name="cSoleil" value="0" checked> Non</label>
         <label><input type="radio" name="cSoleil" value="1"> Oui (x0.85)</label>
       </div>
     </div>
 
-    <div class="field">
-      <label>Résistivité sol (K.m/W)</label>
+    <div class="field" id="fieldRhoSol">
+      <label>Résistivité sol (K.m/W) <span class="field-na">(N/A hors D1/D2)</span></label>
       <select id="cRhoSol">
         <option value="0.5">0.5 — sol très humide (saturé)</option>
         <option value="0.7">0.7 — sol humide</option>
@@ -944,11 +950,27 @@ function clearHist() {
   if (p.classList.contains('open')) renderHist();
 }
 
+// Met a jour l'etat visuel des champs selon la methode calculee
+function updateFieldsState() {
+  const cable = document.querySelector('input[name="cCable"]:checked').value;
+  const mdp = parseInt(document.getElementById('cMdP').value);
+  const sit = parseInt(document.getElementById('cSit').value);
+  const m = determinerMethode(mdp, sit, cable);
+  const methode = m ? m.methode : '';
+  const isEFG = ['E','F','G'].includes(methode);
+  const isD = ['D1','D2'].includes(methode);
+  const isDirectApparent = (mdp === 6 && sit === 1);
+  document.getElementById('fieldSoleil').classList.toggle('disabled-field', !isEFG);
+  document.getElementById('fieldRhoSol').classList.toggle('disabled-field', !isD);
+  document.getElementById('fieldSP').classList.toggle('disabled-field', !isDirectApparent);
+}
+
 // ═══════════════════════════════════════════════════════════════════════════════
 // CALCUL
 // ═══════════════════════════════════════════════════════════════════════════════
 
 function calculer() { try {
+  updateFieldsState();
   const sphIdx = document.getElementById('cSPh').selectedIndex;
   const sph = SECTIONS[sphIdx];
   const isol = document.querySelector('input[name="cIsol"]:checked').value.toLowerCase();
