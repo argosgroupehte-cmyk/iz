@@ -95,6 +95,7 @@ body{font-family:Segoe UI,Tahoma,sans-serif;background:#f4f6f8;color:#1a1a2e;pad
 .mc-head h2{font-size:12px;color:#3949ab}
 .mc-btn{background:#2e7d32;color:#fff;font-size:11px;padding:4px 10px;border-radius:5px}.mc-btn:hover{background:#1b5e20}
 .mc-print-only{display:none}
+.btn-detail{background:#5c6bc0;color:#fff}.btn-detail:hover{background:#3f51b5}.btn-detail.actif{background:#283593;box-shadow:inset 0 2px 4px rgba(0,0,0,.25)}.btn-detail:disabled{background:#b0bec5;color:#eceff1;cursor:not-allowed;box-shadow:none}
 .mc-entete{border-bottom:1.5px solid #1a237e;padding-bottom:4px;margin-bottom:6px}
 .mc-entete b{font-size:12px;color:#1a237e}
 .mc-entete div{font-size:9px;color:#555}
@@ -396,6 +397,7 @@ body{font-family:Segoe UI,Tahoma,sans-serif;background:#f4f6f8;color:#1a1a2e;pad
 
 <div class="buttons">
   <button type="button" class="btn btn-calc" onclick="calculer()">Calculer</button>
+  <button type="button" class="btn btn-detail" id="btnDetail" onclick="basculerMethode()" aria-expanded="false" disabled title="Afficher / masquer le détail du calcul">Détail du calcul</button>
   <button type="button" class="btn btn-def" onclick="defaut()">Valeurs par défaut</button>
 </div>
 <div class="buttons" style="margin-top:4px">
@@ -425,7 +427,7 @@ body{font-family:Segoe UI,Tahoma,sans-serif;background:#f4f6f8;color:#1a1a2e;pad
 <div class="hist-panel" id="histPanel"></div>
 
 <div class="footer">
-  ARGOS Bureau de Contrôle — Outil de calcul NF C 15-100-1 V2024 — Données tableaux 52.8A à 52.8H.2 — v10
+  ARGOS Bureau de Contrôle — Outil de calcul NF C 15-100-1 V2024 — Données tableaux 52.8A à 52.8H.2 — v11
   <div style="margin-top:6px;font-size:10px;color:#999;line-height:1.4">Outil réservé aux détenteurs de la norme NF C 15-100-1 (AFNOR). Les données sont issues des tableaux normatifs — toute reproduction ou diffusion est interdite. © ARGOS Bureau de Contrôle.</div>
 </div>
 
@@ -1258,11 +1260,31 @@ function mcDate(d) {
   return p(d.getDate()) + '/' + p(d.getMonth() + 1) + '/' + d.getFullYear() + ' à ' + p(d.getHours()) + 'h' + p(d.getMinutes());
 }
 
+// Bloc masqué par défaut : le bouton « Détail du calcul » l'ouvre / le ferme.
+// L'état ouvert/fermé reste en mémoire de la page (rien n'est stocké).
+let mcOuvert = false;
+function mcMajBouton(actif) {
+  const b = document.getElementById('btnDetail');
+  if (!b) return;
+  b.disabled = !actif;
+  b.classList.toggle('actif', !!(actif && mcOuvert));
+  b.setAttribute('aria-expanded', String(!!(actif && mcOuvert)));
+}
+function basculerMethode() {
+  const box = document.getElementById('methodeBox');
+  const out = document.getElementById('methodeContenu');
+  if (!box || !out || !out.innerHTML) return;
+  mcOuvert = !mcOuvert;
+  box.hidden = !mcOuvert;
+  mcMajBouton(true);
+  if (mcOuvert && box.scrollIntoView) box.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+}
+
 function afficherMethode(T, Izc, K, Iz, methodeTxt, obsText) {
   const box = document.getElementById('methodeBox');
   const out = document.getElementById('methodeContenu');
   if (!box || !out) return;
-  if (!T) { box.hidden = true; out.innerHTML = ''; return; }
+  if (!T) { box.hidden = true; out.innerHTML = ''; mcOuvert = false; mcMajBouton(false); return; }
   const h = [];
   const oui = b => b ? 'Oui' : 'Non';
   const libCable = { multi:'Multipolaire', uni:'Unipolaire', isole:'Conducteurs isolés' }[T.cable];
@@ -1351,12 +1373,14 @@ function afficherMethode(T, Izc, K, Iz, methodeTxt, obsText) {
   out.innerHTML = h.join('');
   const ed = document.getElementById('mcEdition');
   if (ed) ed.textContent = 'édité le ' + mcDate(new Date());
-  box.hidden = false;
+  box.hidden = !mcOuvert;
+  mcMajBouton(true);
 }
 
 function imprimerMethode() {
   const box = document.getElementById('methodeBox');
-  if (!box || box.hidden) calculer();
+  if (!document.getElementById('methodeContenu').innerHTML) calculer();
+  if (box.hidden) { mcOuvert = true; box.hidden = false; mcMajBouton(true); }
   document.getElementById('mcEdition').textContent = 'édité le ' + mcDate(new Date());
   const titre = document.title;
   const d = new Date();
@@ -1377,6 +1401,7 @@ function raz() {
   var bot = document.getElementById('rIzcBottom'); if (bot) bot.textContent = '\u2014';
   const mb = document.getElementById('methodeBox');
   if (mb) { mb.hidden = true; document.getElementById('methodeContenu').innerHTML = ''; }
+  mcOuvert = false; mcMajBouton(false);
 }
 
 function defaut() {
