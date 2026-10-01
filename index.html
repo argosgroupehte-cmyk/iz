@@ -89,6 +89,45 @@ body{font-family:Segoe UI,Tahoma,sans-serif;background:#f4f6f8;color:#1a1a2e;pad
 .field.disabled-field .radio-group label{text-decoration:none}
 .field-na{font-size:10px;color:#c62828;font-style:italic;margin-left:6px;display:none}
 .field.disabled-field .field-na{display:inline}
+/* Bloc Methode de calcul (regenere a chaque calcul, rien n'est stocke) — petits caracteres */
+.methode-box{background:#fff;border-radius:6px;padding:8px 10px;box-shadow:0 1px 3px rgba(0,0,0,.06);margin-top:10px;border-left:3px solid #9fa8da;color:#333;font-size:10.5px;line-height:1.3}
+.mc-head{display:flex;align-items:center;justify-content:space-between;gap:6px;flex-wrap:wrap;border-bottom:1px solid #e8eaf6;padding-bottom:4px;margin-bottom:4px}
+.mc-head h2{font-size:12px;color:#3949ab}
+.mc-btn{background:#2e7d32;color:#fff;font-size:11px;padding:4px 10px;border-radius:5px}.mc-btn:hover{background:#1b5e20}
+.mc-print-only{display:none}
+.mc-entete{border-bottom:1.5px solid #1a237e;padding-bottom:4px;margin-bottom:6px}
+.mc-entete b{font-size:12px;color:#1a237e}
+.mc-entete div{font-size:9px;color:#555}
+.mc-date{font-size:10px;color:#666;margin-bottom:3px}
+.methode-box h3{font-size:10.5px;color:#283593;margin:6px 0 2px}
+.methode-box p,.methode-box li{font-size:10.5px;line-height:1.3}
+.methode-box ul{margin-left:16px}
+.mc-tab{width:100%;border-collapse:collapse;font-size:10px;line-height:1.25;margin:1px 0}
+.mc-tab th,.mc-tab td{border:1px solid #dfe3f3;padding:1px 4px;text-align:left;vertical-align:top}
+.mc-tab th{background:#f0f2fa;color:#283593;font-weight:600}
+.mc-tab td.v{text-align:center;font-weight:700;white-space:nowrap}
+.mc-tab tr.na td{color:#999}
+.mc-formule{font-family:Consolas,monospace;font-size:10px;background:#f6f7f9;border-radius:3px;padding:3px 6px;margin:2px 0;word-break:break-word;line-height:1.35}
+.mc-res{background:#eef0f8;border-radius:4px;padding:4px 8px;margin-top:2px;font-size:11px}
+.mc-res b{color:#c62828}
+.mc-err{color:#c62828;font-weight:700}
+.mc-obs{white-space:pre-wrap;font-size:10px;color:#e65100;line-height:1.3}
+.mc-note{font-size:9px;color:#999;margin-top:6px;border-top:1px dashed #dfe3f3;padding-top:3px}
+@media(max-width:768px){.methode-box{padding:6px 7px}.mc-tab{font-size:9.5px}.mc-tab th,.mc-tab td{padding:1px 3px}.mc-formule{font-size:9.5px}}
+@media print{
+  @page{size:A4;margin:10mm}
+  .mc-print-only{display:block!important}
+  .mc-noprint{display:none!important}
+  body.print-methode{background:#fff;padding:0}
+  body.print-methode>*:not(#methodeBox){display:none!important}
+  body.print-methode #methodeBox{box-shadow:none;border-left:none;margin:0;padding:0;font-size:8pt;line-height:1.25}
+  body.print-methode .methode-box p,body.print-methode .methode-box li,body.print-methode .mc-tab,body.print-methode .mc-res,body.print-methode .methode-box h3{font-size:8pt;line-height:1.25}
+  body.print-methode .mc-formule,body.print-methode .mc-obs,body.print-methode .mc-date{font-size:7.5pt}
+  body.print-methode .mc-note,body.print-methode .mc-entete div{font-size:7pt}
+  body.print-methode .mc-head h2,body.print-methode .mc-entete b{font-size:10pt}
+  .mc-tab th,.mc-res,.mc-formule{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .mc-tab tr,.mc-res{break-inside:avoid}
+}
 </style>
 </head>
 <body>
@@ -362,6 +401,20 @@ body{font-family:Segoe UI,Tahoma,sans-serif;background:#f4f6f8;color:#1a1a2e;pad
 <div class="buttons" style="margin-top:4px">
   <button type="button" class="btn" style="background:#1565c0;color:#fff;font-size:11px;padding:6px 14px" onclick="openRef('norme')">Méthodologie selon NF C 15-100-1 V2024</button>
   <button type="button" class="btn" style="background:#e65100;color:#fff;font-size:11px;padding:6px 14px" onclick="openRef('equiv')">Tables d'équivalence (preuve)</button>
+  <a class="btn" href="v2002.html" onclick="this.href='v2002.html'+location.search" style="background:#78909c;color:#fff;font-size:11px;padding:6px 14px;text-decoration:none">Outil V2002 (ancienne norme)</a>
+</div>
+
+<div id="methodeBox" class="methode-box" hidden>
+  <div class="mc-print-only mc-entete">
+    <b>ARGOS Bureau de Contrôle</b>
+    <div>Chemin des Chênes Verts, 04700 Oraison — argos@argos-controle.fr — 06 23 65 27 03</div>
+    <div>Note de calcul Iz — NF C 15-100-1 (V2024) — <span id="mcEdition"></span></div>
+  </div>
+  <div class="mc-head">
+    <h2>Méthode de calcul</h2>
+    <button type="button" class="btn mc-btn mc-noprint" onclick="imprimerMethode()">PDF de la méthode</button>
+  </div>
+  <div id="methodeContenu"></div>
 </div>
 
 <div class="hist-bar">
@@ -372,7 +425,7 @@ body{font-family:Segoe UI,Tahoma,sans-serif;background:#f4f6f8;color:#1a1a2e;pad
 <div class="hist-panel" id="histPanel"></div>
 
 <div class="footer">
-  ARGOS Bureau de Contrôle — Outil de calcul NF C 15-100-1 V2024 — Données tableaux 52.8A à 52.8H.2 — v9
+  ARGOS Bureau de Contrôle — Outil de calcul NF C 15-100-1 V2024 — Données tableaux 52.8A à 52.8H.2 — v10
   <div style="margin-top:6px;font-size:10px;color:#999;line-height:1.4">Outil réservé aux détenteurs de la norme NF C 15-100-1 (AFNOR). Les données sont issues des tableaux normatifs — toute reproduction ou diffusion est interdite. © ARGOS Bureau de Contrôle.</div>
 </div>
 
@@ -987,36 +1040,46 @@ function calculer() { try {
   let cGroupe = parseFloat(document.getElementById('cGroupe').value.replace(',','.'));
 
   const obs = [];
+  // Trace des étapes réelles du calcul (affichée dans le bloc Méthode, jamais stockée)
+  const T = { sph, isol, nbCond, cable, nat, mdp, sit, sousPlafond, be3, temp, prot,
+    groupeSaisi: document.getElementById('cGroupe').value };
+  T.h3 = document.querySelector('input[name="cH3"]:checked').value === '1';
+  T.soleil = document.querySelector('input[name="cSoleil"]:checked').value === '1';
+  T.rhoVal = document.getElementById('cRhoSol').value;
 
   // Validation groupement
   if (isNaN(cGroupe)) { cGroupe = 1; obs.push('Facteur de groupement invalide, utilisation de 1.'); }
   if (cGroupe > 1) { cGroupe = 1; obs.push('Facteur de groupement limité à 1.'); }
   if (cGroupe < 0.1) { cGroupe = 0.1; obs.push('Facteur de groupement limité à 0.1.'); }
   document.getElementById('cGroupe').value = cGroupe;
+  T.cGroupe = cGroupe;
 
   // Déterminer méthode
   const m = determinerMethode(mdp, sit, cable);
+  T.m = m;
   if (!m) {
-    afficherResultat(0, 0, 0, '0 / 0', 'Mode de pose non prévu, inadapté ou impossible.');
+    afficherResultat(0, 0, 0, '0 / 0', 'Mode de pose non prévu, inadapté ou impossible.', T);
     return;
   }
 
   // Nombre de conducteurs effectif (4 → traité comme 3 avec facteur)
   const nbEff = nbCond >= 4 ? 3 : nbCond;
+  T.nbEff = nbEff;
 
   // Vérifier que la table existe
   const table = IZ[m.methode];
   if (!table || !table[nat] || !table[nat][isol] || !table[nat][isol][nbEff]) {
-    afficherResultat(0, 0, 0, m.mode + ' / ' + m.methode, 'Données non disponibles pour cette configuration.');
+    afficherResultat(0, 0, 0, m.mode + ' / ' + m.methode, 'Données non disponibles pour cette configuration.', T);
     return;
   }
 
   // Lire Iz
   let Iz = table[nat][isol][nbEff][sphIdx];
+  T.Iz = Iz;
   if (!Iz || Iz === 0) {
     afficherResultat(0, 0, 0, m.mode + ' / ' + m.methode,
       nat === 'al' ? 'Section non disponible en aluminium pour cette méthode.' :
-      'Section non prévue pour cette méthode de référence.');
+      'Section non prévue pour cette méthode de référence.', T);
     return;
   }
 
@@ -1029,10 +1092,12 @@ function calculer() { try {
   } else {
     Ctemp = KTEMP_AIR[isol][tempIdx];
   }
+  T.isEnterre = isEnterre; T.Ctemp = Ctemp;
 
   // Facteur équilibre (4 conducteurs chargés)
   const Cequil = nbCond === 4 ? FACTORS.EQUILIBRE : 1;
   if (nbCond === 4) obs.push('Circuit 4 conducteurs chargés : facteur ' + FACTORS.EQUILIBRE + ' appliqué (§523.7).');
+  T.Cequil = Cequil;
 
   // Facteur BE3
   let Cbe3 = 1;
@@ -1040,17 +1105,17 @@ function calculer() { try {
     Cbe3 = FACTORS.BE3;
     if (isol === 'pvc') {
       obs.push('BE3 : isolation PVC normalement non autorisée en atmosphère explosive.');
-      afficherResultat(0, 0, 0, m.mode + ' / ' + m.methode, obs.join('\n'));
+      afficherResultat(0, 0, 0, m.mode + ' / ' + m.methode, obs.join('\n'), T);
       return;
     }
     if (cable === 'isole') {
       obs.push('BE3 : conducteurs isolés non autorisés en atmosphère explosive.');
-      afficherResultat(0, 0, 0, m.mode + ' / ' + m.methode, obs.join('\n'));
+      afficherResultat(0, 0, 0, m.mode + ' / ' + m.methode, obs.join('\n'), T);
       return;
     }
     if ([8,9,10,16].includes(mdp)) {
       obs.push('BE3 : mode de pose interdit en atmosphère explosive.');
-      afficherResultat(0, 0, 0, m.mode + ' / ' + m.methode, obs.join('\n'));
+      afficherResultat(0, 0, 0, m.mode + ' / ' + m.methode, obs.join('\n'), T);
       return;
     }
   }
@@ -1067,12 +1132,15 @@ function calculer() { try {
       if (Izc_test < 16 * 1.31) Cprot = 0.76;
     }
     if (Izc_test / 1.45 <= 4) Cprot = 0.69;
+    T.izcTest = Izc_test;
   }
+  T.Cbe3 = Cbe3; T.Cprot = Cprot;
 
   // Facteur harmoniques rang 3 (§523.6)
   const h3 = document.querySelector('input[name="cH3"]:checked').value === '1';
   const Ch3 = h3 ? FACTORS.H3 : 1;
   if (h3) obs.push('Harmoniques rang 3 > 15% : facteur ' + FACTORS.H3 + ' appliqué (§523.6).');
+  T.Ch3 = Ch3;
 
   // Facteur rayonnement solaire direct (§52.1.3.3)
   const soleil = document.querySelector('input[name="cSoleil"]:checked').value === '1';
@@ -1085,6 +1153,7 @@ function calculer() { try {
       obs.push('Rayonnement solaire : sans effet pour méthode ' + m.methode + ' (applicable E, F, G uniquement).');
     }
   }
+  T.Csol = Csol;
 
   // Facteur résistivité thermique sol (Tab. 52.11, réf. 2.5 K.m/W = sol sec)
   let Crhosol = 1;
@@ -1097,6 +1166,7 @@ function calculer() { try {
     const rhoVal = document.getElementById('cRhoSol').value;
     if (rhoVal !== '2.5') obs.push('Résistivité sol : sans effet (applicable D1/D2 uniquement).');
   }
+  T.Crhosol = Crhosol;
 
   // Facteur sous plafond (fixation directe apparente)
   let Csp = 1;
@@ -1106,10 +1176,12 @@ function calculer() { try {
   } else if (sousPlafond && (mdp !== 6 || sit !== 1)) {
     obs.push('Pose sous plafond : utile uniquement pour fixation directe en apparent.');
   }
+  T.Csp = Csp;
 
   // K global
   const K = m.k52e * Ctemp * cGroupe * Cprot * Cequil * Cbe3 * Csp * Ch3 * Csol * Crhosol;
   const Izc = Iz * K;
+  T.K = K; T.Izc = Izc;
 
   // Vérifications
   if (cable === 'isole' && sph > 35)
@@ -1122,7 +1194,7 @@ function calculer() { try {
     obs.push('Section minimale aluminium = 2.5 mm².');
   if (sit === 4 && cable === 'isole') {
     obs.push('Conducteurs isolés enterrés non autorisés.');
-    afficherResultat(0, 0, 0, m.mode + ' / ' + m.methode, obs.join('\n'));
+    afficherResultat(0, 0, 0, m.mode + ' / ' + m.methode, obs.join('\n'), T);
     return;
   }
 
@@ -1132,7 +1204,8 @@ function calculer() { try {
     obs.push('Valeurs par défaut : en première approche et sans information spécifique, le calcul retient un facteur de groupement de 0.8 (plusieurs circuits), sans harmoniques, sans rayonnement solaire (installation intérieure) et une résistivité de sol standard (2.5 K.m/W). Ajuster ces paramètres selon les conditions réelles de l\'installation.');
   }
 
-  afficherResultat(Izc, K, Iz, m.mode + ' / ' + m.methode, obs.join('\n'));
+  T.complet = true;
+  afficherResultat(Izc, K, Iz, m.mode + ' / ' + m.methode, obs.join('\n'), T);
 
   // Enregistrer dans l'historique
   var now = new Date();
@@ -1145,7 +1218,7 @@ function calculer() { try {
 
 } catch(e) { if (e.message !== '_') { document.getElementById('rObs').value = 'Erreur de calcul : ' + e.message; } } }
 
-function afficherResultat(Izc, K, Iz, methode, obsText) {
+function afficherResultat(Izc, K, Iz, methode, obsText, trace) {
   document.getElementById('rIz').value = Iz ? Math.round(Iz) : '—';
   document.getElementById('rK').value = K ? (Math.round(K * 1000) / 1000) : '—';
   document.getElementById('rIzc').value = Izc ? Math.round(Izc) : '—';
@@ -1162,8 +1235,137 @@ function afficherResultat(Izc, K, Iz, methode, obsText) {
   if (rb) { rb.classList.add('result-flash'); setTimeout(function(){ rb.classList.remove('result-flash'); }, 400); }
   if (bn && Izc) { bn.style.background = 'linear-gradient(135deg,#1b5e20,#2e7d32)'; setTimeout(function(){ bn.style.background = ''; }, 500); }
   if (st && Izc) { st.style.background = 'linear-gradient(135deg,#1b5e20,#2e7d32)'; setTimeout(function(){ st.style.background = ''; }, 500); }
+  afficherMethode(trace, Izc, K, Iz, methode, obsText);
 }
 
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// MÉTHODE DE CALCUL — trace pas à pas du calcul réellement effectué
+// Les valeurs affichées sont celles des variables du calcul (objet trace T) :
+// aucun recalcul à part. Rien n'est stocké (ni localStorage, ni fichier) :
+// le bloc est régénéré à chaque calcul et disparaît au rechargement.
+// ═══════════════════════════════════════════════════════════════════════════════
+const TAB_IZ_NOM = { A1:'52.8A', A2:'52.8B', B1:'52.8C', B2:'52.8D', C:'52.8E', E:'52.8F', F:'52.8F', G:'52.8G', D1:'52.8H.1', D2:'52.8H.2' };
+
+function mcFr(x, d) {
+  if (x === undefined || x === null || isNaN(x)) return '—';
+  return Number(x).toLocaleString('fr-FR', { maximumFractionDigits: d === undefined ? 4 : d, useGrouping: false });
+}
+function mcEsc(t) { return String(t).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+function mcOpt(id) { const el = document.getElementById(id); return el && el.selectedIndex >= 0 ? el.options[el.selectedIndex].text : ''; }
+function mcDate(d) {
+  const p = n => String(n).padStart(2, '0');
+  return p(d.getDate()) + '/' + p(d.getMonth() + 1) + '/' + d.getFullYear() + ' à ' + p(d.getHours()) + 'h' + p(d.getMinutes());
+}
+
+function afficherMethode(T, Izc, K, Iz, methodeTxt, obsText) {
+  const box = document.getElementById('methodeBox');
+  const out = document.getElementById('methodeContenu');
+  if (!box || !out) return;
+  if (!T) { box.hidden = true; out.innerHTML = ''; return; }
+  const h = [];
+  const oui = b => b ? 'Oui' : 'Non';
+  const libCable = { multi:'Multipolaire', uni:'Unipolaire', isole:'Conducteurs isolés' }[T.cable];
+  const libNat = T.nat === 'al' ? 'Aluminium' : 'Cuivre';
+  const libIsol = T.isol === 'pr' ? 'PR/XLPE' : 'PVC';
+  const m = T.m;
+  const isD = m && ['D1','D2'].includes(m.methode);
+
+  h.push('<p class="mc-date">Calcul effectué le ' + mcDate(new Date()) + ' — NF C 15-100-1 (V2024), tableaux 52.8A à 52.8H.2, 52.9, 52.10, 52.11</p>');
+
+  // 1. Données saisies
+  h.push('<h3>1. Données saisies</h3><table class="mc-tab"><tbody>');
+  const row = (a, b, c, d) => h.push('<tr><th>' + a + '</th><td>' + b + '</td><th>' + c + '</th><td>' + d + '</td></tr>');
+  row('Section', mcFr(T.sph) + ' mm²', 'Température ambiante', T.temp + ' °C');
+  row('Isolation', libIsol, 'Facteur de groupement', mcEsc(String(T.groupeSaisi).replace('.', ',')) + (String(T.cGroupe) !== String(T.groupeSaisi) ? ' → retenu ' + mcFr(T.cGroupe) : ''));
+  row('Conducteurs chargés', T.nbCond, 'Protection', mcEsc(mcOpt('cProt')));
+  row('Type de câble', libCable, 'Harmoniques rang 3 > 15 %', oui(T.h3));
+  row('Nature', libNat, 'Rayonnement solaire direct', oui(T.soleil));
+  row('Mode de pose', mcEsc(mcOpt('cMdP')), 'Résistivité du sol', mcEsc(T.rhoVal.replace('.', ',')) + ' K.m/W' + (isD ? '' : ' (sans objet hors D1/D2)'));
+  row('Situation', mcEsc(mcOpt('cSit')), 'Local BE3', oui(T.be3));
+  row('Pose sous plafond', oui(T.sousPlafond), '', '');
+  h.push('</tbody></table>');
+
+  // 2. Méthode de référence
+  h.push('<h3>2. Mode de pose et méthode de référence</h3>');
+  if (!m) {
+    h.push('<p class="mc-err">Combinaison mode de pose × situation × type de câble non prévue par le tableau 52.3 : calcul impossible.</p>');
+  } else {
+    h.push('<p>Mode de pose saisi + situation + câble ' + libCable.toLowerCase() + ' → <b>mode de pose n° ' + m.mode + '</b>, <b>méthode de référence ' + m.methode + '</b> (tableau 52.3), facteur lié au mode de pose K52E = <b>' + mcFr(m.k52e) + '</b>.</p>');
+  }
+
+  // 3. Iz de base
+  if (m && T.nbEff !== undefined) {
+    h.push('<h3>3. Courant admissible de base Iz (lecture tableau)</h3>');
+    const col = T.nbEff + ' conducteurs chargés' + (T.nbCond >= 4 ? ' (4 conducteurs chargés → colonne 3, facteur 0,84 en §4)' : '');
+    h.push('<p>Tableau <b>' + (TAB_IZ_NOM[m.methode] || '?') + '</b> — méthode ' + m.methode + ' — ' + libNat.toLowerCase() + ' — isolation ' + libIsol + ' — colonne ' + col + ' — ligne ' + mcFr(T.sph) + ' mm².</p>');
+    if (T.Iz) {
+      h.push('<p class="mc-formule">Iz = ' + mcFr(T.Iz) + ' A' + (Math.round(T.Iz) !== T.Iz ? '   (affiché arrondi : ' + Math.round(T.Iz) + ' A)' : '') + '</p>');
+    } else {
+      h.push('<p class="mc-err">Pas de valeur dans le tableau pour cette section' + (T.nat === 'al' ? ' en aluminium' : '') + ' : calcul impossible.</p>');
+    }
+  }
+
+  // 4. Facteurs de correction
+  if (m && T.Iz && T.Ctemp !== undefined) {
+    h.push('<h3>4. Facteurs de correction appliqués</h3><table class="mc-tab"><thead><tr><th>Facteur</th><th>Valeur</th><th>Justification / source</th></tr></thead><tbody>');
+    const f = (nom, val, just, na) => h.push('<tr' + (na ? ' class="na"' : '') + '><td>' + nom + '</td><td class="v">' + (val === undefined ? '—' : mcFr(val)) + '</td><td>' + just + '</td></tr>');
+    f('K52E (mode de pose)', m.k52e, 'Mode de pose n° ' + m.mode + ' / méthode ' + m.methode + (m.k52e === 1 ? ' : pas de réduction.' : ' : réduction liée au mode de pose.'), m.k52e === 1);
+    f('Ctemp (température)', T.Ctemp, (T.isEnterre ? 'Tableau 52.10 (température du sol)' : 'Tableau 52.9 (température de l\'air)') + ', isolation ' + libIsol + ', ' + T.temp + ' °C.');
+    f('Cgrp (groupement)', T.cGroupe, 'Valeur saisie par l\'opérateur' + (T.cGroupe === 1 ? ' (circuit seul).' : '.'), T.cGroupe === 1);
+    let jp = 'Disjoncteur / relais / fusible aM : pas de réduction.';
+    if (T.prot > 0 && T.izcTest !== undefined) {
+      const it = T.izcTest;
+      jp = (T.prot === 1 ? 'Fusible gI' : 'Fusible gG') + ' : courant de test Iz × K52E × Ctemp × Cgrp × Céquil × CBE3 = ' + mcFr(it, 2) + ' A. Base 0,91';
+      if (T.prot === 1) {
+        if (it / 1.21 <= 25) jp += ' ; ' + mcFr(it, 2) + ' / 1,21 = ' + mcFr(it / 1.21, 2) + ' ≤ 25 → 0,826';
+        if (it / 1.31 <= 10) jp += ' ; ' + mcFr(it, 2) + ' / 1,31 = ' + mcFr(it / 1.31, 2) + ' ≤ 10 → 0,763';
+      } else if (it < 16 * 1.31) jp += ' ; ' + mcFr(it, 2) + ' < 16 × 1,31 = 20,96 → 0,76';
+      if (it / 1.45 <= 4) jp += ' ; ' + mcFr(it, 2) + ' / 1,45 = ' + mcFr(it / 1.45, 2) + ' ≤ 4 → 0,69';
+      jp += '. Facteur retenu.';
+    }
+    f('Cprot (protection)', T.Cprot, jp, T.Cprot === 1);
+    f('Céquil (4 cond. chargés)', T.Cequil, T.nbCond === 4 ? 'Neutre chargé (déséquilibre) : ' + mcFr(T.Cequil) + ' (§523.7).' : 'Non applicable (' + T.nbCond + ' conducteurs chargés).', T.Cequil === 1);
+    f('CBE3 (risque d\'explosion)', T.Cbe3, T.be3 ? 'Local BE3 (atmosphère explosive) : ' + mcFr(T.Cbe3) + ' (§422.6).' : 'Non applicable.', T.Cbe3 === 1);
+    f('Csp (sous plafond)', T.Csp, T.Csp !== 1 ? 'Fixation directe apparente sous plafond : ' + mcFr(T.Csp) + ' (§52.1.4).' : (T.sousPlafond ? 'Sans effet hors fixation directe apparente.' : 'Non applicable.'), T.Csp === 1);
+    f('Ch3 (harmoniques rang 3)', T.Ch3, T.h3 ? 'Taux d\'harmoniques de rang 3 > 15 % : ' + mcFr(T.Ch3) + ' (§523.6).' : 'Non applicable.', T.Ch3 === 1);
+    f('Csol (rayonnement solaire)', T.Csol, T.Csol !== 1 ? 'Rayonnement solaire direct, méthode ' + m.methode + ' : ' + mcFr(T.Csol) + ' (§52.1.3.3).' : (T.soleil ? 'Sans effet pour la méthode ' + m.methode + ' (E, F, G uniquement).' : 'Non applicable.'), T.Csol === 1);
+    f('Crhosol (résistivité du sol)', T.Crhosol, isD ? 'Tableau 52.11, colonne ' + m.methode + ', ' + mcEsc(T.rhoVal.replace('.', ',')) + ' K.m/W (référence 2,5 K.m/W).' : 'Non applicable (méthode ' + m.methode + ').', T.Crhosol === 1);
+    h.push('</tbody></table>');
+  }
+
+  // 5. Calcul et résultat
+  if (T.complet) {
+    const fac = [m.k52e, T.Ctemp, T.cGroupe, T.Cprot, T.Cequil, T.Cbe3, T.Csp, T.Ch3, T.Csol, T.Crhosol];
+    h.push('<h3>5. Calcul</h3>');
+    h.push('<p class="mc-formule">K = K52E × Ctemp × Cgrp × Cprot × Céquil × CBE3 × Csp × Ch3 × Csol × Crhosol<br>K = ' + fac.map(x => mcFr(x)).join(' × ') + ' = ' + mcFr(T.K, 6) + ' ≈ <b>' + mcFr(Math.round(T.K * 1000) / 1000, 3) + '</b></p>');
+    h.push('<p class="mc-formule">Izc = Iz × K = ' + mcFr(T.Iz) + ' × ' + mcFr(T.K, 6) + ' = ' + mcFr(T.Izc, 2) + ' A ≈ <b>' + Math.round(T.Izc) + ' A</b></p>');
+    h.push('<h3>6. Résultat</h3>');
+    h.push('<div class="mc-res" data-izc="' + Math.round(T.Izc) + '" data-k="' + (Math.round(T.K * 1000) / 1000) + '" data-iz="' + Math.round(T.Iz) + '">Mode de pose / méthode : <b>' + mcEsc(methodeTxt) + '</b> — Iz (tableau) = <b>' + mcFr(T.Iz) + ' A</b> — K = <b>' + mcFr(Math.round(T.K * 1000) / 1000, 3) + '</b> — Courant admissible corrigé <b>Izc = ' + Math.round(T.Izc) + ' A</b></div>');
+  } else if (m && T.Iz) {
+    h.push('<h3>5. Résultat</h3><p class="mc-err">Calcul interrompu : voir observations ci-dessous.</p>');
+  }
+
+  if (obsText) h.push('<h3>Observations</h3><div class="mc-obs">' + mcEsc(obsText) + '</div>');
+  h.push('<p class="mc-note">Valeurs issues des tableaux codés dans l\'outil Iz ARGOS (NF C 15-100-1 V2024). Note régénérée à chaque calcul, non conservée. Le facteur de groupement est saisi par l\'opérateur : il reste à justifier selon les tableaux de groupement applicables.</p>');
+  out.innerHTML = h.join('');
+  const ed = document.getElementById('mcEdition');
+  if (ed) ed.textContent = 'édité le ' + mcDate(new Date());
+  box.hidden = false;
+}
+
+function imprimerMethode() {
+  const box = document.getElementById('methodeBox');
+  if (!box || box.hidden) calculer();
+  document.getElementById('mcEdition').textContent = 'édité le ' + mcDate(new Date());
+  const titre = document.title;
+  const d = new Date();
+  document.title = 'Methode Iz V2024 ' + String(d.getDate()).padStart(2,'0') + '-' + String(d.getMonth()+1).padStart(2,'0') + '-' + d.getFullYear();
+  document.body.classList.add('print-methode');
+  const fin = () => { document.body.classList.remove('print-methode'); document.title = titre; window.removeEventListener('afterprint', fin); };
+  window.addEventListener('afterprint', fin);
+  window.print();
+}
 
 function raz() {
   document.getElementById('rIz').value = '—';
@@ -1173,6 +1375,8 @@ function raz() {
   document.getElementById('rObs').value = '';
   var top = document.getElementById('rIzcTop'); if (top) top.textContent = '\u2014';
   var bot = document.getElementById('rIzcBottom'); if (bot) bot.textContent = '\u2014';
+  const mb = document.getElementById('methodeBox');
+  if (mb) { mb.hidden = true; document.getElementById('methodeContenu').innerHTML = ''; }
 }
 
 function defaut() {

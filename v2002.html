@@ -1,0 +1,629 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0095)http://www.elec-planet.com:8080/elecplanet/Calcul.nsf/49fcd92bbeeefce0c1256b180031ade5?OpenForm -->
+<HTML><HEAD>
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'unsafe-inline'; img-src 'self' data:">
+<meta name="viewport" content="width=620">
+<title>Iz V2002 — Courants admissibles (NF C 15-100 2002)</title>
+<link rel="apple-touch-icon" href="icon-192.png">
+
+<META http-equiv=Content-Type content="text/html; charset=utf-8">
+<SCRIPT language=JavaScript>
+<!-- 
+var bRAZ = true;
+var Situation_AV=1;
+function GEN_Afficher_Aide (sStatus , sInfo)
+{
+if ( sStatus == "" )
+    { document.forms[0].cInfo.value = sInfo; }
+else
+    { document.forms[0].cInfo.value = sStatus + "\n" + sInfo; }
+}
+function GEN_Initialiser_Res ()
+{
+  with (document.forms[0])
+  {
+  cIzc.value=0.0;
+  cCGlobal.value=0.0;
+  cIz.value=0.0;
+  cMethodeC.value="";    
+  bRAZ = true;
+  }
+}
+function GEN_Affecter_Res (Izc,CGlobal,Iz,MethodeC,sObs,sInfo)
+{
+  with (document.forms[0])
+  {
+ // listes  
+  
+  // valeurs
+  cIzc.value = Math.round(Izc);
+  cCGlobal.value = Math.round(CGlobal*1000)/1000;
+  cIz.value = Math.round(Iz);
+  cMethodeC.value = MethodeC;
+  cObs.value = sObs;
+  cInfo.value = sInfo;
+  bRAZ= false;
+  }
+}
+function GEN_Initialiser_Ent ()
+{
+  with (document.forms[0])
+  {
+  // listes
+   cSPh.options[1].selected =true ;
+   cMdP.options[0].selected =true ;
+   cSituation.options[0].selected =true ;  
+   cTemperature.options[4].selected =true ;
+   cCTProt.options[0].selected =true ;
+   // radio
+   cIsolationPh[0].checked =true;
+   cNbreCondPh[1].checked =true;
+   cCtCable[0].checked =true;
+   cNatPh[0].checked =true;
+   cSousPlafond[1].checked =true;
+   cBE3[1].checked =true;
+  // valeurs
+  cCGroupe.value=0.8;
+  }
+}
+
+// -->
+</SCRIPT>
+
+<SCRIPT language=JavaScript>
+<!-- 
+document._domino_target = "_self";
+function _doClick(v, o, t, h) {
+  var form = document._DominoForm;
+  if (form.onsubmit) {
+     var retVal = form.onsubmit();
+     if (typeof retVal == "boolean" && retVal == false)
+       return false;
+  }
+  var target = document._domino_target;
+  if (o.href != null) {
+    if (o.target != null)
+       target = o.target;
+  } else {
+    if (t != null)
+      target = t;
+  }
+  form.target = target;
+  form.__Click.value = v;
+  if (h != null)
+    form.action += h;
+  form.submit();
+  return false;
+}
+// -->
+</SCRIPT>
+
+<META content="MSHTML 6.00.6000.16809" name=GENERATOR></HEAD>
+<BODY text=#000000 bgColor=#ffffff leftMargin=5 topMargin=0>
+<script>
+// Contrôle d'accès identique à la page V2024 (expiration + lien personnel ?t=)
+// Écran de blocage
+function showBlock(msg) {
+  var ov=document.createElement('div');
+  ov.style.cssText='position:fixed;inset:0;background:#1a1a2e;display:flex;align-items:center;justify-content:center;z-index:99999;flex-direction:column';
+  var bx=document.createElement('div');
+  bx.style.cssText='background:#fff;border-radius:12px;padding:40px 50px;text-align:center;box-shadow:0 4px 20px rgba(0,0,0,.3);max-width:500px';
+  var ic=document.createElement('div');ic.textContent='\u26A0';ic.style.cssText='font-size:48px;margin-bottom:16px';bx.appendChild(ic);
+  var ti=document.createElement('h1');ti.textContent='Accès bloqué';ti.style.cssText='color:#c62828;font-size:20px;margin-bottom:12px';bx.appendChild(ti);
+  var pm=document.createElement('p');pm.textContent=msg;pm.style.cssText='color:#555;font-size:14px;line-height:1.6;margin-bottom:16px';bx.appendChild(pm);
+  var co=document.createElement('p');co.textContent='ARGOS Bureau de Contrôle';co.style.cssText='color:#1a237e;font-size:14px;font-weight:700;margin-top:8px';bx.appendChild(co);
+  var em=document.createElement('p');em.textContent='argos@argos-controle.fr \u2014 06 23 65 27 03';em.style.cssText='color:#3949ab;font-size:13px;margin-top:4px';bx.appendChild(em);
+  ov.appendChild(bx);document.body.appendChild(ov);
+}
+
+// Expiration 6 mois (10/03/2027)
+(function(){
+  var _k=[50,55,45,48,51,45,49,48];
+  var _s='';for(var i=0;i<_k.length;i++)_s+=String.fromCharCode(_k[i]);
+  var _p=_s.split('-');
+  var _e=new Date(2000+parseInt(_p[0]),parseInt(_p[1])-1,parseInt(_p[2]));
+  if(Date.now()>_e.getTime()){
+    showBlock('La période d\'utilisation de cet outil est terminée (6 mois).');
+    throw new Error('_');
+  }
+})();
+
+// Token requis — sauf si accès via Cloudflare Access (workers.dev / pages.dev)
+(function(){
+  var h = window.location.hostname;
+  if (h.indexOf('workers.dev') !== -1 || h.indexOf('pages.dev') !== -1) return; // Cloudflare Access = auth OK
+  var token = new URLSearchParams(window.location.search).get('t');
+  if (!token) token = localStorage.getItem('_iz24_token');
+  if (!token || token.trim().length < 2) {
+    showBlock('Lien personnel requis. Contactez ARGOS pour obtenir votre accès.');
+    throw new Error('_');
+  }
+  localStorage.setItem('_iz24_token', token.trim().toUpperCase());
+  // Empreinte appareil (djb2)
+  function fp(){
+    var d=[];
+    d.push(navigator.userAgent||'');
+    d.push(screen.width+'x'+screen.height+'x'+screen.colorDepth);
+    d.push(navigator.language||'');
+    d.push(navigator.hardwareConcurrency||0);
+    d.push(navigator.deviceMemory||0);
+    d.push(new Date().getTimezoneOffset());
+    d.push(navigator.maxTouchPoints||0);
+    d.push(navigator.platform||'');
+    try{var cv=document.createElement('canvas');cv.width=200;cv.height=50;var cx=cv.getContext('2d');cx.textBaseline='top';cx.font='14px Arial';cx.fillStyle='#3949ab';cx.fillText('ARGOS-Iz-2024',2,2);cx.fillStyle='rgba(200,40,40,.7)';cx.fillRect(80,5,60,20);d.push(cv.toDataURL());}catch(e){d.push('nc');}
+    var s=d.join('|'),h=5381;for(var i=0;i<s.length;i++){h=((h<<5)+h)+s.charCodeAt(i);h=h&h;}return(h>>>0).toString(36);
+  }
+  var key='_iz24_devs_'+token.toUpperCase();
+  var myFp=fp();
+  var devs=JSON.parse(localStorage.getItem(key)||'[]');
+  if(devs.indexOf(myFp)!==-1) return; // appareil deja enregistre → OK
+  if(devs.length<2){
+    devs.push(myFp);
+    localStorage.setItem(key,JSON.stringify(devs));
+    return; // enregistre (slot libre)
+  }
+  // 2 appareils deja utilises
+  showBlock('Ce lien est déjà utilisé sur 2 appareils (1 ordi + 1 téléphone). Contactez ARGOS pour un nouvel accès.');
+  throw new Error('_');
+})();
+</script>
+<div style="font-family:Arial;font-size:12px;margin:4px 0 6px"><a href="./" onclick="this.href='./'+location.search">← Outil V2024 (NF C 15-100-1)</a> — Outil historique NF C 15-100 version 2002</div>
+
+<FORM name=_DominoForm 
+action=/elecplanet/Calcul.nsf/49fcd92bbeeefce0c1256b180031ade5?OpenForm&amp;Seq=1 
+method=post><INPUT type=hidden value=0 name=__Click> 
+<TABLE cellSpacing=0 cellPadding=0 border=0>
+  <TBODY>
+  <TR vAlign=top>
+    <TD width=582 bgColor=#8080ff colSpan=3>
+      <DIV align=center><B><FONT face="Times New Roman" color=#ffffff size=4>Iz 
+      : Détermination de courants admissibles</FONT></B><B><FONT 
+      face="Times New Roman" color=#ffffff> (NF C 15-100)</FONT></B></DIV></TD></TR>
+  <TR vAlign=top>
+    <TD width=271 bgColor=#bfbfff>
+      <DIV align=center><B><I><FONT face=Arial color=#ffff00 
+      size=2>Caractéristiques principales</FONT></I></B><B><I><FONT face=Arial 
+      color=#ffff00 size=1> (Données à saisir)</FONT></I></B></DIV></TD>
+    <TD width=41 bgColor=#bfbfff><IMG height=1 alt="" 
+      src="Fich_fichiers/ecblank.gif" width=1 border=0></TD>
+    <TD width=271 bgColor=#bfbfff>
+      <DIV align=center><B><I><FONT face=Arial color=#ffff00 size=2>Autres 
+      Caractéristiques</FONT></I></B><B><I><FONT face=Arial color=#ffff00 
+      size=1> (Données à saisir)</FONT></I></B></DIV></TD></TR>
+  <TR vAlign=top>
+    <TD width=271 bgColor=#8080ff><FONT face=Arial color=#ffff00 
+      size=1>Section</FONT></TD>
+    <TD width=41 bgColor=#8080ff><IMG height=1 alt="" 
+      src="Sections_fichiers/ecblank.gif" width=1 border=0></TD>
+    <TD width=271 bgColor=#8080ff><FONT face=Arial color=#ffff00 size=1>Local 
+      à risques d'explosion ("BE3")</FONT></TD></TR>
+  <TR vAlign=top>
+    <TD width=271 bgColor=#bfbfff><FONT face=Arial size=1>
+      <P style="MARGIN-LEFT: 20px"></FONT><FONT face=Arial color=#0000ff 
+      size=1><SELECT 
+      onfocus='if (! bRAZ) GEN_Initialiser_Res ();&#13;GEN_Afficher_Aide ("Saisir une valeur dans la liste, valeur par défaut 2,5 mm2" , "")' 
+      name=cSPh> <OPTION>1.5<OPTION 
+        selected>2.5<OPTION>4<OPTION>6<OPTION>10<OPTION>16<OPTION>25<OPTION>35<OPTION>50<OPTION>70<OPTION>95<OPTION>120<OPTION>150<OPTION>185<OPTION>240<OPTION>300<OPTION>400<OPTION>500<OPTION>630</OPTION></SELECT> 
+      </FONT><FONT face=Arial size=1></FONT><B><FONT face=Arial color=#ffff00 
+      size=1>mm2</FONT></B><FONT face=Arial size=1><O:P></FONT></P></TD>
+    <TD width=41 bgColor=#bfbfff><IMG height=1 alt="" 
+      src="Sections_fichiers/ecblank.gif" width=1 border=0></TD>
+    <TD width=271 bgColor=#bfbfff><FONT face=Arial size=1>
+      <P style="MARGIN-LEFT: 20px"></FONT><FONT face=Arial color=#0000ff 
+      size=1><INPUT onclick="if (! bRAZ) GEN_Initialiser_Res ();&#13;&#13;" 
+      type=radio value=Oui name=cBE3>Oui <INPUT 
+      onclick="if (! bRAZ) GEN_Initialiser_Res ();&#13;&#13;" type=radio CHECKED 
+      value=Non name=cBE3>Non</FONT><FONT face=Arial 
+  size=1><O:P></FONT></P></TD></TR>
+  <TR vAlign=top>
+    <TD width=271 bgColor=#8080ff><FONT face=Arial color=#ffff00 
+      size=1>Isolation des conducteurs</FONT></TD>
+    <TD width=41 bgColor=#8080ff><IMG height=1 alt="" 
+      src="Sections_fichiers/ecblank.gif" width=1 border=0></TD>
+    <TD width=271 bgColor=#8080ff><FONT face=Arial color=#ffff00 
+      size=1>Température</FONT></TD></TR>
+  <TR vAlign=top>
+    <TD width=271 bgColor=#bfbfff><FONT face=Arial size=1>
+      <P style="MARGIN-LEFT: 20px"></FONT><FONT face=Arial color=#0000ff 
+      size=1><INPUT 
+      onmouseover='sStatus ="Choisissez la matière de votre isolant PRC, PVC ou caoutchouc, valeur par défaut PRC";&#13;sInfo = "PRC = Polypropylène Réticulé, \nPVC= Polychlorure de vinyle"&#13;GEN_Afficher_Aide (sStatus , sInfo)' 
+      onclick="if (! bRAZ) GEN_Initialiser_Res ();" type=radio CHECKED value=PRC 
+      name=cIsolationPh>PRC <INPUT 
+      onmouseover='sStatus ="Choisissez la matière de votre isolant PRC, PVC ou caoutchouc, valeur par défaut PRC";&#13;sInfo = "PRC = Polypropylène Réticulé, \nPVC= Polychlorure de vinyle"&#13;GEN_Afficher_Aide (sStatus , sInfo)' 
+      onclick="if (! bRAZ) GEN_Initialiser_Res ();" type=radio value=PVC 
+      name=cIsolationPh>PVC <INPUT 
+      onmouseover='sStatus ="Choisissez la matière de votre isolant PRC, PVC ou caoutchouc, valeur par défaut PRC";&#13;sInfo = "PRC = Polypropylène Réticulé, \nPVC= Polychlorure de vinyle"&#13;GEN_Afficher_Aide (sStatus , sInfo)' 
+      onclick="if (! bRAZ) GEN_Initialiser_Res ();" type=radio value=Caoutchouc 
+      name=cIsolationPh>Caoutchouc</FONT><FONT face=Arial 
+    size=1><O:P></FONT></P></TD>
+    <TD width=41 bgColor=#bfbfff><IMG height=1 alt="" 
+      src="Sections_fichiers/ecblank.gif" width=1 border=0></TD>
+    <TD width=271 bgColor=#bfbfff><FONT face=Arial size=1>
+      <P style="MARGIN-LEFT: 20px"></FONT><FONT face=Arial color=#0000ff 
+      size=1><SELECT 
+      onfocus='if (! bRAZ) GEN_Initialiser_Res ();&#13;GEN_Afficher_Aide ("Choisissez le nombre de conducteurs de 1 à 9, valeur par défaut 1" , "")' 
+      onclick="if (! bRAZ) GEN_Initialiser_Res ();&#13;&#13;" name=cTemperature> 
+        <OPTION>10<OPTION>15<OPTION>20<OPTION>25<OPTION 
+        selected>30<OPTION>35<OPTION>40<OPTION>45<OPTION>50</OPTION></SELECT> 
+      </FONT><B><FONT face=Arial color=#ffff00 size=1>°C</FONT></B><FONT 
+      face=Arial size=1><O:P></FONT></P></TD></TR>
+  <TR vAlign=top>
+    <TD width=271 bgColor=#8080ff><FONT face=Arial color=#ffff00 
+      size=1>Nombres de conducteurs chargési</FONT></TD>
+    <TD width=41 bgColor=#8080ff><IMG height=1 alt="" 
+      src="Sections_fichiers/ecblank.gif" width=1 border=0></TD>
+    <TD width=271 bgColor=#8080ff><FONT face=Arial color=#ffff00 
+      size=1>Facteur de groupement</FONT></TD></TR>
+  <TR vAlign=top>
+    <TD width=271 bgColor=#bfbfff><FONT face=Arial size=1>
+      <P style="MARGIN-LEFT: 20px"></FONT><FONT face=Arial color=#0000ff 
+      size=1><INPUT 
+      onmouseover='sStatus ="Choisissez le nombre de conducteur chargés de votre circuit, par défaut 3";&#13;sInfo = "2 = mono ou biphasé, 3 = triphasé équilibré, 4 = circuit triphasé avec neutre chargé."&#13;GEN_Afficher_Aide (sStatus , sInfo)' 
+      onclick="if (! bRAZ) GEN_Initialiser_Res ();&#13;&#13;" type=radio value=2 
+      name=cNbreCondPh>2 <INPUT 
+      onmouseover='sStatus ="Choisissez le nombre de conducteur chargés de votre circuit, par défaut 3";&#13;sInfo = "2 = mono ou biphasé, 3 = triphasé équilibré, 4 = circuit triphasé avec neutre chargé."&#13;GEN_Afficher_Aide (sStatus , sInfo)' 
+      onclick="if (! bRAZ) GEN_Initialiser_Res ();&#13;&#13;" type=radio CHECKED 
+      value=3 name=cNbreCondPh>3 <INPUT 
+      onmouseover='sStatus ="Choisissez le nombre de conducteur chargés de votre circuit, par défaut 3";&#13;sInfo = "2 = mono ou biphasé, 3 = triphasé équilibré, 4 = circuit triphasé avec neutre chargé."&#13;GEN_Afficher_Aide (sStatus , sInfo)' 
+      onclick="if (! bRAZ) GEN_Initialiser_Res ();&#13;&#13;" type=radio value=4 
+      name=cNbreCondPh>4</FONT><FONT face=Arial size=1><O:P></FONT></P></TD>
+    <TD width=41 bgColor=#bfbfff><IMG height=1 alt="" 
+      src="Sections_fichiers/ecblank.gif" width=1 border=0></TD>
+    <TD width=271 bgColor=#bfbfff><FONT face=Arial size=1>
+      <P style="MARGIN-LEFT: 20px"></FONT><FONT face=Arial color=#0000ff 
+      size=1><INPUT 
+      onblur='sVal =new String(document.forms[0].cCGroupe.value);&#13;sVal = sVal.replace ("," ,".");&#13;nVal = parseFloat (sVal );&#13;var bPb = false;&#13;if ( isNaN(nVal) == false )&#13;   {&#13;    if (nVal > 1) {&#13;         window.alert ("Le facteur de groupement ne peut pas être supérieur à 1.");&#13;         nVal= 1;&#13;          };&#13;    if (nVal <0.1) {&#13;         window.alert ("Le facteur de groupement ne peut pas être inférieur à 0.1.");&#13;         nVal= 0.1;&#13;         };&#13;   }&#13;else&#13;  {&#13;   window.alert ("Vous devez saisir une valeur numérique");&#13;   bPb =true;&#13;   nVal = 0.8;&#13;   }&#13;if (bPb == true)   document.forms[0].cCGroupe.focus();&#13;document.forms[0].cCGroupe.value= nVal;&#13;&#13;' 
+      onmouseover='GEN_Afficher_Aide ("Saisir une valeur entre 0.1 et 1, valeur par défaut 0.8." , "")' 
+      onfocus="if (! bRAZ) GEN_Initialiser_Res ();" 
+      onclick="if (! bRAZ) GEN_Initialiser_Res ();&#13;&#13;" size=8 value=0.8 
+      name=cCGroupe></FONT><FONT face=Arial size=1><O:P></FONT></P></TD></TR>
+  <TR vAlign=top>
+    <TD width=271 bgColor=#8080ff><FONT face=Arial color=#ffff00 size=1>Type 
+      de câble</FONT></TD>
+    <TD width=41 bgColor=#8080ff><IMG height=1 alt="" 
+      src="Sections_fichiers/ecblank.gif" width=1 border=0></TD>
+    <TD width=271 bgColor=#8080ff><FONT face=Arial color=#ffff00 
+      size=1>Dispositif de protection</FONT></TD></TR>
+  <TR vAlign=top>
+    <TD width=271 bgColor=#bfbfff><FONT face=Arial color=#0000ff size=1><INPUT 
+      onmouseover='sStatus ="Choisissez le Type de votre câble Multipolaire, Unipolaire, Conducteurs isolés, Valeur par défaut Multipolaire";&#13;GEN_Afficher_Aide (sStatus , "")' 
+      onclick='if (! bRAZ) GEN_Initialiser_Res ();&#13;with(window.document.forms[0])&#13;     {&#13;     for (n=0; n<cCtCable.length; n++) &#13;           {&#13;                if (cCtCable[n].checked == true)&#13;                      {&#13;                        if (cCtCable[n].value == "Multipolaire" ) &#13;                             { &#13;                            // cNappeTrefle[0].checked =true;&#13;                              }&#13;                       }   &#13;             }&#13;   &#13;     }' 
+      type=radio CHECKED value=Multipolaire name=cCtCable>Multipolaire <INPUT 
+      onmouseover='sStatus ="Choisissez le Type de votre câble Multipolaire, Unipolaire, Conducteurs isolés, Valeur par défaut Multipolaire";&#13;GEN_Afficher_Aide (sStatus , "")' 
+      onclick='if (! bRAZ) GEN_Initialiser_Res ();&#13;with(window.document.forms[0])&#13;     {&#13;     for (n=0; n<cCtCable.length; n++) &#13;           {&#13;                if (cCtCable[n].checked == true)&#13;                      {&#13;                        if (cCtCable[n].value == "Multipolaire" ) &#13;                             { &#13;                            // cNappeTrefle[0].checked =true;&#13;                              }&#13;                       }   &#13;             }&#13;   &#13;     }' 
+      type=radio value=Unipolaire name=cCtCable>Unipolaire <INPUT 
+      onmouseover='sStatus ="Choisissez le Type de votre câble Multipolaire, Unipolaire, Conducteurs isolés, Valeur par défaut Multipolaire";&#13;GEN_Afficher_Aide (sStatus , "")' 
+      onclick='if (! bRAZ) GEN_Initialiser_Res ();&#13;with(window.document.forms[0])&#13;     {&#13;     for (n=0; n<cCtCable.length; n++) &#13;           {&#13;                if (cCtCable[n].checked == true)&#13;                      {&#13;                        if (cCtCable[n].value == "Multipolaire" ) &#13;                             { &#13;                            // cNappeTrefle[0].checked =true;&#13;                              }&#13;                       }   &#13;             }&#13;   &#13;     }' 
+      type=radio value=_l8dnmsp3lcdq6atbiecg6isrfdi176_ 
+      name=cCtCable>Conducteurs isolés</FONT></TD>
+    <TD width=41 bgColor=#bfbfff><IMG height=1 alt="" 
+      src="Sections_fichiers/ecblank.gif" width=1 border=0></TD>
+    <TD width=271 bgColor=#bfbfff><FONT face=Arial size=1>
+      <P style="MARGIN-LEFT: 20px"></FONT><FONT face=Arial color=#0000ff 
+      size=1><SELECT onclick="if (! bRAZ) GEN_Initialiser_Res ();&#13;&#13;" 
+      name=cCTProt> <OPTION selected>Disjoncteur ou Relais ou Fu 
+        AM...<OPTION>Fusible gI<OPTION>Fusible gG</OPTION></SELECT> </FONT><FONT 
+      face=Arial size=1><O:P></FONT></P></TD></TR>
+  <TR vAlign=top>
+    <TD width=271 bgColor=#8080ff><FONT face=Arial color=#ffff00 size=1>Nature 
+      des conducteurs</FONT></TD>
+    <TD width=41 bgColor=#8080ff><IMG height=1 alt="" 
+      src="Sections_fichiers/ecblank.gif" width=1 border=0></TD>
+    <TD width=271 bgColor=#8080ff><IMG height=1 alt="" 
+      src="Sections_fichiers/ecblank.gif" width=1 border=0></TD></TR>
+  <TR vAlign=top>
+    <TD width=271 bgColor=#bfbfff><FONT face=Arial size=1>
+      <P style="MARGIN-LEFT: 20px"></FONT><FONT face=Arial color=#0000ff 
+      size=1><INPUT 
+      onmouseover='GEN_Afficher_Aide ("Choisissez Cuivre ou Aluminium, valeur par défaut Cuivre" , "")' 
+      onclick="if (! bRAZ) GEN_Initialiser_Res ();" type=radio CHECKED 
+      value=Cuivre name=cNatPh>Cuivre <INPUT 
+      onmouseover='GEN_Afficher_Aide ("Choisissez Cuivre ou Aluminium, valeur par défaut Cuivre" , "")' 
+      onclick="if (! bRAZ) GEN_Initialiser_Res ();" type=radio value=Aluminium 
+      name=cNatPh>Aluminium</FONT><FONT face=Arial size=1><O:P></FONT></P></TD>
+    <TD width=41 bgColor=#bfbfff><IMG height=1 alt="" 
+      src="Sections_fichiers/ecblank.gif" width=1 border=0></TD>
+    <TD width=271 bgColor=#e0e0ff>
+      <DIV align=center><B><I><FONT face=Arial color=#ff0000 size=2>Résultats du 
+      calcul</FONT></I></B></DIV></TD></TR>
+  <TR vAlign=top>
+    <TD width=271 bgColor=#8080ff><FONT face=Arial color=#ffff00 size=1>Mode 
+      de pose</FONT></TD>
+    <TD width=41 bgColor=#8080ff><IMG height=1 alt="" 
+      src="Sections_fichiers/ecblank.gif" width=1 border=0></TD>
+    <TD width=271 bgColor=#8080ff><FONT face=Arial color=#ffff00 size=1>Izc 
+      (courant admissible corrigé) = Facteur correction x Iz</FONT></TD></TR>
+  <TR vAlign=top>
+    <TD width=271 bgColor=#bfbfff><FONT face=Arial size=1>
+      <P style="MARGIN-LEFT: 20px"></FONT><FONT face=Arial color=#0000ff 
+      size=1><SELECT 
+      onclick="if (! bRAZ) GEN_Initialiser_Res ();&#13;&#13;&#9;&#13;" 
+        name=cMdP> <OPTION value=_q8dk6arb9dog470r2dhii0k35e9j6usk2417natj5e9q0_ 
+        selected>Chemin Câble Perforé Ouvert<OPTION 
+        value=_98dk6arb9dog470r2dhii0k3cclkms82felr6asjk_>Chemin Câble Plein 
+        Ouvert<OPTION value=_38dk6arb9dog470r2dhii0k35e9j6usk24136asjdg8_>Chemin 
+        Câble Perforé Fermé<OPTION 
+        value=_q8dk6arb9dog470r2dhii0k3cclkms826clp6r0g_>Chemin Câble Plein 
+        Fermé<OPTION>Sans Fixation<OPTION>Fixation directe<OPTION>Sous 
+        conduit<OPTION>Goulottes<OPTION 
+        value=_na1m6irjkd1ii0sj1d5n7ask2ck_>Plinthe rainurée<OPTION 
+        value=_08dnmsp3ld5q20s3idtj6ir42_>Conduit profilé<OPTION>Echelles<OPTION 
+        value=_68dnn4oj5c5qng83fekg58sj5d5m6oqbj41pmutb4g9pg_>Corbeaux ou 
+        Treillis soudés<OPTION>Isolateurs<OPTION 
+        value=_38e1m4r35ecg70rriehinasjj_>Câbles 
+        porteurs<OPTION>Colliers<OPTION>Moulures</OPTION></SELECT> </FONT><FONT 
+      face=Arial size=1><O:P></FONT></P></TD>
+    <TD width=41 bgColor=#bfbfff><IMG height=1 alt="" 
+      src="Sections_fichiers/ecblank.gif" width=1 border=0></TD>
+    <TD width=271 bgColor=#e0e0ff><FONT face=Arial size=1>
+      <P style="MARGIN-LEFT: 20px"></FONT><B><FONT face=Arial color=#ffff00 
+      size=1></FONT></B><FONT face=Arial color=#0000ff size=1><INPUT 
+      onfocus=document.forms[0].cCGroupe.focus() size=8 value=0 
+      name=cIzc></FONT><FONT face=Arial color=#ff0000 size=1> = </FONT><FONT 
+      face=Arial color=#0000ff size=1><INPUT 
+      onfocus=document.forms[0].cCGroupe.focus() size=8 value=0 
+      name=cCGlobal></FONT><FONT face=Arial color=#ff0000 size=1> x </FONT><FONT 
+      face=Arial color=#0000ff size=1><INPUT 
+      onfocus=document.forms[0].cCGroupe.focus() size=8 value=0 
+      name=cIz></FONT><FONT face=Arial size=1> </FONT><FONT face=Arial 
+      color=#ff0000 size=1>A</FONT><FONT face=Arial 
+size=1><O:P></FONT></P></TD></TR>
+  <TR vAlign=top>
+    <TD width=271 bgColor=#8080ff><FONT face=Arial color=#ffff00 
+      size=1>Situation</FONT></TD>
+    <TD width=41 bgColor=#8080ff><IMG height=1 alt="" 
+      src="Sections_fichiers/ecblank.gif" width=1 border=0></TD>
+    <TD width=271 bgColor=#8080ff><FONT face=Arial color=#ffff00 size=1>Mode 
+      de pose : Numéro / Méthode</FONT></TD></TR>
+  <TR vAlign=top>
+    <TD width=271 bgColor=#bfbfff><FONT face=Arial size=1>
+      <P style="MARGIN-LEFT: 20px"></FONT><FONT face=Arial color=#0000ff 
+      size=1><SELECT 
+      onclick='if (! bRAZ) GEN_Initialiser_Res ();&#13;&#13;nSituation=0;&#13;nTemperature=0;&#13;with(window.document.forms[0])&#13;{&#13;&#9;for (n=0; n<cSituation.length; n++) &#13;&#9;{&#13;&#9;&#9;if (cSituation.options[n].selected) &#13;     &#9;   nSituation = n+1;&#13;&#9;};&#13;&#9;for (n=0; n<cTemperature.length; n++) &#13;&#9;{&#13;&#9;&#9;if (cTemperature.options[n].selected) &#13;     &#9;   nTemperature = n+1;&#13;&#9;};&#13;}&#13;&#13;if ((Situation_AV !=4 &amp;&amp; nSituation ==4)  || (Situation_AV ==4 &amp;&amp; nSituation !=4))&#13;{&#13;&#9;window.alert("ATTENTION, la température va être modifiée.\nLa température normale en enterré est de 20°C.\nLa température normale dans les autres cas est 30°C.");&#13;&#9;if (nSituation ==4)&#13;&#9;&#9;window.document.forms[0].cTemperature.options[2].selected =true;&#13;&#9;else&#13;&#9;&#9;window.document.forms[0].cTemperature.options[4].selected =true;&#13;}&#13;&#13;Situation_AV =nSituation;&#13;' 
+      name=cSituation> <OPTION selected>Apparent Horizontal &amp; 
+        Vertical<OPTION value=_c8dgmsqbmclgna836clp6r0g_>Caniveau fermé<OPTION 
+        value=_98dgmsqbmclgna83felr6asjk41nna83mcln78qbcg8_>Caniveau ouvert ou 
+        ventilé<OPTION value=_08ln78pbiea10_>Enterré<OPTION>Vide de 
+        construction<OPTION value=_58pgnau10e1m62pjfdpi20p42dlnmst31c9m6a_>Faux 
+        plafond démontable<OPTION>Chambranle<OPTION>Huisserie<OPTION 
+        value=_t8ln66objehp8483gc5p6uqbj41kn6rrcc5n78p8_>Encastré parois 
+        isolante<OPTION 
+        value=_j8ln66objehp8483gc5p6uqbj40j20s3cc5n66q35e8_>Encastré parois 
+        &amp; plancher<OPTION value=_d86174qb5do_>Aérien</OPTION></SELECT> 
+      </FONT><FONT face=Arial size=1><O:P></FONT></P></TD>
+    <TD width=41 bgColor=#bfbfff><IMG height=1 alt="" 
+      src="Sections_fichiers/ecblank.gif" width=1 border=0></TD>
+    <TD width=271 bgColor=#e0e0ff><FONT face=Arial size=1>
+      <P style="MARGIN-LEFT: 80px"></FONT><FONT face=Arial color=#0000ff 
+      size=1><INPUT onfocus=document.forms[0].cCGroupe.focus() size=8 value=0 
+      name=cMethodeC></FONT><FONT face=Arial size=1><O:P></FONT></P></TD></TR>
+  <TR vAlign=top>
+    <TD width=271 bgColor=#8080ff><FONT face=Arial color=#ffff00 size=1>Pose 
+      sous plafond</FONT></TD>
+    <TD width=41 bgColor=#8080ff><IMG height=1 alt="" 
+      src="Sections_fichiers/ecblank.gif" width=1 border=0></TD>
+    <TD width=271 bgColor=#8080ff><FONT face=Arial color=#ffff00 
+      size=1>Observations</FONT></TD></TR>
+  <TR vAlign=top>
+    <TD width=271 bgColor=#bfbfff><FONT face=Arial size=1>
+      <P style="MARGIN-LEFT: 20px"></FONT><FONT face=Arial color=#0000ff 
+      size=1><INPUT 
+      onclick='if (! bRAZ) GEN_Initialiser_Res ();&#13;&#13;nSituation=0;&#13;nMdP=0;&#13;nSP=0;&#13;with(window.document.forms[0])&#13;{&#13;&#9;for (n=0; n<cMdP.length; n++) &#13;&#9;{&#13;&#9;&#9;if (cMdP.options[n].selected) &#13;     &#9;   nMdP = n+1;&#13;&#9;};&#13;&#9;for (n=0; n<cSituation.length; n++) &#13;&#9;{&#13;&#9;&#9;if (cSituation.options[n].selected) &#13;     &#9;   nSituation = n+1;&#13;&#9;};&#13;     for (n=0; n<cSousPlafond.length; n++) &#13;&#9;{&#13;&#9;&#9;if (cSousPlafond[n].checked == true)&#13;&#9;&#9;{&#13;&#9;&#9;&#9;if (cSousPlafond[n].value == "Oui" ) &#13;&#9;&#9;&#9;&#9;nSP=1;&#13;&#9;&#9;}   &#13;&#9;};&#13;}&#13;if ((nMdP !=6 || nSituation !=1) &amp;&amp; nSP==1)&#13;&#9;window.alert("Pose sous Plafond : Indication utile uniquement pour la  fixation directe en situation apparente");&#13;&#13;' 
+      type=radio value=Oui name=cSousPlafond>Oui <INPUT 
+      onclick='if (! bRAZ) GEN_Initialiser_Res ();&#13;&#13;nSituation=0;&#13;nMdP=0;&#13;nSP=0;&#13;with(window.document.forms[0])&#13;{&#13;&#9;for (n=0; n<cMdP.length; n++) &#13;&#9;{&#13;&#9;&#9;if (cMdP.options[n].selected) &#13;     &#9;   nMdP = n+1;&#13;&#9;};&#13;&#9;for (n=0; n<cSituation.length; n++) &#13;&#9;{&#13;&#9;&#9;if (cSituation.options[n].selected) &#13;     &#9;   nSituation = n+1;&#13;&#9;};&#13;     for (n=0; n<cSousPlafond.length; n++) &#13;&#9;{&#13;&#9;&#9;if (cSousPlafond[n].checked == true)&#13;&#9;&#9;{&#13;&#9;&#9;&#9;if (cSousPlafond[n].value == "Oui" ) &#13;&#9;&#9;&#9;&#9;nSP=1;&#13;&#9;&#9;}   &#13;&#9;};&#13;}&#13;if ((nMdP !=6 || nSituation !=1) &amp;&amp; nSP==1)&#13;&#9;window.alert("Pose sous Plafond : Indication utile uniquement pour la  fixation directe en situation apparente");&#13;&#13;' 
+      type=radio CHECKED value=Non name=cSousPlafond>Non</FONT><FONT face=Arial 
+      size=1><O:P></FONT></P></TD>
+    <TD width=41 bgColor=#bfbfff><IMG height=1 alt="" 
+      src="Sections_fichiers/ecblank.gif" width=1 border=0></TD>
+    <TD width=271 bgColor=#e0e0ff><FONT face=Arial color=#ff0000 size=1><TEXTAREA onfocus=document.forms[0].cCGroupe.focus() name=cObs SIZE="8"></TEXTAREA> 
+      </FONT></TD></TR>
+  <TR vAlign=top>
+    <TD width=271 bgColor=#8080ff><IMG height=1 alt="" 
+      src="Sections_fichiers/ecblank.gif" width=1 border=0></TD>
+    <TD width=41 bgColor=#8080ff><IMG height=1 alt="" 
+      src="Sections_fichiers/ecblank.gif" width=1 border=0></TD>
+    <TD width=271 bgColor=#8080ff><IMG height=1 alt="" 
+      src="Sections_fichiers/ecblank.gif" width=1 border=0></TD></TR>
+  <TR vAlign=top>
+    <TD width=271 bgColor=#bfbfff>
+      <DIV align=center><A 
+      onmouseover='GEN_Afficher_Aide ("","Cliquez pour Affecter les valeurs par défaut")&#13;' 
+      onclick="GEN_Initialiser_Ent ();&#13;if (! bRAZ) GEN_Initialiser_Res ();&#13;&#13;&#13;&#13;&#13;return false;" 
+      href="http://www.elec-planet.com:8080/elecplanet/Calcul.nsf/"><B><FONT 
+      face=Arial color=#ffff00>Valeurs par défaut</FONT></B></A><B><FONT 
+      face=Arial color=#ffff00> </FONT></B></DIV></TD>
+    <TD width=41 bgColor=#bfbfff>
+      <DIV align=center><A 
+      onmouseover='GEN_Afficher_Aide ("", "Cliquez pour mettre à zéro les résultats.")' 
+      onclick="GEN_Initialiser_Res ()&#13;&#13;&#13;&#13;&#13;return false;" 
+      href="http://www.elec-planet.com:8080/elecplanet/Calcul.nsf/"><B><FONT 
+      face=Arial color=#ffff00>Raz</FONT></B></A></DIV></TD>
+    <TD width=271 bgColor=#bfbfff>
+      <DIV align=center><A 
+      onmouseover="GEN_Afficher_Aide (&quot;&quot;, &quot;Cliquez pour Calculer\nAttention les données d'entrées peuvent être modifiées&quot;)" 
+      onclick="tst =  window.location.href;&#13;position = tst.lastIndexOf(&quot;/&quot;);&#13;url = tst.substring(0,position) + &quot;/ReRoute?openform&quot;;&#13;&#13;if (window.document.forms[0].UserName.value == &quot;Anonymous&quot;)&#13;&#9;window.open(url,target=&quot;cadres_contenu&quot;);&#13;else&#13;{&#13;Section = new Array (19) ;&#13;Section[0]= 1.5;&#13;Section[1]=2.5;&#13;Section[2]= 4;&#13;Section[3]=6;&#13;Section[4]= 10;&#13;Section[5]=16;&#13;Section[6]= 25;&#13;Section[7]=35;&#13;Section[8]= 50;&#13;Section[9]=70;&#13;Section[10]= 95;&#13;Section[11]=120;&#13;Section[12]=150;&#13;Section[13]= 185;&#13;Section[14]=240;&#13;Section[15]= 300;&#13;Section[16]=400;&#13;Section[17]=500;&#13;Section[18]= 630;&#13;&#13;Ro = new Array (2);&#13;Ro[0] =18.51;&#13;Ro[1]=29.41;&#13;&#13;LTemp = new Array (19) ;&#13;LTemp[0]= 10;&#13;LTemp[1]= 15;&#13;LTemp[2]= 20;&#13;LTemp[3]= 25;&#13;LTemp[4]= 30;&#13;LTemp[5]= 35;&#13;LTemp[6]= 40;&#13;LTemp[7]= 45;&#13;LTemp[8]= 50;&#13;LTemp[9]= 55;&#13;LTemp[10]= 60;&#13;LTemp[11]= 65;&#13;LTemp[11]= 70;&#13;LTemp[11]= 75;&#13;LTemp[11]= 80;&#13;&#13;T52J1_1 = new Array (15) ;&#13;T52J1_1[1]= 1.15;&#13;T52J1_1[2]= 1.12;&#13;T52J1_1[3]= 1.08;&#13;T52J1_1[4]= 1.04;&#13;T52J1_1[5]= 1.00;&#13;T52J1_1[6]= 0.96;&#13;T52J1_1[7]= 0.91;&#13;T52J1_1[8]= 0.87;&#13;T52J1_1[9]= 0.82;&#13;T52J1_1[10]= 0.76;&#13;T52J1_1[11]= 0.71;&#13;T52J1_1[12]= 0.65;&#13;T52J1_1[13]= 0.58;&#13;T52J1_1[14]= 0.50;&#13;T52J1_1[15]= 0.41;&#13;&#13;T52J1_2 = new Array (15) ;&#13;T52J1_2[1]= 1.22;&#13;T52J1_2[2]= 1.17;&#13;T52J1_2[3]= 1.12;&#13;T52J1_2[4]= 1.06;&#13;T52J1_2[5]= 1.00;&#13;T52J1_2[6]= 0.94;&#13;T52J1_2[7]= 0.87;&#13;T52J1_2[8]= 0.79;&#13;T52J1_2[9]= 0.71;&#13;T52J1_2[10]= 0.61;&#13;T52J1_2[11]= 0.50;&#13;T52J1_2[12]= 0.50;&#13;T52J1_2[13]= 0.50;&#13;T52J1_2[14]= 0.50;&#13;T52J1_2[15]= 0.50;&#13;&#13;T52J1_3 = new Array (15) ;&#13;T52J1_3[1]= 1.29;&#13;T52J1_3[2]= 1.22;&#13;T52J1_3[3]= 1.15;&#13;T52J1_3[4]= 1.07;&#13;T52J1_3[5]= 1.00;&#13;T52J1_3[6]= 0.93;&#13;T52J1_3[7]= 0.82;&#13;T52J1_3[8]= 0.71;&#13;T52J1_3[9]= 0.58;&#13;T52J1_3[10]= 0.58;&#13;T52J1_3[11]= 0.58;&#13;T52J1_3[12]= 0.58;&#13;T52J1_3[13]= 0.58;&#13;T52J1_3[14]= 0.58;&#13;T52J1_3[15]= 0.58;&#13;&#13;&#13;T52J2 = new Array (15,3) ;&#13;T52J2_1 = new Array (15) ;&#13;T52J2_1[1]= 1.07;&#13;T52J2_1[2]= 1.04;&#13;T52J2_1[3]= 1.00;&#13;T52J2_1[4]= 0.96;&#13;T52J2_1[5]= 0.93;&#13;T52J2_1[6]= 0.89;&#13;T52J2_1[7]= 0.85;&#13;T52J2_1[8]= 0.80;&#13;T52J2_1[9]= 0.76;&#13;T52J2_1[10]= 0.71;&#13;T52J2_1[11]= 0.65;&#13;T52J2_1[12]= 0.60;&#13;T52J2_1[13]= 0.53;&#13;T52J2_1[14]= 0.46;&#13;T52J2_1[15]= 0.38;&#13;&#13;T52J2_23 = new Array (15) ;&#13;T52J2_23[1]= 1.10;&#13;T52J2_23[2]= 1.05;&#13;T52J2_23[3]= 1.00;&#13;T52J2_23[4]= 0.95;&#13;T52J2_23[5]= 0.89;&#13;T52J2_23[6]= 0.84;&#13;T52J2_23[7]= 0.77;&#13;T52J2_23[8]= 0.71;&#13;T52J2_23[9]= 0.63;&#13;T52J2_23[10]= 0.55;&#13;T52J2_23[11]= 0.45;&#13;T52J2_23[12]= 0.45;&#13;T52J2_23[13]= 0.45;&#13;T52J2_23[14]= 0.45;&#13;T52J2_23[15]= 0.45;&#13;&#13;// Coefficient pour calcul de Iz&#13;var Tab52GF_CU = new Array (2) ;&#13;Tab52GF_CU [0] = new Array (18) ;&#13;Tab52GF_CU [1] = new Array (18) ;&#13;Tab52GF_CU [2] = new Array (18) ;&#13;&#13;var Tab52GF_AL = new Array (2) ;&#13;Tab52GF_AL [0] = new Array (18) ;&#13;Tab52GF_AL [1] = new Array (18) ;&#13;Tab52GF_AL [2] = new Array (18) ;&#13;&#13;//-- Tab 52 F   Coef  S=<16 ------Cu-------&#13;Tab52GF_CU [0] [1] = 11.84;&#13;Tab52GF_CU [0] [2] =  0.628;&#13;Tab52GF_CU [0] [3] =  13.5;&#13;Tab52GF_CU [0] [4] =  0.625;&#13;Tab52GF_CU [0] [5] =  14.30;&#13;Tab52GF_CU [0] [6] =  0.620;&#13;Tab52GF_CU [0] [7] =  15;&#13;Tab52GF_CU [0] [8] =  0.625;&#13;Tab52GF_CU [0] [9] =  16.8;&#13;Tab52GF_CU [0] [10] =  0.620;&#13;Tab52GF_CU [0] [11] =  17.8;&#13;Tab52GF_CU [0] [12] =  0.623;&#13;Tab52GF_CU [0] [13] =  18.77;&#13;Tab52GF_CU [0] [14] =  0.628;&#13;Tab52GF_CU [0] [15] =  20.5;&#13;Tab52GF_CU [0] [16] =  0.623;&#13;Tab52GF_CU [0] [17] =  20.8;&#13;Tab52GF_CU [0] [18] =  0.636;&#13;&#13;//-- Tab 52 F   Coef S >16 ------Cu-------&#13;Tab52GF_CU [1] [1] = 11.84;&#13;Tab52GF_CU [1] [2] =  0.628;&#13;Tab52GF_CU [1] [3] =  12.4;&#13;Tab52GF_CU [1] [4] =  0.635;&#13;Tab52GF_CU [1] [5] =  12.9;&#13;Tab52GF_CU [1] [6] =  0.640;&#13;Tab52GF_CU [1] [7] =  15;&#13;Tab52GF_CU [1] [8] =  0.625;&#13;Tab52GF_CU [1] [9] =  15.4;&#13;Tab52GF_CU [1] [10] =  0.635;&#13;Tab52GF_CU [1] [11] =  16.4;&#13;Tab52GF_CU [1] [12] =  0.637;&#13;Tab52GF_CU [1] [13] =  17;&#13;Tab52GF_CU [1] [14] =  0.650;&#13;Tab52GF_CU [1] [15] =  18.6;&#13;Tab52GF_CU [1] [16] =  0.646;&#13;Tab52GF_CU [1] [17] =  20.8;&#13;Tab52GF_CU [1] [18] =  0.636;&#13;&#13;//-- Tab 52 F   Coef S >300 -----Cu-------&#13;Tab52GF_CU [2] [1] =  11.84;&#13;Tab52GF_CU [2] [2] =  0.628;&#13;Tab52GF_CU [2] [3] =  12.4;&#13;Tab52GF_CU [2] [4] =  0.635;&#13;Tab52GF_CU [2] [5] =  13.9;&#13;Tab52GF_CU [2] [6] =  0.640;&#13;Tab52GF_CU [2] [7] =  13.28;&#13;Tab52GF_CU [2] [8] =  0.6564;&#13;Tab52GF_CU [2] [9] =  13.28;&#13;Tab52GF_CU [2] [10] =  0.6564;&#13;Tab52GF_CU [2] [11] =  17.1;&#13;Tab52GF_CU [2] [12] =  0.632;&#13;Tab52GF_CU [2] [13] =  16.0;&#13;Tab52GF_CU [2] [14] =  0.6633;&#13;Tab52GF_CU [2] [15] =  18.6;&#13;Tab52GF_CU [2] [16] =  0.646;&#13;Tab52GF_CU [2] [17] =  20.8;&#13;Tab52GF_CU [2] [18] =  0.636;&#13;&#13;// -- Tab 52 F   Coef à1 &amp; á1  S=<16 ------Alu------&#13;Tab52GF_AL [0] [1] =  9.265;&#13;Tab52GF_AL [0] [2] =  0.627;&#13;Tab52GF_AL [0] [3] =  10.5;&#13;Tab52GF_AL [0] [4] =  0.625;&#13;Tab52GF_AL [0] [5] =  11;&#13;Tab52GF_AL [0] [6] =  0.620;&#13;Tab52GF_AL [0] [7] =  11.6;&#13;Tab52GF_AL [0] [8] =  0.625;&#13;Tab52GF_AL [0] [9] =  12.8;&#13;Tab52GF_AL [0] [10] =  0.627;&#13;Tab52GF_AL [0] [11] =  13.7;&#13;Tab52GF_AL [0] [12] =  0.623;&#13;Tab52GF_AL [0] [13] =  14.8;&#13;Tab52GF_AL [0] [14] =  0.625;&#13;Tab52GF_AL [0] [15] =  16;&#13;Tab52GF_AL [0] [16] =  0.625;&#13;Tab52GF_AL [0] [17] =  14.7;&#13;Tab52GF_AL [0] [18] =  0.654;&#13;&#13;//-- Tab 52 F   Coef à1 &amp; á1  S >16 ------Alu------&#13;Tab52GF_AL [1] [1] =  9.265;&#13;Tab52GF_AL [1] [2] =  0.627;&#13;Tab52GF_AL [1] [3] =  9.536;&#13;Tab52GF_AL [1] [4] =  0.6324;&#13;Tab52GF_AL [1] [5] =  9.9;&#13;Tab52GF_AL [1] [6] =  0.640;&#13;Tab52GF_AL [1] [7] =  10.55;&#13;Tab52GF_AL [1] [8] =  0.640;&#13;Tab52GF_AL [1] [9] =  11.5;&#13;Tab52GF_AL [1] [10] =  0.639;&#13;Tab52GF_AL [1] [11] =  12.6;&#13;Tab52GF_AL [1] [12] =  0.635;&#13;Tab52GF_AL [1] [13] =  12.6;&#13;Tab52GF_AL [1] [14] =  0.648;&#13;Tab52GF_AL [1] [15] =  13.4;&#13;Tab52GF_AL [1] [16] =  0.649;&#13;Tab52GF_AL [1] [17] =  14.7;&#13;Tab52GF_AL [1] [18] =  0.654;&#13;&#13;//-- Tab 52 F   Coef à1 &amp; á1  S >300 -----Alu------&#13;Tab52GF_AL [2] [1] =  9.265;&#13;Tab52GF_AL [2] [2] =  0.627;&#13;Tab52GF_AL [2] [3] =  9.536;&#13;Tab52GF_AL [2] [4] =  0.6324;&#13;Tab52GF_AL [2] [5] =  11;&#13;Tab52GF_AL [2] [6] =  0.620;&#13;Tab52GF_AL [2] [7] =  9.9;&#13;Tab52GF_AL [2] [8] =  0.663;&#13;Tab52GF_AL [2] [9] =  9.9;&#13;Tab52GF_AL [2] [10] =  0.663;&#13;Tab52GF_AL [2] [11] =  12;&#13;Tab52GF_AL [2] [12] =  0.663;&#13;Tab52GF_AL [2] [13] =  11.9;&#13;Tab52GF_AL [2] [14] =  0.671;&#13;Tab52GF_AL [2] [15] =  13.4;&#13;Tab52GF_AL [2] [16] =  0.649;&#13;Tab52GF_AL [2] [17] =  14.7;&#13;Tab52GF_AL [2] [18] =  0.654;&#13;&#13;// -- Tab 52 G   Coef ------Cu-------&#13;var Tab52GG_CU = new Array (3) ;&#13;Tab52GG_CU [0] = new Array (1) ;&#13;Tab52GG_CU [1] = new Array (1) ;&#13;Tab52GG_CU [2] = new Array (1) ;&#13;Tab52GG_CU [3] = new Array (1) ;&#13;&#13;Tab52GG_CU [0] [0] = 25.14;&#13;Tab52GG_CU [0] [1] = 0.551;&#13;Tab52GG_CU [1] [0] = 20.86;&#13;Tab52GG_CU [1] [1] = 0.550;&#13;Tab52GG_CU [2] [0] = 29.71;&#13;Tab52GG_CU [2] [1] = 0.548;&#13;Tab52GG_CU [3] [0] = 24.71;&#13;Tab52GG_CU [3] [1] = 0.549;&#13; &#13;   //                  -- Tab 52 G   Coef à1 &amp; á1   ------Alu------&#13;// Tab52GG_AL [] [] = ;&#13;var Tab52GG_AL = new Array (3) ;&#13;Tab52GG_AL [0] = new Array (1) ;&#13;Tab52GG_AL [1] = new Array (1) ;&#13;Tab52GG_AL [2] = new Array (1) ;&#13;Tab52GG_AL [3] = new Array (1) ;&#13;&#13;Tab52GG_AL [0] [0] = 19.285;&#13;Tab52GG_AL [0] [1] = 0.551;&#13;Tab52GG_AL [1] [0] = 16.14;&#13;Tab52GG_AL [1] [1] = 0.550;&#13;Tab52GG_AL [2] [0] = 22.57;&#13;Tab52GG_AL [2] [1] = 0.550;&#13;Tab52GG_AL [3] [0] = 19;&#13;Tab52GG_AL [3] [1] = 0.551;&#13;&#13;&#13;// Entrées&#13;CGroupe = 0.00;&#13;&#13;// Sorties&#13;Izc = 0;&#13;CGlobal = 0.00;&#13;Iz = 0;&#13;MethodeC = 0;&#13;sObs =&quot;&quot;;&#13;sInfo =&quot;&quot;;&#13;&#13;// VAR CALCUL INTERMEDIAIRES&#13;bFin = true;&#13;SPhIndex = 0;&#13;TemperatureIndex = 0;&#13;&#13;&#13;GEN_Initialiser_Res ();&#13;&#13;with(window.document.forms[0])&#13;&#9;{&#13;      for (n=0; n<cSPh.length; n++) &#13;          {&#13;            if (cSPh.options[n].selected) &#13;                {&#13;                 SPh = Section[n];&#13;                 SPhIndex = n + 1; &#13;                }&#13;          }&#13;      for (n=0; n<cIsolationPh.length; n++) &#13;           {&#13;                if (cIsolationPh[n].checked == true)&#13;                      {&#13;                          IsolationPh = n +1;&#13;                       }   &#13;             }&#13;      for (n=0; n<cNbreCondPh.length; n++) &#13;           {&#13;                if (cNbreCondPh[n].checked == true)&#13;                      {&#13;                          NbreCondPh = n +2;&#13;                       }   &#13;             }&#13;      for (n=0; n<cCtCable.length; n++) &#13;           {&#13;                if (cCtCable[n].checked == true)&#13;                      {&#13;                          CtCable = n +1;&#13;                       }   &#13;             }&#13;      for (n=0; n<cNatPh.length; n++) &#13;           {&#13;                if (cNatPh[n].checked == true)&#13;                      {&#13;                          NatPh = n +1;&#13;                       }   &#13;             }&#13;      for (n=0; n<cMdP.length; n++) &#13;          {&#13;            if (cMdP.options[n].selected) &#13;                {&#13;                 MdP = n+1;&#13;                }&#13;          }&#13;      for (n=0; n<cSituation.length; n++) &#13;          {&#13;            if (cSituation.options[n].selected) &#13;                {&#13;                 Situation = n+1;&#13;                }&#13;          }&#13;      for (n=0; n<cSousPlafond.length; n++) &#13;           {&#13;                if (cSousPlafond[n].checked == true)&#13;                      {&#13;                          SousPlafond = n +1;&#13;                       }   &#13;             }&#13;      for (n=0; n<cBE3.length; n++) &#13;           {&#13;                if (cBE3[n].checked == true)&#13;                      {&#13;                          BE3 = n +1;&#13;                       }   &#13;             }&#13;      for (n=0; n<cTemperature.length; n++) &#13;          {&#13;            if (cTemperature.options[n].selected) &#13;                {&#13;                 Temperature = LTemp[n];&#13;                 TemperatureIndex = n+1;&#13;                }&#13;          }&#13;      for (n=0; n<cCTProt.length; n++) &#13;          {&#13;            if (cCTProt.options[n].selected) &#13;                {&#13;                  CTProt = n+1;&#13;                }&#13;          }&#13;      CGroupe = parseFloat (cCGroupe.value);&#13;      }&#13;&#13;// Initialisation&#13;K52E = 1.0;&#13;Ctemp = 1.0;&#13;Cprot = 1.0;&#13;CEquilibre = 1.0;&#13;CBE3 = 1.0;&#13;&#13;// Début Calcul&#13;&#13;// Calcul facteur de température&#13;if (Situation  !=4)&#13;{&#13;&#9;if(IsolationPh==1)&#13;&#9;&#9;Ctemp=T52J1_1[TemperatureIndex];&#13;&#9;else&#13;&#9;&#9;if(IsolationPh==2)&#13;&#9;&#9;&#9;Ctemp=T52J1_2[TemperatureIndex];&#13;&#9;&#9;else&#13;&#9;&#9;&#9;Ctemp=T52J1_3[TemperatureIndex];&#13;}&#13;else                       &#13;{&#13;&#9;if(IsolationPh==1)&#13;&#9;&#9;Ctemp=T52J2_1[TemperatureIndex];&#13;&#9;else&#13;&#9;&#9;&#9;Ctemp=T52J2_23[TemperatureIndex];&#13;}&#13;&#13;// Calcul autre facteur et CGlobal&#13;if (NbreCondPh ==4)&#13;&#9;CEquilibre =0.84;&#13;if (BE3 ==1)&#13;&#9;CBE3 =0.85;&#13;&#13;// Numero Mode de pose / Methode / K52E&#13;//&#9;Détermination du numéro de Mode de pose&#13;// A FAIRE&#13;TnMdP=0;&#13;&#13;if (MdP ==1 &amp;&amp; CtCable !=3)&#9;&#9;//Chemin Câble Perforé Ouvert&#13;{&#13;&#9;if (Situation==1 || Situation ==6 || Situation ==11)&#13;&#9;&#9;TnMdP = 13;&#13;&#9;if (Situation==2)&#13;&#9;&#9;TnMdP = 41;&#13;&#9;if (Situation==3)&#13;&#9;&#9;TnMdP = 43;&#13;}&#13;if (MdP ==2 &amp;&amp; CtCable !=3)&#9;&#9;// Chemin Câble Plein Ouvert&#13;{&#13;&#9;if (Situation==1 || Situation ==6 || Situation ==11)&#13;&#9;&#9;TnMdP = 12;&#13;&#9;if (Situation==2)&#13;&#9;&#9;TnMdP = 41;&#13;&#9;if (Situation==3)&#13;&#9;&#9;TnMdP = 43;&#13;}&#13;if (MdP ==3 &amp;&amp; CtCable !=3)&#9;&#9;// Chemin Câble Perforé Fermé&#13;{&#13;&#9;if (Situation==1 || Situation ==2 || Situation ==3 || Situation ==6)&#13;&#9;&#9;TnMdP = 31;&#13;&#9;if (Situation==11)&#13;&#9;&#9;TnMdP = 34;&#13;}&#13;if (MdP ==4 &amp;&amp; CtCable !=3)&#9;&#9;// Chemin Câble Plein Fermé&#13;{&#13;&#9;if (Situation==1 || Situation ==2 || Situation ==3 || Situation ==6)&#13;&#9;&#9;TnMdP = 31;&#13;&#9;if (Situation==11)&#13;&#9;&#9;TnMdP = 34;&#13;}&#13;if (MdP ==5  &amp;&amp; CtCable !=3)&#9;&#9;// Sans fixation&#13;{&#13;&#9;if (Situation==2)&#13;&#9;&#9;TnMdP = 41;&#13;&#9;if (Situation==3)&#13;&#9;&#9;TnMdP = 43;&#13;&#9;if (Situation==4)&#13;&#9;&#9;TnMdP = 62;&#13;&#9;if (Situation==5)&#13;&#9;&#9;TnMdP = 21;&#13;&#9;if (Situation==6)&#13;&#9;&#9;TnMdP = 25;&#13;&#9;if (Situation==7)&#13;&#9;&#9;TnMdP = 73;&#13;&#9;if (Situation==8)&#13;&#9;&#9;TnMdP = 74;&#13;}&#13;if (MdP ==6  &amp;&amp; CtCable !=3)&#9;&#9;// Fixation directe&#13;{&#13;&#9;if (Situation==1)&#13;&#9;&#9;&#9;TnMdP=11;&#13;&#9;if (Situation==2)&#13;&#9;&#9;&#9;TnMdP=41;&#13;&#9;if (Situation==3)&#13;&#9;&#9;&#9;TnMdP=43;&#13;&#9;if (Situation==6)&#13;&#9;&#9;&#9;TnMdP=25;&#13;&#9;if (Situation==9)&#13;&#9;&#9;&#9;TnMdP=51;&#13;}&#13;if (MdP ==7)&#9;&#9;// Sous conduit&#13;{&#13;&#9;if (Situation==1)&#13;&#9;&#9;TnMdP=3;&#13;&#9;if (Situation==2)&#13;&#9;&#9;TnMdP=41;&#13;&#9;if (Situation==3)&#13;&#9;&#9;TnMdP=42;&#13;&#9;if (Situation==4)&#13;&#9;&#9;TnMdP=61;&#13;&#9;if (Situation==5)&#9;// vide construction&#13;&#9;&#9;TnMdP=22;&#13;&#9;if (Situation==6)&#13;&#9;&#9;TnMdP=3;&#13;&#9;if (Situation==7)&#13;&#9;&#9;TnMdP=73;&#13;&#9;if (Situation==8)&#13;&#9;&#9;TnMdP=74;&#13;&#9;if (Situation==9)&#13;&#9;&#9;if (CtCable==3 )&#13;&#9;&#9;&#9;TnMdP=1;&#13;&#9;&#9;else&#13;&#9;&#9;&#9;TnMdP=2;&#13;&#9;if (Situation==10)&#13;&#9;&#9;TnMdP=5;&#13;}&#13;if (MdP ==8)&#9;&#9;// Goulottes&#13;{&#13;&#9;if (Situation==1 || Situation ==2 || Situation ==3 || Situation ==6)&#13;&#9;&#9;TnMdP = 31;&#13;&#9;if (Situation==10)&#13;&#9;&#9;TnMdP=33;&#13;&#9;if (Situation==11)&#13;&#9;&#9;TnMdP = 34;&#13;}&#13;if (MdP ==9)&#9;// Plinthe rainurée&#13;{&#13;&#9;if (Situation==1)&#13;&#9;&#9;TnMdP=72;&#13;}&#13;if (MdP ==10)&#9;&#9;// Conduit profilé&#13;{&#13;&#9;if (Situation==1)&#13;&#9;&#9;TnMdP=4;&#13;&#9;if (Situation==2)&#13;&#9;&#9;TnMdP=41;&#13;&#9;if (Situation==3)&#13;&#9;&#9;TnMdP=42;&#13;&#9;if (Situation==4)&#13;&#9;&#9;TnMdP=61;&#13;&#9;if (Situation==5)&#13;&#9;&#9;TnMdP=23;&#13;&#9;if (Situation==6)&#13;&#9;&#9;TnMdP=4;&#13;&#9;if (Situation==9)&#13;&#9;&#9;if(CtCable !=3)&#13;&#9;&#9;&#9;TnMdP=2;&#13;&#9;&#9;else&#13;&#9;&#9;&#9;TnMdP=1;&#13;&#9;if (Situation==10)&#13;&#9;&#9;TnMdP=24;&#13;}&#13;if (MdP ==11 &amp;&amp; CtCable !=3)&#9;// Echelles&#13;{&#13;&#9;if (Situation==1 || Situation ==6 || Situation ==11)&#13;&#9;&#9;TnMdP = 16;&#13;&#9;if (Situation==2)&#13;&#9;&#9;TnMdP = 41;&#13;&#9;if (Situation==3)&#13;&#9;&#9;TnMdP = 43;&#13;}&#13;&#13;if (MdP ==12 &amp;&amp; CtCable !=3)&#9;// Corbeaux&#13;{&#13;&#9;if (Situation==1 || Situation ==6 || Situation ==11)&#13;&#9;&#9;TnMdP = 14;&#13;&#9;if (Situation==2)&#13;&#9;&#9;TnMdP = 41;&#13;&#9;if (Situation==3)&#13;&#9;&#9;TnMdP = 43;&#13;}&#13;if (MdP ==13)&#9;// Isolateurs&#13;{&#13;&#9;if ( (Situation==1 || Situation ==11) &amp;&amp; CtCable ==3)&#13;&#9;&#9;TnMdP = 18;&#13;}&#13;if (MdP ==14)&#9;// Câbles porteurs&#13;{&#13;&#9;if ((Situation==1 || Situation ==11) &amp;&amp; CtCable !=3)&#13;&#9;&#9;TnMdP = 17;&#13;}&#13;if (MdP ==15 &amp;&amp; CtCable !=3)&#9;// Colliers&#13;{&#13;&#9;if (Situation==1 || Situation ==6)&#13;&#9;&#9;TnMdP = 15;&#13;&#9;if (Situation==2)&#13;&#9;&#9;TnMdP = 41;&#13;&#9;if (Situation==3)&#13;&#9;&#9;TnMdP = 43;&#13;}&#13;if (MdP ==16)&#9;// Moulures&#9;&#13;{&#13;&#9;if (Situation==1 || Situation ==6)&#13;&#9;&#9;TnMdP = 71;&#13;}&#13;&#13;&#13;// Calcul de Methode et de K52E&#13;&#13;K52E = 1.0;&#13;Methode=&quot;E&quot;;&#13;A$=&quot;&quot;;&#13;switch (TnMdP)&#13;&#9;{&#13;&#9;&#9;case 1 :&#13;&#9;&#9;&#9;{&#13;&#9;&#9;&#9;Methode = &quot;B&quot;;&#13;&#9;&#9;&#9;K52E =0.77;&#13;&#9;&#9;&#9;break;&#13;&#9;&#9;&#9;}&#13;&#9;&#9;case 2 :&#13;&#9;&#9;&#9;{&#13;&#9;&#9;&#9;Methode = &quot;B&quot;;&#13;&#9;&#9;&#9;K52E=0.70;&#13;&#9;&#9;&#9;break;&#13;&#9;&#9;&#9;}&#13;&#9;&#9;case 3 :&#13;&#9;&#9;case 4 :&#13;&#9;&#9;case 5 :&#13;&#9;&#9;&#9;{&#13;&#9;&#9;&#9;Methode = &quot;B&quot;;&#13;&#9;&#9;&#9;if (CtCable !=3)&#13;&#9;&#9;&#9;{&#13;&#9;&#9;&#9;&#9;K52E=0.9;&#13;&#9;&#9;&#9;&#9;A$=&quot;A&quot;&#13;&#9;&#9;&#9;}&#13;&#9;&#9;&#9;break;&#13;&#9;&#9;&#9;}&#13;&#9;&#9;case 11 :&#13;&#9;&#9;&#9;{&#13;&#9;&#9;&#9;Methode = &quot;C&quot;;&#13;&#9;&#9;&#9;if (SousPlafond==1)&#13;&#9;&#9;&#9;{&#13;&#9;&#9;&#9;&#9;A$=&quot;A&quot;;&#13;&#9;&#9;&#9;&#9;K52E=.95;&#13;&#9;&#9;&#9;}&#13;&#9;&#9;&#9;break;&#13;&#9;&#9;&#9;}&#13;&#9;&#9;case 12 :&#13;&#9;&#9;&#9;{&#13;&#9;&#9;&#9;Methode = &quot;C&quot;;&#13;&#9;&#9;&#9;break;&#13;&#9;&#9;&#9;}&#13;&#9;&#9;case 13 :&#13;&#9;&#9;case 14 :&#13;&#9;&#9;case 15 :&#13;&#9;&#9;case 16 :&#13;&#9;&#9;case 17 :&#13;&#9;&#9;&#9;{&#13;&#9;&#9;&#9;if (CtCable==1)&#13;&#9;&#9;&#9;&#9;Methode = &quot;E&quot;;&#13;&#9;&#9;&#9;else&#13;&#9;&#9;&#9;&#9;Methode = &quot;F&quot;;&#13;&#9;&#9;&#9;break;&#13;&#9;&#9;&#9;}&#13;&#9;&#9;case 18 :&#13;&#9;&#9;&#9;{&#13;&#9;&#9;&#9;Methode = &quot;C&quot;;&#13;&#9;&#9;&#9;K52E =1.21;&#13;&#9;&#9;&#9;break;&#13;&#9;&#9;&#9;}&#13;&#9;&#9;case 21 :&#13;&#9;&#9;&#9;{&#13;&#9;&#9;&#9;Methode = &quot;B&quot;;&#13;&#9;&#9;&#9;K52E=0.95;&#13;&#9;&#9;&#9;break;&#13;&#9;&#9;&#9;}&#13;&#9;&#9;case 22 :&#13;&#9;&#9;case 23 :&#13;&#9;&#9;case 24 :&#13;&#9;&#9;&#9;{&#13;&#9;&#9;&#9;Methode = &quot;B&quot;;&#13;&#9;&#9;&#9;K52E=0.95;&#13;&#9;&#9;&#9;if (CtCable !=3)&#13;&#9;&#9;&#9;{&#13;&#9;&#9;&#9;&#9;K52E=0.865;&#13;&#9;&#9;&#9;&#9;A$=&quot;A&quot;;&#13;&#9;&#9;&#9;}&#13;&#9;&#9;&#9;break;&#13;&#9;&#9;&#9;}&#13;&#9;&#9;case 25 :&#13;&#9;&#9;&#9;{&#13;&#9;&#9;&#9;Methode = &quot;B&quot;;&#13;&#9;&#9;&#9;K52E=0.95;&#13;&#9;&#9;&#9;break;&#13;&#9;&#9;&#9;}&#13;&#9;&#9;case 31 :&#13;&#9;&#9;case 32 :&#13;&#9;&#9;&#9;{&#13;&#9;&#9;&#9;Methode = &quot;B&quot;;&#13;&#9;&#9;&#9;if (CtCable !=3)&#13;&#9;&#9;&#9;&#9;K52E=.9&#13;&#9;&#9;&#9;break;&#13;&#9;&#9;&#9;}&#13;&#9;&#9;case 33 :&#13;&#9;&#9;case 34 :&#13;&#9;&#9;&#9;{&#13;&#9;&#9;&#9;Methode = &quot;B&quot;;&#13;&#9;&#9;&#9;if (CtCable !=3)&#13;&#9;&#9;&#9;{&#13;&#9;&#9;&#9;&#9;K52E=0.9;&#13;&#9;&#9;&#9;&#9;A$=&quot;A&quot;;&#13;&#9;&#9;&#9;}&#13;&#9;&#9;&#9;break;&#13;&#9;&#9;&#9;}&#13;&#9;&#9;case 41 &#9;:&#13;&#9;&#9;&#9;{&#13;&#9;&#9;&#9;Methode = &quot;B&quot;;&#13;&#9;&#9;&#9;K52E =0.95;&#13;&#9;&#9;&#9;break;&#13;&#9;&#9;&#9;}&#13;&#9;&#9;case 42 :&#13;&#9;&#9;case 43 :&#13;&#9;&#9;&#9;{&#13;&#9;&#9;&#9;Methode = &quot;B&quot;;&#13;&#9;&#9;&#9;break;&#13;&#9;&#9;&#9;}&#13;&#9;&#9;case 51&#9;:&#13;&#9;&#9;&#9;{&#13;&#9;&#9;&#9;Methode = &quot;B&quot;;&#13;&#9;&#9;&#9;K52E=0.77;&#13;&#9;&#9;&#9;break;&#13;&#9;&#9;&#9;}&#13;&#9;&#9;case 52 :&#13;&#9;&#9;case 53 :&#13;&#9;&#9;&#9;{&#13;&#9;&#9;&#9;Methode = &quot;C&quot;;&#13;&#9;&#9;&#9;break;&#13;&#9;&#9;&#9;}&#13;&#9;&#9;case 61 :&#13;&#9;&#9;&#9;{&#13;&#9;&#9;&#9;Methode = &quot;D&quot;;&#13;&#9;&#9;&#9;K52E=.8;&#13;&#9;&#9;&#9;break;&#13;&#9;&#9;&#9;}&#13;&#9;&#9;case 62 :&#13;&#9;&#9;case 63 :&#13;&#9;&#9;&#9;{&#13;&#9;&#9;&#9;Methode = &quot;D&quot;;&#13;&#9;&#9;&#9;break;&#13;&#9;&#9;&#9;}&#13;&#9;&#9;case 71 :&#13;&#9;&#9;&#9;{&#13;&#9;&#9;&#9;Methode = &quot;B&quot;;&#13;&#9;&#9;&#9;break;&#13;&#9;&#9;&#9;}&#13;&#9;&#9;case 72 :&#13;&#9;&#9;case 73 :&#13;&#9;&#9;case 74 :&#13;&#9;&#9;&#9;{&#13;&#9;&#9;&#9;Methode = &quot;B&quot;;&#13;&#9;&#9;&#9;if (CtCable==1)&#13;&#9;&#9;&#9;&#9;K52E=.9&#13;&#9;&#9;&#9;break;&#13;&#9;&#9;&#9;}&#13;&#9;}&#13;&#13;MethodeC= TnMdP+A$+&quot; / &quot;+Methode;&#13;&#13;CGlobal = K52E*Ctemp*CGroupe*Cprot*CEquilibre*CBE3;&#13;&#13;// calcul de Iz&#13;K =0;&#13;ST =0;&#13;A=0;&#13;B=0;&#13;if (SPh <=16)&#13;&#9;K=0;&#13;if  (SPh >=25 &amp;&amp; SPh <= 300)&#13;&#9;K=1;&#13;if (SPh >300)&#13;&#9;K=2;&#13;if (SPh==50)&#13;&#9;ST=47.5;&#13;else&#13;&#9;ST=SPh;&#13;// Calcul de NC52F&#13;CIsol=0;&#13;if (IsolationPh ==1)&#13;&#9;if (NbreCondPh ==2)&#13;&#9;&#9;CIsol=3;&#13;&#9;else&#13;&#9;&#9;CIsol=4;&#13;else&#13;&#9;if (NbreCondPh ==2)&#13;&#9;&#9;CIsol=1;&#13;&#9;else&#13;&#9;&#9;CIsol=2;&#13;&#13;&#13;if (Methode==&quot;B&quot;)&#13;{&#13;&#9;if (CIsol== 1)&#13;&#9;&#9;NC52F=2;&#13;&#9;if (CIsol== 2)&#13;&#9;&#9;NC52F=1;&#13;&#9;if (CIsol== 3)&#13;&#9;&#9;NC52F=6;&#13;&#9;if (CIsol== 4)&#13;&#9;&#9;NC52F=4;&#13;}&#13;if (Methode==&quot;C&quot;)&#13;{&#13;&#9;if (CIsol== 1)&#13;&#9;&#9;NC52F=4;&#13;&#9;if (CIsol== 2)&#13;&#9;&#9;NC52F=2;&#13;&#9;if (CIsol== 3)&#13;&#9;&#9;NC52F=7;&#13;&#9;if (CIsol== 4)&#13;&#9;&#9;NC52F=5;&#13;}&#13;if (Methode==&quot;E&quot;)&#13;{&#13;&#9;if (CIsol== 1)&#13;&#9;&#9;NC52F=5;&#13;&#9;if (CIsol== 2)&#13;&#9;&#9;NC52F=3;&#13;&#9;if (CIsol== 3)&#13;&#9;&#9;NC52F=8;&#13;&#9;if (CIsol== 4)&#13;&#9;&#9;NC52F=6;&#13;}&#13;if (Methode==&quot;F&quot;)&#13;{&#13;&#9;if (CIsol== 1)&#13;&#9;&#9;NC52F=6;&#13;&#9;if (CIsol== 2)&#13;&#9;&#9;NC52F=4;&#13;&#9;if (CIsol== 3)&#13;&#9;&#9;NC52F=9;&#13;&#9;if (CIsol== 4)&#13;&#9;&#9;NC52F=7;&#13;}&#13;B=0;&#13;if (Situation ==4)&#13;{&#9;&#13;&#9;if(NatPh==1)&#13;&#9;{&#13;&#9;&#9;A=Math.pow(ST,Tab52GG_CU [CIsol-1] [1]);&#13;&#9;&#9;A= A * Tab52GG_CU [CIsol-1] [0];&#13;&#9;}&#13;&#9;else&#13;&#9;{&#13;&#9;&#9;A=Math.pow (ST,Tab52GG_AL [CIsol-1] [1]);&#13;&#9;&#9;A= A * Tab52GG_AL [CIsol-1] [0];&#9;&#9;&#13;&#9;}&#13;}&#13;else&#13;{&#13;&#9;if(NatPh==1)&#13;&#9;{&#13;&#9;&#9;A=Math.pow(ST,Tab52GF_CU [K] [2*NC52F]);&#13;&#9;&#9;A = A * Tab52GF_CU [K] [2*NC52F-1];&#13;&#9;&#9;if (K==2)&#13;&#9;&#9;{&#13;&#9;&#9;&#9;if (NC52F ==4 || NC52F ==5)&#13;&#9;&#9;&#9;{&#13;&#9;&#9;&#9;&#9;B = Math.pow(ST,2.14);&#13;&#9;&#9;&#9;&#9;B = B * 0.00006;&#13;&#9;&#9;&#9;}&#13;&#9;&#9;&#9;if (NC52F ==7)&#13;&#9;&#9;&#9;{&#13;&#9;&#9;&#9;&#9;B = Math.pow(ST,1.793);&#13;&#9;&#9;&#9;&#9;B = B * 0.0006;&#13;&#9;&#9;&#9;}&#13;&#9;&#9;}&#13;&#9;}&#13;&#9;else&#13;&#9;{&#13;&#9;&#9;A=Math.pow(ST,Tab52GF_AL [K] [2*NC52F]);&#13;&#9;&#9;A= A* Tab52GF_AL [K] [2*NC52F-1];&#13;&#9;}&#13;}&#13;Iz=(A-B);&#13;// ajout ARGOS : expose les coefficients utilises pour le bloc Methode de calcul (lecture seule)&#13;window.mcCoef = {F_CU:Tab52GF_CU, F_AL:Tab52GF_AL, G_CU:Tab52GG_CU, G_AL:Tab52GG_AL};&#13;Izc = Iz * CGlobal;&#13;&#13;// ReCalcul de Cprot&#13;// Le calilbre du fusible est le premier trouvé en dessous de Izc&#13;if (CTProt >1)&#13;{&#13;     Cprot = 0.91;&#13;&#9;if (CTProt ==2)&#13;&#9;{&#13;&#9;&#9;if (Izc/1.21 <= 25)&#13;&#9;&#9;&#9;Cprot = 0.826;&#13;&#9;&#9;if (Izc/1.31 <= 10)&#13;&#9;&#9;&#9;Cprot = 0.763;&#13;&#9;}&#13;&#9;else&#13;&#9;{&#13;&#9;&#9;if (Izc < 16*1.31)&#13;&#9;&#9;&#9;Cprot = 0.76;&#13;&#9;}&#9;&#13;&#9;if (Izc/1.45 <= 4)&#13;&#9;&#9;Cprot = 0.69;&#13;&#9;CGlobal = CGlobal*Cprot;&#13;&#9;Izc = Izc*Cprot;&#13;}&#13;&#13;if(TnMdP==0)&#13;{&#13;&#9;sObs = &quot;Mode de pose non prévu, inadapté ou impossible.\n&quot;;&#13;&#9;Izc =0;&#13;&#9;CGlobal = 0;&#13;&#9;Iz =0;&#13;&#9;MethodeC= &quot;0 / 0&quot;;&#13;}&#13;&#13;// Règles particulières pour le BE3&#13;if (BE3 ==1 &amp;&amp; IsolationPh ==2)&#13;{&#13;&#9;sObs = sObs+&quot;Risque d'explosion (BE3) : L'isolation PVC n'est normalement pas autorisée.\n&quot;;&#13;&#9;Izc =0;&#13;&#9;CGlobal = 0;&#13;&#9;Iz =0;&#13;}&#13;if (BE3 ==1 &amp;&amp; CtCable ==3)&#13;{&#13;&#9;sObs = sObs+&quot;Risque d'explosion (BE3) : Les conducteurs isolés ne sont pas autorisés.\n&quot;;&#13;&#9;Izc =0;&#13;&#9;CGlobal = 0;&#13;&#9;Iz =0;&#13;&#9;MethodeC= &quot;0 / 0&quot;;&#13;}&#13;if (BE3 ==1 &amp;&amp; (MdP ==8 || MdP ==9 || MdP ==10 || MdP ==16))&#13;{&#13;&#9;sObs = sObs + &quot;Risque d'explosion (BE3) : Mode de Pose interdit.\n&quot;&#13;&#9;Izc =0;&#13;&#9;CGlobal = 0;&#13;&#9;Iz =0;&#13;}&#9;&#13;// Conducteurs isolés enterrés interdit&#13;if (Situation ==4 &amp;&amp; Iz !=0 &amp;&amp; CtCable ==3)&#13;{&#13;&#9;sObs = sObs+&quot;Conducteurs isolés enterrés non autorisés.\n&quot;;&#13;&#9;Izc =0;&#13;&#9;CGlobal = 0;&#13;&#9;Iz =0;&#13;&#9;MethodeC= &quot;0 / 0&quot;;&#13;}&#13;&#13;&#13;// Vérification des sections mini et maxi.&#13;BorneMin=1;&#13;BorneMax=19;&#13;if (NatPh==2)&#13;&#9;BorneMin=2;&#13;if (Situation !=4 &amp;&amp; NC52F !=0 &amp;&amp; Iz !=0)&#13;{&#13;&#9;if (NC52F ==1)&#13;&#9;&#9;BorneMax = 12;&#13;&#9;else&#13;&#9;{&#13;&#9;&#9;if (NC52F <5 || NC52F ==8)&#13;&#9;&#9;&#9;BorneMax = 16;&#13;&#9;&#9;if (NC52F ==9)&#13;&#9;&#9;&#9; BorneMin = 7;&#13;&#9;}&#13;&#9;if ( SPh > Section [BorneMax -1] || SPh < Section [BorneMin -1] )&#13;&#9;{&#13;&#9;&#9;sObs = sObs+&quot;Section phase non prévue par le tableau 52F de la NF C 15-100.\n&quot;;&#13;&#9;&#9;Izc =0;&#13;&#9;&#9;CGlobal = 0;&#13;&#9;&#9;Iz =0;&#13;&#9;}&#9;&#13;}&#13;if (Situation ==4 &amp;&amp; Iz !=0)&#13;{&#13;&#9;if (NatPh ==1)&#13;&#9;&#9;BorneMin=1;&#13;&#9;else&#13;&#9;&#9;BorneMin=5;&#13;&#9;BorneMax=16;&#13;&#9;if ( SPh > Section [BorneMax -1] || SPh < Section [BorneMin -1] )&#13;&#9;{&#13;&#9;&#9;sObs = sObs + &quot;Section phase non prévue par le tableau 52G de la NF C 15-100\n&quot;;&#13;&#9;&#9;Izc =0;&#13;&#9;&#9;CGlobal = 0;&#13;&#9;&#9;Iz =0;&#13;&#9;}&#9;&#13;}&#13;if (CtCable ==3 &amp;&amp; SPh >35)&#13;&#9;sObs = sObs + &quot;La section des conducteurs isolés est normalement limitée à 35 mm2.\n&quot;;&#13;if (CtCable ==1 &amp;&amp; SPh >300)&#13;&#9;sObs = sObs + &quot;La section des câbles multipolaires est normalement limitée à 300 mm2.\n&quot;;&#13;if (CtCable ==2 &amp;&amp; SPh <25)&#13;&#9;sObs = sObs + &quot;La section des câbles unipolaires est normalement >= 25 mm2.\n&quot;;&#13;&#13;if ( (MdP !=6 || Situation !=1) &amp;&amp; SousPlafond==1)&#13;&#9;sObs = sObs + &quot;Pose sous Plafond : Indication utile uniquement pour la  fixation directe en situation apparente&quot;;&#13;&#13;sInfo=sObs;&#13;&#13;bFin = true;&#13;&#13;// Fin Calcul&#13;&#13;if (bFin == true )&#13;    {&#13;// Affectation Resultat&#13;      GEN_Affecter_Res (Izc,CGlobal,Iz,MethodeC,sObs,sInfo)&#13;      }&#13;else&#13;     {&#13;     GEN_Affecter_Res (0,0,0,0,0,&quot;Problème Critique&quot;)&#13;      }&#13;}&#13;&#13;return false;" 
+      href="http://www.elec-planet.com:8080/elecplanet/Calcul.nsf/"><B><U><FONT 
+      face=Arial color=#ffff00>Calculer</FONT></U></B></A></DIV></TD></TR>
+  <TR vAlign=top>
+    <TD width=582 bgColor=#ffe1b0 colSpan=3><B><I><FONT face=Arial 
+      color=#ff0000 size=1><TEXTAREA onfocus=document.forms[0].cSPh.focus() name=cInfo rows=3 cols=75></TEXTAREA> 
+      </FONT></I></B><BR><B><FONT face=Arial 
+size=1><BR></FONT></B></TD></TR></TBODY></TABLE><INPUT type=hidden 
+value=BEMELINON1 name=UserName></FORM>
+<!-- ═══ MÉTHODE DE CALCUL (ajout ARGOS) : trace du calcul réellement effectué, rien n'est stocké ═══ -->
+<style>
+#methodeBox{font-family:Arial,Helvetica,sans-serif;max-width:780px;margin:10px 0 16px}
+#methodeBox h2{margin:0}#methodeBox p{margin:2px 0}#methodeBox .mc-btn{border:none;font-weight:bold;cursor:pointer}
+.methode-box{background:#fff;border-radius:6px;padding:8px 10px;box-shadow:0 1px 3px rgba(0,0,0,.06);margin-top:10px;border-left:3px solid #9fa8da;color:#333;font-size:10.5px;line-height:1.3}
+.mc-head{display:flex;align-items:center;justify-content:space-between;gap:6px;flex-wrap:wrap;border-bottom:1px solid #e8eaf6;padding-bottom:4px;margin-bottom:4px}
+.mc-head h2{font-size:12px;color:#3949ab}
+.mc-btn{background:#2e7d32;color:#fff;font-size:11px;padding:4px 10px;border-radius:5px}.mc-btn:hover{background:#1b5e20}
+.mc-print-only{display:none}
+.mc-entete{border-bottom:1.5px solid #1a237e;padding-bottom:4px;margin-bottom:6px}
+.mc-entete b{font-size:12px;color:#1a237e}
+.mc-entete div{font-size:9px;color:#555}
+.mc-date{font-size:10px;color:#666;margin-bottom:3px}
+.methode-box h3{font-size:10.5px;color:#283593;margin:6px 0 2px}
+.methode-box p,.methode-box li{font-size:10.5px;line-height:1.3}
+.methode-box ul{margin-left:16px}
+.mc-tab{width:100%;border-collapse:collapse;font-size:10px;line-height:1.25;margin:1px 0}
+.mc-tab th,.mc-tab td{border:1px solid #dfe3f3;padding:1px 4px;text-align:left;vertical-align:top}
+.mc-tab th{background:#f0f2fa;color:#283593;font-weight:600}
+.mc-tab td.v{text-align:center;font-weight:700;white-space:nowrap}
+.mc-tab tr.na td{color:#999}
+.mc-formule{font-family:Consolas,monospace;font-size:10px;background:#f6f7f9;border-radius:3px;padding:3px 6px;margin:2px 0;word-break:break-word;line-height:1.35}
+.mc-res{background:#eef0f8;border-radius:4px;padding:4px 8px;margin-top:2px;font-size:11px}
+.mc-res b{color:#c62828}
+.mc-err{color:#c62828;font-weight:700}
+.mc-obs{white-space:pre-wrap;font-size:10px;color:#e65100;line-height:1.3}
+.mc-note{font-size:9px;color:#999;margin-top:6px;border-top:1px dashed #dfe3f3;padding-top:3px}
+@media(max-width:768px){.methode-box{padding:6px 7px}.mc-tab{font-size:9.5px}.mc-tab th,.mc-tab td{padding:1px 3px}.mc-formule{font-size:9.5px}}
+@media print{
+  @page{size:A4;margin:10mm}
+  .mc-print-only{display:block!important}
+  .mc-noprint{display:none!important}
+  body.print-methode{background:#fff;padding:0}
+  body.print-methode>*:not(#methodeBox){display:none!important}
+  body.print-methode #methodeBox{box-shadow:none;border-left:none;margin:0;padding:0;font-size:8pt;line-height:1.25}
+  body.print-methode .methode-box p,body.print-methode .methode-box li,body.print-methode .mc-tab,body.print-methode .mc-res,body.print-methode .methode-box h3{font-size:8pt;line-height:1.25}
+  body.print-methode .mc-formule,body.print-methode .mc-obs,body.print-methode .mc-date{font-size:7.5pt}
+  body.print-methode .mc-note,body.print-methode .mc-entete div{font-size:7pt}
+  body.print-methode .mc-head h2,body.print-methode .mc-entete b{font-size:10pt}
+  .mc-tab th,.mc-res,.mc-formule{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .mc-tab tr,.mc-res{break-inside:avoid}
+}
+</style>
+<div id="methodeBox" class="methode-box" hidden>
+  <div class="mc-print-only mc-entete">
+    <b>ARGOS Bureau de Contrôle</b>
+    <div>Chemin des Chênes Verts, 04700 Oraison — argos@argos-controle.fr — 06 23 65 27 03</div>
+    <div>Note de calcul Iz — NF C 15-100 (version 2002) — <span id="mcEdition"></span></div>
+  </div>
+  <div class="mc-head">
+    <h2>Méthode de calcul</h2>
+    <button type="button" class="mc-btn mc-noprint" onclick="imprimerMethode()">PDF de la méthode</button>
+  </div>
+  <div id="methodeContenu"></div>
+</div>
+<script>
+// Le moteur V2002 (bouton Calculer) laisse ses variables intermédiaires en global
+// (SPh, Methode, TnMdP, K52E, Ctemp, Cprot, NC52F, A, B, Iz, Izc, CGlobal...).
+// On les lit APRÈS le calcul, sans rien recalculer du résultat : le bloc ne fait
+// qu'expliquer les valeurs réellement utilisées. Rien n'est stocké.
+(function(){
+  var W = window;
+  function fr(x, d){ if (x === undefined || x === null || isNaN(x)) return '—'; return Number(x).toLocaleString('fr-FR', {maximumFractionDigits: d === undefined ? 4 : d, useGrouping:false}); }
+  function esc(t){ return String(t).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+  function opt(sel){ return sel && sel.selectedIndex >= 0 ? sel.options[sel.selectedIndex].text.replace(/\s+/g,' ').trim() : ''; }
+  function p2(n){ return String(n).padStart(2,'0'); }
+  function dt(d){ return p2(d.getDate())+'/'+p2(d.getMonth()+1)+'/'+d.getFullYear()+' à '+p2(d.getHours())+'h'+p2(d.getMinutes()); }
+
+  function rendre(){
+    var box = document.getElementById('methodeBox'), out = document.getElementById('methodeContenu');
+    var f = document.forms[0], h = [];
+    var isol = ['', 'PRC (PR)', 'PVC', 'Caoutchouc'][W.IsolationPh];
+    var cable = ['', 'Multipolaire', 'Unipolaire', 'Conducteurs isolés'][W.CtCable];
+    var nat = W.NatPh === 2 ? 'Aluminium' : 'Cuivre';
+    var enterre = W.Situation === 4;
+    var oui = function(b){ return b ? 'Oui' : 'Non'; };
+    h.push('<p class="mc-date">Calcul effectué le ' + dt(new Date()) + ' — NF C 15-100 (version 2002), tableaux 52F / 52G, 52J</p>');
+    h.push('<h3>1. Données saisies</h3><table class="mc-tab"><tbody>');
+    var row = function(a,b,c,d){ h.push('<tr><th>'+a+'</th><td>'+b+'</td><th>'+c+'</th><td>'+d+'</td></tr>'); };
+    row('Section', fr(W.SPh)+' mm²', 'Température ambiante', W.Temperature+' °C');
+    row('Isolation', isol, 'Facteur de groupement', fr(W.CGroupe));
+    row('Conducteurs chargés', W.NbreCondPh, 'Protection', esc(opt(f.cCTProt)));
+    row('Type de câble', cable, 'Local BE3', oui(W.BE3 === 1));
+    row('Nature', nat, 'Pose sous plafond', oui(W.SousPlafond === 1));
+    row('Mode de pose', esc(opt(f.cMdP)), 'Situation', esc(opt(f.cSituation)));
+    h.push('</tbody></table>');
+
+    h.push('<h3>2. Mode de pose et méthode de référence</h3>');
+    if (!W.TnMdP) {
+      h.push('<p class="mc-err">Combinaison mode de pose × situation × type de câble non prévue : calcul impossible.</p>');
+    } else {
+      h.push('<p>Mode de pose saisi + situation + câble ' + cable.toLowerCase() + ' → <b>mode de pose n° ' + W.TnMdP + (W['A$'] || '') + '</b>, <b>méthode de référence ' + W.Methode + '</b>, facteur lié au mode de pose K52E = <b>' + fr(W.K52E) + '</b>' + (W.TnMdP === 11 && W.SousPlafond === 1 ? ' (fixation directe sous plafond)' : '') + '.</p>');
+
+      h.push('<h3>3. Courant admissible de base Iz</h3>');
+      var a, b, txt;
+      if (enterre) {
+        var tg = W.NatPh === 1 ? W.mcCoef.G_CU : W.mcCoef.G_AL;
+        a = tg[W.CIsol-1][0]; b = tg[W.CIsol-1][1];
+        txt = 'Tableau <b>52G</b> (méthode D, enterré) — ' + nat.toLowerCase() + ' — colonne ' + ['', 'PVC 2 cond.', 'PVC 3 cond.', 'PR 2 cond.', 'PR 3 cond.'][W.CIsol];
+      } else {
+        var tf = W.NatPh === 1 ? W.mcCoef.F_CU : W.mcCoef.F_AL;
+        a = tf[W.K][2*W.NC52F-1]; b = tf[W.K][2*W.NC52F];
+        txt = 'Tableau <b>52F</b> — méthode ' + W.Methode + ' — ' + nat.toLowerCase() + ' — colonne n° ' + W.NC52F + ' (' + ['', 'PVC 2 cond.', 'PVC 3 cond.', 'PR 2 cond.', 'PR 3 cond.'][W.CIsol] + ') — plage de sections ' + ['S ≤ 16 mm²', '25 à 300 mm²', 'S > 300 mm²'][W.K];
+      }
+      if (W.IsolationPh === 3) txt += ' (isolation caoutchouc : colonne PVC retenue par l\'outil)';
+      if (W.NbreCondPh === 4) txt += ' (4 conducteurs chargés : colonne 3 conducteurs, facteur 0,84 en §4)';
+      h.push('<p>' + txt.replace(/\.$/, '') + '.</p>');
+      h.push('<p>L\'outil calcule Iz par la formule d\'approximation du tableau : Iz = a × S<sup>b</sup>' + (W.B ? ' − B' : '') + ', avec les coefficients codés a = ' + fr(a) + ' et b = ' + fr(b) + (W.SPh === 50 ? ' (pour 50 mm², l\'outil prend S = 47,5)' : '') + '.</p>');
+      var fl = 'Iz = ' + fr(a) + ' × ' + fr(W.ST) + '^' + fr(b);
+      if (W.B) fl += ' − ' + (W.NC52F === 7 ? '0,0006 × ' + fr(W.ST) + '^1,793' : '0,00006 × ' + fr(W.ST) + '^2,14') + ' = ' + fr(W.A, 2) + ' − ' + fr(W.B, 2);
+      h.push('<p class="mc-formule">' + fl + ' = ' + fr(W.Iz, 2) + ' A  (affiché arrondi : ' + Math.round(W.Iz) + ' A)</p>');
+    }
+
+    var complet = W.TnMdP && W.Iz && W.Izc;
+    if (complet) {
+      h.push('<h3>4. Facteurs de correction appliqués</h3><table class="mc-tab"><thead><tr><th>Facteur</th><th>Valeur</th><th>Justification / source</th></tr></thead><tbody>');
+      var fa = function(n,v,j,na){ h.push('<tr'+(na?' class="na"':'')+'><td>'+n+'</td><td class="v">'+fr(v)+'</td><td>'+j+'</td></tr>'); };
+      fa('K52E (mode de pose)', W.K52E, 'Mode de pose n° ' + W.TnMdP + (W['A$']||'') + ' / méthode ' + W.Methode + (W.K52E === 1 ? ' : pas de réduction.' : ' : facteur codé pour ce mode de pose.'), W.K52E === 1);
+      fa('Ctemp (température)', W.Ctemp, (enterre ? 'Tableau 52J2 (température du sol)' : 'Tableau 52J1 (température de l\'air)') + ', isolation ' + isol + ', ' + W.Temperature + ' °C.');
+      fa('Cgrp (groupement)', W.CGroupe, 'Valeur saisie par l\'opérateur.', W.CGroupe === 1);
+      var jp = 'Disjoncteur / relais / fusible aM : pas de réduction.';
+      if (W.CTProt > 1) {
+        var it = W.Iz * W.K52E * W.Ctemp * W.CGroupe * W.CEquilibre * W.CBE3;
+        jp = (W.CTProt === 2 ? 'Fusible gI' : 'Fusible gG') + ' : courant avant protection Iz × K52E × Ctemp × Cgrp × Céquil × CBE3 = ' + fr(it, 2) + ' A. Base 0,91';
+        if (W.CTProt === 2) {
+          if (it/1.21 <= 25) jp += ' ; ' + fr(it,2) + ' / 1,21 = ' + fr(it/1.21,2) + ' ≤ 25 → 0,826';
+          if (it/1.31 <= 10) jp += ' ; ' + fr(it,2) + ' / 1,31 = ' + fr(it/1.31,2) + ' ≤ 10 → 0,763';
+        } else if (it < 16*1.31) jp += ' ; ' + fr(it,2) + ' < 16 × 1,31 = 20,96 → 0,76';
+        if (it/1.45 <= 4) jp += ' ; ' + fr(it,2) + ' / 1,45 = ' + fr(it/1.45,2) + ' ≤ 4 → 0,69';
+        jp += '. Facteur retenu.';
+      }
+      fa('Cprot (protection)', W.Cprot, jp, W.Cprot === 1);
+      fa('Céquil (4 cond. chargés)', W.CEquilibre, W.NbreCondPh === 4 ? 'Neutre chargé : ' + fr(W.CEquilibre) + '.' : 'Non applicable (' + W.NbreCondPh + ' conducteurs chargés).', W.CEquilibre === 1);
+      fa('CBE3 (risque d\'explosion)', W.CBE3, W.BE3 === 1 ? 'Local BE3 : ' + fr(W.CBE3) + '.' : 'Non applicable.', W.CBE3 === 1);
+      h.push('</tbody></table>');
+      var Kr = Math.round(W.CGlobal*1000)/1000;
+      h.push('<h3>5. Calcul</h3>');
+      h.push('<p class="mc-formule">K = K52E × Ctemp × Cgrp × Cprot × Céquil × CBE3<br>K = ' + [W.K52E, W.Ctemp, W.CGroupe, W.Cprot, W.CEquilibre, W.CBE3].map(function(x){return fr(x);}).join(' × ') + ' = ' + fr(W.CGlobal, 6) + ' ≈ <b>' + fr(Kr, 3) + '</b></p>');
+      h.push('<p class="mc-formule">Izc = Iz × K = ' + fr(W.Iz, 2) + ' × ' + fr(W.CGlobal, 6) + ' = ' + fr(W.Izc, 2) + ' A ≈ <b>' + Math.round(W.Izc) + ' A</b></p>');
+      h.push('<h3>6. Résultat</h3>');
+      h.push('<div class="mc-res" data-izc="' + Math.round(W.Izc) + '" data-k="' + Kr + '" data-iz="' + Math.round(W.Iz) + '">Mode de pose / méthode : <b>' + esc(W.MethodeC) + '</b> — Iz = <b>' + Math.round(W.Iz) + ' A</b> — K = <b>' + fr(Kr, 3) + '</b> — Courant admissible corrigé <b>Izc = ' + Math.round(W.Izc) + ' A</b></div>');
+    } else if (W.TnMdP) {
+      h.push('<h3>4. Résultat</h3><p class="mc-err">Calcul interrompu : voir observations ci-dessous.</p>');
+    }
+    if (W.sObs) h.push('<h3>Observations</h3><div class="mc-obs">' + esc(W.sObs) + '</div>');
+    h.push('<p class="mc-note">Valeurs issues des tableaux et coefficients codés dans l\'outil Iz historique (NF C 15-100 version 2002). Note régénérée à chaque calcul, non conservée. Le facteur de groupement est saisi par l\'opérateur : il reste à justifier selon les tableaux de groupement applicables.</p>');
+    out.innerHTML = h.join('');
+    document.getElementById('mcEdition').textContent = 'édité le ' + dt(new Date());
+    box.hidden = false;
+  }
+
+  var origAffecter = W.GEN_Affecter_Res, origInit = W.GEN_Initialiser_Res;
+  W.GEN_Affecter_Res = function(){
+    var r = origAffecter.apply(this, arguments);
+    try { rendre(); } catch(e) { var o = document.getElementById('methodeContenu'); if (o) { o.innerHTML = '<p class="mc-err">Méthode non disponible pour ce calcul.</p>'; document.getElementById('methodeBox').hidden = false; } }
+    return r;
+  };
+  W.GEN_Initialiser_Res = function(){
+    var r = origInit.apply(this, arguments);
+    var box = document.getElementById('methodeBox');
+    if (box) { box.hidden = true; document.getElementById('methodeContenu').innerHTML = ''; }
+    return r;
+  };
+  W.imprimerMethode = function(){
+    var box = document.getElementById('methodeBox');
+    if (!box || box.hidden) { alert('Lancer d\'abord le calcul (bouton Calculer).'); return; }
+    document.getElementById('mcEdition').textContent = 'édité le ' + dt(new Date());
+    var titre = document.title, d = new Date();
+    document.title = 'Methode Iz V2002 ' + p2(d.getDate()) + '-' + p2(d.getMonth()+1) + '-' + d.getFullYear();
+    document.body.classList.add('print-methode');
+    var fin = function(){ document.body.classList.remove('print-methode'); document.title = titre; W.removeEventListener('afterprint', fin); };
+    W.addEventListener('afterprint', fin);
+    W.print();
+  };
+})();
+</script>
+</BODY></HTML>
