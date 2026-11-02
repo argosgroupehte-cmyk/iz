@@ -717,7 +717,7 @@ function makeDocCard({ code, titre, path, version, meta, pathEdit, pathFolder },
     const eSource = ext(pathEdit).toUpperCase();
     const ePdf = ext(path).toUpperCase();
     buttons = `<div class="doc-btn-row">
-        <button class="doc-edit" onclick="openDoc('${esc(pathEdit)}')">📊 ${eSource || 'Source'}</button>
+        <button class="doc-edit" onclick="editDoc('${esc(pathEdit)}')">📊 ${eSource || 'Source'}</button>
         <button class="doc-open" onclick="openDoc('${esc(path)}')">📄 ${ePdf || 'PDF'}</button>
         ${folderBtn}
       </div>`;
