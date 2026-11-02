@@ -939,8 +939,8 @@ const THEMES = [
           { code:'', titre:'KBIS — Siège social (nov. 2023)', path:'Admin/Administratif/KBIS CHGT SIEGE SOCIAL JUIN 2023 (KBIS NOVEMBRE 2023).pdf' },
           { code:'', titre:'RBE — Transfert siège social', path:'Admin/Administratif/RBE SUITE TRANSFERT DE SIEGE SOCIAL.pdf' },
           { code:'', titre:'RC Professionnelle 2026', path:'Admin/Administratif/Attestation RC PRO 2026.pdf', version:'2026' },
-          { code:'', titre:'Attestation COFRAC N°3-0821 rev9', path:'Admin/Administratif/Attestation COFRAC_3-0821_rev9.pdf', version:'rev9' },
-          { code:'', titre:'Accréditation COFRAC 2025', path:'COFRAC/2025/Cofrac__ACCCREDITATION 2025 06.pdf', version:'juin 2025' },
+          { code:'', titre:'Attestation COFRAC N°3-0821 rev9 (PÉRIMÉE, remplacée par rév.10)', path:'Admin/Administratif/Attestation COFRAC_3-0821_rev9.pdf', version:'rev9' },
+          { code:'', titre:'Attestation COFRAC N°3-0821 rév.10 (en vigueur)', path:'COFRAC/2025/Cofrac__ACCCREDITATION 2025 06.pdf', version:'rév.10' },
           { code:'', titre:'Agrément ERP — nov. 2022', path:'Admin/Administratif/Agrément ERP_20221118.pdf', version:'nov. 2022' }
         ]
       },
@@ -1146,6 +1146,7 @@ const THEMES = [
       { code:'M-IE-03', titre:'Méthode d\'Inspection IE — ERP / Code du Travail', path:'COFRAC/2025/M-IE-03.pdf', version:'rév.6' },
       { code:'M-IE-03 An.A', titre:'Annexe A — Correspondance NF C 15-100 v2002/v2024', path:'§7.1 - Methodes/Documentation Technique/M-IE-03_Annexe_A_NFC15-100-1_2024.docx', version:'2024' },
       { code:'M-IE-03 An.B', titre:'Annexe B — Doctrine d\'application NF C 15-100-1 (2024)', path:'§7.1 - Methodes/Documentation Technique/M-IE-03_Annexe_B_NFC15-100-1_Doctrine_Rev1_2026-04-30.docx', version:'rév.1 — 30/04/2026' },
+      { code:'Ik — Enedis', titre:'Localisation des transformateurs (postes HTA/BT) — carte Enedis open data', path:'https://opendata.enedis.fr/datasets/poste-electrique/map', version:'MAJ 07/07/2026' },
       { code:'P-10', titre:'Rapports d\'Inspection', path:'§8.3 - Documents/P-10 rev4 Rapports d\'inspection.pdf', version:'rév.5', pathEdit:'PAQ_ARGOS_THEMES/§7.4 - Rapports/P-10.xlsx' }
     ],
     enreg_vierges:[],
@@ -1215,6 +1216,7 @@ const THEMES = [
       { titre:'Chute de Tension',          path:'§7.1 - Methodes/Calcul IE/Chute-Tension.htm' },
       { titre:'Icc / Ik maximum',          path:'§7.1 - Methodes/Calcul IE/Icc_Ik max.htm' },
       { titre:'Icc / Ik minimum',          path:'§7.1 - Methodes/Calcul IE/Icc_Ik min.htm' },
+      { titre:'Ik — Localisation transformateurs (postes HTA/BT Enedis)', path:'https://opendata.enedis.fr/datasets/poste-electrique/map' },
       { titre:'Protection moteur',         path:'§7.1 - Methodes/Calcul IE/Protection moteur.htm' },
       { titre:'Prise de terre',            path:'§7.1 - Methodes/Calcul IE/Prise de terre.htm' },
       { titre:'Contacts indirects',        path:'§7.1 - Methodes/Calcul IE/Contacts indirects.htm' },
@@ -1886,8 +1888,8 @@ const RENDERS = {
         <div class="accueil-card">
           <div class="accueil-card-icon">✅</div>
           <div class="accueil-card-title">Attestation COFRAC N°3-0821</div>
-          <div class="accueil-card-desc">Accréditation rev9 · Portée électricité IE · Inspections réglementaires</div>
-          <button class="accueil-card-btn" onclick="openDoc('Admin/Administratif/Attestation COFRAC_3-0821_rev9.pdf')">Ouvrir →</button>
+          <div class="accueil-card-desc">Accréditation rév.10 (01/07/2025 → 30/06/2030) · Portée électricité IE · Inspections réglementaires</div>
+          <button class="accueil-card-btn" onclick="openDoc('COFRAC/2025/Cofrac__ACCCREDITATION 2025 06.pdf')">Ouvrir →</button>
         </div>
         ${admin ? `<div class="accueil-card">
           <div class="accueil-card-icon">📊</div>
