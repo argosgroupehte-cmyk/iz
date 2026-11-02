@@ -15,7 +15,7 @@
 <style>
 /* =============================================
    DESIGN SYSTEM — ARGOS Bureau de Contrôle
-   COFRAC N°3-0821 · MMQ rév. 9 · 2025
+   COFRAC N°3-0821 · MMQ rév. 10 · 2026
    ============================================= */
 :root {
   --c-primary:    #1a3a6b;
@@ -590,7 +590,7 @@ body { font-family: var(--font); background: var(--c-bg); color: var(--c-text); 
       <div class="header-brand">
         <div>
           <div class="brand-name"><span>ARGOS</span> SARL</div>
-          <div class="brand-sub">Portail Qualité SMQ · MMQ rév. 9</div>
+          <div class="brand-sub">Portail Qualité SMQ · MMQ rév. 10</div>
         </div>
         <div class="header-cofrac">✓ COFRAC N°3-0821</div>
       </div>
@@ -669,7 +669,7 @@ body { font-family: var(--font); background: var(--c-bg); color: var(--c-text); 
 /* =====================================================
    SMQ ARGOS — Portail Qualité v3
    Architecture par thèmes COFRAC / ISO 17020
-   MMQ rév. 9 · 24/02/2025
+   MMQ rév. 10 · 01/10/2026
    ===================================================== */
 const VERSION = '3.1.0';
 const BUILD_DATE = '11/03/2026';
@@ -770,7 +770,7 @@ const USERS_CONFIG = {
   buelga:   { name: 'Carmen Buelga',     role: 'inspector', initials: 'CB', defaultPin: '4444', email: '' }
 };
 
-// ── Extraits MMQ rév. 9 (auto-extraits du PDF) ───────
+// ── Extraits MMQ rév. 10 (auto-extraits du PDF) ───────
 const MMQ = {
   impartialite: [
     { ref: '4.1.1', texte: 'La structure et la gestion d\'ARGOS garantissent la réalisation avec impartialité des activités d\'inspection.' },
@@ -1304,7 +1304,7 @@ const THEMES = [
       },
       { titre:'Manuel MMQ & référentiel COFRAC',
         docs:[
-          { code:'MMQ rév.9', titre:'Manuel de Management Qualité ARGOS', path:'MMQ ARGOS.pdf', version:'rév. 9 · 24/02/2025', meta:'NF EN ISO/CEI 17020 · An1 rév.3 (15/09/2026) · An2 rév.12 (09/09/2026)' },
+          { code:'MMQ rév.10', titre:'Manuel de Management Qualité ARGOS', path:'MMQ ARGOS.pdf', version:'rév. 10 · 01/10/2026', meta:'NF EN ISO/CEI 17020 · An1 rév.3 (01/10/2026) · An2 rév.13 (01/10/2026)' },
           { code:'PAQ', titre:'Plan d\'Assurance Qualité ARGOS (référentiel chapitres)', path:'PAQ_ARGOS.xls', meta:'Fichier référentiel — ne pas modifier' }
         ]
       },
@@ -1321,9 +1321,7 @@ const THEMES = [
   {
     id:'revuedirection', ref:'§8.5', icon:'🎯', label:'§8.5 Revue', titre:'Revue de Direction', dossier:'§8.5 - Revue de Direction',
     roles:['admin'], mmq:'revuedirection',
-    procedures:[
-      { code:'P-02', titre:'Revue de Direction', path:'COFRAC/2025/P-02 REVUE DE DIRECTION.pdf', version:'rév.7', pathEdit:'PAQ_ARGOS_THEMES/§8.5 - Revue de Direction/P-02.xlsx' }
-    ],
+    procedures:[],
     instructions:[],
     enreg_vierges:[
       { code:'S-04-01', titre:'Tableau de Bord ARGOS (indicateurs qualité)', path:'§8.7 - Non-Conformites/Tableau de bord/S-04-01_Tableau de bord_ARGOS.xls', meta:'Indicateurs & suivi activité' }
@@ -1875,7 +1873,7 @@ const RENDERS = {
       <div class="accueil-banner">
         <div>
           <div class="accueil-banner-title">Bonjour, ${sess.name.split(' ')[0]} 👋</div>
-          <div class="accueil-banner-sub">${d} · Portail Qualité SMQ ARGOS · MMQ rév. 9</div>
+          <div class="accueil-banner-sub">${d} · Portail Qualité SMQ ARGOS · MMQ rév. 10</div>
         </div>
         <div class="accueil-banner-badge">COFRAC<br>N°3-0821<br>✓ Accrédité</div>
       </div>
@@ -1883,7 +1881,7 @@ const RENDERS = {
         <div class="accueil-card">
           <div class="accueil-card-icon">📘</div>
           <div class="accueil-card-title">Manuel de Management Qualité</div>
-          <div class="accueil-card-desc">MMQ ARGOS rév. 9 · 24/02/2025 · An1 rév.3 · An2 rév.12</div>
+          <div class="accueil-card-desc">MMQ ARGOS rév. 10 · 01/10/2026 · An1 rév.3 · An2 rév.13</div>
           <button class="accueil-card-btn" onclick="openDoc('MMQ ARGOS.pdf')">Ouvrir le MMQ →</button>
         </div>
         <div class="accueil-card">
@@ -1953,7 +1951,7 @@ const RENDERS = {
     return `
       <div class="mmq-box">
         <div class="mmq-box-header" onclick="this.nextElementSibling.style.display=this.nextElementSibling.style.display==='none'?'block':'none'; this.querySelector('.mmq-toggle').classList.toggle('open')">
-          <div class="mmq-box-label">📖 Extrait MMQ rév. 9 <span class="mmq-box-ref">NF EN ISO/CEI 17020 · S. Pichon · 24/02/2025</span></div>
+          <div class="mmq-box-label">📖 Extrait MMQ rév. 10 <span class="mmq-box-ref">NF EN ISO/CEI 17020 · S. Pichon · 01/10/2026</span></div>
           <span class="mmq-toggle open">▲</span>
         </div>
         <div class="mmq-box-content">${content}</div>
@@ -2577,9 +2575,9 @@ const ADMIN = {
         }
       }
     }
-    docs.push({ code: 'MMQ', titre: 'Manuel Management Qualite', cat: 'Manuel', version: 'rév.9', path: 'MMQ ARGOS.pdf', pathEdit: '', theme: '' });
+    docs.push({ code: 'MMQ', titre: 'Manuel Management Qualite', cat: 'Manuel', version: 'rév.10', path: 'MMQ ARGOS.pdf', pathEdit: '', theme: '' });
     docs.push({ code: 'MMQ An1', titre: 'Annexe 1 — Coordonnees et Activites', cat: 'Manuel', version: 'rév.3', path: 'MMQ ARGOS.pdf', pathEdit: '', theme: '' });
-    docs.push({ code: 'MMQ An2', titre: 'Annexe 2 — Organisation et Management', cat: 'Manuel', version: 'rév.12', path: 'MMQ ARGOS.pdf', pathEdit: '', theme: '' });
+    docs.push({ code: 'MMQ An2', titre: 'Annexe 2 — Organisation et Management', cat: 'Manuel', version: 'rév.13', path: 'MMQ ARGOS.pdf', pathEdit: '', theme: '' });
     return docs;
   },
   updateDoc() {
