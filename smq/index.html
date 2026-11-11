@@ -2171,10 +2171,10 @@ const RENDERS = {
   veille(t) {
     const baseItems = t.veille_items || [];
     const customItems = JSON.parse(localStorage.getItem('smq_veille_custom') || '[]');
-    // Tri chronologique (du plus ancien au plus recent)
+    // Tri du plus recent au plus ancien
     const allItems = baseItems.concat(customItems).sort(function(a,b) {
       var da = _veilleKey(a.date), db = _veilleKey(b.date);
-      return da < db ? -1 : da > db ? 1 : 0;
+      return db < da ? -1 : db > da ? 1 : 0;
     });
     // Filtre 2 ans par défaut
     var now = new Date();
@@ -2183,7 +2183,7 @@ const RENDERS = {
     var items2y = allItems.filter(function(v) {
       return _veilleKey(v.date) >= cutStr;
     });
-    var lastVeille = allItems.length ? allItems[allItems.length-1].date : '—';
+    var lastVeille = allItems.length ? allItems[0].date : '—';
     // Rappel mensuel
     var lastCheck = localStorage.getItem('smq_veille_last_check') || '';
     var thisMonth = now.getFullYear() + '-' + String(now.getMonth()+1).padStart(2,'0');
@@ -3047,7 +3047,7 @@ const ADMIN = {
     var vActions = JSON.parse(localStorage.getItem('smq_veille_actions') || '{}');
     var allItems = veille.veille_items.concat(custom).sort(function(a,b) {
       var da = _veilleKey(a.date), db = _veilleKey(b.date);
-      return da < db ? -1 : da > db ? 1 : 0;
+      return db < da ? -1 : db > da ? 1 : 0;
     });
     const rows = allItems.map(function(v) {
       var aKey = (v.ref||'').replace(/[^a-zA-Z0-9]/g,'_') + '_' + (v.date||'').replace(/\//g,'');
@@ -3122,7 +3122,7 @@ const ADMIN = {
     var vActions = JSON.parse(localStorage.getItem('smq_veille_actions') || '{}');
     var allItems = veille.veille_items.concat(custom).sort(function(a,b) {
       var da = _veilleKey(a.date), db = _veilleKey(b.date);
-      return da < db ? -1 : da > db ? 1 : 0;
+      return db < da ? -1 : db > da ? 1 : 0;
     });
     var headers = ['Date', 'Reference', 'Type', 'Domaine', 'Statut', 'Description', 'Application', 'Action'];
     var data = allItems.map(function(v) {
