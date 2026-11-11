@@ -1925,6 +1925,15 @@ const APP = (() => {
 })();
 
 // ── Rendus ────────────────────────────────────────────
+// Cle de tri des dates de veille : JJ/MM/AAAA, MM/AAAA, AAAA ou plage « A - B » (on garde la fin)
+function _veilleKey(d) {
+  d = String(d||'').split(' - ').pop().trim();
+  var p = d.split('/');
+  if (p.length === 3) return p[2] + p[1] + p[0];
+  if (p.length === 2) return p[1] + p[0] + '01';
+  if (/^\d{4}$/.test(d)) return d + '0101';
+  return '';
+}
 const RENDERS = {
 
   // ACCUEIL
@@ -2162,20 +2171,19 @@ const RENDERS = {
   veille(t) {
     const baseItems = t.veille_items || [];
     const customItems = JSON.parse(localStorage.getItem('smq_veille_custom') || '[]');
-    // Tri du plus récent au plus ancien
+    // Tri chronologique (du plus ancien au plus recent)
     const allItems = baseItems.concat(customItems).sort(function(a,b) {
-      var da = (a.date||'').split('/').reverse().join(''), db = (b.date||'').split('/').reverse().join('');
-      return db < da ? -1 : db > da ? 1 : 0;
+      var da = _veilleKey(a.date), db = _veilleKey(b.date);
+      return da < db ? -1 : da > db ? 1 : 0;
     });
     // Filtre 2 ans par défaut
     var now = new Date();
     var cutoff = new Date(now.getFullYear() - 2, now.getMonth(), now.getDate());
     var cutStr = cutoff.toISOString().slice(0,10).replace(/-/g,'');
     var items2y = allItems.filter(function(v) {
-      var d = (v.date||'').split('/').reverse().join('');
-      return d >= cutStr;
+      return _veilleKey(v.date) >= cutStr;
     });
-    var lastVeille = allItems.length ? allItems[0].date : '—';
+    var lastVeille = allItems.length ? allItems[allItems.length-1].date : '—';
     // Rappel mensuel
     var lastCheck = localStorage.getItem('smq_veille_last_check') || '';
     var thisMonth = now.getFullYear() + '-' + String(now.getMonth()+1).padStart(2,'0');
@@ -2202,7 +2210,7 @@ const RENDERS = {
     // Filtre 6 mois
     var cut6m = new Date(now.getFullYear(), now.getMonth() - 6, now.getDate());
     var cut6str = cut6m.toISOString().slice(0,10).replace(/-/g,'');
-    var items6m = allItems.filter(function(v) { var d=(v.date||'').split('/').reverse().join(''); return d >= cut6str; });
+    var items6m = allItems.filter(function(v) { return _veilleKey(v.date) >= cut6str; });
 
     const sectionBlocks = (t.sections||[]).map(function(s) {
       return RENDERS._block(s.titre, '📁', s.docs, true);
@@ -3038,8 +3046,8 @@ const ADMIN = {
     var custom = JSON.parse(localStorage.getItem('smq_veille_custom') || '[]');
     var vActions = JSON.parse(localStorage.getItem('smq_veille_actions') || '{}');
     var allItems = veille.veille_items.concat(custom).sort(function(a,b) {
-      var da = (a.date||'').split('/').reverse().join(''), db = (b.date||'').split('/').reverse().join('');
-      return db < da ? -1 : db > da ? 1 : 0;
+      var da = _veilleKey(a.date), db = _veilleKey(b.date);
+      return da < db ? -1 : da > db ? 1 : 0;
     });
     const rows = allItems.map(function(v) {
       var aKey = (v.ref||'').replace(/[^a-zA-Z0-9]/g,'_') + '_' + (v.date||'').replace(/\//g,'');
@@ -3113,8 +3121,8 @@ const ADMIN = {
     var custom = JSON.parse(localStorage.getItem('smq_veille_custom') || '[]');
     var vActions = JSON.parse(localStorage.getItem('smq_veille_actions') || '{}');
     var allItems = veille.veille_items.concat(custom).sort(function(a,b) {
-      var da = (a.date||'').split('/').reverse().join(''), db = (b.date||'').split('/').reverse().join('');
-      return db < da ? -1 : db > da ? 1 : 0;
+      var da = _veilleKey(a.date), db = _veilleKey(b.date);
+      return da < db ? -1 : da > db ? 1 : 0;
     });
     var headers = ['Date', 'Reference', 'Type', 'Domaine', 'Statut', 'Description', 'Application', 'Action'];
     var data = allItems.map(function(v) {
