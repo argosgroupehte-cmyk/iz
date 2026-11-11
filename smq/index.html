@@ -1581,6 +1581,49 @@ const THEMES = [
       { date:'04/03/2026', ref:'FD C 15-105 (mars 2026)', type:'Guide', domaine:'Elec', statut:'Publie — analyse 09/10/2026', application:'04/03/2026',
         desc:'Guide AFNOR "Determination des sections de conducteurs et choix des dispositifs de protection - Methodes pratiques". Remplace l\'UTE C 15-105 (2003). Mise en coherence NF C 15-100-1:2024 : continuite du PE en TN/IT, tableaux de longueurs maximales remplaces (3 a 6 % plus courtes), coefficients k, neutre charge. Schema TT et tableaux Ik3 inchanges.',
         action:'IMPACT LIMITE — integration dans M-IE-01 V10 : a venir' },
+      // ── VEILLE SECURITE.COM (textes ERP) : suivi bimestriel repris du tableau Word ──
+      { date:'30/05/2024', ref:'Veille Securite.com (textes ERP)', type:'Interne', domaine:'Tous', statut:'Effectuee', application:'—',
+        desc:'Documents lus : Securite.com, parution du 23/05/2024 (ERP - IGH). Constat : arrete du 17/05/2024 (comportement au feu des cables electriques), ajoute au tableau.',
+        action:'Voir ligne Arrete du 17/05/2024' },
+      { date:'30/07/2024', ref:'Veille Securite.com (textes ERP)', type:'Interne', domaine:'Tous', statut:'Effectuee', application:'—',
+        desc:'Documents lus : Securite.com (textes ERP). Constat : RAS.',
+        action:'RAS' },
+      { date:'30/09/2024', ref:'Veille Securite.com (textes ERP)', type:'Interne', domaine:'Tous', statut:'Effectuee', application:'—',
+        desc:'Documents lus : Securite.com (textes ERP). Constat : RAS.',
+        action:'RAS' },
+      { date:'30/12/2024', ref:'Veille Securite.com (textes ERP)', type:'Interne', domaine:'Tous', statut:'Effectuee', application:'—',
+        desc:'Documents lus : Securite.com (textes ERP). Constat : RAS.',
+        action:'RAS' },
+      { date:'28/02/2025', ref:'Veille Securite.com (textes ERP)', type:'Interne', domaine:'Tous', statut:'Effectuee', application:'—',
+        desc:'Documents lus : Securite.com (textes ERP). Constat : RAS.',
+        action:'RAS' },
+      { date:'30/04/2025', ref:'Veille Securite.com (textes ERP)', type:'Interne', domaine:'Tous', statut:'Effectuee', application:'—',
+        desc:'Documents lus : Securite.com, CNPP, CSTB, AFNOR, Batiactu, XPair. Constat : RAS.',
+        action:'RAS' },
+      { date:'30/06/2025', ref:'Veille Securite.com (textes ERP)', type:'Interne', domaine:'Tous', statut:'Effectuee', application:'—',
+        desc:'Documents lus : Securite.com, CNPP, CSTB, AFNOR, Batiactu, XPair. Constat : RAS.',
+        action:'RAS' },
+      { date:'31/08/2025', ref:'Veille Securite.com (textes ERP)', type:'Interne', domaine:'Tous', statut:'Effectuee', application:'—',
+        desc:'Documents lus : Securite.com, CNPP, CSTB, AFNOR, Batiactu, XPair. Constat : RAS.',
+        action:'RAS' },
+      { date:'31/10/2025', ref:'Veille Securite.com (textes ERP)', type:'Interne', domaine:'Tous', statut:'Effectuee', application:'—',
+        desc:'Documents lus : Securite.com, CNPP, CSTB, AFNOR, Batiactu, XPair. Constat : RAS.',
+        action:'RAS' },
+      { date:'31/12/2025', ref:'Veille Securite.com (textes ERP)', type:'Interne', domaine:'Tous', statut:'Effectuee', application:'—',
+        desc:'Documents lus : Securite.com, CNPP, CSTB, AFNOR, Batiactu, XPair. Constat : RAS.',
+        action:'RAS' },
+      { date:'28/02/2026', ref:'Veille Securite.com (textes ERP)', type:'Interne', domaine:'Tous', statut:'Effectuee', application:'—',
+        desc:'Documents lus : Securite.com, CNPP, CSTB, AFNOR, Batiactu, XPair. Constat : RAS.',
+        action:'RAS' },
+      { date:'30/06/2026', ref:'Veille Securite.com (textes ERP)', type:'Interne', domaine:'Tous', statut:'Effectuee', application:'—',
+        desc:'Documents lus : Securite.com, CNPP, CSTB, AFNOR, Batiactu, XPair. Constat : RAS.',
+        action:'RAS' },
+      { date:'30/04/2026', ref:'Veille Securite.com (textes ERP)', type:'Interne', domaine:'Tous', statut:'Effectuee', application:'—',
+        desc:'Documents lus : Securite.com, CNPP (circulaire du 14/04/2026). Constat : referentiel APSAD D18 mis a jour : formulaire Compte-rendu Q18 modifie, nouveau formulaire Compte-rendu de levee des dangers.',
+        action:'Informer T. RIZZO et integrer dans iVerif (note CNPP Q18 et levee des dangers, 31/08/2026)' },
+      { date:'31/08/2026', ref:'Veille Securite.com (textes ERP)', type:'Interne', domaine:'Tous', statut:'Effectuee', application:'—',
+        desc:'Documents lus : Securite.com, XPair (24/06/2026). Constat : projet de loi logement (cables pour l\'electrification) en discussion, pas en vigueur.',
+        action:'INFO — PAS D\'IMPACT (a surveiller)' },
       // ── VEILLE 06/11/2026 : controle M-IE-04 / D-IE-03 (Legifrance, Batipedia, liste des normes 05 VERIFICATIONS) ──
       { date:'22/12/2025', ref:'Decret 2025-1271', type:'Decret', domaine:'Elec', statut:'Publie', application:'25/12/2025',
         desc:'Code du travail : cree R4215-8-1 (centrales avec installation nucleaire de base) ; modifie R4226-20 (conservation du registre et des rapports de verification) et R4226-21 (installations temporaires).',
@@ -3057,7 +3100,7 @@ const ADMIN = {
         + '<td>' + (v.domaine || '') + '</td>'
         + '<td style="font-size:8pt"><div style="font-weight:bold;font-size:9pt">' + v.ref + '</div>' + v.desc + '</td>'
         + '<td>' + v.application + '</td>'
-        + '<td>' + (vActions[aKey] || '—') + '</td>'
+        + '<td>' + (vActions[aKey] || v.action || '—') + '</td>'
         + '</tr>';
     }).join('');
     var html = '<!DOCTYPE html><html><head><meta charset="UTF-8">'
@@ -3127,7 +3170,7 @@ const ADMIN = {
     var headers = ['Date', 'Reference', 'Type', 'Domaine', 'Statut', 'Description', 'Application', 'Action'];
     var data = allItems.map(function(v) {
       var aKey = (v.ref||'').replace(/[^a-zA-Z0-9]/g,'_') + '_' + (v.date||'').replace(/\//g,'');
-      return [v.date, v.ref, v.type, v.domaine || '', v.statut || '', v.desc, v.application, vActions[aKey] || ''];
+      return [v.date, v.ref, v.type, v.domaine || '', v.statut || '', v.desc, v.application, vActions[aKey] || v.action || ''];
     });
     var xml = this._xlsWrap(
       'Veille Reglementaire — Installations Electriques — ARGOS SMQ — ' + new Date().toLocaleDateString('fr-FR'),
