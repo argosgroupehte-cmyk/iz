@@ -494,7 +494,9 @@ function showBlock(msg) {
     var s=d.join('|'),h=5381;for(var i=0;i<s.length;i++){h=((h<<5)+h)+s.charCodeAt(i);h=h&h;}return(h>>>0).toString(36);
   }
   var key='_iz24_devs_'+token.toUpperCase();
-  var myFp=fp();
+  // 12/11/2026 : identifiant d appareil stable (l empreinte changeait a chaque mise a jour de Chrome et bloquait l appareil)
+  var myFp=null; try{myFp=localStorage.getItem('_iz24_did');}catch(_){}
+  if(!myFp){myFp='d'+Math.random().toString(36).slice(2)+Date.now().toString(36);try{localStorage.setItem('_iz24_did',myFp);localStorage.setItem(key,JSON.stringify([myFp]));}catch(_){}return;}
   var devs=JSON.parse(localStorage.getItem(key)||'[]');
   if(devs.indexOf(myFp)!==-1) return; // appareil deja enregistre → OK
   if(devs.length<2){
