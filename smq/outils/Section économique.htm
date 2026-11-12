@@ -1,0 +1,330 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0095)http://www.elec-planet.com:8080/elecplanet/Calcul.nsf/9f124e744435cf61c1256b180036f446?OpenForm -->
+<HTML><HEAD>
+<META http-equiv=Content-Type content="text/html; charset=utf-8">
+<SCRIPT language=JavaScript>
+<!-- 
+var bRAZ = true;
+function GEN_Afficher_Aide (sStatus , sInfo)
+{
+if ( sStatus == "" )
+    { document.forms[0].cInfo.value = sInfo; }
+else
+    { document.forms[0].cInfo.value = sStatus + "\n" + sInfo; }
+}
+
+function GEN_Initialiser_Res ()
+{
+with (document.forms[0])
+{
+cSthEco.value=0;
+cSPhEco.value =0;
+cNbSEco.value =0;
+cPeEco.value= 0;
+cPeFEco.value= 0;
+bRAZ = true;
+}
+}
+function GEN_Affecter_Res (SthEco,SPhEco,NbSEco,PeEco,PeFEco,sInfo)
+{
+with (document.forms[0])
+{
+// valeurs
+cSthEco.value=Math.round(SthEco);
+cSPhEco.value =Math.round(SPhEco);
+cNbSEco.value =Math.round(NbSEco);
+cPeEco.value= Math.round(PeEco);
+cPeFEco.value= Math.round(PeFEco);
+cInfo.value=sInfo;
+bRAZ= false;
+}
+}
+function GEN_Initialiser_Ent ()
+{
+with (document.forms[0])
+{
+// radio
+cNatPh[0].checked =true;
+cNCa[1].checked =true;
+// valeurs
+cPEco_1.value=1900;
+cPEco_2.value=40;
+cPEco_3.value=15;
+cPEco_4.value=10;
+cLongueur.value=25;
+cIB.value =100;
+cNbH.value = 5000;
+}
+}
+function Event_OnKeyDown (e)
+{
+window.alert("toto");
+}
+document.onKeyDown = Event_OnKeyDown;
+
+// -->
+</SCRIPT>
+
+<SCRIPT language=JavaScript>
+<!-- 
+document._domino_target = "_self";
+function _doClick(v, o, t, h) {
+  var form = document._DominoForm;
+  if (form.onsubmit) {
+     var retVal = form.onsubmit();
+     if (typeof retVal == "boolean" && retVal == false)
+       return false;
+  }
+  var target = document._domino_target;
+  if (o.href != null) {
+    if (o.target != null)
+       target = o.target;
+  } else {
+    if (t != null)
+      target = t;
+  }
+  form.target = target;
+  form.__Click.value = v;
+  if (h != null)
+    form.action += h;
+  form.submit();
+  return false;
+}
+// -->
+</SCRIPT>
+
+<META content="MSHTML 6.00.6000.16809" name=GENERATOR></HEAD>
+<BODY text=#000000 bgColor=#ffffff leftMargin=5 topMargin=0>
+<FORM name=_DominoForm 
+action=/elecplanet/Calcul.nsf/9f124e744435cf61c1256b180036f446?OpenForm&amp;Seq=1 
+method=post><INPUT type=hidden value=0 name=__Click> 
+<TABLE cellSpacing=0 cellPadding=0 border=0>
+  <TBODY>
+  <TR vAlign=top>
+    <TD width=582 bgColor=#8080ff colSpan=3>
+      <DIV align=center><B><FONT face="Times New Roman" color=#ffffff 
+      size=4>Séction économique d'une liaison</FONT></B></DIV></TD></TR>
+  <TR vAlign=top>
+    <TD width=312 bgColor=#8080ff colSpan=2>
+      <DIV align=center><B><I><FONT face=Arial color=#ffff00 
+      size=2>Caractéristiques économiques</FONT></I></B><I><FONT face=Arial 
+      color=#ffff00 size=1> (Données à saisir)</FONT></I></DIV></TD>
+    <TD width=271 bgColor=#8080ff><IMG height=1 alt="" 
+      src="Section%20économique_fichiers/ecblank.gif" width=1 border=0></TD></TR>
+  <TR vAlign=top>
+    <TD width=271 bgColor=#8080ff><FONT face=Arial color=#ffff00 
+      size=1>Constante prix d'installation</FONT></TD>
+    <TD width=41 bgColor=#8080ff><IMG height=1 alt="" 
+      src="Section%20économique_fichiers/ecblank.gif" width=1 border=0></TD>
+    <TD width=271 bgColor=#8080ff><FONT face=Arial color=#ffff00 size=1>Prix 
+      du kWH</FONT></TD></TR>
+  <TR vAlign=top>
+    <TD width=271 bgColor=#bfbfff><FONT face=Arial size=1>
+      <P style="MARGIN-LEFT: 20px"></FONT><FONT face=Arial color=#0000ff 
+      size=1><INPUT 
+      onblur='sVal =new String(document.forms[0].cPEco_1.value);&#13;sVal = sVal.replace ("," ,".");&#13;nVal = parseFloat (sVal);&#13;var bPb = false;&#13;if ( isNaN(nVal) == false )&#13;   {&#13;    if (nVal > 10000) &#13;       {&#13;        window.alert ("La constante ne peut être supérieure à 10000.");&#13;        nVal= 10000;&#13;        }&#13;     if (nVal <100)&#13;        {&#13;        window.alert ("La constante ne peut-être inférieure à 100.");&#13;        nVal= 100;&#13;        }   &#13;    }&#13;else&#13;  {&#13;   window.alert ("Vous devez saisir une valeur numérique");&#13;   bPb =true;&#13;   nVal = 1900;&#13;   }&#13;if (bPb == true)   document.forms[0].cPEco_1.focus();&#13;document.forms[0].cPEco_1.value= nVal;&#13;' 
+      onmouseover='GEN_Afficher_Aide ("Saisir une valeur entre 100 et 10000 kVA. Valeur par défaut 1900" , "")' 
+      onfocus="if (! bRAZ) GEN_Initialiser_Res ();" size=8 value=1900 
+      name=cPEco_1></FONT><B><FONT face=Arial color=#ffff00 size=1> 
+      (Francs/km)/mm2</FONT></B><FONT face=Arial size=1><O:P></FONT></P></TD>
+    <TD width=41 bgColor=#bfbfff><IMG height=1 alt="" 
+      src="Section%20économique_fichiers/ecblank.gif" width=1 border=0></TD>
+    <TD width=271 bgColor=#bfbfff><FONT face=Arial size=1>
+      <P style="MARGIN-LEFT: 20px"></FONT><FONT face=Arial color=#0000ff 
+      size=1><INPUT 
+      onblur='sVal =new String(document.forms[0].cPEco_2.value);&#13;sVal = sVal.replace ("," ,".");&#13;nVal = parseFloat (sVal );&#13;var bPb = false;&#13;if ( isNaN(nVal) == false )&#13;   {&#13;    if (nVal > 400) &#13;       {&#13;        window.alert ("Le prix ne peut être supérieur à 400 centimes.");&#13;        nVal= 400;&#13;        }&#13;     if (nVal <5)&#13;        {&#13;        window.alert ("Le prix ne peut-être inférieur à 5 centimes.");&#13;        nVal= 5;&#13;        }   &#13;    }&#13;else&#13;  {&#13;   window.alert ("Vous devez saisir une valeur numérique");&#13;   bPb =true;&#13;   nVal = 40;&#13;   }&#13;if (bPb == true)   document.forms[0].cPEco_2.focus();&#13;document.forms[0].cPEco_2.value= nVal;&#13;' 
+      onmouseover='GEN_Afficher_Aide ("Saisir une valeur entre 5 et 400, valeur par défaut 40" , "")' 
+      onfocus="if (! bRAZ) GEN_Initialiser_Res ();" size=8 value=40 
+      name=cPEco_2></FONT><B><FONT face=Arial color=#ffff00 size=1> 
+      Centimes</FONT></B><FONT face=Arial size=1><O:P></FONT></P></TD></TR>
+  <TR vAlign=top>
+    <TD width=271 bgColor=#8080ff><FONT face=Arial color=#ffff00 size=1>Taux 
+      d'actualisation</FONT></TD>
+    <TD width=41 bgColor=#8080ff><IMG height=1 alt="" 
+      src="Section%20économique_fichiers/ecblank.gif" width=1 border=0></TD>
+    <TD width=271 bgColor=#8080ff><FONT face=Arial color=#ffff00 size=1>Durée 
+      d'amortissement</FONT></TD></TR>
+  <TR vAlign=top>
+    <TD width=271 bgColor=#bfbfff><FONT face=Arial size=1>
+      <P style="MARGIN-LEFT: 20px"></FONT><FONT face=Arial color=#0000ff 
+      size=1><INPUT 
+      onblur='sVal =new String(document.forms[0].cPEco_3.value);&#13;sVal = sVal.replace ("," ,".");&#13;nVal = parseFloat (sVal );&#13;var bPb = false;&#13;if ( isNaN(nVal) == false )&#13;   {&#13;    if (nVal > 30) &#13;       {&#13;        window.alert ("Le taux ne peut être supérieure à 30 %.");&#13;        nVal= 30;&#13;        }&#13;     if (nVal <1)&#13;        {&#13;        window.alert ("Le taux ne peut-être inférieur à 1 %.");&#13;        nVal= 1;&#13;        }   &#13;    }&#13;else&#13;  {&#13;   window.alert ("Vous devez saisir une valeur numérique");&#13;   bPb =true;&#13;   nVal = 15;&#13;   }&#13;if (bPb == true)   document.forms[0].cPEco_3.focus();&#13;document.forms[0].cPEco_3.value= nVal;&#13;' 
+      onmouseover='GEN_Afficher_Aide ("Saisir une valeur entre 1 et 30, valeur par défaut 15." , "")' 
+      onfocus="if (! bRAZ) GEN_Initialiser_Res ();" size=8 value=15 
+      name=cPEco_3></FONT><B><FONT face=Arial color=#ffff00 size=1> 
+      </FONT></B><FONT face=Arial color=#ffff00 size=1>%</FONT><FONT face=Arial 
+      size=1><O:P></FONT></P></TD>
+    <TD width=41 bgColor=#bfbfff><IMG height=1 alt="" 
+      src="Section%20économique_fichiers/ecblank.gif" width=1 border=0></TD>
+    <TD width=271 bgColor=#bfbfff><FONT face=Arial size=1>
+      <P style="MARGIN-LEFT: 20px"></FONT><FONT face=Arial color=#0000ff 
+      size=1><INPUT 
+      onblur='sVal =new String(document.forms[0].cPEco_4.value);&#13;sVal = sVal.replace ("," ,".");&#13;nVal = parseFloat (sVal);&#13;var bPb = false;&#13;if ( isNaN(nVal) == false )&#13;   {&#13;    if (nVal > 25) &#13;       {&#13;        window.alert ("La durée ne peut être supérieure à 25 ans.");&#13;        nVal= 25;&#13;        }&#13;     if (nVal <1)&#13;        {&#13;        window.alert ("La durée ne peut-être inférieure à 1 an.");&#13;        nVal= 1;&#13;        }   &#13;    }&#13;else&#13;  {&#13;   window.alert ("Vous devez saisir une valeur numérique");&#13;   bPb =true;&#13;   nVal = 10;&#13;   }&#13;if (bPb == true)   document.forms[0].cPEco_4.focus();&#13;document.forms[0].cPEco_4.value= nVal;&#13;' 
+      onmouseover='GEN_Afficher_Aide ("Saisir une valeur entre 1 et 25 ans, valeur par défaut 10." , "")' 
+      onfocus="if (! bRAZ) GEN_Initialiser_Res ();" size=8 value=10 
+      name=cPEco_4></FONT><B><FONT face=Arial color=#ffff00 size=1> 
+      An(s)</FONT></B><FONT face=Arial size=1><O:P></FONT></P></TD></TR>
+  <TR vAlign=top>
+    <TD width=271 bgColor=#bfbfff><IMG height=1 alt="" 
+      src="Section%20économique_fichiers/ecblank.gif" width=1 border=0></TD>
+    <TD width=41 bgColor=#bfbfff><IMG height=1 alt="" 
+      src="Section%20économique_fichiers/ecblank.gif" width=1 border=0></TD>
+    <TD width=271 bgColor=#bfbfff><IMG height=1 alt="" 
+      src="Section%20économique_fichiers/ecblank.gif" width=1 border=0></TD></TR>
+  <TR vAlign=top>
+    <TD width=312 bgColor=#8080ff colSpan=2>
+      <DIV align=center><B><I><FONT face=Arial color=#ffff00 
+      size=2>Caractéristiques de la ligne </FONT></I></B><B><I><FONT face=Arial 
+      color=#ffff00 size=1>(Données à saisir)</FONT></I></B></DIV></TD>
+    <TD width=271 bgColor=#8080ff><IMG height=1 alt="" 
+      src="Section%20économique_fichiers/ecblank.gif" width=1 border=0></TD></TR>
+  <TR vAlign=top>
+    <TD width=271 bgColor=#8080ff><FONT face=Arial color=#ffff00 size=1>Nature 
+      des conducteurs</FONT></TD>
+    <TD width=41 bgColor=#8080ff><IMG height=1 alt="" 
+      src="Section%20économique_fichiers/ecblank.gif" width=1 border=0></TD>
+    <TD width=271 bgColor=#e0e0ff>
+      <DIV align=center><B><I><FONT face=Arial color=#ff0000 
+      size=2></FONT></I></B></DIV></TD></TR>
+  <TR vAlign=top>
+    <TD width=271 bgColor=#bfbfff><FONT face=Arial size=1>
+      <P style="MARGIN-LEFT: 20px"></FONT><FONT face=Arial color=#0000ff 
+      size=1><INPUT 
+      onmouseover='GEN_Afficher_Aide ("Choisissez Cuivre ou Aluminium, valeur par défaut Cuivre" , "")' 
+      onclick="if (! bRAZ) GEN_Initialiser_Res ();" type=radio CHECKED 
+      value=Cuivre name=cNatPh>Cuivre <INPUT 
+      onmouseover='GEN_Afficher_Aide ("Choisissez Cuivre ou Aluminium, valeur par défaut Cuivre" , "")' 
+      onclick="if (! bRAZ) GEN_Initialiser_Res ();" type=radio value=Aluminium 
+      name=cNatPh>Aluminium</FONT><FONT face=Arial size=1><O:P></FONT></P></TD>
+    <TD width=41 bgColor=#bfbfff><IMG height=1 alt="" 
+      src="Section%20économique_fichiers/ecblank.gif" width=1 border=0></TD>
+    <TD width=271 bgColor=#e0e0ff>
+      <DIV align=center><B><I><FONT face=Arial color=#ff0000 size=2>Résultats du 
+      calcul</FONT></I></B></DIV></TD></TR>
+  <TR vAlign=top>
+    <TD width=271 bgColor=#8080ff><FONT face=Arial color=#ffff00 size=1>Nombre 
+      de conducteurs chargés</FONT></TD>
+    <TD width=41 bgColor=#8080ff><IMG height=1 alt="" 
+      src="Section%20économique_fichiers/ecblank.gif" width=1 border=0></TD>
+    <TD width=271 bgColor=#8080ff><FONT face=Arial color=#ffff00 
+      size=1>Section économique théorique</FONT></TD></TR>
+  <TR vAlign=top>
+    <TD width=271 bgColor=#bfbfff><FONT face=Arial size=1>
+      <P style="MARGIN-LEFT: 20px"></FONT><FONT face=Arial color=#0000ff 
+      size=1><INPUT 
+      onmouseover='sStatus ="Choisissez le nombre de conducteur chargés de votre circuit, par défaut 3";&#13;sInfo = "2 = mono ou biphasé, 3 = triphasé avec ou sans neutre."&#13;GEN_Afficher_Aide (sStatus , sInfo)' 
+      onclick="if (! bRAZ) GEN_Initialiser_Res ();" type=radio value=2 
+      name=cNCa>2 <INPUT 
+      onmouseover='sStatus ="Choisissez le nombre de conducteur chargés de votre circuit, par défaut 3";&#13;sInfo = "2 = mono ou biphasé, 3 = triphasé avec ou sans neutre."&#13;GEN_Afficher_Aide (sStatus , sInfo)' 
+      onclick="if (! bRAZ) GEN_Initialiser_Res ();" type=radio CHECKED value=3 
+      name=cNCa>3</FONT><FONT face=Arial size=1><O:P></FONT></P></TD>
+    <TD width=41 bgColor=#bfbfff><IMG height=1 alt="" 
+      src="Section%20économique_fichiers/ecblank.gif" width=1 border=0></TD>
+    <TD width=271 bgColor=#e0e0ff><FONT face=Arial size=1>
+      <P style="MARGIN-LEFT: 20px"></FONT><FONT face=Arial color=#0000ff 
+      size=1><INPUT onfocus=document.forms[0].cLongueur.focus() size=8 value=0 
+      name=cSthEco></FONT><B><FONT face=Arial color=#ff0000 size=1> 
+      mm2</FONT></B><FONT face=Arial size=1><O:P></FONT></P></TD></TR>
+  <TR vAlign=top>
+    <TD width=271 bgColor=#8080ff><FONT face=Arial color=#ffff00 
+      size=1>Longueur de la ligne</FONT></TD>
+    <TD width=41 bgColor=#8080ff><IMG height=1 alt="" 
+      src="Section%20économique_fichiers/ecblank.gif" width=1 border=0></TD>
+    <TD width=271 bgColor=#8080ff><FONT face=Arial color=#ffff00 
+      size=1>Section économique pratique</FONT></TD></TR>
+  <TR vAlign=top>
+    <TD width=271 bgColor=#bfbfff><FONT face=Arial size=1>
+      <P style="MARGIN-LEFT: 20px"></FONT><FONT face=Arial color=#0000ff 
+      size=1><INPUT 
+      onblur='sVal =new String(document.forms[0].cLongueur.value);&#13;sVal = sVal.replace ("," ,".");&#13;nVal = parseFloat (sVal );&#13;var bPb = false;&#13;if ( isNaN(nVal) == false )&#13;   {&#13;    if (nVal > 4000)&#13;        {&#13;        window.alert ("La longueur du conducteur ne peut être supérieure à 4000 mètres");&#13;        nVal= 4000;&#13;        }&#13;     if (nVal <1)&#13;        {&#13;        window.alert ("La longueur du conducteur ne peut-être inférieure à 1 mètre");&#13;        nVal= 1;&#13;        }&#13;    }&#13;else&#13;  {&#13;   window.alert ("Vous devez saisir une valeur numérique");&#13;   bPb =true;&#13;   nVal = 25;&#13;   }&#13;if (bPb == true)   document.forms[0].cLongueur.focus();&#13;document.forms[0].cLongueur.value= nVal;&#13;&#13;&#13;&#13;&#13;&#13;&#13;&#13;' 
+      onmouseover='GEN_Afficher_Aide ("Saisir une valeur entre 0.1 et 4000 mètres, valeur par défaut 25 mètres" , "")' 
+      onfocus="if (! bRAZ) GEN_Initialiser_Res ();" size=8 value=25 
+      name=cLongueur></FONT><FONT face=Arial size=1> </FONT><B><FONT face=Arial 
+      color=#ffff00 size=1>m</FONT></B><FONT face=Arial 
+    size=1><O:P></FONT></P></TD>
+    <TD width=41 bgColor=#bfbfff><IMG height=1 alt="" 
+      src="Section%20économique_fichiers/ecblank.gif" width=1 border=0></TD>
+    <TD width=271 bgColor=#e0e0ff><FONT face=Arial size=1>
+      <P style="MARGIN-LEFT: 20px"></FONT><FONT face=Arial color=#0000ff 
+      size=1><INPUT onfocus=document.forms[0].cLongueur.focus() size=8 value=0 
+      name=cSPhEco></FONT><B><FONT face=Arial color=#ff0000 size=1> x 
+      </FONT></B><FONT face=Arial color=#0000ff size=1><INPUT 
+      onfocus=document.forms[0].cLongueur.focus() size=8 value=0 
+      name=cNbSEco></FONT><B><FONT face=Arial color=#ff0000 size=1> 
+      mm2</FONT></B><FONT face=Arial size=1><O:P></FONT></P></TD></TR>
+  <TR vAlign=top>
+    <TD width=271 bgColor=#8080ff><FONT face=Arial color=#ffff00 
+      size=1>Intensité moyenne de la ligne</FONT></TD>
+    <TD width=41 bgColor=#8080ff><IMG height=1 alt="" 
+      src="Section%20économique_fichiers/ecblank.gif" width=1 border=0></TD>
+    <TD width=271 bgColor=#8080ff><FONT face=Arial color=#ffff00 
+      size=1>Energie consommée (Pertes)</FONT></TD></TR>
+  <TR vAlign=top>
+    <TD width=271 bgColor=#bfbfff><FONT face=Arial size=1>
+      <P style="MARGIN-LEFT: 20px"></FONT><FONT face=Arial color=#0000ff 
+      size=1><INPUT 
+      onblur='sVal =new String(document.forms[0].cIB.value);&#13;sVal = sVal.replace ("," ,".");&#13;nVal = parseFloat (sVal );&#13;var bPb = false;&#13;if ( isNaN(nVal) == false )&#13;   {&#13;    if (nVal > 5000) {&#13;         window.alert ("Le courant moyen ne peut-être supérieur à 5000 A.");&#13;         nVal= 5000;&#13;          };&#13;    if (nVal <1) {&#13;         window.alert ("Le courant moyen ne peut-être inférieur à 1 A");&#13;         nVal= 1;&#13;         };&#13;   }&#13;else&#13;  {&#13;   window.alert ("Vous devez saisir une valeur numérique");&#13;   bPb =true;&#13;   nVal = 100;&#13;   }&#13;if (bPb == true)   document.forms[0].cIB.focus();&#13;document.forms[0].cIB.value= nVal;&#13;&#13;&#13;&#13;&#13;&#13;' 
+      onmouseover='GEN_Afficher_Aide ("Saisir une valeur entre 1 et 5000 A, valeur par défaut 100 A" , "")' 
+      onfocus="if (! bRAZ) GEN_Initialiser_Res ();" size=8 value=100 
+      name=cIB></FONT><FONT face=Arial color=#ffff00 size=1> </FONT><B><FONT 
+      face=Arial color=#ffff00 size=1>A</FONT></B><FONT face=Arial 
+      size=1><O:P></FONT></P></TD>
+    <TD width=41 bgColor=#bfbfff><IMG height=1 alt="" 
+      src="Section%20économique_fichiers/ecblank.gif" width=1 border=0></TD>
+    <TD width=271 bgColor=#e0e0ff><FONT face=Arial size=1>
+      <P style="MARGIN-LEFT: 20px"></FONT><FONT face=Arial color=#0000ff 
+      size=1><INPUT onfocus=document.forms[0].cLongueur.focus() size=8 value=0 
+      name=cPeEco></FONT><B><FONT face=Arial color=#ffff00 size=1> 
+      </FONT></B><B><FONT face=Arial color=#ff0000 size=1>kWh</FONT></B><FONT 
+      face=Arial size=1><O:P></FONT></P></TD></TR>
+  <TR vAlign=top>
+    <TD width=271 bgColor=#8080ff><FONT face=Arial color=#ffff00 size=1>Nombre 
+      d'heure de service par an</FONT></TD>
+    <TD width=41 bgColor=#8080ff><IMG height=1 alt="" 
+      src="Section%20économique_fichiers/ecblank.gif" width=1 border=0></TD>
+    <TD width=271 bgColor=#8080ff><FONT face=Arial color=#ffff00 size=1>Coût 
+      de l'énergie consommée.</FONT></TD></TR>
+  <TR vAlign=top>
+    <TD width=271 bgColor=#bfbfff><FONT face=Arial size=1>
+      <P style="MARGIN-LEFT: 20px"></FONT><FONT face=Arial color=#0000ff 
+      size=1><INPUT 
+      onblur="sVal =new String(document.forms[0].cNbH.value);&#13;sVal = sVal.replace (&quot;,&quot; ,&quot;.&quot;);&#13;nVal = parseFloat (sVal );&#13;var bPb = false;&#13;if ( isNaN(nVal) == false )&#13;   {&#13;    if (nVal > 8760) {&#13;         window.alert (&quot;Le nombre d'heure ne peut-être supérieur à 8760.&quot;);&#13;         nVal= 8760;&#13;          };&#13;    if (nVal <10) {&#13;         window.alert (&quot;Le nombre d'heure ne peut-être inférieur à 10.&quot;);&#13;         nVal= 10;&#13;         };&#13;   }&#13;else&#13;  {&#13;   window.alert (&quot;Vous devez saisir une valeur numérique&quot;);&#13;   bPb =true;&#13;   nVal = 5000;&#13;   }&#13;if (bPb == true)   document.forms[0].cNbH.focus();&#13;document.forms[0].cNbH.value= nVal;&#13;&#13;" 
+      onmouseover='GEN_Afficher_Aide ("Saisir une valeur entre 10 et 8760 h, valeur par défaut 5000 h." , "")' 
+      onfocus="if (! bRAZ) GEN_Initialiser_Res ();" size=8 value=5000 
+      name=cNbH></FONT><FONT face=Arial color=#ffff00 size=1> </FONT><B><FONT 
+      face=Arial color=#ffff00 size=1>h</FONT></B><FONT face=Arial 
+      size=1><O:P></FONT></P></TD>
+    <TD width=41 bgColor=#bfbfff><IMG height=1 alt="" 
+      src="Section%20économique_fichiers/ecblank.gif" width=1 border=0></TD>
+    <TD width=271 bgColor=#e0e0ff><FONT face=Arial size=1>
+      <P style="MARGIN-LEFT: 20px"></FONT><FONT face=Arial color=#0000ff 
+      size=1><INPUT onfocus=document.forms[0].cLongueur.focus() size=8 value=0 
+      name=cPeFEco></FONT><B><FONT face=Arial color=#ffff00 size=1> 
+      </FONT></B><B><FONT face=Arial color=#ff0000 size=1>Francs</FONT></B><FONT 
+      face=Arial size=1><O:P></FONT></P></TD></TR>
+  <TR vAlign=top>
+    <TD width=271 bgColor=#bfbfff>
+      <DIV align=center><A 
+      onmouseover='GEN_Afficher_Aide ("","Cliquez pour Affecter les valeurs par défaut")&#13;' 
+      onclick="GEN_Initialiser_Ent ();&#13;if (! bRAZ) GEN_Initialiser_Res ();&#13;&#13;&#13;&#13;&#13;return false;" 
+      href="http://www.elec-planet.com:8080/elecplanet/Calcul.nsf/"><B><FONT 
+      face=Arial color=#ffff00>Valeurs par défaut</FONT></B></A><B><FONT 
+      face=Arial color=#ffff00> </FONT></B></DIV></TD>
+    <TD width=41 bgColor=#bfbfff>
+      <DIV align=center><A 
+      onmouseover='GEN_Afficher_Aide ("", "Cliquez pour mettre les résultats à zéro")' 
+      onclick="GEN_Initialiser_Res ()&#13;&#13;&#13;&#13;&#13;return false;" 
+      href="http://www.elec-planet.com:8080/elecplanet/Calcul.nsf/"><B><FONT 
+      face=Arial color=#ffff00>Raz</FONT></B></A></DIV></TD>
+    <TD width=271 bgColor=#bfbfff>
+      <DIV align=center><A 
+      onmouseover="GEN_Afficher_Aide (&quot;&quot;, &quot;Cliquez pour Calculer\nAttention les données d'entrées peuvent être modifiées&quot;)" 
+      onclick='tst =  window.location.href;&#13;position = tst.lastIndexOf("/");&#13;url = tst.substring(0,position) + "/ReRoute?openform";&#13;&#13;if (window.document.forms[0].UserName.value == "Anonymous")&#13;&#9;window.open(url,target="cadres_contenu");&#13;else&#13;{&#13;Section = new Array (19) ;&#13;Section[1]= 1.5;&#13;Section[2]=2.5;&#13;Section[3]= 4;&#13;Section[4]=6;&#13;Section[5]= 10;&#13;Section[6]=16;&#13;Section[7]= 25;&#13;Section[8]=35;&#13;Section[9]= 50;&#13;Section[10]=70;&#13;Section[11]= 95;&#13;Section[12]=120;&#13;Section[13]=150;&#13;Section[14]= 185;&#13;Section[15]=240;&#13;Section[16]= 300;&#13;Section[17]=400;&#13;Section[19]=500;&#13;Section[19]= 630;&#13;&#13;SEcoX = new Array (19) ;&#13;&#13;&#13;Ro = new Array (2);&#13;Ro[1] =18.51;&#13;Ro[2]=29.41;&#13;&#13;// Entrées&#13;PEco_1 = 0.0;&#13;PEco_2 = 0.0;&#13;PEco_3 = 0.0;&#13;PEco_4 = 0.0;&#13;NatPh=0;&#13;NCa=0;&#13;Longueur=0;&#13;IB =0;&#13;NbH=0;&#13;&#13;// Sorties&#13;SthEco=0;&#13;SPhEco =0;&#13;NbSEco =0;&#13;PeEco= 0;&#13;PeFEco= 0;&#13;sInfo ="";&#13;&#13;// VAR CALCUL INTERMEDIAIRE&#13;bFin = true;&#13;&#13;GEN_Initialiser_Res ();&#13;&#13;with(window.document.forms[0])&#13;     {&#13;      for (n=0; n<cNatPh.length; n++) &#13;           {&#13;                if (cNatPh[n].checked == true)&#13;                      {&#13;                          NatPh = n +1;&#13;                       }   &#13;             }&#13;      for (n=0; n<cNCa.length; n++) &#13;           {&#13;                if (cNCa[n].checked == true)&#13;                      {&#13;                          NCa = n +2;&#13;                       }   &#13;             }&#13;      PEco_1 = parseFloat (cPEco_1.value);&#13;      PEco_2 = parseFloat (cPEco_2.value);    &#13;      PEco_3 =parseFloat (cPEco_3.value);&#13;      PEco_4 = parseFloat (cPEco_4.value);    &#13;      Longueur = parseFloat (cLongueur.value);    &#13;      IB = parseFloat (cIB.value);    &#13;      NbH = parseFloat (cNbH.value);    &#13;      }&#13;&#13;// Initialisation&#13;&#9;NbSEco=1;&#13;&#9;PeEco=0;&#13;&#9;PeFeco=0;&#13;&#9;SthEco=0;&#13;&#9;SPhEco=0;&#13;&#9;TauxEco=0;&#13;&#9;AEco=0;&#13;&#13;// Début Calcul&#13;&#9;TauxEco=PEco_3 / 100;&#13;&#9;AEco=(Math.pow(1+TauxEco,PEco_4)*TauxEco) / ( Math.pow(1+TauxEco,PEco_4) -1);&#13;&#9;SthEco=IB*Math.sqrt(Ro[NatPh]*1.25*NbH*NCa*PEco_2*.00001/(AEco*PEco_1));&#13;&#9;i=1;&#13;&#9;if (SthEco<=330)&#13;&#9;{&#13;&#9;&#9;while (SthEco>Section[i]*1.1)&#13;&#9;&#9;{&#13;&#9;&#9;&#9;i++;&#13;&#9;&#9;};&#9;&#9;&#13;&#9;&#9;SPhEco=Section[i];&#13;&#9;&#9;if (SPhEco<2.5 &amp;&amp; NatPh==2)&#13;&#9;&#9;&#9;SPhEco=2.5;&#13;&#9;}&#13;&#9;if (SthEco>330 &amp;&amp; SthEco<6300)&#13;&#9;{&#13;&#9;&#9;NbSEco=2;&#13;&#9;&#9;K=1;&#13;&#9;&#9;if (SthEco< 1500)&#13;&#9;&#9;&#9;i=16;&#13;&#9;&#9;else&#13;&#9;&#9;&#9; i=19;&#13;&#9;&#9;while (SthEco>Section[i]*K*1.1 &amp;&amp; K <10)&#13;&#9;&#9;{&#13;&#9;&#9;&#9;K++;&#13;&#9;&#9;};&#9;&#9;&#13;&#9;&#9;NbSEco=K;&#13;&#9;&#9;SPhEco=Section[i]*K;&#13;&#9;&#9;while (SthEco <= Section[i]*K*1.1 &amp;&amp; i >8)&#13;&#9;&#9;{&#13;&#9;&#9;   SPhEco=Section[i]*K;&#13;&#9;&#9;   i--;&#13;&#9;&#9;};&#9;&#13;&#9;&#9;for (var K=1; K<11;K++)&#13;&#9;&#9;{&#13;&#9;&#9;&#9;SEcoX[K]=0;&#13;&#9;&#9;};&#13;&#9;&#9;KK=0;&#13;&#9;&#9;for (var K=NbSEco; K< 11;K++)&#13;&#9;&#9;{&#13;&#9;&#9;     switch (K)&#13;&#9;&#9;          {&#13;     &#9;&#9;&#9;case 2 : &#13;     &#9;&#9;&#9;case 3 : &#13;     &#9;&#9;&#9;      {&#13;                          KK = 9;&#13;                          break;&#13;                          }&#13;&#9;     &#9;&#9;case 4 :&#13;&#9;     &#9;&#9;case 5 :&#13;&#9;     &#9;&#9;      {&#13;                          KK = 11;&#13;                          break;&#13;                          }&#13;&#9;&#9;     &#9;case 6 :&#13;&#9;&#9;     &#9;case 7 :&#13;                           { &#13;                           KK = 13;&#13;                           break;&#13;                           }&#13;                     default :&#13;                           { &#13;                           KK = 15;&#13;                           break;&#13;                           }&#13;&#9;&#9;          }&#13;   &#9;&#9;&#9;SEcoX[K]=Section[KK]*K;&#13;&#9;&#9;   &#9;while (SthEco>(Section[KK]*K*1.1) &amp;&amp; KK<19)&#13;&#9;&#9;   &#9;{&#13;&#9;&#9;&#9;&#9;KK++;&#13;&#9;&#9;&#9;};&#9;&#13;&#9;&#9;&#9;SEcoX[K]=Section[KK]*K;&#13;&#9;&#9;};&#13;&#9;&#9;T=0;&#13;&#9;&#9;for (var K=NbSEco; K< 11;K++)&#13;&#9;&#9;{&#13;&#9;&#9;&#9;T=SEcoX[K]; &#13;&#9;&#9;&#9;if (T !=0)&#13;&#9;&#9;&#9;{&#13;&#9;&#9;&#9;&#9;if (Math.abs(T-SthEco) < Math.abs(SPhEco-SthEco))&#13;&#9;&#9;&#9;&#9;{&#13;&#9;&#9;&#9;&#9;&#9;NbSEco=K;&#13;      &#9;&#9;&#9;&#9;SPhEco=SEcoX[NbSEco];&#13;&#9;&#9;&#9;&#9;}&#13;&#9;&#9;&#9;}&#9;&#9;&#9;&#9;&#9;&#13;&#9;&#9;};&#13;&#9;//&#9;&#9;REm For K=2 To 10&#13;//&#9;   REm &#9;While SthEco>SNorme(I)*K*1.1 And I<19:Incr I:Wend&#13;//&#9;&#9;REM SEcoX(K)=SNorme(I)*K&#13;//&#9;     &#9;REM If Abs(SEcoX(K)-SthEco)<Abs(SEcoX(NbSEco)-SthEco) Then NbSEco=K&#13;//&#9;   REM  &#9;If (Abs(SEcoX(K)-SthEco)/Abs(SEcoX(NbSEco)-SthEco))>.1 Then NbSEco=K&#13;//      REM Next K&#13;//      REM SPhEco=SEcoX(NbSEco)&#13;&#9;}&#13;&#9;if (SthEco>6300)&#13;&#9;&#9;SPhEco=9999.9;&#13;&#9;PeEco=Longueur*NCa*(Ro[NatPh]*1.25)*(IB*IB)*NbH/(SPhEco*1000000);&#13;&#9;PeFEco=PeEco*PEco_2*.01;&#13;&#9;SPhEco=SPhEco/NbSEco;&#9;&#9;// ???????&#13;&#9;if (PeEco>999999999)&#13;&#9;{&#13;&#9;&#9;PeEco=999999;&#13;&#9;&#9;PeFEco=999999;&#13;&#9;}&#13;&#9;if (PeFEco>999999999)&#13;&#9;&#9;PeFEco=999999;&#13;&#13;// Fin Calcul&#13;&#13;if (bFin == true )&#13;    {&#13;// Affectation Resultat&#13;      GEN_Affecter_Res (SthEco,SPhEco,NbSEco,PeEco,PeFEco,sInfo)&#13;      }&#13;else&#13;     {&#13;     GEN_Affecter_Res (0,0,0,0,0, "Problème Critique")&#13;      }&#13;}&#13;&#13;return false;' 
+      href="http://www.elec-planet.com:8080/elecplanet/Calcul.nsf/"><B><FONT 
+      face=Arial color=#ffff00>Calculer</FONT></B></A></DIV></TD></TR>
+  <TR vAlign=top>
+    <TD width=582 bgColor=#ffe1b0 colSpan=3><B><I><FONT face=Arial 
+      color=#ff0000 size=1><TEXTAREA onfocus=document.forms[0].cLongueur.focus() name=cInfo rows=3 cols=75></TEXTAREA> 
+      </FONT></I></B><BR><B><FONT face=Arial 
+size=1><BR></FONT></B></TD></TR></TBODY></TABLE><INPUT type=hidden 
+value=BEMELINON1 name=UserName></FORM></BODY></HTML>

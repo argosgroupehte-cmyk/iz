@@ -1,0 +1,461 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0095)http://www.elec-planet.com:8080/elecplanet/Calcul.nsf/56c092c73781ee59c1256b1800341a74?OpenForm -->
+<HTML><HEAD>
+<META http-equiv=Content-Type content="text/html; charset=utf-8">
+<SCRIPT language=JavaScript>
+<!-- 
+var bRAZ = true;
+function GEN_Afficher_Aide (sStatus , sInfo)
+{
+if ( sStatus == "" )
+    { document.forms[0].cInfo.value = sInfo; }
+else
+    { document.forms[0].cInfo.value = sStatus + "\n" + sInfo; }
+}
+
+function GEN_Initialiser_Res ()
+{
+  with (document.forms[0])
+  {
+  cTa.value=0;
+  cP_1.value=0;
+  cC_1.value =0;
+  cT_1.value =0;
+  cP_2.value=0;
+  cC_2.value =0;
+  cT_2.value =0;
+  cP_3.value=0;
+  cC_3.value =0;
+  cT_3.value =0;
+  cP_4.value=0;
+  cC_4.value =0;
+  cT_4.value =0;
+  cP_5.value=0;
+  cC_5.value =0;
+  cT_5.value =0;
+  cP_6.value=0;
+  cC_6.value =0;
+  cT_6.value =0;
+  cP_7.value=0;
+  cC_7.value =0;
+  cT_7.value =0;
+  cP_8.value=0;
+  cC_8.value =0;
+  cT_8.value =0;
+  cP_9.value=0;
+  cC_9.value =0;
+  cT_9.value =0;
+  cP_10.value=0;
+  cC_10.value =0;
+  cT_10.value =0;
+  bRAZ = true;
+  }
+}
+function GEN_Affecter_Res (Ta,P_1,C_1,T_1,P_2,C_2,T_2,P_3,C_3,T_3,P_4,C_4,T_4,P_5,C_5,T_5,P_6,C_6,T_6,P_7,C_7,T_7,P_8,C_8,T_8,P_9,C_9,T_9,P_10,C_10,T_10,sInfo)
+{
+  with (document.forms[0])
+  {
+  // valeurs
+  cTa.value = Math.round(Ta*100)/100;
+  cP_1.value = Math.round(P_1*100)/100;
+  cC_1.value = Math.round(C_1*1000)/1000;
+  cT_1.value = Math.round(T_1*1000)/1000;
+  cP_2.value = Math.round(P_2*100)/100;
+  cC_2.value = Math.round(C_2*1000)/1000;
+  cT_2.value = Math.round(T_2*1000)/1000;
+  cP_3.value = Math.round(P_3*100)/100;
+  cC_3.value = Math.round(C_3*1000)/1000;
+  cT_3.value = Math.round(T_3*1000)/1000;
+  cP_4.value = Math.round(P_4*100)/100;
+  cC_4.value = Math.round(C_4*1000)/1000;
+  cT_4.value = Math.round(T_4*1000)/1000;
+  cP_5.value = Math.round(P_5*100)/100;
+  cC_5.value = Math.round(C_5*1000)/1000;
+  cT_5.value = Math.round(T_5*1000)/1000;
+  cP_6.value = Math.round(P_6*100)/100;
+  cC_6.value = Math.round(C_6*1000)/1000;
+  cT_6.value = Math.round(T_6*1000)/1000;
+  cP_7.value = Math.round(P_7*100)/100;
+  cC_7.value = Math.round(C_7*1000)/1000;
+  cT_7.value = Math.round(T_7*1000)/1000;
+  cP_8.value = Math.round(P_8*100)/100;
+  cC_8.value = Math.round(C_8*1000)/1000;
+  cT_8.value = Math.round(T_8*1000)/1000;
+  cP_9.value = Math.round(P_9*100)/100;
+  cC_9.value = Math.round(C_9*1000)/1000;
+  cT_9.value = Math.round(T_9*1000)/1000;
+  cP_10.value = Math.round(P_10*100)/100;
+  cC_10.value = Math.round(C_10*1000)/1000;
+  cT_10.value = Math.round(T_10*1000)/1000;
+  cInfo.value = sInfo;
+  bRAZ= false;
+  }
+}
+function GEN_Initialiser_Ent ()
+{
+  with (document.forms[0])
+  {
+  // valeurs
+  cPui.value=250;
+  cCo.value =0.8;
+  }
+}
+
+// -->
+</SCRIPT>
+
+<SCRIPT language=JavaScript>
+<!-- 
+document._domino_target = "_self";
+function _doClick(v, o, t, h) {
+  var form = document._DominoForm;
+  if (form.onsubmit) {
+     var retVal = form.onsubmit();
+     if (typeof retVal == "boolean" && retVal == false)
+       return false;
+  }
+  var target = document._domino_target;
+  if (o.href != null) {
+    if (o.target != null)
+       target = o.target;
+  } else {
+    if (t != null)
+      target = t;
+  }
+  form.target = target;
+  form.__Click.value = v;
+  if (h != null)
+    form.action += h;
+  form.submit();
+  return false;
+}
+// -->
+</SCRIPT>
+
+<META content="MSHTML 6.00.6000.16809" name=GENERATOR></HEAD>
+<BODY text=#000000 bgColor=#ffffff leftMargin=5 topMargin=0>
+<FORM name=_DominoForm 
+action=/elecplanet/Calcul.nsf/56c092c73781ee59c1256b1800341a74?OpenForm&amp;Seq=1 
+method=post><INPUT type=hidden value=0 name=__Click> 
+<TABLE cellSpacing=0 cellPadding=0 border=0>
+  <TBODY>
+  <TR vAlign=top>
+    <TD width=454 bgColor=#8080ff colSpan=3>
+      <DIV align=center><B><FONT face="Times New Roman" color=#ffffff 
+      size=4>Compensation d'énergie réactive</FONT></B></DIV></TD></TR>
+  <TR vAlign=top>
+    <TD width=302 bgColor=#e0e0ff colSpan=2><IMG height=1 alt="" 
+      src="Energie%20reactive_fichiers/ecblank.gif" width=1 border=0></TD>
+    <TD width=151 bgColor=#e0e0ff><IMG height=1 alt="" 
+      src="Energie%20reactive_fichiers/ecblank.gif" width=1 border=0></TD></TR>
+  <TR vAlign=top>
+    <TD width=302 bgColor=#bfbfff colSpan=2>
+      <DIV align=right><B><I><FONT face=Arial color=#ffff00 
+      size=2>Caractéristiques (Données à saisir)</FONT></I></B></DIV></TD>
+    <TD width=151 bgColor=#bfbfff><IMG height=1 alt="" 
+      src="Energie%20reactive_fichiers/ecblank.gif" width=1 border=0></TD></TR>
+  <TR vAlign=top>
+    <TD width=151 bgColor=#bfbfff><FONT face=Arial size=1>
+      <P style="MARGIN-LEFT: 20px"></FONT><B><FONT face=Arial color=#ffff00 
+      size=1>Puissance</FONT></B><FONT face=Arial size=1><O:P></FONT></P></TD>
+    <TD width=151 bgColor=#bfbfff><FONT face=Arial size=1>
+      <P style="MARGIN-LEFT: 20px"></FONT><FONT face=Arial color=#0000ff 
+      size=1><INPUT 
+      onblur='sVal =new String(document.forms[0].cPui.value);&#13;sVal = sVal.replace ("," ,".");&#13;nVal = parseFloat (sVal);&#13;var bPb = false;&#13;if ( isNaN(nVal) == false )&#13;   {&#13;    if (nVal > 9999) &#13;       {&#13;        window.alert ("La puissance ne peut être supérieure à 9999 kW");&#13;        nVal= 9999;&#13;        }&#13;     if (nVal <1)&#13;        {&#13;        window.alert ("La puissance ne peut-être inférieure à 1 kW");&#13;        nVal= 1;&#13;        }   &#13;    }&#13;else&#13;  {&#13;   window.alert ("Vous devez saisir une valeur numérique");&#13;   bPb =true;&#13;   nVal = 250;&#13;   }&#13;if (bPb == true)   document.forms[0].cPui.focus();&#13;document.forms[0].cPui.value= nVal;&#13;' 
+      onmouseover='GEN_Afficher_Aide ("Saisir une valeur entre 1 et 9999 kW. Valeur par défaut 250" , "")' 
+      onfocus="if (! bRAZ) GEN_Initialiser_Res ();" size=8 value=250 
+      name=cPui></FONT><B><FONT face=Arial size=1> kW</FONT></B><FONT face=Arial 
+      size=1><O:P></FONT></P></TD>
+    <TD width=151 bgColor=#bfbfff><IMG height=1 alt="" 
+      src="Energie%20reactive_fichiers/ecblank.gif" width=1 border=0></TD></TR>
+  <TR vAlign=top>
+    <TD width=151 bgColor=#bfbfff><FONT face=Arial size=1>
+      <P style="MARGIN-LEFT: 20px"></FONT><B><FONT face=Arial color=#ffff00 
+      size=1>Cosinus phi mesuré</FONT></B><FONT face=Arial 
+      size=1><O:P></FONT></P></TD>
+    <TD width=151 bgColor=#bfbfff><FONT face=Arial size=1>
+      <P style="MARGIN-LEFT: 20px"></FONT><FONT face=Arial color=#0000ff 
+      size=1><INPUT 
+      onblur='sVal =new String(document.forms[0].cCo.value);&#13;sVal = sVal.replace ("," ,".");&#13;nVal = parseFloat (sVal);&#13;var bPb = false;&#13;if ( isNaN(nVal) == false )&#13;   {&#13;    if (nVal > 0.995) &#13;       {&#13;        window.alert ("Le cosinus phi ne peut être supérieur à 0.995.");&#13;        nVal= 0.995;&#13;        }&#13;     if (nVal <0.2)&#13;        {&#13;        window.alert ("Le cosinus phi ne peut-être inférieur à 0.2.");&#13;        nVal= 0.2;&#13;        }   &#13;    }&#13;else&#13;  {&#13;   window.alert ("Vous devez saisir une valeur numérique");&#13;   bPb =true;&#13;   nVal = 0.8;&#13;   }&#13;if (bPb == true)   document.forms[0].cCo.focus();&#13;document.forms[0].cCo.value= nVal;&#13;' 
+      onmouseover='GEN_Afficher_Aide ("Saisir une valeur entre 0.2 et 0.995. Valeur par défaut 0.8" , "")' 
+      onfocus="if (! bRAZ) GEN_Initialiser_Res ();" size=8 value=0.8 
+      name=cCo></FONT><FONT face=Arial size=1><O:P></FONT></P></TD>
+    <TD width=151 bgColor=#bfbfff><IMG height=1 alt="" 
+      src="Energie%20reactive_fichiers/ecblank.gif" width=1 border=0></TD></TR>
+  <TR vAlign=top>
+    <TD width=454 bgColor=#bfbfff colSpan=3><IMG height=1 alt="" 
+      src="Energie%20reactive_fichiers/ecblank.gif" width=1 border=0></TD></TR>
+  <TR vAlign=top>
+    <TD width=454 bgColor=#e0e0ff colSpan=3>
+      <DIV align=center><B><I><FONT face=Arial color=#ff0000 size=2>Résultats du 
+      calcul</FONT></I></B></DIV></TD></TR>
+  <TR vAlign=top>
+    <TD width=151 bgColor=#bfbfff><FONT face=Arial size=1>
+      <P style="MARGIN-LEFT: 20px"></FONT><B><FONT face=Arial color=#ffff00 
+      size=1>Tangente phi</FONT></B><FONT face=Arial size=1><O:P></FONT></P></TD>
+    <TD width=151 bgColor=#bfbfff><FONT face=Arial size=1>
+      <P style="MARGIN-LEFT: 20px"></FONT><FONT face=Arial color=#0000ff 
+      size=1><INPUT 
+      onmouseover='GEN_Afficher_Aide ("Saisir une valeur entre 1 et 6300 kVA. Valeur par défaut 250" , "")' 
+      onfocus=document.forms[0].cPui.focus() size=8 value=0.75 
+      name=cTa></FONT><B><FONT face=Arial color=#ff0000 size=1> </FONT></B><FONT 
+      face=Arial size=1><O:P></FONT></P></TD>
+    <TD width=151 bgColor=#bfbfff><IMG height=1 alt="" 
+      src="Energie%20reactive_fichiers/ecblank.gif" width=1 border=0></TD></TR>
+  <TR vAlign=top>
+    <TD width=151 bgColor=#bfbfff><IMG height=1 alt="" 
+      src="Energie%20reactive_fichiers/ecblank.gif" width=1 border=0></TD>
+    <TD width=151 bgColor=#bfbfff><IMG height=1 alt="" 
+      src="Energie%20reactive_fichiers/ecblank.gif" width=1 border=0></TD>
+    <TD width=151 bgColor=#bfbfff><IMG height=1 alt="" 
+      src="Energie%20reactive_fichiers/ecblank.gif" width=1 border=0></TD></TR>
+  <TR vAlign=top>
+    <TD width=151 bgColor=#8080ff><FONT face=Arial size=1>
+      <P style="MARGIN-LEFT: 20px"></FONT><B><FONT face=Arial color=#ffff00 
+      size=1>Puissance condensateur</FONT></B><FONT face=Arial 
+      size=1><O:P></FONT></P></TD>
+    <TD width=151 bgColor=#8080ff><FONT face=Arial size=1>
+      <P style="MARGIN-LEFT: 20px"></FONT><B><FONT face=Arial color=#ffff00 
+      size=1>Cosinus phi corrigé</FONT></B><FONT face=Arial 
+      size=1><O:P></FONT></P></TD>
+    <TD width=151 bgColor=#8080ff><FONT face=Arial size=1>
+      <P style="MARGIN-LEFT: 20px"></FONT><B><FONT face=Arial color=#ffff00 
+      size=1>Tangente phi corrigée</FONT></B><FONT face=Arial 
+      size=1><O:P></FONT></P></TD></TR>
+  <TR vAlign=top>
+    <TD width=151 bgColor=#e0e0ff><FONT face=Arial size=1>
+      <P style="MARGIN-LEFT: 20px"></FONT><FONT face=Arial color=#0000ff 
+      size=1><INPUT 
+      onmouseover='GEN_Afficher_Aide ("Saisir une valeur entre 1 et 6300 kVA. Valeur par défaut 250" , "")' 
+      onfocus=document.forms[0].cPui.focus() size=8 value=0 
+      name=cP_1></FONT><B><FONT face=Arial color=#ffff00 size=1> 
+      </FONT></B><B><FONT face=Arial color=#ff0000 size=1>kVAR</FONT></B><FONT 
+      face=Arial size=1><O:P></FONT></P></TD>
+    <TD width=151 bgColor=#e0e0ff><FONT face=Arial size=1>
+      <P style="MARGIN-LEFT: 20px"></FONT><FONT face=Arial color=#0000ff 
+      size=1><INPUT 
+      onmouseover='GEN_Afficher_Aide ("Saisir une valeur entre 1 et 6300 kVA. Valeur par défaut 250" , "")' 
+      onfocus=document.forms[0].cPui.focus() size=8 value=0 
+      name=cC_1></FONT><FONT face=Arial size=1><O:P></FONT></P></TD>
+    <TD width=151 bgColor=#e0e0ff><FONT face=Arial size=1>
+      <P style="MARGIN-LEFT: 20px"></FONT><FONT face=Arial color=#0000ff 
+      size=1><INPUT 
+      onmouseover='GEN_Afficher_Aide ("Saisir une valeur entre 1 et 6300 kVA. Valeur par défaut 250" , "")' 
+      onfocus=document.forms[0].cPui.focus() size=8 value=250 
+      name=cT_1></FONT><FONT face=Arial size=1><O:P></FONT></P></TD></TR>
+  <TR vAlign=top>
+    <TD width=151 bgColor=#e0e0ff><FONT face=Arial size=1>
+      <P style="MARGIN-LEFT: 20px"></FONT><FONT face=Arial color=#0000ff 
+      size=1><INPUT 
+      onmouseover='GEN_Afficher_Aide ("Saisir une valeur entre 1 et 6300 kVA. Valeur par défaut 250" , "")' 
+      onfocus=document.forms[0].cPui.focus() size=8 value=0 
+      name=cP_2></FONT><B><FONT face=Arial color=#ffff00 size=1> 
+      </FONT></B><B><FONT face=Arial color=#ff0000 size=1>kVAR</FONT></B><FONT 
+      face=Arial size=1><O:P></FONT></P></TD>
+    <TD width=151 bgColor=#e0e0ff><FONT face=Arial size=1>
+      <P style="MARGIN-LEFT: 20px"></FONT><FONT face=Arial color=#0000ff 
+      size=1><INPUT 
+      onmouseover='GEN_Afficher_Aide ("Saisir une valeur entre 1 et 6300 kVA. Valeur par défaut 250" , "")' 
+      onfocus=document.forms[0].cPui.focus() size=8 value=0 
+      name=cC_2></FONT><FONT face=Arial size=1><O:P></FONT></P></TD>
+    <TD width=151 bgColor=#e0e0ff><FONT face=Arial size=1>
+      <P style="MARGIN-LEFT: 20px"></FONT><FONT face=Arial color=#0000ff 
+      size=1><INPUT 
+      onmouseover='GEN_Afficher_Aide ("Saisir une valeur entre 1 et 6300 kVA. Valeur par défaut 250" , "")' 
+      onfocus=document.forms[0].cPui.focus() size=8 value=0 
+      name=cT_2></FONT><FONT face=Arial size=1><O:P></FONT></P></TD></TR>
+  <TR vAlign=top>
+    <TD width=151 bgColor=#e0e0ff><FONT face=Arial size=1>
+      <P style="MARGIN-LEFT: 20px"></FONT><FONT face=Arial color=#0000ff 
+      size=1><INPUT 
+      onmouseover='GEN_Afficher_Aide ("Saisir une valeur entre 1 et 6300 kVA. Valeur par défaut 250" , "")' 
+      onfocus=document.forms[0].cPui.focus() size=8 value=0 
+      name=cP_3></FONT><B><FONT face=Arial color=#ff0000 size=1> 
+      kVAR</FONT></B><FONT face=Arial size=1><O:P></FONT></P></TD>
+    <TD width=151 bgColor=#e0e0ff><FONT face=Arial size=1>
+      <P style="MARGIN-LEFT: 20px"></FONT><FONT face=Arial color=#0000ff 
+      size=1><INPUT 
+      onmouseover='GEN_Afficher_Aide ("Saisir une valeur entre 1 et 6300 kVA. Valeur par défaut 250" , "")' 
+      onfocus=document.forms[0].cPui.focus() size=8 value=0 
+      name=cC_3></FONT><FONT face=Arial size=1><O:P></FONT></P></TD>
+    <TD width=151 bgColor=#e0e0ff><FONT face=Arial size=1>
+      <P style="MARGIN-LEFT: 20px"></FONT><FONT face=Arial color=#0000ff 
+      size=1><INPUT 
+      onmouseover='GEN_Afficher_Aide ("Saisir une valeur entre 1 et 6300 kVA. Valeur par défaut 250" , "")' 
+      onfocus=document.forms[0].cPui.focus() size=8 value=0 
+      name=cT_3></FONT><FONT face=Arial size=1><O:P></FONT></P></TD></TR>
+  <TR vAlign=top>
+    <TD width=151 bgColor=#e0e0ff><FONT face=Arial size=1>
+      <P style="MARGIN-LEFT: 20px"></FONT><FONT face=Arial color=#0000ff 
+      size=1><INPUT 
+      onmouseover='GEN_Afficher_Aide ("Saisir une valeur entre 1 et 6300 kVA. Valeur par défaut 250" , "")' 
+      onfocus=document.forms[0].cPui.focus() size=8 value=0 
+      name=cP_4></FONT><B><FONT face=Arial color=#ffff00 size=1> 
+      </FONT></B><B><FONT face=Arial color=#ff0000 size=1>kVAR</FONT></B><FONT 
+      face=Arial size=1><O:P></FONT></P></TD>
+    <TD width=151 bgColor=#e0e0ff><FONT face=Arial size=1>
+      <P style="MARGIN-LEFT: 20px"></FONT><FONT face=Arial color=#0000ff 
+      size=1><INPUT 
+      onmouseover='GEN_Afficher_Aide ("Saisir une valeur entre 1 et 6300 kVA. Valeur par défaut 250" , "")' 
+      onfocus=document.forms[0].cPui.focus() size=8 value=0 
+      name=cC_4></FONT><FONT face=Arial size=1><O:P></FONT></P></TD>
+    <TD width=151 bgColor=#e0e0ff><FONT face=Arial size=1>
+      <P style="MARGIN-LEFT: 20px"></FONT><FONT face=Arial color=#0000ff 
+      size=1><INPUT 
+      onmouseover='GEN_Afficher_Aide ("Saisir une valeur entre 1 et 6300 kVA. Valeur par défaut 250" , "")' 
+      onfocus=document.forms[0].cPui.focus() size=8 value=0 
+      name=cT_4></FONT><FONT face=Arial size=1><O:P></FONT></P></TD></TR>
+  <TR vAlign=top>
+    <TD width=151 bgColor=#e0e0ff><FONT face=Arial size=1>
+      <P style="MARGIN-LEFT: 20px"></FONT><FONT face=Arial color=#0000ff 
+      size=1><INPUT 
+      onmouseover='GEN_Afficher_Aide ("Saisir une valeur entre 1 et 6300 kVA. Valeur par défaut 250" , "")' 
+      onfocus=document.forms[0].cPui.focus() size=8 value=0 
+      name=cP_5></FONT><B><FONT face=Arial color=#ff0000 size=1> 
+      kVAR</FONT></B><FONT face=Arial size=1><O:P></FONT></P></TD>
+    <TD width=151 bgColor=#e0e0ff><FONT face=Arial size=1>
+      <P style="MARGIN-LEFT: 20px"></FONT><FONT face=Arial color=#0000ff 
+      size=1><INPUT 
+      onmouseover='GEN_Afficher_Aide ("Saisir une valeur entre 1 et 6300 kVA. Valeur par défaut 250" , "")' 
+      onfocus=document.forms[0].cPui.focus() size=8 value=0 
+      name=cC_5></FONT><FONT face=Arial size=1><O:P></FONT></P></TD>
+    <TD width=151 bgColor=#e0e0ff><FONT face=Arial size=1>
+      <P style="MARGIN-LEFT: 20px"></FONT><FONT face=Arial color=#0000ff 
+      size=1><INPUT 
+      onmouseover='GEN_Afficher_Aide ("Saisir une valeur entre 1 et 6300 kVA. Valeur par défaut 250" , "")' 
+      onfocus=document.forms[0].cPui.focus() size=8 value=0 
+      name=cT_5></FONT><FONT face=Arial size=1><O:P></FONT></P></TD></TR>
+  <TR vAlign=top>
+    <TD width=151 bgColor=#e0e0ff><FONT face=Arial size=1>
+      <P style="MARGIN-LEFT: 20px"></FONT><FONT face=Arial color=#0000ff 
+      size=1><INPUT 
+      onmouseover='GEN_Afficher_Aide ("Saisir une valeur entre 1 et 6300 kVA. Valeur par défaut 250" , "")' 
+      onfocus=document.forms[0].cPui.focus() size=8 value=0 
+      name=cP_6></FONT><B><FONT face=Arial color=#ff0000 size=1> 
+      kVAR</FONT></B><FONT face=Arial size=1><O:P></FONT></P></TD>
+    <TD width=151 bgColor=#e0e0ff><FONT face=Arial size=1>
+      <P style="MARGIN-LEFT: 20px"></FONT><FONT face=Arial color=#0000ff 
+      size=1><INPUT 
+      onmouseover='GEN_Afficher_Aide ("Saisir une valeur entre 1 et 6300 kVA. Valeur par défaut 250" , "")' 
+      onfocus=document.forms[0].cPui.focus() size=8 value=0 
+      name=cC_6></FONT><FONT face=Arial size=1><O:P></FONT></P></TD>
+    <TD width=151 bgColor=#e0e0ff><FONT face=Arial size=1>
+      <P style="MARGIN-LEFT: 20px"></FONT><FONT face=Arial color=#0000ff 
+      size=1><INPUT 
+      onmouseover='GEN_Afficher_Aide ("Saisir une valeur entre 1 et 6300 kVA. Valeur par défaut 250" , "")' 
+      onfocus=document.forms[0].cPui.focus() size=8 value=0 
+      name=cT_6></FONT><FONT face=Arial size=1><O:P></FONT></P></TD></TR>
+  <TR vAlign=top>
+    <TD width=151 bgColor=#e0e0ff><FONT face=Arial size=1>
+      <P style="MARGIN-LEFT: 20px"></FONT><FONT face=Arial color=#0000ff 
+      size=1><INPUT 
+      onmouseover='GEN_Afficher_Aide ("Saisir une valeur entre 1 et 6300 kVA. Valeur par défaut 250" , "")' 
+      onfocus=document.forms[0].cPui.focus() size=8 value=0 
+      name=cP_7></FONT><B><FONT face=Arial color=#ff0000 size=1> 
+      kVAR</FONT></B><FONT face=Arial size=1><O:P></FONT></P></TD>
+    <TD width=151 bgColor=#e0e0ff><FONT face=Arial size=1>
+      <P style="MARGIN-LEFT: 20px"></FONT><FONT face=Arial color=#0000ff 
+      size=1><INPUT 
+      onmouseover='GEN_Afficher_Aide ("Saisir une valeur entre 1 et 6300 kVA. Valeur par défaut 250" , "")' 
+      onfocus=document.forms[0].cPui.focus() size=8 value=0 
+      name=cC_7></FONT><FONT face=Arial size=1><O:P></FONT></P></TD>
+    <TD width=151 bgColor=#e0e0ff><FONT face=Arial size=1>
+      <P style="MARGIN-LEFT: 20px"></FONT><FONT face=Arial color=#0000ff 
+      size=1><INPUT 
+      onmouseover='GEN_Afficher_Aide ("Saisir une valeur entre 1 et 6300 kVA. Valeur par défaut 250" , "")' 
+      onfocus=document.forms[0].cPui.focus() size=8 value=0 
+      name=cT_7></FONT><FONT face=Arial size=1><O:P></FONT></P></TD></TR>
+  <TR vAlign=top>
+    <TD width=151 bgColor=#e0e0ff><FONT face=Arial size=1>
+      <P style="MARGIN-LEFT: 20px"></FONT><FONT face=Arial color=#0000ff 
+      size=1><INPUT 
+      onmouseover='GEN_Afficher_Aide ("Saisir une valeur entre 1 et 6300 kVA. Valeur par défaut 250" , "")' 
+      onfocus=document.forms[0].cPui.focus() size=8 value=0 
+      name=cP_8></FONT><B><FONT face=Arial color=#ff0000 size=1> 
+      kVAR</FONT></B><FONT face=Arial size=1><O:P></FONT></P></TD>
+    <TD width=151 bgColor=#e0e0ff><FONT face=Arial size=1>
+      <P style="MARGIN-LEFT: 20px"></FONT><FONT face=Arial color=#0000ff 
+      size=1><INPUT 
+      onmouseover='GEN_Afficher_Aide ("Saisir une valeur entre 1 et 6300 kVA. Valeur par défaut 250" , "")' 
+      onfocus=document.forms[0].cPui.focus() size=8 value=0 
+      name=cC_8></FONT><FONT face=Arial size=1><O:P></FONT></P></TD>
+    <TD width=151 bgColor=#e0e0ff><FONT face=Arial size=1>
+      <P style="MARGIN-LEFT: 20px"></FONT><FONT face=Arial color=#0000ff 
+      size=1><INPUT 
+      onmouseover='GEN_Afficher_Aide ("Saisir une valeur entre 1 et 6300 kVA. Valeur par défaut 250" , "")' 
+      onfocus=document.forms[0].cPui.focus() size=8 value=0 
+      name=cT_8></FONT><FONT face=Arial size=1><O:P></FONT></P></TD></TR>
+  <TR vAlign=top>
+    <TD width=151 bgColor=#e0e0ff><FONT face=Arial size=1>
+      <P style="MARGIN-LEFT: 20px"></FONT><FONT face=Arial color=#0000ff 
+      size=1><INPUT 
+      onmouseover='GEN_Afficher_Aide ("Saisir une valeur entre 1 et 6300 kVA. Valeur par défaut 250" , "")' 
+      onfocus=document.forms[0].cPui.focus() size=8 value=0 
+      name=cP_9></FONT><B><FONT face=Arial color=#ff0000 size=1> 
+      kVAR</FONT></B><FONT face=Arial size=1><O:P></FONT></P></TD>
+    <TD width=151 bgColor=#e0e0ff><FONT face=Arial size=1>
+      <P style="MARGIN-LEFT: 20px"></FONT><FONT face=Arial color=#0000ff 
+      size=1><INPUT 
+      onmouseover='GEN_Afficher_Aide ("Saisir une valeur entre 1 et 6300 kVA. Valeur par défaut 250" , "")' 
+      onfocus=document.forms[0].cPui.focus() size=8 value=0 
+      name=cC_9></FONT><FONT face=Arial size=1><O:P></FONT></P></TD>
+    <TD width=151 bgColor=#e0e0ff><FONT face=Arial size=1>
+      <P style="MARGIN-LEFT: 20px"></FONT><FONT face=Arial color=#0000ff 
+      size=1><INPUT 
+      onmouseover='GEN_Afficher_Aide ("Saisir une valeur entre 1 et 6300 kVA. Valeur par défaut 250" , "")' 
+      onfocus=document.forms[0].cPui.focus() size=8 value=0 
+      name=cT_9></FONT><FONT face=Arial size=1><O:P></FONT></P></TD></TR>
+  <TR vAlign=top>
+    <TD width=151 bgColor=#e0e0ff><FONT face=Arial size=1>
+      <P style="MARGIN-LEFT: 20px"></FONT><FONT face=Arial color=#0000ff 
+      size=1><INPUT 
+      onmouseover='GEN_Afficher_Aide ("Saisir une valeur entre 1 et 6300 kVA. Valeur par défaut 250" , "")' 
+      onfocus=document.forms[0].cPui.focus() size=8 value=0 
+      name=cP_10></FONT><B><FONT face=Arial color=#ffff00 size=1> 
+      </FONT></B><B><FONT face=Arial color=#ff0000 size=1>kVAR</FONT></B><FONT 
+      face=Arial size=1><O:P></FONT></P></TD>
+    <TD width=151 bgColor=#e0e0ff><FONT face=Arial size=1>
+      <P style="MARGIN-LEFT: 20px"></FONT><FONT face=Arial color=#0000ff 
+      size=1><INPUT 
+      onmouseover='GEN_Afficher_Aide ("Saisir une valeur entre 1 et 6300 kVA. Valeur par défaut 250" , "")' 
+      onfocus=document.forms[0].cPui.focus() size=8 value=0 
+      name=cC_10></FONT><FONT face=Arial size=1><O:P></FONT></P></TD>
+    <TD width=151 bgColor=#e0e0ff><FONT face=Arial size=1>
+      <P style="MARGIN-LEFT: 20px"></FONT><FONT face=Arial color=#0000ff 
+      size=1><INPUT 
+      onmouseover='GEN_Afficher_Aide ("Saisir une valeur entre 1 et 6300 kVA. Valeur par défaut 250" , "")' 
+      onfocus=document.forms[0].cPui.focus() size=8 value=0 
+      name=cT_10></FONT><FONT face=Arial size=1><O:P></FONT></P></TD></TR>
+  <TR vAlign=top>
+    <TD width=151 bgColor=#e0e0ff><IMG height=1 alt="" 
+      src="Energie%20reactive_fichiers/ecblank.gif" width=1 border=0></TD>
+    <TD width=151 bgColor=#e0e0ff><IMG height=1 alt="" 
+      src="Energie%20reactive_fichiers/ecblank.gif" width=1 border=0></TD>
+    <TD width=151 bgColor=#e0e0ff><IMG height=1 alt="" 
+      src="Energie%20reactive_fichiers/ecblank.gif" width=1 border=0></TD></TR>
+  <TR vAlign=top>
+    <TD width=151 bgColor=#8080ff>
+      <DIV align=center><A 
+      onmouseover='GEN_Afficher_Aide ("","Cliquez pour Affecter les valeurs par défaut")&#13;' 
+      onclick="GEN_Initialiser_Ent ();&#13;if (! bRAZ) GEN_Initialiser_Res ();&#13;&#13;&#13;&#13;&#13;return false;" 
+      href="http://www.elec-planet.com:8080/elecplanet/Calcul.nsf/"><B><FONT 
+      face=Arial color=#ffff00>Valeurs par défaut</FONT></B></A><B><FONT 
+      face=Arial color=#ffff00> </FONT></B></DIV></TD>
+    <TD width=151 bgColor=#8080ff>
+      <DIV align=center><A 
+      onmouseover='GEN_Afficher_Aide ("", "Cliquez pour mettre à zéro les résultats.")' 
+      onclick="GEN_Initialiser_Res ()&#13;&#13;&#13;&#13;&#13;return false;" 
+      href="http://www.elec-planet.com:8080/elecplanet/Calcul.nsf/"><B><FONT 
+      face=Arial color=#ffff00>Raz</FONT></B></A></DIV></TD>
+    <TD width=151 bgColor=#8080ff>
+      <DIV align=center><A 
+      onmouseover="GEN_Afficher_Aide (&quot;&quot;, &quot;Cliquez pour Calculer\nAttention les données d'entrées peuvent être modifiées&quot;)" 
+      onclick='tst =  window.location.href;&#13;position = tst.lastIndexOf("/");&#13;url = tst.substring(0,position) + "/ReRoute?openform";&#13;&#13;if (window.document.forms[0].UserName.value == "Anonymous")&#13;&#9;window.open(url,target="cadres_contenu");&#13;else&#13;{&#13;P = new Array (10);&#13;T = new Array (10);&#13;C = new Array (10);&#13;&#13;&#13;// Entrées&#13;Pui = 0;&#13;Co=0.000;&#13;&#13;// Sorties&#13;Ta = 0.00;&#13;P_1 = 0;&#13;C_1 = 0.00;&#13;T_1 = 0.00;&#13;P_2 = 0;&#13;C_2 = 0.00;&#13;T_2 = 0.00;&#13;P_3 = 0;&#13;C_3 = 0.00;&#13;T_3 = 0.00;&#13;P_4 = 0;&#13;C_4 = 0.00;&#13;T_4 = 0.00;&#13;P_5 = 0;&#13;C_5 = 0.00;&#13;T_5 = 0.00;&#13;P_6 = 0;&#13;C_6 = 0.00;&#13;T_6 = 0.00;&#13;P_7 = 0;&#13;C_7 = 0.00;&#13;T_7 = 0.00;&#13;P_8 = 0;&#13;C_8 = 0.00;&#13;T_8 = 0.00;&#13;P_9 = 0;&#13;C_9 = 0.00;&#13;T_9 = 0.00;&#13;P_10 = 0;&#13;C_10 = 0.00;&#13;T_10 = 0.00;&#13;sInfo ="";&#13;&#13;// VAR CALCUL INTERMEDIAIRES&#13;bFin = true;&#13;Sf=0.00;&#13;Q=0;&#13;J=0;&#13;&#13;GEN_Initialiser_Res ();&#13;&#13;with(window.document.forms[0])&#13;     {&#13;      Pui = parseFloat (cPui.value);&#13;      Co =parseFloat (cCo.value);&#13;      }&#13;&#13;// Début Calcul&#13;     if (Pui==0)&#13;     &#9;Pui =250;&#13;     if (Co==0)&#13;     &#9;Co =0.8;&#13;&#9;Sf=Math.sqrt(1-Co*Co);&#13;&#9;Ta = Sf/Co;&#13;&#9;Q=Pui*Sf/Co;&#13;&#9;for (var i=1; i <11 ; i++)&#13;&#9;{&#13;&#9;&#9;P[i]= Q*i/10;&#13;&#9;&#9;J = (10-i)/10;&#13;&#9;&#9;T[i] = (J*Q) / Pui ;&#13;&#9;&#9;C[i]=Math.cos(Math.atan(T[i]));&#13;&#9;};&#13;&#13;P_1 = P[1];&#13;C_1 = C[1];&#13;T_1 = T[1];&#13;P_2 = P[2];&#13;C_2 = C[2];&#13;T_2 = T[2];&#13;P_3 = P[3];&#13;C_3 = C[3];&#13;T_3 = T[3];&#13;P_4 = P[4];&#13;C_4 = C[4];&#13;T_4 = T[4];&#13;P_5 = P[5];&#13;C_5 = C[5];&#13;T_5 = T[5];&#13;P_6 = P[6];&#13;C_6 = C[6];&#13;T_6 = T[6];&#13;P_7 = P[7];&#13;C_7 = C[7];&#13;T_7 = T[7];&#13;P_8 = P[8];&#13;C_8 = C[8];&#13;T_8 = T[8];&#13;P_9 = P[9];&#13;C_9 = C[9];&#13;T_9 = T[9];&#13;P_10 = P[10];&#13;C_10 = C[10];&#13;T_10= T[10];&#13;&#13;// Fin Calcul&#13;&#13;if (bFin == true )&#13;    {&#13;// Affectation Resultat&#13;      GEN_Affecter_Res (Ta,P_1,C_1,T_1,P_2,C_2,T_2,P_3,C_3,T_3,P_4,C_4,T_4,P_5,C_5,T_5,P_6,C_6,T_6,P_7,C_7,T_7,P_8,C_8,T_8,P_9,C_9,T_9,P_10,C_10,T_10,sInfo)&#13;      }&#13;else&#13;     {&#13;     GEN_Affecter_Res (0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,"Problème Critique")&#13;     }&#13;}&#13;&#13;return false;' 
+      href="http://www.elec-planet.com:8080/elecplanet/Calcul.nsf/"><B><FONT 
+      face=Arial color=#ffff00>Calculer</FONT></B></A></DIV></TD></TR>
+  <TR vAlign=top>
+    <TD width=454 bgColor=#ffe1b0 colSpan=3><B><I><FONT face=Arial 
+      color=#ff0000 size=1><TEXTAREA onfocus=document.forms[0].cPui.focus() name=cInfo rows=3 cols=75></TEXTAREA> 
+      </FONT></I></B><BR><B><FONT face=Arial 
+size=1><BR></FONT></B></TD></TR></TBODY></TABLE><INPUT type=hidden 
+value=BEMELINON1 name=UserName></FORM></BODY></HTML>

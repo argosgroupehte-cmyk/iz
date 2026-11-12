@@ -1,0 +1,280 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0095)http://www.elec-planet.com:8080/elecplanet/Calcul.nsf/5ea2ab92ea243067c1256b1800329cce?OpenForm -->
+<HTML><HEAD>
+<META http-equiv=Content-Type content="text/html; charset=utf-8">
+<SCRIPT language=JavaScript>
+<!-- 
+var bRAZ = true;
+
+function GEN_Afficher_Aide (sStatus , sInfo)
+{
+if ( sStatus == "" )
+    { document.forms[0].cInfo.value = sInfo; }
+else
+    { document.forms[0].cInfo.value = sStatus + "\n" + sInfo; }
+}
+
+function GEN_Initialiser_Res ()
+{
+  with (document.forms[0])
+  {
+  cDir.value=0;
+  cTc.value=0;
+  cIcc.value=0;
+  cTfus.value=0;
+  cObs.value="";
+  bRAZ = true;
+  }
+}
+function GEN_Affecter_Res (Dir,Tc,Icc,Tfus,sObs,sInfo)
+{
+  with (document.forms[0])
+  {
+ // listes  
+  
+  // valeurs
+  cDir.value = Math.round(Dir);
+  cTc.value = Math.round(Tc*1000)/1000;
+  cIcc.value = Math.round(Icc);
+  cTfus.value = Math.round(Tfus*1000)/1000;
+  cObs.value = sObs;
+  cInfo.value = sInfo;
+  bRAZ= false;
+  }
+}
+function GEN_Initialiser_Ent ()
+{
+  with (document.forms[0])
+  {
+  // listes
+   cCircuit.options[3].selected =true ;
+   cSPh.options[1].selected =true ;
+   cSNe.options[2].selected =true ;
+   cCTProt.options[0].selected =true ;  
+   // radio
+   cNatPh[0].checked =true;
+   cIsolationPh[0].checked =true;
+  // valeurs
+  cUN.value=400;
+  cLongueur.value=25;
+  }
+}
+
+
+
+
+// -->
+</SCRIPT>
+
+<SCRIPT language=JavaScript>
+<!-- 
+document._domino_target = "_self";
+function _doClick(v, o, t, h) {
+  var form = document._DominoForm;
+  if (form.onsubmit) {
+     var retVal = form.onsubmit();
+     if (typeof retVal == "boolean" && retVal == false)
+       return false;
+  }
+  var target = document._domino_target;
+  if (o.href != null) {
+    if (o.target != null)
+       target = o.target;
+  } else {
+    if (t != null)
+      target = t;
+  }
+  form.target = target;
+  form.__Click.value = v;
+  if (h != null)
+    form.action += h;
+  form.submit();
+  return false;
+}
+// -->
+</SCRIPT>
+
+<META content="MSHTML 6.00.6000.16809" name=GENERATOR></HEAD>
+<BODY text=#000000 bgColor=#ffffff leftMargin=5 topMargin=0>
+<FORM name=_DominoForm 
+action=/elecplanet/Calcul.nsf/5ea2ab92ea243067c1256b1800329cce?OpenForm&amp;Seq=1 
+method=post><INPUT type=hidden value=0 name=__Click> 
+<TABLE cellSpacing=0 cellPadding=0 border=0>
+  <TBODY>
+  <TR vAlign=top>
+    <TD width=576 bgColor=#8080ff colSpan=3>
+      <DIV align=center><B><FONT face="Times New Roman" color=#ffffff 
+      size=4>Calcul courant de court-circuit minimal </FONT></B><B><FONT 
+      face="Times New Roman" color=#ffffff>(UTE C 15-105 
+    C.2.3.)</FONT></B></DIV></TD></TR>
+  <TR vAlign=top>
+    <TD width=351 bgColor=#bfbfff colSpan=2>
+      <DIV align=center><B><I><FONT face=Arial color=#ffff00 
+      size=2>Caractéristiques (Données à saisir)</FONT></I></B></DIV></TD>
+    <TD width=225 bgColor=#e0e0ff>
+      <DIV align=center><B><I><FONT face=Arial color=#ff0000 size=2>Résultats du 
+      calcul</FONT></I></B></DIV></TD></TR>
+  <TR vAlign=top>
+    <TD width=176 bgColor=#8080ff><FONT face=Arial color=#ffff00 
+      size=1>Circuit</FONT></TD>
+    <TD width=176 bgColor=#8080ff><FONT face=Arial color=#ffff00 
+      size=1>Tension Nominale</FONT></TD>
+    <TD width=225 bgColor=#8080ff><FONT face=Arial color=#ffff00 
+      size=1>Réglage magnétique ou calibre max (disjoncteur ou 
+  fusible)</FONT></TD></TR>
+  <TR vAlign=top>
+    <TD width=176 bgColor=#bfbfff><FONT face=Arial color=#0000ff 
+      size=1><SELECT 
+      onfocus='if (! bRAZ) GEN_Initialiser_Res ();&#13;GEN_Afficher_Aide ("Sélectionnez le type de votre circuit, valeur par défaut Triphasé." , "")' 
+      onclick="nCircuit=0;&#13;with(window.document.forms[0])&#13;     {&#13;      for (n=0; n<cCircuit.length; n++) &#13;          {&#13;            if (cCircuit.options[n].selected) &#13;                {&#13;                 nCircuit = n+1;&#13;                }&#13;          }&#13;       }&#13;       &#13;if (nCircuit ==2 || nCircuit ==3)&#13;   document.forms[0].cSNe.options[0].selected =true ;&#13;else&#13;&#9;if(document.forms[0].cSNe.options[0].selected ==true)&#13;&#9;{&#13;&#9;&#9;for (var i=0; i<=18;i++)&#13;&#9;&#9;{&#13;&#9;&#9;&#9;if(document.forms[0].cSPh.options[i].selected ==true)&#13;&#9;&#9;&#9;{&#13;&#9;&#9;&#9;&#9;document.forms[0].cSNe.options[i+1].selected =true;&#13;&#9;&#9;&#9;&#9;break;&#13;&#9;&#9;&#9;}&#9;&#13;&#9;&#9;};&#9;&#13;&#9;}&#13;&#13;if (! bRAZ) GEN_Initialiser_Res ();" 
+      name=cCircuit> <OPTION value=1>Monophasé Ph/Ne<OPTION value=2>Biphasé 
+        Ph/Ph<OPTION value=3>Triphasé<OPTION value=4 selected>Triphasé + 
+        N</OPTION></SELECT> </FONT></TD>
+    <TD width=176 bgColor=#bfbfff><FONT face=Arial color=#0000ff size=1><INPUT 
+      onblur='sVal =new String(document.forms[0].cUN.value);&#13;sVal = sVal.replace ("," ,".");&#13;nVal = parseFloat (sVal );&#13;var bPb = false;&#13;if ( isNaN(nVal) == false )&#13;   {&#13;   if (nVal > 1000) {&#13;      window.alert ("La Tension ne peut-être supèrieure à 1000 Volts.");&#13;      nVal = 1000;&#13;       };&#13;   if (nVal <12) {&#13;       window.alert ("La Tension ne peut-être inférieure à 12 Volts.");&#13;       nVal = 12;&#13;       };&#13;   }&#13;else&#13;  {&#13;   window.alert ("Vous devez saisir une valeur numérique");&#13;   bPb =true;&#13;   nVal = 400;&#13;   }&#13;if (bPb == true)   document.forms[0].cUN.focus();&#13;document.forms[0].cUN.value= nVal;&#13;&#13;&#13;&#13;&#13;&#13;&#13;&#13;&#13;&#13;&#13;&#13;' 
+      onmouseover='GEN_Afficher_Aide ("Saisir une valeur entre 12 et 1000 volts, valeur par défaut 400 Volts" , "")' 
+      onfocus="if (! bRAZ) GEN_Initialiser_Res ();" 
+      onclick="if (! bRAZ) GEN_Initialiser_Res ();" size=8 value=400 
+      name=cUN></FONT><B><FONT face=Arial size=1> </FONT></B><B><FONT face=Arial 
+      color=#ffff00 size=1>V</FONT></B></TD>
+    <TD width=225 bgColor=#e0e0ff><FONT face=Arial size=1>
+      <P style="MARGIN-LEFT: 20px"></FONT><FONT face=Arial color=#ff0000 
+      size=1><INPUT onfocus=document.forms[0].cUN.focus() size=8 value=0 
+      name=cDir></FONT><FONT face=Arial size=1> </FONT><B><FONT face=Arial 
+      color=#ff0000 size=1>A</FONT></B><FONT face=Arial 
+    size=1><O:P></FONT></P></TD></TR>
+  <TR vAlign=top>
+    <TD width=176 bgColor=#8080ff><IMG height=1 alt="" 
+      src="Icc_Ik%20min_fichiers/ecblank.gif" width=1 border=0></TD>
+    <TD width=176 bgColor=#8080ff><FONT face=Arial color=#ffff00 
+      size=1>Longueur</FONT></TD>
+    <TD width=225 bgColor=#8080ff><FONT face=Arial color=#ffff00 size=1>Temps 
+      coupure contraintes thermiques</FONT></TD></TR>
+  <TR vAlign=top>
+    <TD width=176 bgColor=#bfbfff><IMG height=1 alt="" 
+      src="Icc_Ik%20min_fichiers/ecblank.gif" width=1 border=0></TD>
+    <TD width=176 bgColor=#bfbfff><FONT face=Arial color=#0000ff size=1><INPUT 
+      onblur='sVal =new String(document.forms[0].cLongueur.value);&#13;sVal = sVal.replace ("," ,".");&#13;nVal = parseFloat (sVal );&#13;var bPb = false;&#13;if ( isNaN(nVal) == false )&#13;   {&#13;    if (nVal > 4000)&#13;        {&#13;        window.alert ("La longueur du conducteur ne peut être supérieure à 4000 mètres");&#13;        nVal= 4000;&#13;        }&#13;     if (nVal <0.1)&#13;        {&#13;        window.alert ("La longueur du conducteur ne peut-être inférieure à 0.1 mètre");&#13;        nVal= 0.1;&#13;        }&#13;    }&#13;else&#13;  {&#13;   window.alert ("Vous devez saisir une valeur numérique");&#13;   bPb =true;&#13;   nVal = 25;&#13;   }&#13;if (bPb == true)   document.forms[0].cLongueur.focus();&#13;document.forms[0].cLongueur.value= nVal;&#13;&#13;&#13;&#13;&#13;&#13;&#13;&#13;' 
+      onmouseover='GEN_Afficher_Aide ("Saisir une valeur entre 0.1 et 4000 mètres, valeur par défaut 25 mètres" , "")' 
+      onfocus="if (! bRAZ) GEN_Initialiser_Res ();" 
+      onclick="if (! bRAZ) GEN_Initialiser_Res ();" size=8 value=25 
+      name=cLongueur></FONT><FONT face=Arial size=1> </FONT><B><FONT face=Arial 
+      color=#ffff00 size=1>m</FONT></B></TD>
+    <TD width=225 bgColor=#e0e0ff><FONT face=Arial size=1>
+      <P style="MARGIN-LEFT: 10px"></FONT><FONT face=Arial color=#ff0000 
+      size=1>&lt;</FONT><FONT face=Arial color=#ff0000 size=1> <INPUT 
+      onfocus=document.forms[0].cUN.focus() size=8 value=0 name=cTc></FONT><FONT 
+      face=Arial size=1> </FONT><B><FONT face=Arial color=#ff0000 
+      size=1>s</FONT></B><FONT face=Arial size=1><O:P></FONT></P></TD></TR>
+  <TR vAlign=top>
+    <TD width=176 bgColor=#8080ff><FONT face=Arial color=#ffff00 
+      size=1>Section phase</FONT></TD>
+    <TD width=176 bgColor=#8080ff><FONT face=Arial color=#ffff00 size=1>Nature 
+      des conducteurs</FONT></TD>
+    <TD width=225 bgColor=#8080ff><FONT face=Arial color=#ffff00 
+      size=1>Courant de court-circuit minimal</FONT></TD></TR>
+  <TR vAlign=top>
+    <TD width=176 bgColor=#bfbfff><FONT face=Arial size=1>
+      <P style="MARGIN-LEFT: 20px"></FONT><FONT face=Arial color=#0000ff 
+      size=1><SELECT 
+      onfocus='if (! bRAZ) GEN_Initialiser_Res ();&#13;GEN_Afficher_Aide ("Saisir une valeur entre 1.5 et 300 mm2, valeur par défaut 2.5 mm2" , "")' 
+      onclick="nCircuit =0;&#13;with(window.document.forms[0])&#13;{&#13;      for (n=0; n<cCircuit.length; n++) &#13;     {&#13;            if (cCircuit.options[n].selected) &#13;                 nCircuit = n+1;&#13;     };&#13;}&#13;       &#13;if (nCircuit ==2 || nCircuit ==3)&#13;   document.forms[0].cSNe.options[0].selected =true ;&#13;else&#13;&#9;for (var i=0; i<=18;i++)&#13;&#9;{&#13;&#9;&#9;if(document.forms[0].cSPh.options[i].selected ==true)&#13;&#9;&#9;{&#13;&#9;&#9;&#9;document.forms[0].cSNe.options[i+1].selected =true;&#13;&#9;&#9;&#9;break;&#13;&#9;&#9;}&#9;&#13;&#9;};&#9;&#13;&#13;&#9;&#13;if (! bRAZ) GEN_Initialiser_Res ();&#13;&#9;&#13;" 
+      name=cSPh> <OPTION>1.5<OPTION 
+        selected>2.5<OPTION>4<OPTION>6<OPTION>10<OPTION>16<OPTION>25<OPTION>35<OPTION>50<OPTION>70<OPTION>95<OPTION>120<OPTION>150<OPTION>185<OPTION>240<OPTION>300</OPTION></SELECT> 
+      </FONT><FONT face=Arial size=1></FONT><B><FONT face=Arial color=#ffff00 
+      size=1>mm2</FONT></B><FONT face=Arial size=1><O:P></FONT></P></TD>
+    <TD width=176 bgColor=#bfbfff><FONT face=Arial color=#0000ff size=1><INPUT 
+      onmouseover='GEN_Afficher_Aide ("Choisissez Cuivre ou Aluminium, valeur par défaut Cuivre" , "")' 
+      onclick="if (! bRAZ) GEN_Initialiser_Res ();" type=radio CHECKED 
+      value=Cuivre name=cNatPh>Cuivre <INPUT 
+      onmouseover='GEN_Afficher_Aide ("Choisissez Cuivre ou Aluminium, valeur par défaut Cuivre" , "")' 
+      onclick="if (! bRAZ) GEN_Initialiser_Res ();" type=radio value=Aluminium 
+      name=cNatPh>Aluminium</FONT></TD>
+    <TD width=225 bgColor=#e0e0ff><FONT face=Arial size=1>
+      <P style="MARGIN-LEFT: 20px"></FONT><FONT face=Arial color=#ff0000 
+      size=1><INPUT onfocus=document.forms[0].cUN.focus() size=8 value=0 
+      name=cIcc></FONT><B><FONT face=Arial color=#ff0000 size=1> 
+      A</FONT></B><FONT face=Arial size=1><O:P></FONT></P></TD></TR>
+  <TR vAlign=top>
+    <TD width=176 bgColor=#8080ff><FONT face=Arial color=#ffff00 
+      size=1>Section neutre</FONT></TD>
+    <TD width=176 bgColor=#8080ff><FONT face=Arial color=#ffff00 
+      size=1>Isolation des conducteurs</FONT></TD>
+    <TD width=225 bgColor=#8080ff><FONT face=Arial color=#ffff00 size=1>Temps 
+      de fusion fusible</FONT></TD></TR>
+  <TR vAlign=top>
+    <TD width=176 bgColor=#bfbfff><FONT face=Arial size=1>
+      <P style="MARGIN-LEFT: 20px"></FONT><FONT face=Arial color=#0000ff 
+      size=1><SELECT 
+      onfocus='if (! bRAZ) GEN_Initialiser_Res ();&#13;GEN_Afficher_Aide ("Saisir une valeur entre 1.5 et 300 mm2, valeur par défaut 2.5 mm2" , "")' 
+      onclick="if (! bRAZ) GEN_Initialiser_Res ();&#13;&#13;nCircuit=0;&#13;nSNe=0;&#13;with(window.document.forms[0])&#13;{&#13;&#9;for (n=0; n<cCircuit.length; n++) &#13;&#9;{&#13;&#9;&#9;if (cCircuit.options[n].selected) &#13;     &#9;   nCircuit = n+1;&#13;&#9;};&#13;&#9;for (n=0; n<cSPh.length; n++) &#13;&#9;{&#13;&#9;&#9;if (cSPh.options[n].selected) &#13;     &#9;   nSPh = n+1;&#13;&#9;};&#13;}&#13;with(window.document.forms[0])&#13;{&#13;    &#9;for (n=0; n<cSNe.length; n++) &#13;   &#9;{&#13;         &#9;if (cSNe.options[n].selected) &#13;         &#9;{&#13;             &#9;nSNe=n;&#13;                if (nSNe >0 &amp;&amp; (nCircuit ==2 || nCircuit==3))&#13;    &#9;           {&#13;&#9;&#9;&#9;&#9;cSNe.options[0].selected =true ;&#13;         &#9;      &#9;window.alert(&quot;Pas de neutre dans l'installation&quot;)&#13;&#9;&#9;     &#9;document.forms[0].cUN.focus()       &#13;              &#9;  &#9;break;&#13;&#9;      &#9;}&#13;                if (nCircuit ==1 &amp;&amp; nSNe !=nSPh)&#13;    &#9;           {&#13;         &#9;     &#9;cSNe.options[nSPh].selected =true ;&#13;         &#9;      &#9;window.alert(&quot;Circuit mono, Section neutre = section phase&quot;)&#13;&#9;&#9;     &#9;document.forms[0].cUN.focus()       &#13;              &#9;  &#9;break;&#13;&#9;&#9;&#9;}&#13;&#9;&#9;&#9;if (nCircuit ==4 &amp;&amp; nSNe >nSPh)&#13;    &#9;          {&#13;         &#9;     &#9;cSNe.options[nSPh].selected =true ;&#13;&#9;&#9;     &#9;document.forms[0].cUN.focus()       &#13;              &#9;  &#9;break;&#13;&#9;&#9;&#9;}&#13;         &#9;}&#13;    &#9;}&#13;}&#9;&#13;&#9;&#13;&#13;" 
+      name=cSNe> <OPTION>0<OPTION>1.5<OPTION 
+        selected>2.5<OPTION>4<OPTION>6<OPTION>10<OPTION>16<OPTION>25<OPTION>35<OPTION>50<OPTION>70<OPTION>95<OPTION>120<OPTION>150<OPTION>185<OPTION>240<OPTION>300</OPTION></SELECT> 
+      </FONT><FONT face=Arial size=1></FONT><B><FONT face=Arial color=#ffff00 
+      size=1>mm2</FONT></B><FONT face=Arial size=1><O:P></FONT></P></TD>
+    <TD width=176 bgColor=#bfbfff><FONT face=Arial color=#0000ff size=1><INPUT 
+      onmouseover='sStatus ="Choisissez la matière de votre isolant PRC, PVC ou caoutchouc, valeur par défaut PRC";&#13;sInfo = "PRC = Polypropylène Réticulé, \nPVC= Polychlorure de vinyle"&#13;GEN_Afficher_Aide (sStatus , sInfo)' 
+      onclick="if (! bRAZ) GEN_Initialiser_Res ();" type=radio CHECKED value=PRC 
+      name=cIsolationPh>PRC <INPUT 
+      onmouseover='sStatus ="Choisissez la matière de votre isolant PRC, PVC ou caoutchouc, valeur par défaut PRC";&#13;sInfo = "PRC = Polypropylène Réticulé, \nPVC= Polychlorure de vinyle"&#13;GEN_Afficher_Aide (sStatus , sInfo)' 
+      onclick="if (! bRAZ) GEN_Initialiser_Res ();" type=radio value=PVC 
+      name=cIsolationPh>PVC <INPUT 
+      onmouseover='sStatus ="Choisissez la matière de votre isolant PRC, PVC ou caoutchouc, valeur par défaut PRC";&#13;sInfo = "PRC = Polypropylène Réticulé, \nPVC= Polychlorure de vinyle"&#13;GEN_Afficher_Aide (sStatus , sInfo)' 
+      onclick="if (! bRAZ) GEN_Initialiser_Res ();" type=radio value=Caoutchouc 
+      name=cIsolationPh>Caoutchouc</FONT></TD>
+    <TD width=225 bgColor=#e0e0ff><FONT face=Arial size=1>
+      <P style="MARGIN-LEFT: 20px"></FONT><FONT face=Arial color=#ff0000 
+      size=1><INPUT onfocus=document.forms[0].cUN.focus() size=8 value=0 
+      name=cTfus></FONT><FONT face=Arial size=1> </FONT><B><FONT face=Arial 
+      color=#ff0000 size=1>s</FONT></B><FONT face=Arial 
+    size=1><O:P></FONT></P></TD></TR>
+  <TR vAlign=top>
+    <TD width=176 bgColor=#8080ff><FONT face=Arial color=#ffff00 
+      size=1>Dispositif de protection</FONT></TD>
+    <TD width=176 bgColor=#8080ff><IMG height=1 alt="" 
+      src="Icc_Ik%20min_fichiers/ecblank.gif" width=1 border=0></TD>
+    <TD width=225 bgColor=#8080ff><FONT face=Arial color=#ffff00 
+      size=1>Observations</FONT></TD></TR>
+  <TR vAlign=top>
+    <TD width=351 bgColor=#bfbfff colSpan=2><FONT face=Arial color=#0000ff 
+      size=1><SELECT onclick="if (! bRAZ) GEN_Initialiser_Res ();" name=cCTProt> 
+        <OPTION 
+        value=_r8hkn6qh0gkg7asr1ctii0qbechqn6t3id5imo83fekg74pbcc5kn683dc5jmt0jkd5onap8_ 
+        selected>Disj à usage industriel ou relais magnétique<OPTION>Petit 
+        Disjoncteur Type U<OPTION>Petit Disjoncteur Type L<OPTION>Petit 
+        Disjoncteur Type B<OPTION>Petit Disjoncteur Type C<OPTION>Petit 
+        Disjoncteur Type D<OPTION>Fusible Gl<OPTION>Fusible aM 400 
+        V<OPTION>Fusible aM 500 V<OPTION>Fusible aM 660 V</OPTION></SELECT> 
+    </FONT></TD>
+    <TD width=225 bgColor=#e0e0ff><FONT face=Arial color=#ff0000 size=1><TEXTAREA name=cObs SIZE="8"></TEXTAREA> </FONT></TD></TR>
+  <TR vAlign=top>
+    <TD width=176 bgColor=#bfbfff>
+      <DIV align=center><B><FONT face=Arial color=#ffff00></FONT></B><A 
+      onmouseover='GEN_Afficher_Aide ("","Cliquez pour Affecter les valeurs par défaut")&#13;' 
+      onclick="GEN_Initialiser_Ent ();&#13;if (! bRAZ) GEN_Initialiser_Res ();&#13;&#13;&#13;&#13;&#13;return false;" 
+      href="http://www.elec-planet.com:8080/elecplanet/Calcul.nsf/"><B><FONT 
+      face=Arial color=#ffff00>Valeurs par défaut</FONT></B></A></DIV></TD>
+    <TD width=176 bgColor=#bfbfff>
+      <DIV align=center><A 
+      onmouseover='GEN_Afficher_Aide ("", "Cliquez pour mettre les résultats à zéro.")' 
+      onclick="GEN_Initialiser_Res ()&#13;&#13;&#13;&#13;&#13;return false;" 
+      href="http://www.elec-planet.com:8080/elecplanet/Calcul.nsf/"><B><FONT 
+      face=Arial color=#ffff00>Raz</FONT></B></A><B><FONT face=Arial 
+      color=#ffff00> </FONT></B></DIV></TD>
+    <TD width=225 bgColor=#bfbfff>
+      <DIV align=center><A 
+      onmouseover="GEN_Afficher_Aide (&quot;&quot;, &quot;Cliquez pour Calculer\nAttention les données d'entrées peuvent être modifiées&quot;)" 
+      onclick='tst =  window.location.href;&#13;position = tst.lastIndexOf("/");&#13;url = tst.substring(0,position) + "/ReRoute?openform";&#13;&#13;if (window.document.forms[0].UserName.value == "Anonymous")&#13;&#9;window.open(url,target="cadres_contenu");&#13;else&#13;{&#13;Section = new Array (19) ;&#13;Ro = new Array (2);&#13;&#13;// Entrées&#13;UN = 0;&#13;NatPh = 0;&#13;Circuit = 0;&#13;Longueur = 0.00;&#13;SPh = 0.00;&#13;NatPh=0.00;&#13;SNe =0.00;&#13;IsolationPh = 0 ;&#13;CTProt = 0;    &#13;&#13;// Sorties&#13;Dir = 0;&#13;Tc =0.000;&#13;Icc =0;&#13;Tfus=0.000;&#13;sObs ="";&#13;sInfo ="";&#13;// sInfo1="";&#13;// sInfo2="";&#13;&#13;// VAR CALCUL INTERMEDIAIRES&#13;ST =0.00; &#13;bFin = false;&#13;Res_20 =0.00;&#13;XL =0.00;&#13;&#13;Section[0]= 0;&#13;Section[1]= 1.5;&#13;Section[2]=2.5;&#13;Section[3]= 4;&#13;Section[4]=6;&#13;Section[5]= 10;&#13;Section[6]=16;&#13;Section[7]= 25;&#13;Section[8]=35;&#13;Section[9]= 50;&#13;Section[10]=70;&#13;Section[11]= 95;&#13;Section[12]=120;&#13;Section[13]=150;&#13;Section[14]= 185;&#13;Section[15]=240;&#13;Section[16]= 300;&#13;Section[17]=400;&#13;Section[18]=500;&#13;Section[19]= 630;&#13;&#13;Ro[1] =18.51;&#13;Ro[2]=29.41;&#13;&#13;&#13;CalDisjLU = new Array (13) ;&#13;CalDisjLU[0] = 0;&#13;CalDisjLU[1] = 5;&#13;CalDisjLU[2] = 8;&#13;CalDisjLU[3] = 10;&#13;CalDisjLU[4] = 14;&#13;CalDisjLU[5] = 15;&#13;CalDisjLU[6] = 20;&#13;CalDisjLU[7] = 25;&#13;CalDisjLU[8] = 32;&#13;CalDisjLU[9] = 38;&#13;CalDisjLU[10] = 47;&#13;CalDisjLU[11] = 60;&#13;CalDisjLU[12] = 75;&#13;CalDisjLU[13] = 95;&#13;CalDisjLU[14] = 117;&#13;&#13;&#13;CalDisjBCD = new Array (13)&#13;CalDisjBCD[0] = 0;&#13;CalDisjBCD[1] = 6;&#13;CalDisjBCD[2] = 10;&#13;CalDisjBCD[3] = 13;&#13;CalDisjBCD[4] = 16;&#13;CalDisjBCD[5] = 20;&#13;CalDisjBCD[6] = 25;&#13;CalDisjBCD[7] = 32;&#13;CalDisjBCD[8] = 40;&#13;CalDisjBCD[9] = 50;&#13;CalDisjBCD[10] = 63;&#13;CalDisjBCD[11] = 80;&#13;CalDisjBCD[12] = 100;&#13;CalDisjBCD[13] = 125;&#13;&#13;&#13;&#9;LCalibre = new Array (26) ;&#13;&#9;LCalibre[1]= 2;&#13;&#9;LCalibre[2]= 4;&#13;&#9;LCalibre[3]= 6;&#13;&#9;LCalibre[4]= 8;&#13;&#9;LCalibre[5]= 10;&#13;&#9;LCalibre[6]= 12;&#13;&#9;LCalibre[7]= 16;&#13;&#9;LCalibre[8]= 20;&#13;&#9;LCalibre[9]= 25;&#13;&#9;LCalibre[10]= 32;&#13;&#9;LCalibre[11]= 40;&#13;&#9;LCalibre[12]= 50;&#13;&#9;LCalibre[13]= 63;&#13;&#9;LCalibre[14]= 80;&#13;&#9;LCalibre[15]= 100;&#13;&#9;LCalibre[16]= 125;&#13;&#9;LCalibre[17]= 160;&#13;&#9;LCalibre[18]= 200;&#13;&#9;LCalibre[19]= 250;&#13;&#9;LCalibre[20]= 315;&#13;&#9;LCalibre[21]= 400;&#13;&#9;LCalibre[22]= 500;&#13;&#9;LCalibre[23]= 630;&#13;&#9;LCalibre[24]= 800;&#13;&#9;LCalibre[25]= 1000;&#13;&#9;LCalibre[26]= 1250;&#13;&#13;&#9;var CoefCalFu = new Array (2) ;&#13;&#9;CoefCalFu [0] = new Array (26) ;&#13;&#9;CoefCalFu [1] = new Array (26) ;&#13;&#9;CoefCalFu [2] = new Array (26) ;&#13;&#13;&#9;// &#13;&#9;CoefCalFu [0] [1] = 6.5;&#13;&#9;CoefCalFu [0] [2] = 6.6;&#13;&#9;CoefCalFu [0] [3] = 6.5;&#13;&#9;CoefCalFu [0] [4] = 6.73;&#13;&#9;CoefCalFu [0] [5] = 6.88;&#13;&#9;CoefCalFu [0] [6] = 7.97;&#13;&#9;CoefCalFu [0] [7] = 8.3;&#13;&#9;CoefCalFu [0] [8] = 8.2;&#13;&#9;CoefCalFu [0] [9] = 8.4;&#13;&#9;CoefCalFu [0] [10] = 8.3;&#13;&#9;CoefCalFu [0] [11] = 8.3;&#13;&#9;CoefCalFu [0] [12] = 8.4;&#13;&#9;CoefCalFu [0] [13] = 8.3;&#13;&#9;CoefCalFu [0] [14] = 8.4;&#13;&#9;CoefCalFu [0] [15] = 8.88;&#13;&#9;CoefCalFu [0] [16] = 9.09;&#13;&#9;CoefCalFu [0] [17] = 9.2;&#13;&#9;CoefCalFu [0] [18] = 9.65;&#13;&#9;CoefCalFu [0] [19] = 10;&#13;&#9;CoefCalFu [0] [20] = 10.15;&#13;&#9;CoefCalFu [0] [21] = 10.5;&#13;&#9;CoefCalFu [0] [22] = 10.7;&#13;&#9;CoefCalFu [0] [23] = 12.7;&#13;&#9;CoefCalFu [0] [24] = 13.1;&#13;&#9;CoefCalFu [0] [25] = 13.5;&#13;&#9;CoefCalFu [0] [26] = 13.5;&#13;&#9;// &#13;&#9;CoefCalFu [1] [1] = 6.1 ;&#13;&#9;CoefCalFu [1] [2] =  5.9;&#13;&#9;CoefCalFu [1] [3] =  6.05;&#13;&#9;CoefCalFu [1] [4] =  6.15;&#13;&#9;CoefCalFu [1] [5] =  6;&#13;&#9;CoefCalFu [1] [6] =  6.85;&#13;&#9;CoefCalFu [1] [7] =  7.4;&#13;&#9;CoefCalFu [1] [8] = 7.1 ;&#13;&#9;CoefCalFu [1] [9] =  7.85;&#13;&#9;CoefCalFu [1] [11] = 7.5 ;&#13;&#9;CoefCalFu [1] [11] =  7.1;&#13;&#9;CoefCalFu [1] [12] =  7.9;&#13;&#9;CoefCalFu [1] [13] =  7.8;&#13;&#9;CoefCalFu [1] [14] =  7.3;&#13;&#9;CoefCalFu [1] [15] =  8.6;&#13;&#9;CoefCalFu [1] [16] =  8.25;&#13;&#9;CoefCalFu [1] [17] = 8.65 ;&#13;&#9;CoefCalFu [1] [18] =  9.42;&#13;&#9;CoefCalFu [1] [19] =  9.3;&#13;&#9;CoefCalFu [1] [21] =  9.6;&#13;&#9;CoefCalFu [1] [21] =  10.3;&#13;&#9;CoefCalFu [1] [22] =  9.8;&#13;&#9;CoefCalFu [1] [23] =  12.15;&#13;&#9;CoefCalFu [1] [24] = 12.15;&#13;&#9;CoefCalFu [1] [25] = 13.2;&#13;&#9;CoefCalFu [1] [26] = 13.2;&#13;&#9;// &#13;&#9;CoefCalFu [2] [1] = 3.45 ;&#13;&#9;CoefCalFu [2] [2] =  3.2;&#13;&#9;CoefCalFu [2] [3] =  3.2;&#13;&#9;CoefCalFu [2] [4] =  3.15;&#13;&#9;CoefCalFu [2] [5] =  3;&#13;&#9;CoefCalFu [2] [6] =  3.1;&#13;&#9;CoefCalFu [2] [7] =  3.2;&#13;&#9;CoefCalFu [2] [8] =  3.1;&#13;&#9;CoefCalFu [2] [9] =  3.3;&#13;&#9;CoefCalFu [2] [12] =  3.25;&#13;&#9;CoefCalFu [2] [11] =  3.1;&#13;&#9;CoefCalFu [2] [12] =  3.4;&#13;&#9;CoefCalFu [2] [13] =  3.3;&#13;&#9;CoefCalFu [2] [14] =  3.18;&#13;&#9;CoefCalFu [2] [15] =  3.6;&#13;&#9;CoefCalFu [2] [16] =  3.27;&#13;&#9;CoefCalFu [2] [17] =  3.54;&#13;&#9;CoefCalFu [2] [18] =  3.65;&#13;&#9;CoefCalFu [2] [19] =  3.42;&#13;&#9;CoefCalFu [2] [22] =  3.5;&#13;&#9;CoefCalFu [2] [21] =  3.65;&#13;&#9;CoefCalFu [2] [22] =  3.3;&#13;&#9;CoefCalFu [2] [23] =  3.3;&#13;&#9;CoefCalFu [2] [24] =  3.2;&#13;&#9;CoefCalFu [2] [25] =  3.45;&#13;&#9;CoefCalFu [2] [26] =  3.5;&#13;&#13;GEN_Initialiser_Res ();&#13;&#13;with(window.document.forms[0])&#13;     {&#13;      for (n=0; n<cCircuit.length; n++) &#13;          {&#13;            if (cCircuit.options[n].selected) &#13;                {&#13;                 Circuit = n+1;&#13;                }&#13;          }&#13;      for (n=0; n<cSPh.length; n++) &#13;          {&#13;            if (cSPh.options[n].selected) &#13;                 SPh = Section[n+1];&#13;          }&#13;      for (n=0; n<cNatPh.length; n++) &#13;           {&#13;                if (cNatPh[n].checked == true)&#13;                      {&#13;                          NatPh = n +1;&#13;                       }   &#13;             }&#13;      for (n=0; n<cSNe.length; n++) &#13;          {&#13;            if (cSNe.options[n].selected) &#13;                 SNe = Section[n];&#13;          }&#13;      for (n=0; n<cIsolationPh.length; n++) &#13;           {&#13;                if (cIsolationPh[n].checked == true)&#13;                      {&#13;                          IsolationPh = n +1;&#13;                       }   &#13;             }&#13;      for (n=0; n<cCTProt.length; n++) &#13;          {&#13;            if (cCTProt.options[n].selected) &#13;                {&#13;                 CTProt = n+1;&#13;                }&#13;          }&#13;      UN = parseFloat (cUN.value);&#13;      Longueur = parseFloat (cLongueur.value);&#13;      }&#13;&#13;// initialisation &#13;&#9;A11=0;&#13;&#9;A12=0;&#13;&#9;A21=0;&#13;&#9;A22=0;&#13;&#9;Tf2=0;&#13;&#9;temp =1;&#13;&#9;A1=0;&#13;&#9;A2=0;&#13;  &#13;// Début Calcul&#13;&#13;&#13;if (Circuit==0)&#13;&#9;Circuit=3;&#13;if (UN==0)&#13;&#9;if (Circuit==1)&#13;&#9;&#9;UN=230;&#13;&#9; else&#13;&#9;&#9; UN=400;&#13;&#13;if (UN<12)&#13;&#9;Un=12;&#13;if (CTProt==0)&#13;&#9;CTProt=1;&#13;if (IsolationPh==0)&#13;&#9;IsolationPh=1;&#13;if (Longueur==0)&#13;&#9;Longueur=25;&#13;if (SPh>300)&#13;&#9;SPh=300;&#13;if (SNe>300)&#13;&#9;SNe=300;&#13;if (SNe>SPh)&#13;&#9;SNe=SPh;&#13;Reduit=0;&#13;U=0;&#13;&#13;Prot$="";&#13;Tc=0;&#13;Dir=0;&#13;RRo=0;&#13;RRoNe=0;&#13;Stc =0;&#13;SNec =0;&#13;&#13;&#13;if (SNe==0 &amp;&amp; (Circuit ==1 || Circuit ==4))&#13;&#9;SNe =SPh;&#13;U=.8*UN;&#13;&#13;RRo=Ro[NatPh];&#13;if (SPh==150)&#13;&#9;RRo=1.15*RRo;&#13;if (SPh==185)&#13;&#9;RRo=1.2*RRo;&#13;if (SPh==240)&#13;&#9;RRo=1.25*RRo;&#13;if (SPh==300)&#13;&#9;RRo=1.3*RRo;&#13;RRoNe=Ro[NatPh];&#13;if (SNe==150)&#13;&#9;RRoNe=1.15*RRoNe;&#13;if (SNe==185)&#13;&#9;RRoNe=1.2*RRoNe;&#13;if (SNe==240)&#13;&#9;RRoNe=1.25*RRoNe;&#13;if (SNe==300)&#13;&#9;RRoNe=1.3*RRoNe;&#13;&#13;if (CTProt >6)&#9;// Fusible&#13;{&#13;&#9;RRo=RRo*1.5;&#13;&#9;RRoNe=RRoNe*1.5;&#13;}&#13;else&#13;{&#13;&#9;RRo=RRo*1.25;&#13;&#9;RRoNe=RRoNe*1.25;&#13;}&#13;&#13;if (SPh ==50)&#13;&#9;Stc = 47.5;&#13;else&#13;&#9;Stc = SPh;&#13;if (SNe ==50)&#13;&#9;SNec = 47.5;&#13;else&#13;&#9;SNec = SNe;&#13;&#13;Icc1 =0;&#13;Icc= Stc*U/(2*RRo*Longueur);&#13;if (SNec !=0 &amp;&amp; Circuit ==4)&#13;{&#13;&#9;Icc1=(U/Math.sqrt(3))/(Longueur*((RRo/Stc)+(RRoNe/SNec)));&#13;&#9;if (Icc1 < Icc)&#13;&#9;&#9;Icc = Icc1;&#13;}&#9; &#13;Icc=Icc*1000;&#13;&#13;//&#9;CalculTc&#13;K434=143;&#13;if (NatPh==2)&#13;{&#13;&#9;if (IsolationPh==1)&#13;&#9;&#9;K434=94;&#13;&#9;else&#13;&#9;&#9;if (IsolationPh==2)&#13;&#9;&#9;&#9;K434=74;&#13;&#9;&#9;else&#13;&#9;&#9;&#9;K434=87;&#13;}&#13;else&#13;{&#13;&#9;if (IsolationPh==1)&#13;&#9;&#9;K434=143;&#13;&#9;else&#13;&#9;&#9;if (IsolationPh==2)&#13;&#9;&#9;&#9;K434=115;&#13;&#9;&#9;else&#13;&#9;&#9;&#9;K434=135;&#13;}&#13;Tc = (K434*K434 * Stc*Stc) / (Icc*Icc);&#13;if (Tc >5)&#13;&#9;Tc =5;&#13;&#13;IdTropFaible=0;&#13;if (CTProt ==1)&#9;&#13;{&#13;&#9;Dir=Icc/1.2;&#13;&#9;if (Dir<19.25)&#13;&#9;&#9;IdTropFaible=1;&#13;}&#13;if (CTProt ==2)&#13;{&#13;&#9;if (Icc<44)&#13;&#9;&#9;IdTropFaible=2;&#13;&#9;for (var i = 14;  i >=0; i--)&#13;&#9;{&#13;&#9;&#9;if (Icc>CalDisjLU[i] *8.8)&#13;&#9;&#9;{&#13;&#9;&#9;&#9;Dir=CalDisjLU[i];&#13;&#9;&#9;&#9;break;&#13;&#9;&#9;}&#13;&#9;};&#13;}&#13;if (CTProt ==3)&#13;{&#13;&#9;if (Icc<19.25)&#13;&#9;&#9;IdTropFaible=3;&#13;&#9;for (var i= 14; i >=0; i--)&#13;&#9;{&#13;&#9;&#9;if (Icc>CalDisjLU[i]*3.85)&#13;&#9;&#9;{&#13;&#9;&#9;&#9;Dir=CalDisjLU[i];&#13;&#9;&#9;&#9;break;&#13;&#9;&#9;}&#13;&#9;};&#13;}&#13;if (CTProt ==4)&#13;{&#13;&#9;if (Icc<30)&#13;&#9;&#9;IdTropFaible=4;&#13;&#9;for (var i= 13; i >=0; i--)&#13;&#9;{&#13;&#9;&#9;if (Icc>CalDisjBCD[i]*5)&#13;&#9;&#9;{&#13;&#9;&#9;&#9;Dir=CalDisjBCD[i];&#13;&#9;&#9;&#9;break;&#13;&#9;&#9;}&#13;&#9;};&#13;}&#13;if (CTProt ==5)&#13;{&#13;&#9;if (Icc<60)&#13;&#9;&#9;IdTropFaible=5;&#13;&#9;for (var i =13; i>=0; i--)&#13;&#9;{&#9;&#13;&#9;&#9;if (Icc>CalDisjBCD[i]*10)&#13;&#9;&#9;{&#13;&#9;&#9;&#9;Dir=CalDisjBCD[i];&#13;&#9;&#9;&#9;break;&#13;&#9;&#9;}&#13;&#9;};&#13;}&#13;if (CTProt ==6)&#13;{&#13;&#9;if (Icc<120)&#13;&#9;&#9;IdTropFaible=6;&#13;&#9;for (var i= 13; i>=0; i--)&#13;&#9;{&#13;&#9;&#9;if (Icc>CalDisjBCD[i]*20)&#13;&#9;&#9;{&#13;&#9;&#9;&#9;Dir=CalDisjBCD[i];&#13;&#9;&#9;&#9;break;&#13;&#9;&#9;}&#13;&#9;};&#13;}&#13;if (CTProt ==7)&#13;{&#13;&#9;if (Icc<8.4)&#13;&#9;&#9;IdTropFaible=7;&#13;&#9;else&#13;&#9;&#9;for  (var i= 25 ; i>=1; i--)&#13;&#9;&#9;{&#13;&#9;&#9;&#9;A21=4;&#13;&#9;     &#9;A11 = CoefCalFu [0] [i] * LCalibre[i];&#13;&#9;&#9;&#9;A12 = CoefCalFu [1] [i] *LCalibre[i];&#13;&#9;&#9;&#9;A22 = CoefCalFu [2] [i];&#13;&#9;&#9;&#9;Tfus  = Math.pow(A11,A21)  /  Math.pow (Icc,A21)&#13;&#9;&#9;&#9;Tf2 = Math.pow(A12,A22) / Math.pow (Icc,A22)&#13;&#9;&#9;&#9;if (Tf2 > Tfus)&#13;&#9;&#9;&#9;&#9;Tfus = Tf2;&#13;&#9;&#9;&#9;if (Tc>Tfus)&#13;&#9;&#9;&#9;{&#9;&#13;&#9;&#9;&#9;&#9;Dir=  LCalibre[i];&#13;&#9;&#9;&#9;&#9;break;&#13;&#9;&#9;&#9;}&#13;&#9;&#9;};&#13;}&#13;if (CTProt >=8 &amp;&amp; CTProt <=10)&#13;{&#13;&#9;A21=0;&#13;&#9;if (Icc<16.8)&#13;&#9;&#9;IdTropFaible=8;&#13;&#9;else&#13;&#9;{&#13;&#9;&#9;for  (var i= 25 ; i>=1; i--)&#13;&#9;&#9;{&#13;&#9;&#9;&#9;temp = Icc / LCalibre[i];&#13;&#9;&#9;&#9;if (temp <=12.5)&#13;&#9;&#9;&#9;{&#13;&#9;&#9;&#9;&#9;A2=6;&#13;&#9;&#9;&#9;&#9;A1=11;&#13;&#9;&#9;&#9;}&#13;&#9;&#9;&#9;else&#13;&#9;&#9;&#9;{&#13;&#9;&#9;&#9;&#9;if (temp >=22)&#13;&#9;&#9;&#9;&#9;{&#13;&#9;&#9;&#9;&#9;&#9;if (CTProt ==8)&#13;&#9;&#9;&#9;&#9;&#9;{&#13;&#9;&#9;&#9;&#9;&#9;&#9;A2 =2.45;&#13;&#9;&#9;&#9;&#9;&#9;&#9;A1 =6;&#13;&#9;&#9;&#9;&#9;&#9;}&#13;&#9;&#9;&#9;&#9;&#9;if (CTProt ==9)&#13;&#9;&#9;&#9;&#9;&#9;{&#13;&#9;&#9;&#9;&#9;&#9;&#9;A2 =2.26;&#13;&#9;&#9;&#9;&#9;&#9;&#9;A1 =6.2;&#13;&#9;&#9;&#9;&#9;&#9;}&#13;&#9;&#9;&#9;&#9;&#9;if (CTProt ==10)&#13;&#9;&#9;&#9;&#9;&#9;{&#13;&#9;&#9;&#9;&#9;&#9;&#9;A2 =2.15;&#13;&#9;&#9;&#9;&#9;&#9;&#9;A1 =6.35;&#13;&#9;&#9;&#9;&#9;&#9;}&#13;&#9;&#9;&#9;&#9;}&#13;&#9;&#9;&#9;&#9;else&#13;&#9;&#9;&#9;&#9;{&#13;&#9;&#9;&#9;&#9;&#9;if (CTProt ==8)&#13;&#9;&#9;&#9;&#9;&#9;{&#13;&#9;&#9;&#9;&#9;&#9;&#9;A2 =4.45;&#13;&#9;&#9;&#9;&#9;&#9;&#9;A1 =10.65;&#13;&#9;&#9;&#9;&#9;&#9;}&#13;&#9;&#9;&#9;&#9;&#9;if (CTProt ==9)&#13;&#9;&#9;&#9;&#9;&#9;{&#13;&#9;&#9;&#9;&#9;&#9;&#9;A2 =3.8;&#13;&#9;&#9;&#9;&#9;&#9;&#9;A1 =10.35;&#13;&#9;&#9;&#9;&#9;&#9;}&#13;&#9;&#9;&#9;&#9;&#9;if (CTProt ==10)&#13;&#9;&#9;&#9;&#9;&#9;{&#13;&#9;&#9;&#9;&#9;&#9;&#9;A2 =3.45;&#13;&#9;&#9;&#9;&#9;&#9;&#9;A1 =10.15;&#13;&#9;&#9;&#9;&#9;&#9;}&#13;&#9;&#9;&#9;&#9;}&#13;&#9;&#9;&#9;}&#13;&#9;&#9;&#9;A1=A1*LCalibre[i];&#13;&#9;&#9;&#9;Tfus= Math.pow(A1,A2) / Math.pow (Icc,A2);&#13;&#9;&#9;&#9;if (Tc>Tfus)&#13;&#9;&#9;&#9;{&#13;&#9;&#9;&#9;&#9;Dir= LCalibre[i];&#13;&#9;&#9;&#9;&#9;break&#13;&#9;&#9;&#9;}&#13;&#9;&#9;};&#13;&#9;}&#13;}&#13;&#13;if (IdTropFaible >0)&#13;&#9;sObs = "Courant Icc trop faible pour faire fonctionner la protection.\n";&#13;else&#13;{&#13;&#9;if (Dir ==0)&#13;&#9;&#9;sObs = "Temps coupure de la protection trop long.\n";&#13;}&#13;if (SNe < SPh &amp;&amp; SNe >0 )&#13;&#9;sObs = sObs+"ATTENTION à la protection du conducteur neutre";&#13;&#13;sInfo = sObs;&#13;&#13;bFin = true;&#13;// Fin Calcul&#13;&#13;if (bFin == true )&#13;    {&#13;// Affectation Resultat&#13;      GEN_Affecter_Res (Dir,Tc,Icc,Tfus,sObs,sInfo)&#13;      }&#13;else&#13;     {&#13;     GEN_Affecter_Res (0,0,0,0,0,"Problème Critique");&#13;      }&#13;}&#13;&#13;return false;' 
+      href="http://www.elec-planet.com:8080/elecplanet/Calcul.nsf/"><B><FONT 
+      face=Arial color=#ffff00>Calculer</FONT></B></A></DIV></TD></TR>
+  <TR vAlign=top>
+    <TD width=576 bgColor=#ffe1b0 colSpan=3>
+      <TABLE cellSpacing=0 cellPadding=0 border=0>
+        <TBODY>
+        <TR vAlign=top>
+          <TD width=19><IMG height=1 alt="" 
+            src="Icc_Ik%20min_fichiers/ecblank.gif" width=1 border=0></TD>
+          <TD width=529><B><I><FONT face=Arial color=#ff0000 size=1><TEXTAREA onfocus=document.forms[0].cUN.focus() name=cInfo rows=3 cols=75></TEXTAREA> 
+            </FONT></I></B></TD></TR></TBODY></TABLE><B><FONT face=Arial 
+      size=1><BR></FONT></B></TD></TR></TBODY></TABLE><INPUT type=hidden 
+value=BEMELINON1 name=UserName></FORM></BODY></HTML>

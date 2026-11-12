@@ -1,0 +1,334 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0095)http://www.elec-planet.com:8080/elecplanet/Calcul.nsf/38ab16da604f9327c1256b1800379d4e?OpenForm -->
+<HTML><HEAD>
+<META http-equiv=Content-Type content="text/html; charset=utf-8">
+<SCRIPT language=JavaScript>
+<!-- 
+var bRAZ = true;
+function GEN_Afficher_Aide (sStatus , sInfo)
+{
+if ( sStatus == "" )
+    { document.forms[0].cInfo.value = sInfo; }
+else
+    { document.forms[0].cInfo.value = sStatus + "\n" + sInfo; }
+}
+
+function GEN_Initialiser_Res ()
+{
+  with (document.forms[0])
+  {
+  cP_cv.value=0;
+  cImot.value =0;
+  cF_8_32.value=0;
+  cF_10_38.value =0;
+  cF_14_51.value =0;
+  cF_22_58.value=0;
+  cF_T00.value =0;
+  cF_T0.value =0;
+  cF_T1.value=0;
+  cF_T2.value =0;
+  cF_T3.value=0;
+  cF_T4.value =0;
+  bRAZ = true;
+  }
+}
+function GEN_Affecter_Res (P_cv,Imot,F_8_32,F_10_38,F_14_51,F_22_58,F_T00,F_T0,F_T1,F_T2,F_T3,F_T4,sInfo)
+{
+  with (document.forms[0])
+  {
+  // valeurs
+  cP_cv.value = Math.round(P_cv*100)/100;
+  cImot.value = Math.round(Imot*10)/10;
+  cF_8_32.value = F_8_32;
+  cF_10_38.value = F_10_38;
+  cF_14_51.value = F_14_51;
+  cF_22_58.value = F_22_58;
+  cF_T00.value = F_T00;
+  cF_T0.value = F_T0;
+  cF_T1.value = F_T1;
+  cF_T2.value = F_T2;
+  cF_T3.value = F_T3;
+  cF_T4.value = F_T4;
+  cInfo.value = sInfo;
+  bRAZ= false;
+  }
+}
+function GEN_Initialiser_Ent ()
+{
+  with (document.forms[0])
+  {
+  // listes
+  cP.options[5].selected =true ;
+  // radio
+  cVit[1].checked =true;
+  cF_Dem[0].checked =true;
+  cType_Fu[1].checked =true;
+  }
+}
+
+// -->
+</SCRIPT>
+
+<SCRIPT language=JavaScript>
+<!-- 
+document._domino_target = "_self";
+function _doClick(v, o, t, h) {
+  var form = document._DominoForm;
+  if (form.onsubmit) {
+     var retVal = form.onsubmit();
+     if (typeof retVal == "boolean" && retVal == false)
+       return false;
+  }
+  var target = document._domino_target;
+  if (o.href != null) {
+    if (o.target != null)
+       target = o.target;
+  } else {
+    if (t != null)
+      target = t;
+  }
+  form.target = target;
+  form.__Click.value = v;
+  if (h != null)
+    form.action += h;
+  form.submit();
+  return false;
+}
+// -->
+</SCRIPT>
+
+<META content="MSHTML 6.00.6000.16809" name=GENERATOR></HEAD>
+<BODY text=#000000 bgColor=#ffffff leftMargin=5 topMargin=0>
+<FORM name=_DominoForm 
+action=/elecplanet/Calcul.nsf/38ab16da604f9327c1256b1800379d4e?OpenForm&amp;Seq=1 
+method=post><INPUT type=hidden value=0 name=__Click> 
+<TABLE cellSpacing=0 cellPadding=0 border=0>
+  <TBODY>
+  <TR vAlign=top>
+    <TD width=582 bgColor=#8080ff colSpan=3>
+      <DIV align=center><B><FONT face="Times New Roman" color=#ffffff 
+      size=4>Protection des moteurs</FONT></B><B><FONT face="Times New Roman" 
+      color=#ffffff size=2> triphasés 380 V</FONT></B></DIV></TD></TR>
+  <TR vAlign=top>
+    <TD width=271 bgColor=#bfbfff>
+      <DIV align=center><B><I><FONT face=Arial color=#ffff00 
+      size=2>Caractéristiques (Données à saisir)</FONT></I></B></DIV></TD>
+    <TD width=41 bgColor=#bfbfff><IMG height=1 alt="" 
+      src="Protection%20moteur_fichiers/ecblank.gif" width=1 border=0></TD>
+    <TD width=271 bgColor=#e0e0ff>
+      <DIV align=center><B><I><FONT face=Arial color=#ff0000 size=2>Résultats du 
+      calcul (Calibre)</FONT></I></B></DIV></TD></TR>
+  <TR vAlign=top>
+    <TD width=271 bgColor=#8080ff><FONT face=Arial color=#ffff00 
+      size=1>Puissance du moteur</FONT></TD>
+    <TD width=41 bgColor=#8080ff><IMG height=1 alt="" 
+      src="Protection%20moteur_fichiers/ecblank.gif" width=1 border=0></TD>
+    <TD width=271 bgColor=#8080ff><IMG height=1 alt="" 
+      src="Protection%20moteur_fichiers/ecblank.gif" width=1 border=0></TD></TR>
+  <TR vAlign=top>
+    <TD width=271 bgColor=#bfbfff><FONT face=Arial size=1>
+      <P style="MARGIN-LEFT: 20px"></FONT><FONT face=Arial color=#0000ff 
+      size=1><SELECT 
+      onfocus='if (! bRAZ) GEN_Initialiser_Res ();&#13;GEN_Afficher_Aide ("Saisir une valeur dans la liste, valeur par défaut 1,1 kW" , "")' 
+      onclick="if (! bRAZ) GEN_Initialiser_Res ();" name=cP> 
+        <OPTION>0.09<OPTION>0.18<OPTION>0.37<OPTION>0.55<OPTION>0.75<OPTION 
+        selected>1.1<OPTION>1.5<OPTION>2.2<OPTION>3<OPTION>4<OPTION>5.5<OPTION>7.5<OPTION>10<OPTION>15<OPTION>18.5<OPTION>22<OPTION>25<OPTION>30<OPTION>37<OPTION>45<OPTION>55<OPTION>75<OPTION>90<OPTION>110<OPTION>132<OPTION>160<OPTION>200<OPTION>250<OPTION>300<OPTION>400<OPTION>500<OPTION>600</OPTION></SELECT> 
+      </FONT><B><FONT face=Arial color=#ffff00 size=1>kW</FONT></B><FONT 
+      face=Arial size=1><O:P></FONT></P></TD>
+    <TD width=41 bgColor=#bfbfff><IMG height=1 alt="" 
+      src="Protection%20moteur_fichiers/ecblank.gif" width=1 border=0></TD>
+    <TD width=271 bgColor=#8080ff><B><U><FONT face=Arial color=#ffff00 
+      size=1>FUSIBLES CYLINDRIQUES</FONT></U></B></TD></TR>
+  <TR vAlign=top>
+    <TD width=271 bgColor=#8080ff><FONT face=Arial color=#ffff00 
+      size=1>Vitesse</FONT></TD>
+    <TD width=41 bgColor=#8080ff><IMG height=1 alt="" 
+      src="Protection%20moteur_fichiers/ecblank.gif" width=1 border=0></TD>
+    <TD width=271 bgColor=#8080ff><FONT face=Arial color=#ffff00 size=1>Taille 
+      8x32 - 380 V // Taille 10x38 - 250 à 500 V</FONT></TD></TR>
+  <TR vAlign=top>
+    <TD width=271 bgColor=#bfbfff><FONT face=Arial size=1>
+      <P style="MARGIN-LEFT: 20px"></FONT><FONT face=Arial color=#0000ff 
+      size=1><INPUT 
+      onmouseover='sStatus ="Choisissez la vitesse de votre moteur, Valeur par défaut 1500 tours par minute";&#13;GEN_Afficher_Aide (sStatus , "")' 
+      onclick="if (! bRAZ) GEN_Initialiser_Res ();&#13;" type=radio value=750 
+      name=cVit>750 <INPUT 
+      onmouseover='sStatus ="Choisissez la vitesse de votre moteur, Valeur par défaut 1500 tours par minute";&#13;GEN_Afficher_Aide (sStatus , "")' 
+      onclick="if (! bRAZ) GEN_Initialiser_Res ();&#13;" type=radio CHECKED 
+      value=1500 name=cVit>1500 <INPUT 
+      onmouseover='sStatus ="Choisissez la vitesse de votre moteur, Valeur par défaut 1500 tours par minute";&#13;GEN_Afficher_Aide (sStatus , "")' 
+      onclick="if (! bRAZ) GEN_Initialiser_Res ();&#13;" type=radio value=3000 
+      name=cVit>3000</FONT><B><FONT face=Arial color=#ffff00 size=1> t / 
+      mn</FONT></B><FONT face=Arial size=1><O:P></FONT></P></TD>
+    <TD width=41 bgColor=#bfbfff><IMG height=1 alt="" 
+      src="Protection%20moteur_fichiers/ecblank.gif" width=1 border=0></TD>
+    <TD width=271 bgColor=#e0e0ff><FONT face=Arial size=1>
+      <P style="MARGIN-LEFT: 20px"></FONT><FONT face=Arial color=#0000ff 
+      size=1><INPUT onfocus=document.forms[0].cInfo.focus() size=8 value=0 
+      name=cF_8_32></FONT><B><FONT face=Arial color=#ffff00 size=1> 
+      </FONT></B><B><FONT face=Arial color=#ff0000 size=1>A</FONT></B><FONT 
+      face=Arial size=1> </FONT><FONT face=Arial color=#0000ff size=1><INPUT 
+      onfocus=document.forms[0].cInfo.focus() size=8 value=0 
+      name=cF_10_38></FONT><B><FONT face=Arial color=#ffff00 size=1> 
+      </FONT></B><B><FONT face=Arial color=#ff0000 size=1>A</FONT></B><FONT 
+      face=Arial size=1><O:P></FONT></P></TD></TR>
+  <TR vAlign=top>
+    <TD width=271 bgColor=#8080ff><FONT face=Arial color=#ffff00 
+      size=1>Fréquence de démarrage</FONT></TD>
+    <TD width=41 bgColor=#8080ff><IMG height=1 alt="" 
+      src="Protection%20moteur_fichiers/ecblank.gif" width=1 border=0></TD>
+    <TD width=271 bgColor=#8080ff><FONT face=Arial color=#ffff00 size=1>Taille 
+      14x51 - 400 à 660 V // Taille 22x58 - 400 à 660 V</FONT></TD></TR>
+  <TR vAlign=top>
+    <TD width=271 bgColor=#bfbfff><FONT face=Arial size=1>
+      <P style="MARGIN-LEFT: 20px"></FONT><FONT face=Arial color=#0000ff 
+      size=1><INPUT 
+      onmouseover='sStatus ="Choisissez la fréquence de démarrage, Valeur par défaut Normal";&#13;GEN_Afficher_Aide (sStatus , "")' 
+      onclick="if (! bRAZ) GEN_Initialiser_Res ();&#13;" type=radio CHECKED 
+      value="Normale (1 ou 2 dem/j 6 In - 2 s)" name=cF_Dem>Normale (1 ou 2 
+      dem/j 6 In - 2 s)<BR><INPUT 
+      onmouseover='sStatus ="Choisissez la fréquence de démarrage, Valeur par défaut Normal";&#13;GEN_Afficher_Aide (sStatus , "")' 
+      onclick="if (! bRAZ) GEN_Initialiser_Res ();&#13;" type=radio 
+      value=_ta1m7asp0g9m6atk2_ name=cF_Dem>Plus élevé</FONT><B><FONT face=Arial 
+      color=#ffff00 size=1> </FONT></B><FONT face=Arial 
+    size=1><O:P></FONT></P></TD>
+    <TD width=41 bgColor=#bfbfff><IMG height=1 alt="" 
+      src="Protection%20moteur_fichiers/ecblank.gif" width=1 border=0></TD>
+    <TD width=271 bgColor=#e0e0ff><FONT face=Arial size=1>
+      <P style="MARGIN-LEFT: 20px"></FONT><FONT face=Arial color=#0000ff 
+      size=1><INPUT onfocus=document.forms[0].cInfo.focus() size=8 value=0 
+      name=cF_14_51></FONT><B><FONT face=Arial color=#ff0000 size=1> A 
+      </FONT></B><B><FONT face=Arial size=1></FONT></B><B><FONT face=Arial 
+      color=#ff0000 size=1></FONT></B><FONT face=Arial color=#0000ff 
+      size=1><INPUT onfocus=document.forms[0].cInfo.focus() size=8 value=0 
+      name=cF_22_58></FONT><B><FONT face=Arial color=#ffff00 size=1> 
+      </FONT></B><B><FONT face=Arial color=#ff0000 size=1>A</FONT></B><FONT 
+      face=Arial size=1><O:P></FONT></P></TD></TR>
+  <TR vAlign=top>
+    <TD width=271 bgColor=#8080ff><FONT face=Arial color=#ffff00 size=1>Type 
+      du fusible de protection</FONT></TD>
+    <TD width=41 bgColor=#8080ff><IMG height=1 alt="" 
+      src="Protection%20moteur_fichiers/ecblank.gif" width=1 border=0></TD>
+    <TD width=271 bgColor=#8080ff><IMG height=1 alt="" 
+      src="Protection%20moteur_fichiers/ecblank.gif" width=1 border=0></TD></TR>
+  <TR vAlign=top>
+    <TD width=271 bgColor=#bfbfff><FONT face=Arial size=1>
+      <P style="MARGIN-LEFT: 20px"></FONT><FONT face=Arial color=#0000ff 
+      size=1><INPUT 
+      onmouseover='sStatus ="Choisissez le Type de votre fusible, Valeur par défaut aM";&#13;GEN_Afficher_Aide (sStatus , "")' 
+      onclick="if (! bRAZ) GEN_Initialiser_Res ();&#13;" type=radio value=gI 
+      name=cType_Fu>gI <INPUT 
+      onmouseover='sStatus ="Choisissez le Type de votre fusible, Valeur par défaut aM";&#13;GEN_Afficher_Aide (sStatus , "")' 
+      onclick="if (! bRAZ) GEN_Initialiser_Res ();&#13;" type=radio CHECKED 
+      value=aM name=cType_Fu>aM</FONT><B><FONT face=Arial color=#ffff00 size=1> 
+      </FONT></B><FONT face=Arial size=1><O:P></FONT></P></TD>
+    <TD width=41 bgColor=#bfbfff><IMG height=1 alt="" 
+      src="Protection%20moteur_fichiers/ecblank.gif" width=1 border=0></TD>
+    <TD width=271 bgColor=#8080ff><B><U><FONT face=Arial color=#ffff00 
+      size=1>FUSIBLES à COUTEAUX</FONT></U></B></TD></TR>
+  <TR vAlign=top>
+    <TD width=271 bgColor=#8080ff><IMG height=1 alt="" 
+      src="Protection%20moteur_fichiers/ecblank.gif" width=1 border=0></TD>
+    <TD width=41 bgColor=#8080ff><IMG height=1 alt="" 
+      src="Protection%20moteur_fichiers/ecblank.gif" width=1 border=0></TD>
+    <TD width=271 bgColor=#8080ff><FONT face=Arial color=#ffff00 size=1>Taille 
+      T00 - 400 à 500 V // Taille T0 - 500 à 660 V</FONT><FONT face=Arial 
+      color=#ffff00 size=1> </FONT></TD></TR>
+  <TR vAlign=top>
+    <TD width=271 bgColor=#e0e0ff>
+      <DIV align=center><B><I><FONT face=Arial color=#ff0000 size=2>Résultats du 
+      calcul (puissance - In)</FONT></I></B></DIV></TD>
+    <TD width=41 bgColor=#e0e0ff><IMG height=1 alt="" 
+      src="Protection%20moteur_fichiers/ecblank.gif" width=1 border=0></TD>
+    <TD width=271 bgColor=#e0e0ff><FONT face=Arial size=1>
+      <P style="MARGIN-LEFT: 20px"></FONT><FONT face=Arial color=#0000ff 
+      size=1><INPUT onfocus=document.forms[0].cInfo.focus() size=8 value=0 
+      name=cF_T00></FONT><B><FONT face=Arial color=#ff0000 size=1> 
+      A</FONT></B><FONT face=Arial size=1> </FONT><FONT face=Arial color=#0000ff 
+      size=1><INPUT onfocus=document.forms[0].cInfo.focus() size=8 value=0 
+      name=cF_T0></FONT><B><FONT face=Arial color=#ff0000 size=1> 
+      A</FONT></B><FONT face=Arial size=1><O:P></FONT></P></TD></TR>
+  <TR vAlign=top>
+    <TD width=271 bgColor=#8080ff><FONT face=Arial color=#ffff00 
+      size=1>Puissance en cheval vapeur</FONT></TD>
+    <TD width=41 bgColor=#8080ff><IMG height=1 alt="" 
+      src="Protection%20moteur_fichiers/ecblank.gif" width=1 border=0></TD>
+    <TD width=271 bgColor=#8080ff><FONT face=Arial color=#ffff00 size=1>Taille 
+      T1 - 500 à 660 V // Taille T2 - 500 à 660 V</FONT></TD></TR>
+  <TR vAlign=top>
+    <TD width=271 bgColor=#e0e0ff><FONT face=Arial size=1>
+      <P style="MARGIN-LEFT: 20px"></FONT><FONT face=Arial color=#0000ff 
+      size=1><INPUT onfocus=document.forms[0].cInfo.focus() size=8 value=0 
+      name=cP_cv></FONT><B><FONT face=Arial color=#ffff00 size=1> 
+      </FONT></B><B><FONT face=Arial color=#ff0000 size=1>Ch</FONT></B><FONT 
+      face=Arial size=1><O:P></FONT></P></TD>
+    <TD width=41 bgColor=#e0e0ff><IMG height=1 alt="" 
+      src="Protection%20moteur_fichiers/ecblank.gif" width=1 border=0></TD>
+    <TD width=271 bgColor=#e0e0ff><FONT face=Arial size=1>
+      <P style="MARGIN-LEFT: 20px"></FONT><FONT face=Arial color=#0000ff 
+      size=1><INPUT onfocus=document.forms[0].cInfo.focus() size=8 value=0 
+      name=cF_T1></FONT><B><FONT face=Arial color=#ff0000 size=1> 
+      A</FONT></B><FONT face=Arial size=1> </FONT><FONT face=Arial color=#0000ff 
+      size=1><INPUT onfocus=document.forms[0].cInfo.focus() size=8 value=0 
+      name=cF_T2></FONT><B><FONT face=Arial color=#ff0000 size=1> 
+      A</FONT></B><FONT face=Arial size=1><O:P></FONT></P></TD></TR>
+  <TR vAlign=top>
+    <TD width=271 bgColor=#8080ff><FONT face=Arial color=#ffff00 
+      size=1>Courant moyen de pleine charge</FONT><BR><FONT face=Arial 
+      color=#ffff00 size=1>(moteur simple cage 1500 t/mn):</FONT></TD>
+    <TD width=41 bgColor=#8080ff><IMG height=1 alt="" 
+      src="Protection%20moteur_fichiers/ecblank.gif" width=1 border=0></TD>
+    <TD width=271 bgColor=#8080ff><FONT face=Arial color=#ffff00 size=1>Taille 
+      T3 - 500 à 660 V // Taille T4 - 440 V à 660 V</FONT></TD></TR>
+  <TR vAlign=top>
+    <TD width=271 bgColor=#e0e0ff><FONT face=Arial size=1>
+      <P style="MARGIN-LEFT: 20px"></FONT><FONT face=Arial color=#0000ff 
+      size=1><INPUT onfocus=document.forms[0].cInfo.focus() size=8 value=0 
+      name=cImot></FONT><B><FONT face=Arial color=#ffff00 size=1> 
+      </FONT></B><B><FONT face=Arial color=#ff0000 size=1>A</FONT></B><FONT 
+      face=Arial size=1><O:P></FONT></P></TD>
+    <TD width=41 bgColor=#e0e0ff><IMG height=1 alt="" 
+      src="Protection%20moteur_fichiers/ecblank.gif" width=1 border=0></TD>
+    <TD width=271 bgColor=#e0e0ff><FONT face=Arial size=1>
+      <P style="MARGIN-LEFT: 20px"></FONT><FONT face=Arial color=#0000ff 
+      size=1><INPUT onfocus=document.forms[0].cInfo.focus() size=8 value=0 
+      name=cF_T3></FONT><B><FONT face=Arial color=#ffff00 size=1> 
+      </FONT></B><B><FONT face=Arial color=#ff0000 size=1>A</FONT></B><FONT 
+      face=Arial size=1> </FONT><FONT face=Arial color=#0000ff size=1><INPUT 
+      onfocus=document.forms[0].cInfo.focus() size=8 value=0 
+      name=cF_T4></FONT><B><FONT face=Arial color=#ffff00 size=1> 
+      </FONT></B><B><FONT face=Arial color=#ff0000 size=1>A</FONT></B><FONT 
+      face=Arial size=1><O:P></FONT></P></TD></TR>
+  <TR vAlign=top>
+    <TD width=271 bgColor=#bfbfff><IMG height=1 alt="" 
+      src="Protection%20moteur_fichiers/ecblank.gif" width=1 border=0></TD>
+    <TD width=41 bgColor=#bfbfff><IMG height=1 alt="" 
+      src="Protection%20moteur_fichiers/ecblank.gif" width=1 border=0></TD>
+    <TD width=271 bgColor=#bfbfff><IMG height=1 alt="" 
+      src="Protection%20moteur_fichiers/ecblank.gif" width=1 border=0></TD></TR>
+  <TR vAlign=top>
+    <TD width=271 bgColor=#bfbfff>
+      <DIV align=center><A 
+      onmouseover='GEN_Afficher_Aide ("","Cliquez pour Affecter les valeurs par défaut")&#13;' 
+      onclick="GEN_Initialiser_Ent ();&#13;if (! bRAZ) GEN_Initialiser_Res ();&#13;&#13;&#13;&#13;&#13;return false;" 
+      href="http://www.elec-planet.com:8080/elecplanet/Calcul.nsf/"><B><FONT 
+      face=Arial color=#ffff00>Valeurs par défaut</FONT></B></A><B><FONT 
+      face=Arial color=#ffff00> </FONT></B></DIV></TD>
+    <TD width=41 bgColor=#bfbfff>
+      <DIV align=center><A 
+      onmouseover='GEN_Afficher_Aide ("", "Cliquez pour mettre à zéro les résultats.")' 
+      onclick="GEN_Initialiser_Res ()&#13;&#13;&#13;&#13;&#13;return false;" 
+      href="http://www.elec-planet.com:8080/elecplanet/Calcul.nsf/"><B><FONT 
+      face=Arial color=#ffff00>Raz</FONT></B></A></DIV></TD>
+    <TD width=271 bgColor=#bfbfff>
+      <DIV align=center><A 
+      onmouseover="GEN_Afficher_Aide (&quot;&quot;, &quot;Cliquez pour Calculer\nAttention les données d'entrées peuvent être modifiées&quot;)" 
+      onclick='tst =  window.location.href;&#13;position = tst.lastIndexOf("/");&#13;url = tst.substring(0,position) + "/ReRoute?openform";&#13;&#13;if (window.document.forms[0].UserName.value == "Anonymous")&#13;&#9;window.open(url,target="cadres_contenu");&#13;else&#13;{&#13;// Entrées&#13;P = 0;&#13;Pindex =0;&#13;Vit=0;&#13;F_Dem=0;&#13;Type_Fu=0;&#13;&#13;Puissance = new Array (33) ;&#13;Puissance[0]=0.09;&#13;Puissance[1]=0.18;&#13;Puissance[2]=0.37;&#13;Puissance[3]=0.55;&#13;Puissance[4]=0.75;&#13;Puissance[5]=1.1;&#13;Puissance[6]=1.5;&#13;Puissance[7]=2.2;&#13;Puissance[8]=3;&#13;Puissance[9]=4;&#13;Puissance[10]=5.5;&#13;Puissance[11]=7.5;&#13;Puissance[12]=10;&#13;Puissance[13]=15;&#13;Puissance[14]=18.5;&#13;Puissance[15]=22;&#13;Puissance[16]=25;&#13;Puissance[17]=30;&#13;Puissance[18]=37;&#13;Puissance[19]=45;&#13;Puissance[20]=55;&#13;Puissance[21]=75;&#13;Puissance[22]=90;&#13;Puissance[23]=110;&#13;Puissance[24]=132;&#13;Puissance[25]=160;&#13;Puissance[26]=200;&#13;Puissance[27]=250;&#13;Puissance[28]=300;&#13;Puissance[29]=400;&#13;Puissance[30]=500;&#13;Puissance[31]=600;&#13;&#13;L8x32_aM = new Array (33) ;&#13;L8x32_aM[0]= 0;&#13;L8x32_aM[1]= 0;&#13;L8x32_aM[2]= 1;&#13;L8x32_aM[3]= 2;&#13;L8x32_aM[4]= 2;&#13;L8x32_aM[5]= 4;&#13;L8x32_aM[6]= 4;&#13;L8x32_aM[7]= 4;&#13;L8x32_aM[8]= 6;&#13;L8x32_aM[9]= 8;&#13;L8x32_aM[10]= 10;&#13;for (n=11; n<34; n++) &#13;&#9;L8x32_aM[n]= 0;&#13;&#9;&#9;&#9;  &#13;L10x38_aM = new Array (33) ;&#13;L10x38_aM[0]= 0;&#13;L10x38_aM[1]= 0;&#13;L10x38_aM[2]= 1;&#13;L10x38_aM[3]= 2;&#13;L10x38_aM[4]= 2;&#13;L10x38_aM[5]= 4;&#13;L10x38_aM[6]= 4;&#13;L10x38_aM[7]= 4;&#13;L10x38_aM[8]= 6;&#13;L10x38_aM[9]= 8;&#13;L10x38_aM[10]= 10;&#13;L10x38_aM[11]= 12;&#13;L10x38_aM[12]= 16;&#13;L10x38_aM[13]= 20;&#13;L10x38_aM[14]= 25;&#13;for (n=15; n<34; n++) &#13;&#9;L10x38_aM[n]= 0;&#13;&#13;L14x51_aM = new Array (33) ;&#13;L14x51_aM[0]= 0.25&#13;L14x51_aM[1]= 0.5;&#13;L14x51_aM[2]= 1;&#13;L14x51_aM[3]= 2;&#13;L14x51_aM[4]= 2;&#13;L14x51_aM[5]= 4;&#13;L14x51_aM[6]= 4;&#13;L14x51_aM[7]= 4;&#13;L14x51_aM[8]= 6;&#13;L14x51_aM[9]= 8;&#13;L14x51_aM[10]= 10;&#13;L14x51_aM[11]= 12;&#13;L14x51_aM[12]= 16;&#13;L14x51_aM[13]= 20;&#13;L14x51_aM[14]= 25;&#13;for (n=15; n<34; n++) &#13;&#9;L14x51_aM[n]= 0;&#13;&#13;L22x58_aM = new Array (33) ;&#13;L22x58_aM[0]= 0.25;&#13;L22x58_aM[1]= 0.5;&#13;L22x58_aM[2]= 1;&#13;L22x58_aM[3]= 2;&#13;L22x58_aM[4]= 2;&#13;L22x58_aM[5]= 4;&#13;L22x58_aM[6]= 4;&#13;L22x58_aM[7]= 4;&#13;L22x58_aM[8]= 6;&#13;L22x58_aM[9]= 8;&#13;L22x58_aM[10]= 10;&#13;L22x58_aM[11]= 12;&#13;L22x58_aM[12]= 16;&#13;L22x58_aM[13]= 20;&#13;L22x58_aM[14]= 25;&#13;L22x58_aM[15]= 32;&#13;L22x58_aM[16]= 40;&#13;L22x58_aM[17]= 50;&#13;L22x58_aM[18]= 63;&#13;L22x58_aM[19]= 80;&#13;L22x58_aM[20]= 80;&#13;L22x58_aM[21]= 100;&#13;L22x58_aM[22]= 125;&#13;for (n=23; n<34; n++) &#13;&#9;L22x58_aM[n]= 0;&#13;&#13;LT00_aM = new Array (33) ;&#13;for (n=0; n<11; n++) &#13;&#9;LT00_aM[n]= 0;&#13;LT00_aM[11]= 0;&#13;LT00_aM[12]= 16;&#13;LT00_aM[13]= 20;&#13;LT00_aM[14]= 25;&#13;LT00_aM[15]= 32;&#13;LT00_aM[16]= 40;&#13;LT00_aM[17]= 50;&#13;LT00_aM[18]= 63;&#13;LT00_aM[19]= 80;&#13;LT00_aM[20]= 80;&#13;LT00_aM[21]= 100;&#13;LT00_aM[22]= 125;&#13;for (n=23; n<34; n++) &#13;&#9;LT00_aM[n]= 0;&#13;&#13;LT0_aM = new Array (33) ;&#13;for (n=0; n<14; n++) &#13;&#9;LT0_aM[n]= 0;&#13;LT0_aM[14]= 25;&#13;LT0_aM[15]= 32;&#13;LT0_aM[16]= 40;&#13;LT0_aM[17]= 50;&#13;LT0_aM[18]= 63;&#13;LT0_aM[19]= 80;&#13;LT0_aM[20]= 80;&#13;LT0_aM[21]= 100;&#13;LT0_aM[22]= 125;&#13;LT0_aM[23]= 160;&#13;for (n=24; n<34; n++) &#13;&#9;LT0_aM[n]= 0;&#13;&#13;LT1_aM = new Array (33) ;&#13;for (n=0; n<17; n++) &#13;&#9;LT1_aM[n]= 0;&#13;LT1_aM[17]= 50;&#13;LT1_aM[18]= 63;&#13;LT1_aM[19]= 80;&#13;LT1_aM[20]= 80;&#13;LT1_aM[21]= 100;&#13;LT1_aM[22]= 125;&#13;LT1_aM[23]= 160;&#13;LT1_aM[24]= 200;&#13;LT1_aM[25]= 250;&#13;LT1_aM[26]= 315;&#13;LT1_aM[27]= 315;&#13;for (n=28; n<34; n++) &#13;&#9;LT1_aM[n]= 0;&#13;&#13;LT2_aM = new Array (33) ;&#13;for (n=0; n<22; n++) &#13;&#9;LT2_aM[n]= 0;&#13;LT2_aM[22]= 125;&#13;LT2_aM[23]= 160;&#13;LT2_aM[24]= 200;&#13;LT2_aM[25]= 250;&#13;LT2_aM[26]= 315;&#13;LT2_aM[27]= 315;&#13;LT2_aM[28]= 400;&#13;LT2_aM[29]= 500;&#13;for (n=30; n<34; n++) &#13;&#9;LT2_aM[n]= 0;&#13;&#13;LT3_aM = new Array (33) ;&#13;for (n=0; n<26; n++) &#13;&#9;LT3_aM[n]= 0;&#13;LT3_aM[26]= 315;&#13;LT3_aM[27]= 315;&#13;LT3_aM[28]= 400;&#13;LT3_aM[29]= 500;&#13;LT3_aM[30]= 630;&#13;for (n=31; n<34; n++) &#13;&#9;LT3_aM[n]= 0;&#13;&#13;LT4_aM = new Array (33) ;&#13;for (n=0; n<29; n++) &#13;&#9;LT4_aM[n]= 0;&#13;LT4_aM[29]= 500;&#13;LT4_aM[30]= 630;&#13;LT4_aM[31]= 800;&#13;LT4_aM[32]= 1000;&#13;LT4_aM[33]= 1250;&#13;&#13;L8x32_gI = new Array (33) ;&#13;L8x32_gI[0]= 0;&#13;L8x32_gI[1]= 0;&#13;L8x32_gI[2]= 2;&#13;L8x32_gI[3]= 4;&#13;L8x32_gI[4]= 4;&#13;L8x32_gI[5]= 6;&#13;L8x32_gI[6]= 8;&#13;L8x32_gI[7]= 10;&#13;L8x32_gI[8]= 12;&#13;L8x32_gI[9]= 16;&#13;L8x32_gI[10]= 20;&#13;for (n=11; n<34; n++) &#13;&#9;L8x32_gI[n]= 0;&#13;&#9;&#9;&#9;  &#13;L10x38_gI = new Array (33) ;&#13;L10x38_gI[0]= 0;&#13;L10x38_gI[1]= 1;&#13;L10x38_gI[2]= 2;&#13;L10x38_gI[3]= 4;&#13;L10x38_gI[4]= 4;&#13;L10x38_gI[5]= 6;&#13;L10x38_gI[6]= 8;&#13;L10x38_gI[7]= 10;&#13;L10x38_gI[8]= 12;&#13;L10x38_gI[9]= 16;&#13;L10x38_gI[10]= 20;&#13;L10x38_gI[11]= 25;&#13;L10x38_gI[12]= 32;&#13;for (n=13; n<34; n++) &#13;&#9;L10x38_gI[n]= 0;&#13;&#13;L14x51_gI = new Array (33) ;&#13;L14x51_gI[0]= 0;&#13;L14x51_gI[1]= 1;&#13;L14x51_gI[2]= 2;&#13;L14x51_gI[3]= 4;&#13;L14x51_gI[4]= 4;&#13;L14x51_gI[5]= 6;&#13;L14x51_gI[6]= 8;&#13;L14x51_gI[7]= 10;&#13;L14x51_gI[8]= 12;&#13;L14x51_gI[9]= 16;&#13;L14x51_gI[10]= 20;&#13;L14x51_gI[11]= 25;&#13;L14x51_gI[12]= 32;&#13;L14x51_gI[13]= 40;&#13;L14x51_gI[14]= 50;&#13;for (n=15; n<34; n++) &#13;&#9;L14x51_gI[n]= 0;&#13;&#13;L22x58_gI = new Array (33) ;&#13;L22x58_gI[0]= 0;&#13;L22x58_gI[1]= 1;&#13;L22x58_gI[2]= 2;&#13;L22x58_gI[3]= 4;&#13;L22x58_gI[4]= 4;&#13;L22x58_gI[5]= 6;&#13;L22x58_gI[6]= 8;&#13;L22x58_gI[7]= 10;&#13;L22x58_gI[8]= 12;&#13;L22x58_gI[9]= 16;&#13;L22x58_gI[10]= 20;&#13;L22x58_gI[11]= 25;&#13;L22x58_gI[12]= 32;&#13;L22x58_gI[13]= 40;&#13;L22x58_gI[14]= 50;&#13;L22x58_gI[15]= 50;&#13;L22x58_gI[16]= 63;&#13;L22x58_gI[17]= 80;&#13;L22x58_gI[18]= 100;&#13;L22x58_gI[19]= 125;&#13;L22x58_gI[20]= 125;&#13;for (n=21; n<34; n++) &#13;&#9;L22x58_gI[n]= 0;&#13;&#13;LT00_gI = new Array (33) ;&#13;for (n=0; n<12; n++) &#13;&#9;LT00_gI[n]= 0;&#13;LT00_gI[9]= 16;&#13;LT00_gI[10]= 20;&#13;LT00_gI[11]= 25;&#13;LT00_gI[12]= 32;&#13;LT00_gI[13]= 40;&#13;LT00_gI[14]= 50;&#13;LT00_gI[15]= 50;&#13;LT00_gI[16]= 63;&#13;LT00_gI[17]= 80;&#13;LT00_gI[18]= 100;&#13;LT00_gI[19]= 125;&#13;LT00_gI[20]= 125;&#13;LT00_gI[21]= 160;&#13;for (n=22; n<34; n++) &#13;&#9;LT00_gI[n]= 0;&#13;&#13;LT0_gI = new Array (33) ;&#13;for (n=0; n<11; n++) &#13;&#9;LT0_gI[n]= 0;&#13;LT0_gI[11]= 25;&#13;LT0_gI[12]= 32;&#13;LT0_gI[13]= 40;&#13;LT0_gI[14]= 50;&#13;LT0_gI[15]= 50;&#13;LT0_gI[16]= 63;&#13;LT0_gI[17]= 80;&#13;LT0_gI[18]= 100;&#13;LT0_gI[19]= 125;&#13;LT0_gI[20]= 160;&#13;LT0_gI[21]= 160;&#13;for (n=22; n<34; n++) &#13;&#9;LT0_gI[n]= 0;&#13;&#13;LT1_gI = new Array (33) ;&#13;for (n=0; n<14; n++) &#13;&#9;LT1_gI[n]= 0;&#13;LT1_gI[14]= 50;&#13;LT1_gI[15]= 50;&#13;LT1_gI[16]= 63;&#13;LT1_gI[17]= 80;&#13;LT1_gI[18]= 100;&#13;LT1_gI[19]= 125;&#13;LT1_gI[20]= 125;&#13;LT1_gI[21]= 160;&#13;LT1_gI[22]= 200;&#13;LT1_gI[23]= 250;&#13;for (n=24; n<34; n++) &#13;&#9;LT1_gI[n]= 0;&#13;&#13;LT2_gI = new Array (33) ;&#13;for (n=0; n<19; n++) &#13;&#9;LT2_gI[n]= 0;&#13;LT2_gI[19]= 125;&#13;LT2_gI[20]= 125;&#13;LT2_gI[21]= 160;&#13;LT2_gI[22]= 200;&#13;LT2_gI[23]= 250;&#13;LT2_gI[24]= 315;&#13;LT2_gI[25]= 400;&#13;for (n=26; n<34; n++) &#13;&#9;LT2_gI[n]= 0;&#13;&#13;LT3_gI = new Array (33) ;&#13;for (n=0; n<24; n++) &#13;&#9;LT3_gI[n]= 0;&#13;LT3_gI[24]= 315;&#13;LT3_gI[25]= 400;&#13;LT3_gI[26]= 500;&#13;LT3_gI[27]= 500;&#13;LT3_gI[28]= 630;&#13;for (n=29; n<34; n++) &#13;&#9;LT3_gI[n]= 0;&#13;&#13;LT4_gI = new Array (33) ;&#13;for (n=0; n<26; n++) &#13;&#9;LT4_gI[n]= 0;&#13;LT4_gI[26]= 500;&#13;LT4_gI[27]= 500;&#13;LT4_gI[28]= 630;&#13;LT4_gI[29]= 800;&#13;LT4_gI[30]= 1000;&#13;LT4_gI[31]= 1250;&#13;LT4_gI[32]= 0;&#13;LT4_gI[33]= 0;&#13;&#13;LT_In380 = new Array (33) ;&#13;LT_In380 [0]= 0.0 ;&#13;LT_In380 [1]= 0.3;&#13;LT_In380 [2]= 0.6;&#13;LT_In380 [3]= 1.1 ;&#13;LT_In380 [4]= 1.6 ;&#13;LT_In380 [5]= 2 ;&#13;LT_In380 [6]= 2.6 ;&#13;LT_In380 [7]= 3.5 ;&#13;LT_In380 [8]= 5 ;&#13;LT_In380 [9]= 6.6 ;&#13;LT_In380 [10]= 8.5 ;&#13;LT_In380 [11]= 11.5 ;&#13;LT_In380 [12]= 15.5 ;&#13;LT_In380 [13]= 20 ;&#13;LT_In380 [14]= 30 ;&#13;LT_In380 [15]= 37 ;&#13;LT_In380 [16]= 44 ;&#13;LT_In380 [17]= 51 ;&#13;LT_In380 [18]= 60 ;&#13;LT_In380 [19]= 73 ;&#13;LT_In380 [20]= 85 ;&#13;LT_In380 [21]= 105;&#13;LT_In380 [22]= 138 ;&#13;LT_In380 [23]= 170 ;&#13;LT_In380 [24]= 205 ;&#13;LT_In380 [25]= 245 ;&#13;LT_In380 [26]= 300 ;&#13;LT_In380 [27]= 370 ;&#13;LT_In380 [28]= 475 ;&#13;LT_In380 [29]= 560 ;&#13;LT_In380 [30]= 750 ;&#13;LT_In380 [31]= 950 ;&#13;LT_In380 [32]= 950 ;&#13;LT_In380 [33]= 1090 ;&#13;&#13;// Sorties&#13;P_cv = 0.00;&#13;Imot = 0.00;&#13;F_8_32 = 0;&#13;F_10_38 = 0;&#13;F_14_51 = 0;&#13;F_22_58 = 0;&#13;F_T00 = 0;&#13;F_T0 = 0;&#13;F_T1 = 0;&#13;F_T2 = 0;&#13;F_T3 = 0;&#13;F_T4 = 0;&#13;&#13;sInfo ="";&#13;&#13;// VAR CALCUL INTERMEDIAIRES&#13;bFin = true;&#13;&#13;GEN_Initialiser_Res ();&#13;&#13;with(window.document.forms[0])&#13;     {&#13;      for (n=0; n<cP.length; n++) &#13;          {&#13;            if (cP.options[n].selected) &#13;                {               &#13;//                 P = cP[n].value; Marche pas dans le navigateur&#13;                 P = Puissance[n];&#13;                 if(n<12)&#13;&#9;&#9;&#9;&#9;  Pindex =n+1;&#13;&#9;&#9;&#9;  else&#13;&#9;&#9;&#9;&#9;  Pindex =n+2;&#13;                 }&#13;          }&#13;      for (n=0; n<cVit.length; n++) &#13;           {&#13;                if (cVit[n].checked == true)&#13;                      {&#13;                          Vit = n +1;&#13;                       }   &#13;             }&#13;      for (n=0; n<cF_Dem.length; n++) &#13;           {&#13;                if (cF_Dem[n].checked == true)&#13;                      {&#13;                          F_Dem = n +1;&#13;                       }   &#13;             }&#13;      for (n=0; n<cType_Fu.length; n++) &#13;           {&#13;                if (cType_Fu[n].checked == true)&#13;                      {&#13;                          Type_Fu = n +1;&#13;                       }   &#13;             }&#13;      }&#13;&#13;Coef_mini =1;&#13;Coef_maxi =1;&#13;F_8_32_min = L8x32_gI[Pindex];&#13;F_10_38_min = L10x38_gI[Pindex];&#13;F_14_51_min = L14x51_gI[Pindex];&#13;F_22_58_min = L22x58_gI[Pindex];&#13;F_T00_min = LT00_gI[Pindex];&#13;F_T0_min = LT0_gI[Pindex];&#13;F_T1_min = LT1_gI[Pindex];&#13;F_T2_min = LT2_gI[Pindex];&#13;F_T3_min = LT3_gI[Pindex];&#13;F_T4_min = LT4_gI[Pindex];&#13;&#13;F_8_32_max = L8x32_gI[Pindex];&#13;F_10_38_max = L10x38_gI[Pindex];&#13;F_14_51_max = L14x51_gI[Pindex];&#13;F_22_58_max = L22x58_gI[Pindex];&#13;F_T00_max = LT00_gI[Pindex];&#13;F_T0_max = LT0_gI[Pindex];&#13;F_T1_max = LT1_gI[Pindex];&#13;F_T2_max = LT2_gI[Pindex];&#13;F_T3_max = LT3_gI[Pindex];&#13;F_T4_max = LT4_gI[Pindex];&#13;&#13;&#13;// Début Calcul&#13;P_cv = P/0.735499;&#13;  if (P_cv <10)&#13;&#9;  P_cv = Math.round(P_cv*100)/100;&#13;  else&#13;  {&#13;  &#9;  if (P_cv <100)&#13;&#9;&#9;  P_cv = Math.round(P_cv*10)/10;&#13;  &#9;  else  &#13;&#9;&#9;  P_cv = Math.round(P_cv);&#13;  }&#13;&#13;// Imot = (1000*P)/(380.0*Math.sqrt(3));&#13;Imot = LT_In380 [Pindex];&#13;&#13;if (F_Dem ==2 &amp;&amp; Pindex <33)&#13;&#9;Pindex++;&#13;&#13;if (Type_Fu ==1)&#13;{&#13;&#9;F_8_32 = L8x32_gI[Pindex];&#13;&#9;F_10_38 = L10x38_gI[Pindex];&#13;&#9;F_14_51 = L14x51_gI[Pindex];&#13;&#9;F_22_58 = L22x58_gI[Pindex];&#13;&#9;F_T00 = LT00_gI[Pindex];&#13;&#9;F_T0 = LT0_gI[Pindex];&#13;&#9;F_T1 = LT1_gI[Pindex];&#13;&#9;F_T2 = LT2_gI[Pindex];&#13;&#9;F_T3 = LT3_gI[Pindex];&#13;&#9;F_T4 = LT4_gI[Pindex];&#13;&#9;if (Pindex >0)&#13;&#9;{&#13;&#9;&#9;F_8_32_min = L8x32_gI[Pindex-1];&#13;&#9;&#9;F_10_38_min = L10x38_gI[Pindex-1];&#13;&#9;&#9;F_14_51_min = L14x51_gI[Pindex-1];&#13;&#9;&#9;F_22_58_min = L22x58_gI[Pindex-1];&#13;&#9;&#9;F_T00_min = LT00_gI[Pindex-1];&#13;&#9;&#9;F_T0_min = LT0_gI[Pindex-1];&#13;&#9;&#9;F_T1_min = LT1_gI[Pindex-1];&#13;&#9;&#9;F_T2_min = LT2_gI[Pindex-1];&#13;&#9;&#9;F_T3_min = LT3_gI[Pindex-1];&#13;&#9;&#9;F_T4_min = LT4_gI[Pindex-1];&#13;&#9;}&#13;&#9;if (Pindex <33)&#13;&#9;{&#13;&#9;&#9;F_8_32_max = L8x32_gI[Pindex+1];&#13;&#9;&#9;F_10_38_max = L10x38_gI[Pindex+1];&#13;&#9;&#9;F_14_51_max = L14x51_gI[Pindex+1];&#13;&#9;&#9;F_22_58_max = L22x58_gI[Pindex+1];&#13;&#9;&#9;F_T00_max = LT00_gI[Pindex+1];&#13;&#9;&#9;F_T0_max = LT0_gI[Pindex+1];&#13;&#9;&#9;F_T1_max = LT1_gI[Pindex+1];&#13;&#9;&#9;F_T2_max = LT2_gI[Pindex+1];&#13;&#9;&#9;F_T3_max = LT3_gI[Pindex+1];&#13;&#9;&#9;F_T4_max = LT4_gI[Pindex+1];&#13;&#9;}&#13;}&#13;else&#13;{&#13;&#9;F_8_32 = L8x32_aM[Pindex];&#13;&#9;F_10_38 = L10x38_aM[Pindex];&#13;&#9;F_14_51 = L14x51_aM[Pindex];&#13;&#9;F_22_58 = L22x58_aM[Pindex];&#13;&#9;F_T00 = LT00_aM[Pindex];&#13;&#9;F_T0 = LT0_aM[Pindex];&#13;&#9;F_T1 = LT1_aM[Pindex];&#13;&#9;F_T2 = LT2_aM[Pindex];&#13;&#9;F_T3 = LT3_aM[Pindex];&#13;&#9;F_T4 = LT4_aM[Pindex];&#13;&#9;if (Pindex >0)&#13;&#9;{&#13;&#9;&#9;F_8_32_min = L8x32_aM[Pindex-1];&#13;&#9;&#9;F_10_38_min = L10x38_aM[Pindex-1];&#13;&#9;&#9;F_14_51_min = L14x51_aM[Pindex-1];&#13;&#9;&#9;F_22_58_min = L22x58_aM[Pindex-1];&#13;&#9;&#9;F_T00_min = LT00_aM[Pindex-1];&#13;&#9;&#9;F_T0_min = LT0_aM[Pindex-1];&#13;&#9;&#9;F_T1_min = LT1_aM[Pindex-1];&#13;&#9;&#9;F_T2_min = LT2_aM[Pindex-1];&#13;&#9;&#9;F_T3_min = LT3_aM[Pindex-1];&#13;&#9;&#9;F_T4_min = LT4_aM[Pindex-1];&#13;&#9;}&#13;&#9;if (Pindex <33)&#13;&#9;{&#13;&#9;&#9;F_8_32_max = L8x32_aM[Pindex+1];&#13;&#9;&#9;F_10_38_max = L10x38_aM[Pindex+1];&#13;&#9;&#9;F_14_51_max = L14x51_aM[Pindex+1];&#13;&#9;&#9;F_22_58_max = L22x58_aM[Pindex+1];&#13;&#9;&#9;F_T00_max = LT00_aM[Pindex+1];&#13;&#9;&#9;F_T0_max = LT0_aM[Pindex+1];&#13;&#9;&#9;F_T1_max = LT1_aM[Pindex+1];&#13;&#9;&#9;F_T2_max = LT2_aM[Pindex+1];&#13;&#9;&#9;F_T3_max = LT3_aM[Pindex+1];&#13;&#9;&#9;F_T4_max = LT4_aM[Pindex+1];&#13;&#9;}&#13;}&#13;&#13;if (Vit !=2)&#13;{&#13;&#9;if (Vit ==3)&#13;&#9;{&#13;&#9;&#9;Coef_mini =0.8;&#13;&#9;&#9;Coef_maxi =1.0;&#13;&#9;&#9;// 0.95&#13;&#9;&#9;if ( (F_8_32_min >= F_8_32 * Coef_mini) &amp;&amp;  (F_8_32_min <= F_8_32 * Coef_maxi) )&#13;&#9;&#9;&#9;F_8_32 = F_8_32_min;&#9;&#9;&#13;&#9;&#9;else&#13;&#9;&#9;&#9;F_8_32 = 0;&#9;&#9;&#13;&#9;&#9;if ( (F_10_38_min >= F_10_38 * Coef_mini) &amp;&amp;  (F_10_38_min <= F_10_38 * Coef_maxi) )&#13;&#9;&#9;&#9;F_10_38 = F_10_38_min;&#9;&#9;&#13;&#9;&#9;else&#13;&#9;&#9;&#9;F_10_38 = 0;&#9;&#9;&#13;&#9;&#9;if ( (F_14_51_min >= F_14_51 * Coef_mini) &amp;&amp;  (F_14_51_min <= F_14_51 * Coef_maxi) )&#13;&#9;&#9;&#9;F_14_51 = F_14_51_min;&#9;&#9;&#13;&#9;&#9;else&#13;&#9;&#9;&#9;F_14_51 = 0;&#9;&#9;&#13;&#9;&#9;if ( (F_22_58_min >= F_22_58 * Coef_mini) &amp;&amp;  (F_22_58_min <= F_22_58 * Coef_maxi) )&#13;&#9;&#9;&#9;F_22_58 = F_22_58_min;&#9;&#9;&#13;&#9;&#9;else&#13;&#9;&#9;&#9;F_22_58 = 0;&#9;&#9;&#13;&#9;&#9;if ( (F_T00_min >= F_T00 * Coef_mini) &amp;&amp;  (F_T00_min <= F_T00 * Coef_maxi) )&#13;&#9;&#9;&#9;F_T00 = F_T00_min;&#9;&#9;&#13;&#9;&#9;else&#13;&#9;&#9;&#9;F_T00 = 0;&#9;&#9;&#13;&#9;&#9;if ( (F_T0_min >= F_T0 * Coef_mini) &amp;&amp;  (F_T0_min <= F_T0 * Coef_maxi) )&#13;&#9;&#9;&#9;F_T0 = F_T0_min;&#9;&#9;&#13;&#9;&#9;else&#13;&#9;&#9;&#9;F_T0 = 0;&#9;&#9;&#13;&#13;&#9;&#9;if ( (F_T1_min >= F_T1 * Coef_mini) &amp;&amp;  (F_T1_min <= F_T1 * Coef_maxi) )&#13;&#9;&#9;&#9;F_T1 = F_T1_min;&#9;&#9;&#13;&#9;&#9;else&#13;&#9;&#9;&#9;F_T1 = 0;&#9;&#9;&#13;&#13;&#9;&#9;if ( (F_T2_min >= F_T2 * Coef_mini) &amp;&amp;  (F_T2_min <= F_T2 * Coef_maxi) )&#13;&#9;&#9;&#9;F_T2 = F_T2_min;&#9;&#9;&#13;&#9;&#9;else&#13;&#9;&#9;&#9;F_T2 = 0;&#9;&#9;&#13;&#13;&#9;&#9;if ( (F_T3_min >= F_T3 * Coef_mini) &amp;&amp;  (F_T3_min <= F_T3 * Coef_maxi) )&#13;&#9;&#9;&#9;F_T3 = F_T3_min;&#9;&#9;&#13;&#9;&#9;else&#13;&#9;&#9;&#9;F_T3 = 0;&#9;&#9;&#13;&#13;&#9;&#9;if ( (F_T4_min >= F_T4 * Coef_mini) &amp;&amp;  (F_T4_min <= F_T4 * Coef_maxi) )&#13;&#9;&#9;&#9;F_T4 = F_T4_min;&#9;&#9;&#13;&#9;&#9;else&#13;&#9;&#9;&#9;F_T4 = 0;&#9;&#9;&#13;&#13;&#9;}&#13;&#9;else&#13;&#9;{&#13;&#9;&#9;if (Vit ==1)&#13;&#9;&#9;{&#9;&#13;&#9;&#9;&#9;Coef_mini =1.0;&#13;&#9;&#9;&#9;//1.1&#13;&#9;&#9;&#9;Coef_maxi =1.4;&#13;&#9;&#9;&#9;if ( (F_8_32_max >= F_8_32 * Coef_mini) &amp;&amp;  (F_8_32_max <= F_8_32 * Coef_maxi) )&#13;&#9;&#9;&#9;&#9;F_8_32 = F_8_32_max;&#9;&#9;&#13;&#9;&#9;&#9;else&#13;&#9;&#9;&#9;&#9;F_8_32 = 0;&#9;&#9;&#13;&#9;&#9;&#9;if ( (F_10_38_max >= F_10_38 * Coef_mini) &amp;&amp;  (F_10_38_max <= F_10_38 * Coef_maxi) )&#13;&#9;&#9;&#9;&#9;F_10_38 = F_10_38_max;&#9;&#9;&#13;&#9;&#9;&#9;else&#13;&#9;&#9;&#9;&#9;F_10_38 = 0;&#9;&#9;&#13;&#9;&#9;&#9;if ( (F_14_51_max >= F_14_51 * Coef_mini) &amp;&amp;  (F_14_51_max <= F_14_51 * Coef_maxi) )&#13;&#9;&#9;&#9;&#9;F_14_51 = F_14_51_max;&#9;&#9;&#13;&#9;&#9;&#9;else&#13;&#9;&#9;&#9;&#9;F_14_51 = 0;&#9;&#9;&#13;&#9;&#9;&#9;if ( (F_22_58_max >= F_22_58 * Coef_mini) &amp;&amp;  (F_22_58_max <= F_22_58 * Coef_maxi) )&#13;&#9;&#9;&#9;&#9;F_22_58 = F_22_58_max;&#9;&#9;&#13;&#9;&#9;&#9;else&#13;&#9;&#9;&#9;&#9;F_22_58 = 0;&#9;&#9;&#13;&#9;&#9;&#9;if ( (F_T00_max >= F_T00 * Coef_mini) &amp;&amp;  (F_T00_max <= F_T00 * Coef_maxi) )&#13;&#9;&#9;&#9;&#9;F_T00 = F_T00_max;&#9;&#9;&#13;&#9;&#9;&#9;else&#13;&#9;&#9;&#9;&#9;F_T00 = 0;&#9;&#9;&#13;&#9;&#9;&#9;if ( (F_T0_max >= F_T0 * Coef_mini) &amp;&amp;  (F_T0_max <= F_T0 * Coef_maxi) )&#13;&#9;&#9;&#9;&#9;F_T0 = F_T0_max;&#9;&#9;&#13;&#9;&#9;&#9;else&#13;&#9;&#9;&#9;&#9;F_T0 = 0;&#9;&#9;&#13;&#9;&#9;&#9;if ( (F_T1_max >= F_T1 * Coef_mini) &amp;&amp;  (F_T1_max <= F_T1 * Coef_maxi) )&#13;&#9;&#9;&#9;&#9;F_T1 = F_T1_max;&#9;&#9;&#13;&#9;&#9;&#9;else&#13;&#9;&#9;&#9;&#9;F_T1 = 0;&#9;&#9;&#13;&#9;&#9;&#9;if ( (F_T2_max >= F_T2 * Coef_mini) &amp;&amp;  (F_T2_max <= F_T2 * Coef_maxi) )&#13;&#9;&#9;&#9;&#9;F_T2 = F_T2_max;&#9;&#9;&#13;&#9;&#9;&#9;else&#13;&#9;&#9;&#9;&#9;F_T2 = 0;&#9;&#9;&#13;&#9;&#9;&#9;if ( (F_T3_max >= F_T3 * Coef_mini) &amp;&amp;  (F_T3_max <= F_T3 * Coef_maxi) )&#13;&#9;&#9;&#9;&#9;F_T3 = F_T3_max;&#9;&#9;&#13;&#9;&#9;&#9;else&#13;&#9;&#9;&#9;&#9;F_T3 = 0;&#9;&#9;&#13;&#9;&#9;&#9;if ( (F_T4_max >= F_T4 * Coef_mini) &amp;&amp;  (F_T4_max <= F_T4 * Coef_maxi) )&#13;&#9;&#9;&#9;&#9;F_T4 = F_T4_max;&#9;&#9;&#13;&#9;&#9;&#9;else&#13;&#9;&#9;&#9;&#9;F_T4 = 0;&#9;&#9;&#13;&#13;&#9;&#9;}&#9;&#13;&#9;}&#13;}&#13;&#13;if ( F_8_32 ==0 &amp;&amp; F_10_38 ==0 &amp;&amp; F_14_51 ==0 &amp;&amp; F_22_58 ==0 &amp;&amp; F_T00 ==0 &amp;&amp; F_T0 ==0 &amp;&amp; F_T1 ==0 &amp;&amp; F_T2 ==0 &amp;&amp; F_T3 ==0 &amp;&amp; F_T4 ==0)&#13;{&#13;&#9;sInfo = "Absence de calibre standard convenable.";&#13;&#9;if(Vit ==3)&#13;&#9;&#9;sInfo = sInfo + "Utiliser si possible le calibre donné pour une vitesse de 1500 t/mn";&#13;}&#9;&#9;&#13;// Fin Calcul&#13;&#13;bFin == true&#13;&#13;if (bFin == true )&#13;    {&#13;// Affectation Resultat&#13;&#9;GEN_Affecter_Res (P_cv,Imot,F_8_32,F_10_38,F_14_51,F_22_58,F_T00,F_T0,F_T1,F_T2,F_T3,F_T4,sInfo)&#13;      }&#13;else&#13;     {&#13;&#9;GEN_Affecter_Res (0,0,0,0,0,0,0,0,0,0,0,0,"Problème Critique")&#13;      }&#13;}&#13;&#13;return false;' 
+      href="http://www.elec-planet.com:8080/elecplanet/Calcul.nsf/"><B><FONT 
+      face=Arial color=#ffff00>Calculer</FONT></B></A></DIV></TD></TR>
+  <TR vAlign=top>
+    <TD width=582 bgColor=#ffe1b0 colSpan=3><B><I><FONT face=Arial 
+      color=#ff0000 size=1><TEXTAREA name=cInfo rows=3 cols=75></TEXTAREA> 
+      </FONT></I></B><BR><B><FONT face=Arial 
+size=1><BR></FONT></B></TD></TR></TBODY></TABLE><INPUT type=hidden 
+value=BEMELINON1 name=UserName></FORM></BODY></HTML>

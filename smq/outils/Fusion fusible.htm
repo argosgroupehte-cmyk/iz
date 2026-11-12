@@ -1,0 +1,200 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0095)http://www.elec-planet.com:8080/elecplanet/Calcul.nsf/400b6042ffdd735dc1256b180033bd46?OpenForm -->
+<HTML><HEAD>
+<META http-equiv=Content-Type content="text/html; charset=utf-8">
+<SCRIPT language=JavaScript>
+<!-- 
+var bRAZ = true;
+function GEN_Afficher_Aide (sStatus , sInfo)
+{
+if ( sStatus == "" )
+    { document.forms[0].cInfo.value = sInfo; }
+else
+    { document.forms[0].cInfo.value = sStatus + "\n" + sInfo; }
+}
+
+function GEN_Initialiser_Res ()
+{
+with (document.forms[0])
+{
+cCF.value=0;
+bRAZ = true;
+}
+}
+function GEN_Affecter_Res (CF,sInfo)
+{
+with (document.forms[0])
+{
+
+// valeurs
+cCF.value=Math.round(CF);
+cInfo.value=sInfo;
+bRAZ= false;
+}
+}
+function GEN_Initialiser_Ent ()
+{
+with (document.forms[0])
+{
+// listes
+cCalibre.options[4].selected =true ;
+// radio
+cTypeFu[0].checked =true;
+// valeurs
+cTF.value=0.4;
+}
+}
+function Event_OnKeyDown (e)
+{
+window.alert("toto");
+}
+document.onKeyDown = Event_OnKeyDown;
+
+// -->
+</SCRIPT>
+
+<SCRIPT language=JavaScript>
+<!-- 
+document._domino_target = "_self";
+function _doClick(v, o, t, h) {
+  var form = document._DominoForm;
+  if (form.onsubmit) {
+     var retVal = form.onsubmit();
+     if (typeof retVal == "boolean" && retVal == false)
+       return false;
+  }
+  var target = document._domino_target;
+  if (o.href != null) {
+    if (o.target != null)
+       target = o.target;
+  } else {
+    if (t != null)
+      target = t;
+  }
+  form.target = target;
+  form.__Click.value = v;
+  if (h != null)
+    form.action += h;
+  form.submit();
+  return false;
+}
+// -->
+</SCRIPT>
+
+<META content="MSHTML 6.00.6000.16809" name=GENERATOR></HEAD>
+<BODY text=#000000 bgColor=#ffffff leftMargin=5 topMargin=0>
+<FORM name=_DominoForm 
+action=/elecplanet/Calcul.nsf/400b6042ffdd735dc1256b180033bd46?OpenForm&amp;Seq=1 
+method=post><INPUT type=hidden value=0 name=__Click> 
+<TABLE cellSpacing=0 cellPadding=0 border=0>
+  <TBODY>
+  <TR vAlign=top>
+    <TD width=582 bgColor=#8080ff colSpan=3>
+      <DIV align=center><B><FONT face="Times New Roman" color=#ffffff 
+      size=4>Courant de fusion d'un fusible</FONT></B></DIV></TD></TR>
+  <TR vAlign=top>
+    <TD width=271 bgColor=#bfbfff>
+      <DIV align=center><B><I><FONT face=Arial color=#ffff00 
+      size=2>Caractéristiques (Données à saisir)</FONT></I></B></DIV></TD>
+    <TD width=41 bgColor=#bfbfff><IMG height=1 alt="" 
+      src="Fusion%20fusible_fichiers/ecblank.gif" width=1 border=0></TD>
+    <TD width=271 bgColor=#e0e0ff>
+      <DIV align=center><B><I><FONT face=Arial color=#ff0000 size=2>Résultats du 
+      calcul</FONT></I></B></DIV></TD></TR>
+  <TR vAlign=top>
+    <TD width=271 bgColor=#8080ff><FONT face=Arial color=#ffff00 size=1>Type 
+      de Fusible</FONT></TD>
+    <TD width=41 bgColor=#8080ff><IMG height=1 alt="" 
+      src="Fusion%20fusible_fichiers/ecblank.gif" width=1 border=0></TD>
+    <TD width=271 bgColor=#8080ff><IMG height=1 alt="" 
+      src="Fusion%20fusible_fichiers/ecblank.gif" width=1 border=0></TD></TR>
+  <TR vAlign=top>
+    <TD width=271 bgColor=#bfbfff><FONT face=Arial size=1>
+      <P style="MARGIN-LEFT: 20px"></FONT><FONT face=Arial color=#0000ff 
+      size=1><INPUT 
+      onmouseover='GEN_Afficher_Aide ("Choisissez le type du fusible par défaut gI" , "")' 
+      onclick="if (! bRAZ) GEN_Initialiser_Res ();" type=radio CHECKED value=gI 
+      name=cTypeFu>gI <INPUT 
+      onmouseover='GEN_Afficher_Aide ("Choisissez le type du fusible par défaut gI" , "")' 
+      onclick="if (! bRAZ) GEN_Initialiser_Res ();" type=radio value="aM 400 V" 
+      name=cTypeFu>aM 400 V <INPUT 
+      onmouseover='GEN_Afficher_Aide ("Choisissez le type du fusible par défaut gI" , "")' 
+      onclick="if (! bRAZ) GEN_Initialiser_Res ();" type=radio value="aM 500 V" 
+      name=cTypeFu>aM 500 V <INPUT 
+      onmouseover='GEN_Afficher_Aide ("Choisissez le type du fusible par défaut gI" , "")' 
+      onclick="if (! bRAZ) GEN_Initialiser_Res ();" type=radio value="aM 660 V" 
+      name=cTypeFu>aM 660 V</FONT><FONT face=Arial size=1><O:P></FONT></P></TD>
+    <TD width=41 bgColor=#bfbfff><IMG height=1 alt="" 
+      src="Fusion%20fusible_fichiers/ecblank.gif" width=1 border=0></TD>
+    <TD width=271 bgColor=#e0e0ff><IMG height=1 alt="" 
+      src="Fusion%20fusible_fichiers/ecblank.gif" width=1 border=0></TD></TR>
+  <TR vAlign=top>
+    <TD width=271 bgColor=#8080ff><FONT face=Arial size=1></FONT><FONT 
+      face=Arial color=#ffff00 size=1>Calibre du Fusible</FONT></TD>
+    <TD width=41 bgColor=#8080ff><IMG height=1 alt="" 
+      src="Fusion%20fusible_fichiers/ecblank.gif" width=1 border=0></TD>
+    <TD width=271 bgColor=#8080ff><IMG height=1 alt="" 
+      src="Fusion%20fusible_fichiers/ecblank.gif" width=1 border=0></TD></TR>
+  <TR vAlign=top>
+    <TD width=271 bgColor=#bfbfff><FONT face=Arial size=1>
+      <P style="MARGIN-LEFT: 20px"></FONT><FONT face=Arial color=#0000ff 
+      size=1><SELECT 
+      onfocus='if (! bRAZ) GEN_Initialiser_Res ();&#13;GEN_Afficher_Aide ("Saisir une valeur entre 2 et 1000 A, valeur par défaut 10." , "")' 
+      name=cCalibre> <OPTION>2<OPTION>4<OPTION>6<OPTION>8<OPTION 
+        selected>10<OPTION>12<OPTION>16<OPTION>20<OPTION>25<OPTION>32<OPTION>40<OPTION>50<OPTION>63<OPTION>80<OPTION>100<OPTION>125<OPTION>160<OPTION>200<OPTION>250<OPTION>315<OPTION>400<OPTION>500<OPTION>630<OPTION>800<OPTION>1000</OPTION></SELECT> 
+      </FONT><FONT face=Arial size=1></FONT><B><FONT face=Arial color=#ffff00 
+      size=1>A</FONT></B><FONT face=Arial size=1><O:P></FONT></P></TD>
+    <TD width=41 bgColor=#bfbfff><IMG height=1 alt="" 
+      src="Fusion%20fusible_fichiers/ecblank.gif" width=1 border=0></TD>
+    <TD width=271 bgColor=#e0e0ff><IMG height=1 alt="" 
+      src="Fusion%20fusible_fichiers/ecblank.gif" width=1 border=0></TD></TR>
+  <TR vAlign=top>
+    <TD width=271 bgColor=#8080ff><FONT face=Arial color=#ffff00 size=1>Temps 
+      de fusion du fusible</FONT></TD>
+    <TD width=41 bgColor=#8080ff><IMG height=1 alt="" 
+      src="Fusion%20fusible_fichiers/ecblank.gif" width=1 border=0></TD>
+    <TD width=271 bgColor=#8080ff><FONT face=Arial color=#ffff00 
+      size=1>Courant de fusion du Fusible</FONT></TD></TR>
+  <TR vAlign=top>
+    <TD width=271 bgColor=#bfbfff><FONT face=Arial size=1>
+      <P style="MARGIN-LEFT: 20px"></FONT><FONT face=Arial color=#0000ff 
+      size=1><INPUT 
+      onblur='sVal =new String(document.forms[0].cTF.value);&#13;sVal = sVal.replace ("," ,".");&#13;nVal = parseFloat (sVal );&#13;var bPb = false;&#13;if ( isNaN(nVal) == false )&#13;   {&#13;    if (nVal > 5)&#13;        {&#13;        window.alert ("Le temps de fusion ne peut être supérieure à 5 s.");&#13;        nVal= 5;&#13;        }&#13;     if (nVal <0.006)&#13;        {&#13;        window.alert ("Le temps de fusion ne peut-être inférieur à 0.006 s.");&#13;        nVal= 0.006;&#13;        }&#13;    }&#13;else&#13;  {&#13;   window.alert ("Vous devez saisir une valeur numérique");&#13;   bPb =true;&#13;   nVal = 0.4;&#13;   }&#13;if (bPb == true)   document.forms[0].cTF.focus();&#13;document.forms[0].cTF.value= nVal;&#13;&#13;&#13;&#13;&#13;&#13;&#13;&#13;' 
+      onmouseover='GEN_Afficher_Aide ("Saisir une valeur entre 0.006 et 5 s, valeur par défaut 0.4." , "")' 
+      onfocus="if (! bRAZ) GEN_Initialiser_Res ();" size=8 value=0.4 
+      name=cTF></FONT><FONT face=Arial size=1> </FONT><B><FONT face=Arial 
+      color=#ffff00 size=1>s</FONT></B><FONT face=Arial 
+    size=1><O:P></FONT></P></TD>
+    <TD width=41 bgColor=#bfbfff><IMG height=1 alt="" 
+      src="Fusion%20fusible_fichiers/ecblank.gif" width=1 border=0></TD>
+    <TD width=271 bgColor=#e0e0ff><FONT face=Arial size=1>
+      <P style="MARGIN-LEFT: 20px"></FONT><FONT face=Arial color=#ff0000 
+      size=1><INPUT onfocus=document.forms[0].cTF.focus() size=8 value=0 
+      name=cCF></FONT><B><FONT face=Arial color=#ff0000 size=1> 
+      A</FONT></B><FONT face=Arial size=1><O:P></FONT></P></TD></TR>
+  <TR vAlign=top>
+    <TD width=271 bgColor=#bfbfff>
+      <DIV align=center><A 
+      onmouseover='GEN_Afficher_Aide ("","Cliquez pour Affecter les valeurs par défaut")&#13;' 
+      onclick="GEN_Initialiser_Ent ();&#13;if (! bRAZ) GEN_Initialiser_Res ();&#13;&#13;&#13;&#13;&#13;return false;" 
+      href="http://www.elec-planet.com:8080/elecplanet/Calcul.nsf/"><B><FONT 
+      face=Arial color=#ffff00>Valeurs par défaut</FONT></B></A><B><FONT 
+      face=Arial color=#ffff00> </FONT></B></DIV></TD>
+    <TD width=41 bgColor=#bfbfff>
+      <DIV align=center><A 
+      onmouseover='GEN_Afficher_Aide ("", "Cliquez pour mettre à zéro les résultats.")' 
+      onclick="GEN_Initialiser_Res ()&#13;&#13;&#13;&#13;&#13;return false;" 
+      href="http://www.elec-planet.com:8080/elecplanet/Calcul.nsf/"><B><FONT 
+      face=Arial color=#ffff00>Raz</FONT></B></A></DIV></TD>
+    <TD width=271 bgColor=#bfbfff>
+      <DIV align=center><A 
+      onmouseover="GEN_Afficher_Aide (&quot;&quot;, &quot;Cliquez pour Calculer\nAttention les données d'entrées peuvent être modifiées&quot;)" 
+      onclick='tst =  window.location.href;&#13;position = tst.lastIndexOf("/");&#13;url = tst.substring(0,position) + "/ReRoute?openform";&#13;&#13;if (window.document.forms[0].UserName.value == "Anonymous")&#13;&#9;window.open(url,target="cadres_contenu");&#13;else&#13;{&#13;LCalibre = new Array (26) ;&#13;LCalibre[1]= 2;&#13;LCalibre[2]= 4;&#13;LCalibre[3]= 6;&#13;LCalibre[4]= 8;&#13;LCalibre[5]= 10;&#13;LCalibre[6]= 12;&#13;LCalibre[7]= 16;&#13;LCalibre[8]= 20;&#13;LCalibre[9]= 25;&#13;LCalibre[10]= 32;&#13;LCalibre[11]= 40;&#13;LCalibre[12]= 50;&#13;LCalibre[13]= 63;&#13;LCalibre[14]= 80;&#13;LCalibre[15]= 100;&#13;LCalibre[16]= 125;&#13;LCalibre[17]= 160;&#13;LCalibre[18]= 200;&#13;LCalibre[19]= 250;&#13;LCalibre[20]= 315;&#13;LCalibre[21]= 400;&#13;LCalibre[22]= 500;&#13;LCalibre[23]= 630;&#13;LCalibre[24]= 800;&#13;LCalibre[25]= 1000;&#13;LCalibre[26]= 1250;&#13;&#13;var CoefCalFu = new Array (2) ;&#13;CoefCalFu [0] = new Array (26) ;&#13;CoefCalFu [1] = new Array (26) ;&#13;CoefCalFu [2] = new Array (26) ;&#13;CoefCalFu [3] = new Array (26) ;&#13;CoefCalFu [4] = new Array (26) ;&#13;CoefCalFu [5] = new Array (26) ;&#13;&#13;// &#13;CoefCalFu [0] [1] = 6.5;&#13;CoefCalFu [0] [2] = 6.6;&#13;CoefCalFu [0] [3] = 6.5;&#13;CoefCalFu [0] [4] = 6.73;&#13;CoefCalFu [0] [5] = 6.88;&#13;CoefCalFu [0] [6] = 7.97;&#13;CoefCalFu [0] [7] = 8.3;&#13;CoefCalFu [0] [8] = 8.2;&#13;CoefCalFu [0] [9] = 8.4;&#13;CoefCalFu [0] [10] = 8.3;&#13;CoefCalFu [0] [11] = 8.3;&#13;CoefCalFu [0] [12] = 8.4;&#13;CoefCalFu [0] [13] = 8.3;&#13;CoefCalFu [0] [14] = 8.4;&#13;CoefCalFu [0] [15] = 8.88;&#13;CoefCalFu [0] [16] = 9.09;&#13;CoefCalFu [0] [17] = 9.2;&#13;CoefCalFu [0] [18] = 9.65;&#13;CoefCalFu [0] [19] = 10;&#13;CoefCalFu [0] [20] = 10.15;&#13;CoefCalFu [0] [21] = 10.5;&#13;CoefCalFu [0] [22] = 10.7;&#13;CoefCalFu [0] [23] = 12.7;&#13;CoefCalFu [0] [24] = 13.1;&#13;CoefCalFu [0] [25] = 13.5;&#13;CoefCalFu [0] [26] = 13.5;&#13;&#13;&#13;// &#13;CoefCalFu [1] [1] = 6.1 ;&#13;CoefCalFu [1] [2] =  5.9;&#13;CoefCalFu [1] [3] =  6.05;&#13;CoefCalFu [1] [4] =  6.15;&#13;CoefCalFu [1] [5] =  6;&#13;CoefCalFu [1] [6] =  6.85;&#13;CoefCalFu [1] [7] =  7.4;&#13;CoefCalFu [1] [8] = 7.1 ;&#13;CoefCalFu [1] [9] =  7.85;&#13;CoefCalFu [1] [11] = 7.5 ;&#13;CoefCalFu [1] [11] =  7.1;&#13;CoefCalFu [1] [12] =  7.9;&#13;CoefCalFu [1] [13] =  7.8;&#13;CoefCalFu [1] [14] =  7.3;&#13;CoefCalFu [1] [15] =  8.6;&#13;CoefCalFu [1] [16] =  8.25;&#13;CoefCalFu [1] [17] = 8.65 ;&#13;CoefCalFu [1] [18] =  9.42;&#13;CoefCalFu [1] [19] =  9.3;&#13;CoefCalFu [1] [21] =  9.6;&#13;CoefCalFu [1] [21] =  10.3;&#13;CoefCalFu [1] [22] =  9.8;&#13;CoefCalFu [1] [23] =  12.15;&#13;CoefCalFu [1] [24] = 12.15;&#13;CoefCalFu [1] [25] = 13.2;&#13;CoefCalFu [1] [26] = 13.2;&#13;&#13;// &#13;CoefCalFu [2] [1] = 3.45 ;&#13;CoefCalFu [2] [2] =  3.2;&#13;CoefCalFu [2] [3] =  3.2;&#13;CoefCalFu [2] [4] =  3.15;&#13;CoefCalFu [2] [5] =  3;&#13;CoefCalFu [2] [6] =  3.1;&#13;CoefCalFu [2] [7] =  3.2;&#13;CoefCalFu [2] [8] =  3.1;&#13;CoefCalFu [2] [9] =  3.3;&#13;CoefCalFu [2] [12] =  3.25;&#13;CoefCalFu [2] [11] =  3.1;&#13;CoefCalFu [2] [12] =  3.4;&#13;CoefCalFu [2] [13] =  3.3;&#13;CoefCalFu [2] [14] =  3.18;&#13;CoefCalFu [2] [15] =  3.6;&#13;CoefCalFu [2] [16] =  3.27;&#13;CoefCalFu [2] [17] =  3.54;&#13;CoefCalFu [2] [18] =  3.65;&#13;CoefCalFu [2] [19] =  3.42;&#13;CoefCalFu [2] [22] =  3.5;&#13;CoefCalFu [2] [21] =  3.65;&#13;CoefCalFu [2] [22] =  3.3;&#13;CoefCalFu [2] [23] =  3.3;&#13;CoefCalFu [2] [24] =  3.2;&#13;CoefCalFu [2] [25] =  3.45;&#13;CoefCalFu [2] [26] =  3.5;&#13;&#13;// &#13;CoefCalFu [3] [1] =  6.5;&#13;CoefCalFu [3] [2] =  8.6;&#13;CoefCalFu [3] [3] =  6.5;&#13;CoefCalFu [3] [4] =  6.73;&#13;CoefCalFu [3] [5] =  6.88;&#13;CoefCalFu [3] [6] =  7.97;&#13;CoefCalFu [3] [7] =  6.2;&#13;CoefCalFu [3] [8] =  6.2;&#13;CoefCalFu [3] [9] =  6.4;&#13;CoefCalFu [3] [13] =  7.2;&#13;CoefCalFu [3] [11] =  7.1;&#13;CoefCalFu [3] [12] =  7.75;&#13;CoefCalFu [3] [13] =  7.45;&#13;CoefCalFu [3] [14] =  8.4;&#13;CoefCalFu [3] [15] =  8.6;&#13;CoefCalFu [3] [16] =  9.09;&#13;CoefCalFu [3] [17] =  8.75;&#13;CoefCalFu [3] [18] =  9.65;&#13;CoefCalFu [3] [19] =  10;&#13;CoefCalFu [3] [23] =  10.15;&#13;CoefCalFu [3] [21] =  10.35;&#13;CoefCalFu [3] [22] =  11.4;&#13;CoefCalFu [3] [23] =  11.8;&#13;CoefCalFu [3] [24] =  13.5;&#13;CoefCalFu [3] [25] =  13.5;&#13;CoefCalFu [3] [26] =  15.6;&#13;&#13;// &#13;CoefCalFu [4] [1] = 6.1 ;&#13;CoefCalFu [4] [2] = 7.45;&#13;CoefCalFu [4] [3] = 5.7 ;&#13;CoefCalFu [4] [4] =  6.15;&#13;CoefCalFu [4] [5] =  5.9;&#13;CoefCalFu [4] [6] =  6.85;&#13;CoefCalFu [4] [7] =  5.8;&#13;CoefCalFu [4] [8] =  5.5;&#13;CoefCalFu [4] [9] =  6;&#13;CoefCalFu [4] [14] =  6.8;&#13;CoefCalFu [4] [11] =  6.55;&#13;CoefCalFu [4] [12] =  6.9;&#13;CoefCalFu [4] [13] =  6.8;&#13;CoefCalFu [4] [14] =  7.3;&#13;CoefCalFu [4] [15] =  8.2;&#13;CoefCalFu [4] [16] =  8.25;&#13;CoefCalFu [4] [17] =  8.4;&#13;CoefCalFu [4] [18] =  9.42;&#13;CoefCalFu [4] [19] =  9.3;&#13;CoefCalFu [4] [24] =  9.6;&#13;CoefCalFu [4] [21] =  10.65;&#13;CoefCalFu [4] [22] =  10.4;&#13;CoefCalFu [4] [23] =  11.8;&#13;CoefCalFu [4] [24] =  12.15;&#13;CoefCalFu [4] [25] =  12;&#13;CoefCalFu [4] [26] =  13.2;&#13;&#13;// &#13;CoefCalFu [5] [1] =  3.45;&#13;CoefCalFu [5] [2] =  3.2;&#13;CoefCalFu [5] [3] =  3.2;&#13;CoefCalFu [5] [4] =  3.15;&#13;CoefCalFu [5] [5] =  3;&#13;CoefCalFu [5] [6] =  3.1;&#13;CoefCalFu [5] [7] =  3.2;&#13;CoefCalFu [5] [8] =  3.1;&#13;CoefCalFu [5] [9] =  3.2;&#13;CoefCalFu [5] [15] =  3.25;&#13;CoefCalFu [5] [11] =  3.1;&#13;CoefCalFu [5] [12] =  3.4;&#13;CoefCalFu [5] [13] =  3.3;&#13;CoefCalFu [5] [14] =  3.18;&#13;CoefCalFu [5] [15] =  3.6;&#13;CoefCalFu [5] [16] =  3.27;&#13;CoefCalFu [5] [17] =  3.54;&#13;CoefCalFu [5] [18] =  3.65;&#13;CoefCalFu [5] [19] =  3.42;&#13;CoefCalFu [5] [25] =  3.5;&#13;CoefCalFu [5] [21] =  3.65;&#13;CoefCalFu [5] [22] =  3.3;&#13;CoefCalFu [5] [23] =  3.3;&#13;CoefCalFu [5] [24] =  3.2;&#13;CoefCalFu [5] [25] =  3.45;&#13;CoefCalFu [5] [26] =  3.5;&#13;&#13;// Entrées&#13;TypeFu = 0;&#13;Calibre=0;&#13;TF = 0.00;&#13;&#13;// Sorties&#13;&#13;CF = 0.00;&#13;sInfo ="";&#13;&#13;// VAR CALCUL INTERMEDIAIRES&#13;bFin = false;&#13;&#13;&#13;GEN_Initialiser_Res ();&#13;&#13;with(window.document.forms[0])&#13;     {&#13;      for (n=0; n<cTypeFu.length; n++) &#13;           {&#13;                if (cTypeFu[n].checked == true)&#13;                      {&#13;                          TypeFu = n +1;&#13;                       }   &#13;             }&#13;      for (n=0; n<cCalibre.length; n++) &#13;          {&#13;            if (cCalibre.options[n].selected) &#13;                {&#13;                 Calibre = LCalibre[n+1];&#13;                 CalibreIndex = n + 1; &#13;                }&#13;          }&#13;      TF = parseFloat (cTF.value);&#13;      }&#13;&#13;// GEN_Affecter_Res (CF,"TestEntrée")&#13;// initialisation &#13;temp=0;&#13;  &#13;// Début Calcul&#13;&#13;&#9;if (TypeFu ==1 || TypeFu ==5)&#13;&#9;{&#13;&#9;&#9;if (TypeFu ==1)&#13;&#9;&#9;{&#13;&#9;&#9;&#9;A21 = 4;&#13;&#9;&#9;&#9;A11 = CoefCalFu[0] [CalibreIndex]*Calibre;&#13;&#9;&#9;&#9;A12 = CoefCalFu[1] [CalibreIndex]*Calibre;&#13;&#9;&#9;&#9;A22 = CoefCalFu[2] [CalibreIndex];&#13;&#9;&#9;}&#13;&#9;&#9;else&#13;&#9;&#9;{&#13;&#9;&#9;&#9;A21 = 4;&#13;&#9;&#9;&#9;A11 = CoefCalFu[3] [CalibreIndex]*Calibre;&#13;&#9;&#9;&#9;A12 = CoefCalFu[4] [CalibreIndex]*Calibre;&#13;&#9;&#9;&#9;A22 = CoefCalFu[5] [CalibreIndex];&#13;&#9;&#9;}&#13;&#9;}&#13;&#9;else&#13;&#9;{&#13;&#9;&#9;A2 = 0;&#13;&#9;&#9;A1 = Calibre;&#13;&#9;}&#13;&#9;if (TypeFu !=1 &amp;&amp; TypeFu !=5)&#13;&#9;{&#13;&#9;&#9;if (TF >=.5)&#13;&#9;&#9;{&#13;&#9;&#9;&#9;A2=6;&#13;&#9;&#9;&#9;A1=11;&#13;&#9;&#9;}&#13;&#9;&#9;else&#13;&#9;&#9;{&#9;&#9;&#13;&#9;&#9;&#9;if (TF <=.04) &#13;&#9;&#9;&#9;{&#9;&#13;&#9;&#9;&#9;&#9;switch (TypeFu)&#13;&#9;     &#9;    {&#13;&#9;&#9;&#9;&#9;&#9;case 2 :&#13;                       &#9;{&#13;&#9;&#9;&#9;&#9;&#9;&#9;A2 =2.45;&#13;&#9;&#9;&#9;&#9;&#9;&#9;A1 =6;&#13;&#9;                        break;&#13;                        }&#13;&#9;&#9;&#9;&#9;&#9;case 3 :&#13;                       &#9;{&#13;                       &#9;&#9;A2 =2.26;&#13;&#9;&#9;&#9;&#9;&#9;&#9;A1 =6.2;&#13;&#9;                        break;&#13;                        }&#13;&#9;&#9;&#9;&#9;&#9;case 4 :&#13;                       &#9;{&#13;&#9;&#9;&#9;&#9;&#9;&#9;A2 =2.15 ;&#13;&#9;&#9;&#9;&#9;&#9;&#9;A1 =6.35;&#13;&#9;                        break;&#13;&#9;                     }&#13;&#9;          &#9;}&#13;&#9;&#9;&#9;}&#13;&#9;&#9;&#9;else&#13;&#9;&#9;&#9;{&#13;&#9;&#9;&#9;&#9;switch (TypeFu)&#13;&#9;     &#9;    {&#13;&#9;&#9;&#9;&#9;&#9;case 2 :&#13;                       &#9;{&#13;&#9;&#9;&#9;&#9;&#9;&#9;A2 =4.45;&#13;&#9;&#9;&#9;&#9;&#9;&#9;A1 =10.65;&#13;&#9;                        break;&#13;                        }&#13;&#9;&#9;&#9;&#9;&#9;case 3 :&#13;                       &#9;{&#13;                       &#9;&#9;A2 =3.8;&#13;&#9;&#9;&#9;&#9;&#9;&#9;A1 =10.35;&#13;&#9;                        break;&#13;                        }&#13;&#9;&#9;&#9;&#9;&#9;case 4 :&#13;                       &#9;{&#13;&#9;&#9;&#9;&#9;&#9;&#9;A2 =3.45 ;&#13;&#9;&#9;&#9;&#9;&#9;&#9;A1 =10.15;&#13;&#9;                        break;&#13;&#9;                     }&#13;&#9;          &#9;}&#13;&#9;&#9;&#9;}&#13;&#9;&#9;}&#13;&#9;&#9;A1=A1*Calibre;&#13;&#9;&#9;temp= Math.pow(A1,A2)/TF;&#13;&#9;&#9;CF= Math.exp(Math.log(temp)/A2);&#13;&#9;}&#9;&#13;&#9;else&#13;&#9;{&#13;&#9;&#9;if (A21 !=0)&#13;&#9;&#9;{&#13;&#9;&#9;&#9;temp = Math.pow(A11,A21)/TF;&#13;&#9;&#9;&#9;CF  = Math.exp(Math.log(temp)/A21);&#13;&#9;&#9;}&#13;&#9;&#9;if (A22 !=0)&#13;&#9;&#9;{&#13;&#9;&#9;&#9;temp = Math.pow(A12,A22)/TF;&#13;&#9;&#9;&#9;CF2 = Math.exp(Math.log(temp)/A22);&#13;&#9;&#9;}&#9;&#13;&#9;&#9;if (CF2 > CF)&#13;&#9;&#9;&#9;CF = CF2;&#13;&#9;}&#13;&#13;bFin = true;&#13;&#13;// Fin Calcul&#13;&#13;if (bFin == true )&#13;    {&#13;      GEN_Affecter_Res (CF,sInfo)&#13;      }&#13;else&#13;     {&#13;     GEN_Affecter_Res (0,"Problème Critique");&#13;      }&#13;}&#13;&#13;return false;' 
+      href="http://www.elec-planet.com:8080/elecplanet/Calcul.nsf/"><B><U><FONT 
+      face=Arial color=#ffff00>Calculer</FONT></U></B></A></DIV></TD></TR>
+  <TR vAlign=top>
+    <TD width=582 bgColor=#ffe1b0 colSpan=3><B><I><FONT face=Arial 
+      color=#ff0000 size=1><TEXTAREA onfocus=document.forms[0].cTF.focus() name=cInfo rows=3 cols=75></TEXTAREA> 
+      </FONT></I></B><BR><B><FONT face=Arial 
+size=1><BR></FONT></B></TD></TR></TBODY></TABLE><INPUT type=hidden 
+value=BEMELINON1 name=UserName></FORM></BODY></HTML>

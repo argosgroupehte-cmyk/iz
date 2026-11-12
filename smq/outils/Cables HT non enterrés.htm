@@ -1,0 +1,348 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0095)http://www.elec-planet.com:8080/elecplanet/Calcul.nsf/adab5eb51db50685c1256b18003892d6?OpenForm -->
+<HTML><HEAD>
+<META http-equiv=Content-Type content="text/html; charset=utf-8">
+<SCRIPT language=JavaScript>
+<!-- 
+var bRAZ = true;
+function GEN_Afficher_Aide (sStatus , sInfo)
+{
+if ( sStatus == "" )
+    { document.forms[0].cInfo.value = sInfo; }
+else
+    { document.forms[0].cInfo.value = sStatus + "\n" + sInfo; }
+}
+function GEN_Initialiser_Res ()
+{
+  with (document.forms[0])
+  {
+  cIzc.value=0.0;
+  cCGlobal.value=0.0;
+  cIz.value=0.0;
+  cObs.value ="";
+  bRAZ = true;
+  }
+}
+function GEN_Affecter_Res (Izc,CGlobal,Iz,sObs,sInfo)
+{
+  with (document.forms[0])
+  {
+ // listes  
+  
+  // valeurs
+  cIzc.value = Math.round(Izc);
+  cCGlobal.value = Math.round(CGlobal*1000)/1000;
+  cIz.value = Math.round(Iz);
+  cObs.value = sObs;
+  cInfo.value = sInfo;
+  bRAZ= false;
+  }
+}
+function GEN_Initialiser_Ent ()
+{
+  with (document.forms[0])
+  {
+  // listes
+   cCable.options[1].selected =true ;
+   cMdP.options[2].selected =true ;
+   cSPh.options[1].selected =true ;
+   cTemperature.options[4].selected =true ;
+   cNbCircuit.options[0].selected =true ;
+   // radio
+   cNatPh[0].checked =true;
+   cHV[0].checked =true;
+  }
+}
+
+// -->
+</SCRIPT>
+
+<SCRIPT language=JavaScript>
+<!-- 
+document._domino_target = "_self";
+function _doClick(v, o, t, h) {
+  var form = document._DominoForm;
+  if (form.onsubmit) {
+     var retVal = form.onsubmit();
+     if (typeof retVal == "boolean" && retVal == false)
+       return false;
+  }
+  var target = document._domino_target;
+  if (o.href != null) {
+    if (o.target != null)
+       target = o.target;
+  } else {
+    if (t != null)
+      target = t;
+  }
+  form.target = target;
+  form.__Click.value = v;
+  if (h != null)
+    form.action += h;
+  form.submit();
+  return false;
+}
+// -->
+</SCRIPT>
+
+<META content="MSHTML 6.00.6000.16809" name=GENERATOR></HEAD>
+<BODY text=#000000 bgColor=#ffffff leftMargin=5 topMargin=0>
+<FORM name=_DominoForm 
+action=/elecplanet/Calcul.nsf/adab5eb51db50685c1256b18003892d6?OpenForm&amp;Seq=1 
+method=post><INPUT type=hidden value=0 name=__Click> 
+<TABLE cellSpacing=0 cellPadding=0 border=0>
+  <TBODY>
+  <TR vAlign=top>
+    <TD width=582 bgColor=#8080ff colSpan=3>
+      <DIV align=center><B><FONT face="Times New Roman" color=#ffffff 
+      size=4>Détermination courants admissibles Câbles HT non 
+      enterrés</FONT></B><B><FONT face="Times New Roman" color=#ffffff> (UTE C 
+      13-205)</FONT></B></DIV></TD></TR>
+  <TR vAlign=top>
+    <TD width=582 bgColor=#bfbfff colSpan=3>
+      <DIV align=center><B><I><FONT face=Arial color=#ffff00 
+      size=2>Caractéristiques principales</FONT></I></B><B><I><FONT face=Arial 
+      color=#ffff00 size=1> (Données à choisir)</FONT></I></B></DIV></TD></TR>
+  <TR vAlign=top>
+    <TD width=271 bgColor=#8080ff><FONT face=Arial color=#ffff00 size=1>Type 
+      de câble</FONT></TD>
+    <TD width=41 bgColor=#8080ff><IMG height=1 alt="" 
+      src="Cables%20HT%20non%20enterrés_fichiers/ecblank.gif" width=1 
+    border=0></TD>
+    <TD width=271 bgColor=#8080ff><IMG height=1 alt="" 
+      src="Cables%20HT%20non%20enterrés_fichiers/ecblank.gif" width=1 
+    border=0></TD></TR>
+  <TR vAlign=top>
+    <TD width=582 bgColor=#bfbfff colSpan=3><FONT face=Arial size=1>
+      <P style="MARGIN-LEFT: 20px"></FONT><FONT face=Arial color=#0000ff 
+      size=1><SELECT 
+      onfocus='if (! bRAZ) GEN_Initialiser_Res ();&#13;GEN_Afficher_Aide ("Choisissez le type de câble" , "")' 
+      onclick="if (! bRAZ) GEN_Initialiser_Res ();&#13;&#13;&#9;&#13;" 
+      name=cCable> <OPTION 
+        value=_iahp6is3fdhgmisj540risch0ddb20k2m8cg8a833d1gmqs10dpnms83ic5i6iobc_>Tripolaire 
+        7.2 kV PVC à champ non radial<OPTION 
+        value=_8ahp6is3fdhgmisj540risch0ddb20haga8g6ut90a1921190cdk62rbg41n6urh0e9gm8qb1dg_ 
+        selected>Tripolaire 7.2 kV EPR ou PR à champ non radial<OPTION 
+        value=_r8dkn4orld5q20cp0ce1m4r35ecg7arj9e1nmoob9e9in681h68g6mlh0a1b46_>Circuit 
+        3 câbles unipolaires 12 kV PVC<OPTION 
+        value=_08dkn4orld5q20cp0ce1m4r35ecg7arj9e1nmoob9e9in681h68g6mlh0a12g_>Circuit 
+        3 câbles unipolaires 12 kV PE<OPTION 
+        value=_58dkn4orld5q20cp0ce1m4r35ecg7arj9e1nmoob9e9in681h68g6mlh0a12kgh0_>Circuit 
+        3 câbles unipolaires 12 kV PEHD<OPTION 
+        value=_28dkn4orld5q20cp0ce1m4r35ecg7arj9e1nmoob9e9in681h68g6mlh08l85483fekg50kg_>Circuit 
+        3 câbles unipolaires 12 kV EPR ou PR<OPTION 
+        value=_i8dkn4orld5q20cp0ce1m4r35ecg7arj9e1nmoob9e9in681j6og6mlh0a12g_>Circuit 
+        3 câbles unipolaires 36 kV PE<OPTION 
+        value=_n8dkn4orld5q20cp0ce1m4r35ecg7arj9e1nmoob9e9in681j6og6mlh0a12kgh0_>Circuit 
+        3 câbles unipolaires 36 kV PEHD<OPTION 
+        value=_g8dkn4orld5q20cp0ce1m4r35ecg7arj9e1nmoob9e9in681j6og6mlh08l85483fekg50kg_>Circuit 
+        3 câbles unipolaires 36 kV EPR ou PR<OPTION 
+        value=_gahp6is3fdhgmisj540oj483baog50li3422i0or8c5mn083ic5i6iobc_>Tripolaire 
+        12 kV PVC à champ radial<OPTION 
+        value=_mahp6is3fdhgmisj540oj483baog50h90gkg66q31dlo20sj1chkm2r0_>Tripolaire 
+        12 kV PE à champ radial<OPTION 
+        value=_gahp6is3fdhgmisj540oj483baog50ha88gg8a833d1gmqs10e9gm8qb1dg_>Tripolaire 
+        12 kV PEHD à champ radial<OPTION 
+        value=_3ahp6is3fdhgmisj540oj483baog4ak2i41nna82ga8g8a833d1gmqs10e9gm8qb1dg_>Tripolaire 
+        12 kV EPR ou PR à champ radial<OPTION 
+        value=_aahp6is3fdhgmisj540pjc83baog4ak2i41nna82ga8g8a833d1gmqs10e9gm8qb1dg_>Tripolaire 
+        36 kV EPR ou PR à champ radial</OPTION></SELECT> </FONT><FONT face=Arial 
+      size=1><O:P></FONT></P></TD></TR>
+  <TR vAlign=top>
+    <TD width=271 bgColor=#8080ff><FONT face=Arial color=#ffff00 size=1>Mode 
+      de pose</FONT></TD>
+    <TD width=41 bgColor=#8080ff><IMG height=1 alt="" 
+      src="Cables%20HT%20non%20enterrés_fichiers/ecblank.gif" width=1 
+    border=0></TD>
+    <TD width=271 bgColor=#8080ff><IMG height=1 alt="" 
+      src="Cables%20HT%20non%20enterrés_fichiers/ecblank.gif" width=1 
+    border=0></TD></TR>
+  <TR vAlign=top>
+    <TD width=582 bgColor=#bfbfff colSpan=3><FONT face=Arial size=1>
+      <P style="MARGIN-LEFT: 20px"></FONT><B><FONT face=Arial color=#0000ff 
+      size=1><SELECT 
+      onfocus='if (! bRAZ) GEN_Initialiser_Res ();&#13;GEN_Afficher_Aide ("Indiquez le mode de pose utilisé pour les câbles, valeur par défaut S2" , "")&#13;' 
+      onclick="if (! bRAZ) GEN_Initialiser_Res ();&#13;&#13;&#9;&#13;" 
+        name=cMdP> <OPTION>A: Conduits en montage apparent<OPTION 
+        value=_288t20grfdpi7aqbkecg6arh0dlnmst31ctii0pbecdgn6t3ig8_>B: Conduits 
+        en montage encastré<OPTION 
+        value=_d8ot20k3fedii0srle8g66q35dlkmssp0chii0os3c9m6asp0dtqi0t31c9m6at3kclpg_ 
+        selected>F: Pose sur chemins de câbles ou tablettes<OPTION 
+        value=_b8st20k3fedii0srle8g66rric9im2tbo41nna83jelp210j3d1imor35ecg8a833gdh6opbj_>G: 
+        Pose sur corbeaux ou sur échelles à câbles<OPTION 
+        value=_s90t20hrfelm6ut3kclpi0a36clp6r0j5eckg_>H: Goulottes 
+        (fermées)<OPTION 
+        value=_398t20hrfelq78qcae9in6818ctnnar3fehq6asp0dtqncpbiehin6a8_>J: 
+        Gouttières (goulottes ouvertes)<OPTION 
+        value=_m9gojk823dtn68tb9ehpi0p31dppi0or1dpkncpb1els20rrlepin4t3j41nna83mcln78qbcg9pg_>L1: 
+        Conduits dans caniveaux ouverts ou ventilés<OPTION 
+        value=_r9gpjk82gdtpma834d5p6aorkckg68obeecg66obed5r6aoblf0g6utbmclp78sp0dtqi0tj5dpq6ir42ec_>L3: 
+        Pose directe dans caniveaux ouverts ou ventilés<OPTION 
+        value=_t9gq3k82gdtpma834d5p6aorkckg68obeecg66obed5r6aoblf0g6cpbidm176_>L4: 
+        Pose directe dans caniveaux fermés<OPTION>L5: Pose directe dans des 
+        caniveaux remplis de sable<OPTION value=_b9ot20gbceq16ur35ec_>N: 
+        Alvéoles<OPTION value=_aa0t20gjcdthn683dc5n7apj1cdq7ask2ec_>P: Blocs 
+        manufacturés<OPTION value=_caot20j39ctn6asp0c6174qb5dpn6aso_>V: Lignes 
+        aériennes</OPTION></SELECT> </FONT></B><FONT face=Arial 
+      size=1><O:P></FONT></P></TD></TR>
+  <TR vAlign=top>
+    <TD width=271 bgColor=#8080ff><FONT face=Arial color=#ffff00 
+      size=1>Section</FONT></TD>
+    <TD width=41 bgColor=#8080ff><IMG height=1 alt="" 
+      src="Cables%20HT%20non%20enterrés_fichiers/ecblank.gif" width=1 
+    border=0></TD>
+    <TD width=271 bgColor=#8080ff><FONT face=Arial color=#ffff00 size=1>Nature 
+      des conducteurs</FONT></TD></TR>
+  <TR vAlign=top>
+    <TD width=271 bgColor=#bfbfff><FONT face=Arial size=1>
+      <P style="MARGIN-LEFT: 20px"></FONT><FONT face=Arial color=#0000ff 
+      size=1><SELECT 
+      onfocus='if (! bRAZ) GEN_Initialiser_Res ();&#13;GEN_Afficher_Aide ("Saisir une section dans la liste, valeur par défaut 16 mm2" , "")' 
+      name=cSPh> <OPTION>10<OPTION 
+        selected>16<OPTION>25<OPTION>35<OPTION>50<OPTION>70<OPTION>95<OPTION>120<OPTION>150<OPTION>185<OPTION>240<OPTION>300<OPTION>400<OPTION>500<OPTION>630<OPTION>800<OPTION>1000<OPTION>1200<OPTION>1400<OPTION>1600</OPTION></SELECT> 
+      </FONT><FONT face=Arial size=1></FONT><B><FONT face=Arial color=#ffff00 
+      size=1>mm2</FONT></B><FONT face=Arial size=1><O:P></FONT></P></TD>
+    <TD width=41 bgColor=#bfbfff><IMG height=1 alt="" 
+      src="Cables%20HT%20non%20enterrés_fichiers/ecblank.gif" width=1 
+    border=0></TD>
+    <TD width=271 bgColor=#bfbfff><FONT face=Arial size=1>
+      <P style="MARGIN-LEFT: 20px"></FONT><FONT face=Arial color=#0000ff 
+      size=1><INPUT 
+      onmouseover='GEN_Afficher_Aide ("Choisissez Cuivre ou Aluminium, valeur par défaut Cuivre" , "")' 
+      onclick="if (! bRAZ) GEN_Initialiser_Res ();" type=radio CHECKED 
+      value=Cuivre name=cNatPh>Cuivre <INPUT 
+      onmouseover='GEN_Afficher_Aide ("Choisissez Cuivre ou Aluminium, valeur par défaut Cuivre" , "")' 
+      onclick="if (! bRAZ) GEN_Initialiser_Res ();" type=radio value=Aluminium 
+      name=cNatPh>Aluminium</FONT><FONT face=Arial size=1><O:P></FONT></P></TD></TR>
+  <TR vAlign=top>
+    <TD width=271 bgColor=#8080ff><FONT face=Arial color=#ffff00 
+      size=1>Température</FONT></TD>
+    <TD width=41 bgColor=#8080ff><IMG height=1 alt="" 
+      src="Cables%20HT%20non%20enterrés_fichiers/ecblank.gif" width=1 
+    border=0></TD>
+    <TD width=271 bgColor=#8080ff><IMG height=1 alt="" 
+      src="Cables%20HT%20non%20enterrés_fichiers/ecblank.gif" width=1 
+    border=0></TD></TR>
+  <TR vAlign=top>
+    <TD width=271 bgColor=#bfbfff><FONT face=Arial size=1>
+      <P style="MARGIN-LEFT: 20px"></FONT><FONT face=Arial color=#0000ff 
+      size=1><SELECT 
+      onfocus='if (! bRAZ) GEN_Initialiser_Res ();&#13;GEN_Afficher_Aide ("Choisissez la température dans le sol, valeur par défaut 20°C" , "")' 
+      onclick="if (! bRAZ) GEN_Initialiser_Res ();&#13;&#13;" name=cTemperature> 
+        <OPTION>10<OPTION>15<OPTION>20<OPTION>25<OPTION 
+        selected>30<OPTION>35<OPTION>40<OPTION>45<OPTION>50<OPTION>55</OPTION></SELECT> 
+      </FONT><B><FONT face=Arial color=#ffff00 size=1>°C</FONT></B><FONT 
+      face=Arial size=1><O:P></FONT></P></TD>
+    <TD width=41 bgColor=#bfbfff><IMG height=1 alt="" 
+      src="Cables%20HT%20non%20enterrés_fichiers/ecblank.gif" width=1 
+    border=0></TD>
+    <TD width=271 bgColor=#bfbfff><IMG height=1 alt="" 
+      src="Cables%20HT%20non%20enterrés_fichiers/ecblank.gif" width=1 
+    border=0></TD></TR>
+  <TR vAlign=top>
+    <TD width=271 bgColor=#8080ff><FONT face=Arial color=#ffff00 size=1>Nombre 
+      de circuits (pour le calcul du facteur de groupement)</FONT></TD>
+    <TD width=41 bgColor=#8080ff><IMG height=1 alt="" 
+      src="Cables%20HT%20non%20enterrés_fichiers/ecblank.gif" width=1 
+    border=0></TD>
+    <TD width=271 bgColor=#8080ff><FONT face=Arial color=#ffff00 size=1>Pose 
+      (pour le calcul du facteur de groupement)</FONT></TD></TR>
+  <TR vAlign=top>
+    <TD width=271 bgColor=#bfbfff><FONT face=Arial size=1>
+      <P style="MARGIN-LEFT: 20px"></FONT><FONT face=Arial color=#0000ff 
+      size=1><SELECT 
+      onfocus='if (! bRAZ) GEN_Initialiser_Res ();&#13;GEN_Afficher_Aide ("Choisissez le nombre de circuits de 1 à >9, valeur par défaut 1" , "")' 
+      onclick="if (! bRAZ) GEN_Initialiser_Res ();&#13;&#13;" name=cNbCircuit> 
+        <OPTION 
+        selected>1<OPTION>2<OPTION>3<OPTION>4<OPTION>6<OPTION>&gt;9</OPTION></SELECT> 
+      </FONT><FONT face=Arial size=1><O:P></FONT></P></TD>
+    <TD width=41 bgColor=#bfbfff><IMG height=1 alt="" 
+      src="Cables%20HT%20non%20enterrés_fichiers/ecblank.gif" width=1 
+    border=0></TD>
+    <TD width=271 bgColor=#bfbfff><FONT face=Arial size=1>
+      <P style="MARGIN-LEFT: 20px"></FONT><FONT face=Arial color=#0000ff 
+      size=1><INPUT 
+      onmouseover='GEN_Afficher_Aide ("Choisissez si la pose a lieu sur des plans horizontaux ou verticaux, valeur par défaut Horizontale" , "")' 
+      onclick="if (! bRAZ) GEN_Initialiser_Res ();" type=radio CHECKED 
+      value=Horizontale name=cHV>Horizontale <INPUT 
+      onmouseover='GEN_Afficher_Aide ("Choisissez si la pose a lieu sur des plans horizontaux ou verticaux, valeur par défaut Horizontale" , "")' 
+      onclick="if (! bRAZ) GEN_Initialiser_Res ();" type=radio value=Verticale 
+      name=cHV>Verticale</FONT><FONT face=Arial size=1><O:P></FONT></P></TD></TR>
+  <TR vAlign=top>
+    <TD width=271 bgColor=#8080ff><IMG height=1 alt="" 
+      src="Cables%20HT%20non%20enterrés_fichiers/ecblank.gif" width=1 
+    border=0></TD>
+    <TD width=41 bgColor=#8080ff><IMG height=1 alt="" 
+      src="Cables%20HT%20non%20enterrés_fichiers/ecblank.gif" width=1 
+    border=0></TD>
+    <TD width=271 bgColor=#8080ff><IMG height=1 alt="" 
+      src="Cables%20HT%20non%20enterrés_fichiers/ecblank.gif" width=1 
+    border=0></TD></TR>
+  <TR vAlign=top>
+    <TD width=582 bgColor=#e0e0ff colSpan=3>
+      <DIV align=center><B><I><FONT face=Arial color=#ff0000 size=2>Résultats du 
+      calcul</FONT></I></B></DIV></TD></TR>
+  <TR vAlign=top>
+    <TD width=582 bgColor=#8080ff colSpan=3><FONT face=Arial color=#ffff00 
+      size=1>Izc (courant admissible corrigé) = Facteurs corrections x 
+    Iz</FONT></TD></TR>
+  <TR vAlign=top>
+    <TD width=582 bgColor=#e0e0ff colSpan=3><FONT face=Arial size=1>
+      <P style="MARGIN-LEFT: 70px"></FONT><B><FONT face=Arial color=#ffff00 
+      size=1></FONT></B><FONT face=Arial color=#0000ff size=1><INPUT 
+      onfocus=document.forms[0].cObs.focus() size=8 value=0 
+      name=cIzc></FONT><FONT face=Arial color=#ff0000 size=1> = </FONT><FONT 
+      face=Arial color=#0000ff size=1><INPUT 
+      onfocus=document.forms[0].cObs.focus() size=8 value=0 
+      name=cCGlobal></FONT><FONT face=Arial color=#ff0000 size=1> x </FONT><FONT 
+      face=Arial color=#0000ff size=1><INPUT 
+      onfocus=document.forms[0].cObs.focus() size=8 value=0 
+      name=cIz></FONT><FONT face=Arial size=1> </FONT><FONT face=Arial 
+      color=#ff0000 size=1>A</FONT><FONT face=Arial 
+size=1><O:P></FONT></P></TD></TR>
+  <TR vAlign=top>
+    <TD width=582 bgColor=#8080ff colSpan=3><FONT face=Arial color=#ffff00 
+      size=1>Observations</FONT></TD></TR>
+  <TR vAlign=top>
+    <TD width=582 bgColor=#e0e0ff colSpan=3><B><FONT face=Arial color=#ffff00 
+      size=1></FONT></B></TD></TR>
+  <TR vAlign=top>
+    <TD width=582 bgColor=#e0e0ff colSpan=3><B><I><FONT face=Arial 
+      color=#ff0000 size=1><TEXTAREA onfocus=document.forms[0].cSPh.focus() name=cObs rows=3 cols=75></TEXTAREA> 
+      </FONT></I></B></TD></TR>
+  <TR vAlign=top>
+    <TD width=271 bgColor=#8080ff><IMG height=1 alt="" 
+      src="Cables%20HT%20non%20enterrés_fichiers/ecblank.gif" width=1 
+    border=0></TD>
+    <TD width=41 bgColor=#8080ff><IMG height=1 alt="" 
+      src="Cables%20HT%20non%20enterrés_fichiers/ecblank.gif" width=1 
+    border=0></TD>
+    <TD width=271 bgColor=#8080ff><IMG height=1 alt="" 
+      src="Cables%20HT%20non%20enterrés_fichiers/ecblank.gif" width=1 
+    border=0></TD></TR>
+  <TR vAlign=top>
+    <TD width=271 bgColor=#bfbfff>
+      <DIV align=center><A 
+      onmouseover='GEN_Afficher_Aide ("","Cliquez pour Affecter les valeurs par défaut")&#13;' 
+      onclick="GEN_Initialiser_Ent ();&#13;if (! bRAZ) GEN_Initialiser_Res ();&#13;&#13;&#13;&#13;&#13;return false;" 
+      href="http://www.elec-planet.com:8080/elecplanet/Calcul.nsf/"><B><FONT 
+      face=Arial color=#ffff00>Valeurs par défaut</FONT></B></A><B><FONT 
+      face=Arial color=#ffff00> </FONT></B></DIV></TD>
+    <TD width=41 bgColor=#bfbfff>
+      <DIV align=center><A 
+      onmouseover='GEN_Afficher_Aide ("", "Cliquez pour mettre à zéro les résultats.")' 
+      onclick="GEN_Initialiser_Res ()&#13;&#13;&#13;&#13;&#13;return false;" 
+      href="http://www.elec-planet.com:8080/elecplanet/Calcul.nsf/"><B><FONT 
+      face=Arial color=#ffff00>Raz</FONT></B></A></DIV></TD>
+    <TD width=271 bgColor=#bfbfff>
+      <DIV align=center><A 
+      onmouseover="GEN_Afficher_Aide (&quot;&quot;, &quot;Cliquez pour Calculer\nAttention les données d'entrées peuvent être modifiées&quot;)" 
+      onclick="tst =  window.location.href;&#13;position = tst.lastIndexOf(&quot;/&quot;);&#13;url = tst.substring(0,position) + &quot;/ReRoute?openform&quot;;&#13;&#13;if (window.document.forms[0].UserName.value == &quot;Anonymous&quot;)&#13;&#9;window.open(url,target=&quot;cadres_contenu&quot;);&#13;else&#13;{&#13;Section = new Array (19) ;&#13;Section[0]= 10;&#13;Section[1]=16;&#13;Section[2]= 25;&#13;Section[3]=35;&#13;Section[4]= 50;&#13;Section[5]=70;&#13;Section[6]= 95;&#13;Section[7]=120;&#13;Section[8]= 150;&#13;Section[9]=185;&#13;Section[10]= 240;&#13;Section[11]=300;&#13;Section[12]=400;&#13;Section[13]= 500;&#13;Section[14]=630;&#13;Section[15]= 800;&#13;Section[16]=1000;&#13;Section[17]=1200;&#13;Section[18]= 1400;&#13;Section[19]= 1600;&#13;&#13;Ro = new Array (2);&#13;Ro[0] =18.51;&#13;Ro[1]=29.41;&#13;&#13;LTemp = new Array (19) ;&#13;LTemp[0]= 0;&#13;LTemp[1]= 5;&#13;LTemp[2]= 10;&#13;LTemp[3]= 15;&#13;LTemp[4]= 20;&#13;LTemp[5]= 25;&#13;LTemp[6]= 30;&#13;LTemp[7]= 35;&#13;LTemp[8]= 40;&#13;LTemp[9]= 45;&#13;LTemp[10]= 50;&#13;LTemp[11]= 55;&#13;LTemp[11]= 60;&#13;&#13;T52D1_1 = new Array (9) ;&#9;&#9;// PVC - PE&#13;T52D1_1[0]= 1.22;&#13;T52D1_1[1]= 1.17;&#13;T52D1_1[2]= 1.12;&#13;T52D1_1[3]= 1.06;&#13;T52D1_1[4]= 1.00;&#13;T52D1_1[5]= 0.94;&#13;T52D1_1[6]= 0.87;&#13;T52D1_1[7]= 0.79;&#13;T52D1_1[8]= 0.71;&#13;T52D1_1[9]= 0.61;&#13;&#13;T52D1_2 = new Array (9) ;&#9;&#9;// PR - EPR&#13;T52D1_2[0]= 1.15;&#13;T52D1_2[1]= 1.12;&#13;T52D1_2[2]= 1.08;&#13;T52D1_2[3]= 1.04;&#13;T52D1_2[4]= 1.00;&#13;T52D1_2[5]= 0.96;&#13;T52D1_2[6]= 0.91;&#13;T52D1_2[7]= 0.87;&#13;T52D1_2[8]= 0.82;&#13;T52D1_2[9]= 0.76;&#13;&#13;var Tab52E2 = new Array (4) ;&#13;Tab52E2 [0] = new Array (2) ;&#13;Tab52E2 [1] = new Array (2) ;&#13;Tab52E2 [2] = new Array (2) ;&#13;Tab52E2 [3] = new Array (2) ;&#13;Tab52E2 [4] = new Array (2) ;&#13;//-- Tab 52E2 colonne 1&#13;Tab52E2 [0] [0] = 0.85;&#13;Tab52E2 [1] [0] = 0.90;&#13;Tab52E2 [2] [0] = 0.80;&#13;//-- Tab 52E2 colonne 2&#13;Tab52E2 [0] [1] = 0.80;&#13;Tab52E2 [1] [1] = 0.80;&#13;Tab52E2 [2] [1] = 0.75;&#13;//-- Tab 52E2 colonne 3&#13;Tab52E2 [0] [2] = 0.75;&#13;Tab52E2 [1] [2] = 0.80;&#13;Tab52E2 [2] [2] = 0.70;&#13;//-- Tab 52E2 colonne 4&#13;Tab52E2 [0] [3] = 0.70;&#13;Tab52E2 [1] [3] = 0.75;&#13;Tab52E2 [2] [3] = 0.70;&#13;//-- Tab 52E2 colonne 5&#13;Tab52E2 [0] [4] = 0.70;&#13;Tab52E2 [1] [4] = 0.75;&#13;Tab52E2 [2] [4] = 0.65;&#13;&#13;&#13;// Entrées&#13;&#13;// Sorties&#13;Izc = 0;&#13;CGlobal = 0.00;&#13;Iz = 0;&#13;sObs =&quot;&quot;;&#13;sInfo =&quot;&quot;;&#13;&#13;// VAR CALCUL INTERMEDIAIRES&#13;bFin = true;&#13;Cable=0;&#13;MdP=0;&#13;SPhIndex = 0;&#13;TemperatureIndex = 0;&#13;RoSolIndex = 0;&#13;NbCircuit =1;&#13;HV =0;&#13;&#13;GEN_Initialiser_Res ();&#13;&#13;with(window.document.forms[0])&#13;&#9;{&#13;      for (n=0; n<cCable.length; n++) &#13;          {&#13;            if (cCable.options[n].selected) &#13;                {&#13;                 Cable = n+1; &#13;                }&#13;          }&#13;      for (n=0; n<cMdP.length; n++) &#13;          {&#13;            if (cMdP.options[n].selected) &#13;                {&#13;                 MdP = n+1; &#13;                }&#13;          }&#13;      for (n=0; n<cSPh.length; n++) &#13;          {&#13;            if (cSPh.options[n].selected) &#13;                {&#13;                 SPh = Section[n];&#13;                 SPhIndex = n; &#13;                }&#13;          }&#13;      for (n=0; n<cNatPh.length; n++) &#13;           {&#13;                if (cNatPh[n].checked == true)&#13;                      {&#13;                          NatPh = n +1;&#13;                       }   &#13;             }&#13;      for (n=0; n<cTemperature.length; n++) &#13;          {&#13;            if (cTemperature.options[n].selected) &#13;                {&#13;                 Temperature = LTemp[n];&#13;                 TemperatureIndex = n;&#13;                }&#13;          }&#13;      for (n=0; n<cNbCircuit.length; n++) &#13;          {&#13;            if (cNbCircuit.options[n].selected) &#13;                {&#13;                   NbCircuit = n+1;&#13;                }&#13;          }&#13;      for (n=0; n<cHV.length; n++) &#13;           {&#13;                if (cHV[n].checked == true)&#13;                  {&#13;                          HV = n;&#13;                   }   &#13;             }&#13;      }&#13;&#13;// Initialisation&#13;KPE=1.0;&#13;KMdP = 1.0;&#13;KTemp = 1.0;&#13;N_Ligne =0;&#13;KGroupe = 1.0;&#13;&#13;// Début Calcul&#13;&#13;// Calcul facteur mode de pose&#13;if (MdP ==1 || MdP ==2 || MdP ==5 || MdP ==8 || MdP ==11 || MdP ==12)&#13;&#9;KMdP = 0.90;&#13;else&#13;&#9;if (MdP ==7 || MdP ==2 || MdP ==9 || MdP ==10 )&#13;&#9;&#9;KMdP = 0.80;&#13;if (MdP ==13)&#13;&#9;KMdP = 1.10;&#13;&#13;// Calcul pour PEHD&#13;if (Cable ==5 || Cable ==8 || Cable ==12)&#13;&#9;KPE = 1.06;&#13;&#13;// Calcul facteur de température&#13;if (Cable ==2 || Cable ==6 || Cable ==9 || Cable ==13 || Cable ==14)&#13;&#9;KTemp =T52D1_2[TemperatureIndex];&#13;else&#13;&#9;KTemp =T52D1_1[TemperatureIndex];&#13;&#13;// Calcul facteur de groupement&#13;if (HV ==1)&#13;&#9;N_Ligne =2;&#13;else&#13;&#9;if(MdP ==4 || MdP ==6)&#13;&#9;&#9;N_Ligne =1;&#13;if (NbCircuit >1 &amp;&amp; MdP !=13)&#13;&#9;KGroupe = Tab52E2 [N_Ligne] [NbCircuit-2];&#13;&#13;// Calcul global&#13;CGlobal = KPE*KMdP*KTemp*KGroupe;&#13;&#13;// calcul de Iz&#13;ST =0;&#13;A=0;&#13;B=0;&#13;Smin=10;&#13;Smax=1600;&#13;&#13;if (SPh==50)&#13;&#9;ST=47.5;&#13;else&#13;&#9;ST=SPh;&#13;&#13;switch (Cable)&#13;&#9;{&#13;&#9;&#9;case 1 :&#13;&#9;&#9;{&#13;&#9;&#9;&#9;Smax=240;&#13;&#9;&#9;&#9;if (NatPh ==1)&#13;&#9;&#9;&#9;{&#13;&#9;&#9;&#9;&#9;A = 0.617;&#13;&#9;&#9;&#9;&#9;B = 1.175;&#13;&#9;&#9;&#9;}&#13;&#9;&#9;&#9;else&#13;&#9;&#9;&#9;{&#13;&#9;&#9;&#9;&#9;A = 0.632;&#13;&#9;&#9;&#9;&#9;B = 1.036;&#13;&#9;&#9;&#9;}&#13;&#9;&#9;&#9;break;&#13;&#9;&#9;}&#13;&#9;&#9;case 2 :&#13;&#9;&#9;{&#13;&#9;&#9;&#9;Smax=240;&#13;&#9;&#9;&#9;if (NatPh ==1)&#13;&#9;&#9;&#9;{&#13;&#9;&#9;&#9;&#9;A = 0.636;&#13;&#9;&#9;&#9;&#9;B = 1.238;&#13;&#9;&#9;&#9;}&#13;&#9;&#9;&#9;else&#13;&#9;&#9;&#9;{&#13;&#9;&#9;&#9;&#9;A = 0.625;&#13;&#9;&#9;&#9;&#9;B = 1.145;&#13;&#9;&#9;&#9;}&#13;&#9;&#9;&#9;break;&#13;&#9;&#9;}&#13;&#9;&#9;case 3 :&#13;&#9;&#9;{&#13;&#9;&#9;&#9;if (NatPh ==1)&#13;&#9;&#9;&#9;{&#13;&#9;&#9;&#9;&#9;if (SPh <=630)&#13;&#9;&#9;&#9;&#9;{&#13;&#9;&#9;&#9;&#9;&#9;A = 0.601;&#13;&#9;&#9;&#9;&#9;&#9;B = 1.256;&#13;&#9;&#9;&#9;&#9;}&#13;&#9;&#9;&#9;&#9;else&#13;&#9;&#9;&#9;&#9;{&#13;&#9;&#9;&#9;&#9;&#9;A = 0.493;&#13;&#9;&#9;&#9;&#9;&#9;B = 1.559;&#13;&#9;&#9;&#9;&#9;}&#13;&#9;&#9;&#9;}&#13;&#9;&#9;&#9;else&#13;&#9;&#9;&#9;{&#13;&#9;&#9;&#9;&#9;if (SPh <=630)&#13;&#9;&#9;&#9;&#9;{&#13;&#9;&#9;&#9;&#9;&#9;A = 0.620;&#13;&#9;&#9;&#9;&#9;&#9;B = 1.115;&#13;&#9;&#9;&#9;&#9;}&#13;&#9;&#9;&#9;&#9;else&#13;&#9;&#9;&#9;&#9;{&#13;&#9;&#9;&#9;&#9;&#9;A = 0.560;&#13;&#9;&#9;&#9;&#9;&#9;B = 1.284;&#13;&#9;&#9;&#9;&#9;}&#13;&#9;&#9;&#9;}&#13;&#9;&#9;&#9;break;&#13;&#9;&#9;}&#13;&#9;&#9;case 4 :&#13;&#9;&#9;case 5 :&#13;&#9;&#9;{&#13;&#9;&#9;&#9;if (NatPh ==1)&#13;&#9;&#9;&#9;{&#13;&#9;&#9;&#9;&#9;if (SPh <=630)&#13;&#9;&#9;&#9;&#9;{&#13;&#9;&#9;&#9;&#9;&#9;A = 0.606;&#13;&#9;&#9;&#9;&#9;&#9;B = 1.266;&#13;&#9;&#9;&#9;&#9;}&#13;&#9;&#9;&#9;&#9;else&#13;&#9;&#9;&#9;&#9;{&#13;&#9;&#9;&#9;&#9;&#9;A = 0.480;&#13;&#9;&#9;&#9;&#9;&#9;B = 1.619;&#13;&#9;&#9;&#9;&#9;}&#13;&#9;&#9;&#9;}&#13;&#9;&#9;&#9;else&#13;&#9;&#9;&#9;{&#13;&#9;&#9;&#9;&#9;if (SPh <=630)&#13;&#9;&#9;&#9;&#9;{&#13;&#9;&#9;&#9;&#9;&#9;A = 0.624;&#13;&#9;&#9;&#9;&#9;&#9;B = 1.127;&#13;&#9;&#9;&#9;&#9;}&#13;&#9;&#9;&#9;&#9;else&#13;&#9;&#9;&#9;&#9;{&#13;&#9;&#9;&#9;&#9;&#9;A = 0.546;&#13;&#9;&#9;&#9;&#9;&#9;B = 1.346;&#13;&#9;&#9;&#9;&#9;}&#13;&#9;&#9;&#9;}&#13;&#9;&#9;&#9;break;&#13;&#9;&#9;}&#13;&#9;&#9;case 6 :&#13;&#9;&#9;{&#13;&#9;&#9;&#9;if (NatPh ==1)&#13;&#9;&#9;&#9;{&#13;&#9;&#9;&#9;&#9;if (SPh <=630)&#13;&#9;&#9;&#9;&#9;{&#13;&#9;&#9;&#9;&#9;&#9;A = 0.605;&#13;&#9;&#9;&#9;&#9;&#9;B = 1.364;&#13;&#9;&#9;&#9;&#9;}&#13;&#9;&#9;&#9;&#9;else&#13;&#9;&#9;&#9;&#9;{&#13;&#9;&#9;&#9;&#9;&#9;A = 0.487;&#13;&#9;&#9;&#9;&#9;&#9;B = 1.697;&#13;&#9;&#9;&#9;&#9;}&#13;&#9;&#9;&#9;}&#13;&#9;&#9;&#9;else&#13;&#9;&#9;&#9;{&#13;&#9;&#9;&#9;&#9;if (SPh <=630)&#13;&#9;&#9;&#9;&#9;{&#13;&#9;&#9;&#9;&#9;&#9;A = 0.614;&#13;&#9;&#9;&#9;&#9;&#9;B = 1.242;&#13;&#9;&#9;&#9;&#9;}&#13;&#9;&#9;&#9;&#9;else&#13;&#9;&#9;&#9;&#9;{&#13;&#9;&#9;&#9;&#9;&#9;A = 0.570;&#13;&#9;&#9;&#9;&#9;&#9;B = 1.369;&#13;&#9;&#9;&#9;&#9;}&#13;&#9;&#9;&#9;}&#13;&#9;&#9;&#9;break;&#13;&#9;&#9;}&#13;&#9;&#9;case 7 :&#13;&#9;&#9;case 8 :&#13;&#9;&#9;{&#13;&#9;&#9;&#9;Smin =16;&#13;&#9;&#9;&#9;if (NatPh ==1)&#13;&#9;&#9;&#9;{&#13;&#9;&#9;&#9;&#9;if (SPh <=630)&#13;&#9;&#9;&#9;&#9;{&#13;&#9;&#9;&#9;&#9;&#9;A = 0.594;&#13;&#9;&#9;&#9;&#9;&#9;B = 1.306;&#13;&#9;&#9;&#9;&#9;}&#13;&#9;&#9;&#9;&#9;else&#13;&#9;&#9;&#9;&#9;{&#13;&#9;&#9;&#9;&#9;&#9;A = 0.476;&#13;&#9;&#9;&#9;&#9;&#9;B = 1.636;&#13;&#9;&#9;&#9;&#9;}&#13;&#9;&#9;&#9;}&#13;&#9;&#9;&#9;else&#13;&#9;&#9;&#9;{&#13;&#9;&#9;&#9;&#9;if (SPh <=630)&#13;&#9;&#9;&#9;&#9;{&#13;&#9;&#9;&#9;&#9;&#9;A = 0.606;&#13;&#9;&#9;&#9;&#9;&#9;B = 1.179;&#13;&#9;&#9;&#9;&#9;}&#13;&#9;&#9;&#9;&#9;else&#13;&#9;&#9;&#9;&#9;{&#13;&#9;&#9;&#9;&#9;&#9;A = 0.557;&#13;&#9;&#9;&#9;&#9;&#9;B = 1.316;&#13;&#9;&#9;&#9;&#9;}&#13;&#9;&#9;&#9;}&#13;&#9;&#9;&#9;break;&#13;&#9;&#9;}&#13;&#9;&#9;case 9 :&#13;&#9;&#9;{&#13;&#9;&#9;&#9;Smin =16;&#13;&#9;&#9;&#9;if (NatPh ==1)&#13;&#9;&#9;&#9;{&#13;&#9;&#9;&#9;&#9;if (SPh <=630)&#13;&#9;&#9;&#9;&#9;{&#13;&#9;&#9;&#9;&#9;&#9;A = 0.592;&#13;&#9;&#9;&#9;&#9;&#9;B = 1.402;&#13;&#9;&#9;&#9;&#9;}&#13;&#9;&#9;&#9;&#9;else&#13;&#9;&#9;&#9;&#9;{&#13;&#9;&#9;&#9;&#9;&#9;A = 0.490;&#13;&#9;&#9;&#9;&#9;&#9;B = 1.690;&#13;&#9;&#9;&#9;&#9;}&#13;&#9;&#9;&#9;}&#13;&#9;&#9;&#9;else&#13;&#9;&#9;&#9;{&#13;&#9;&#9;&#9;&#9;if (SPh <=630)&#13;&#9;&#9;&#9;&#9;{&#13;&#9;&#9;&#9;&#9;&#9;A = 0.610;&#13;&#9;&#9;&#9;&#9;&#9;B = 1.262;&#13;&#9;&#9;&#9;&#9;}&#13;&#9;&#9;&#9;&#9;else&#13;&#9;&#9;&#9;&#9;{&#13;&#9;&#9;&#9;&#9;&#9;A = 0.556;&#13;&#9;&#9;&#9;&#9;&#9;B = 1.411;&#13;&#9;&#9;&#9;&#9;}&#13;&#9;&#9;&#9;}&#13;&#9;&#9;&#9;break;&#13;&#9;&#9;}&#13;&#9;&#9;case 10 :&#13;&#9;&#9;{&#13;&#9;&#9;&#9;Smax=300;&#13;&#9;&#9;&#9;if (NatPh ==1)&#13;&#9;&#9;&#9;{&#13;&#9;&#9;&#9;&#9;A = 0.594;&#13;&#9;&#9;&#9;&#9;B = 1.239;&#13;&#9;&#9;&#9;}&#13;&#9;&#9;&#9;else&#13;&#9;&#9;&#9;{&#13;&#9;&#9;&#9;&#9;A = 0.594;&#13;&#9;&#9;&#9;&#9;B = 1.135;&#13;&#9;&#9;&#9;}&#13;&#9;&#9;&#9;break;&#13;&#9;&#9;}&#13;&#9;&#9;case 11 :&#13;&#9;&#9;case 12 :&#13;&#9;&#9;{&#13;&#9;&#9;&#9;Smax=300;&#13;&#9;&#9;&#9;if (NatPh ==1)&#13;&#9;&#9;&#9;{&#13;&#9;&#9;&#9;&#9;A = 0.590;&#13;&#9;&#9;&#9;&#9;B = 1.280;&#13;&#9;&#9;&#9;}&#13;&#9;&#9;&#9;else&#13;&#9;&#9;&#9;{&#13;&#9;&#9;&#9;&#9;A = 0.594;&#13;&#9;&#9;&#9;&#9;B = 1.154;&#13;&#9;&#9;&#9;}&#13;&#9;&#9;&#9;break;&#13;&#9;&#9;}&#13;&#9;&#9;case 13 :&#13;&#9;&#9;{&#13;&#9;&#9;&#9;Smax=300;&#13;&#9;&#9;&#9;if (NatPh ==1)&#13;&#9;&#9;&#9;{&#13;&#9;&#9;&#9;&#9;A = 0.588;&#13;&#9;&#9;&#9;&#9;B = 1.371;&#13;&#9;&#9;&#9;}&#13;&#9;&#9;&#9;else&#13;&#9;&#9;&#9;{&#13;&#9;&#9;&#9;&#9;A = 0.598;&#13;&#9;&#9;&#9;&#9;B = 1.243;&#13;&#9;&#9;&#9;}&#13;&#9;&#9;&#9;break;&#13;&#9;&#9;}&#13;&#9;&#9;case 14 :&#13;&#9;&#9;{&#13;&#9;&#9;&#9;Smin=16;&#13;&#9;&#9;&#9;Smax=240;&#13;&#9;&#9;&#9;if (NatPh ==1)&#13;&#9;&#9;&#9;{&#13;&#9;&#9;&#9;&#9;A = 0.579;&#13;&#9;&#9;&#9;&#9;B = 1.394;&#13;&#9;&#9;&#9;}&#13;&#9;&#9;&#9;else&#13;&#9;&#9;&#9;{&#13;&#9;&#9;&#9;&#9;A = 0.590;&#13;&#9;&#9;&#9;&#9;B = 1.262;&#13;&#9;&#9;&#9;}&#13;&#9;&#9;&#9;break;&#13;&#9;&#9;}&#13;&#9;}&#13;&#9;&#9;&#13;Iz = Math.pow(10,B) * Math.pow(ST,A);&#13;Izc = Iz * CGlobal;&#13;&#13;// Vérification des sections mini et maxi.&#13;if ( SPh > Smax || SPh < Smin )&#13;{&#13;&#9;sObs = &quot;Section non prévue pour ce type de câble dans les tableaux 52C du guide UTE C 13-205.\n&quot;;&#13;&#9;Izc =0;&#13;&#9;CGlobal = 0;&#13;&#9;Iz =0;&#13;}&#13;else&#13;&#9;sObs = &quot;Coefficients utilisés pour le calcul de Iz : A/B =&quot;+String(A)+&quot;/&quot;+String(B)+&quot;.\n&quot;;&#13;&#13;if (MdP ==13 &amp;&amp; NbCircuit >1)&#13;&#9;sObs = sObs + &quot;Nombre de circuits n'ont pris en compte, car =1 pour ce mode de pose. &quot;&#9;&#13;&#9;&#13;&#13;bFin = true;&#13;&#13;// Fin Calcul&#13;&#13;if (bFin == true )&#13;    {&#13;// Affectation Resultat&#13;      GEN_Affecter_Res (Izc,CGlobal,Iz,sObs,sInfo)&#13;      }&#13;else&#13;     {&#13;     GEN_Affecter_Res (0,0,0,0,&quot;Problème Critique&quot;)&#13;      }&#13;}&#13;&#13;return false;" 
+      href="http://www.elec-planet.com:8080/elecplanet/Calcul.nsf/"><B><U><FONT 
+      face=Arial color=#ffff00>Calculer</FONT></U></B></A></DIV></TD></TR>
+  <TR vAlign=top>
+    <TD width=582 bgColor=#ffe1b0 colSpan=3><B><I><FONT face=Arial 
+      color=#ff0000 size=1><TEXTAREA onfocus=document.forms[0].cSPh.focus() name=cInfo rows=3 cols=75></TEXTAREA> 
+      </FONT></I></B><BR><B><FONT face=Arial 
+size=1><BR></FONT></B></TD></TR></TBODY></TABLE><INPUT type=hidden 
+value=BEMELINON1 name=UserName></FORM></BODY></HTML>

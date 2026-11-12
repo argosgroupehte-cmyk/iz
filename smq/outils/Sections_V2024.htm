@@ -1,0 +1,1477 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%230a0f1c' rx='4'/><text x='16' y='22' fill='white' font-size='16' font-weight='bold' text-anchor='middle' font-family='Arial'>Iz</text></svg>" type="image/svg+xml">
+<link rel="apple-touch-icon" href="icon-192.png">
+<title>Iz — Courants admissibles (NF C 15-100-1 V2024)</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Segoe UI,Tahoma,sans-serif;background:#f4f6f8;color:#1a1a2e;padding:8px;font-size:13px}
+.header{background:linear-gradient(135deg,#1a237e,#3949ab);color:#fff;padding:8px 14px;border-radius:8px;margin-bottom:6px;text-align:center}
+.header h1{font-size:16px;font-weight:600;letter-spacing:.5px}
+.header small{font-size:11px;display:block;margin-top:1px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.card{background:#fff;border-radius:8px;padding:8px 10px;box-shadow:0 1px 4px rgba(0,0,0,.08)}
+.card h2{font-size:12px;color:#3949ab;border-bottom:2px solid #e8eaf6;padding-bottom:3px;margin-bottom:4px}
+.field{display:flex;align-items:center;margin-bottom:3px;gap:3px}
+.field label{flex:0 0 150px;font-size:11.5px;color:#444;font-weight:500}
+.field select{min-width:0}
+.field select,.field input[type=text]{flex:1;padding:3px 6px;border:1px solid #c5cae9;border-radius:4px;font-size:12px;background:#fafbff}
+.field select:focus,.field input:focus{outline:none;border-color:#3949ab;box-shadow:0 0 0 2px rgba(57,73,171,.15)}
+.radio-group{display:flex;gap:6px;flex:1}
+.radio-group label{flex:none;font-size:11.5px;cursor:pointer;display:flex;align-items:center;gap:2px}
+.radio-group input{margin:0}
+.izc-banner{background:linear-gradient(135deg,#c62828,#e53935);border-radius:6px;padding:6px 10px;margin-bottom:4px;display:flex;align-items:center;justify-content:center;gap:8px;min-height:34px}
+.izc-banner .izc-label{color:rgba(255,255,255,.9);font-size:12px;font-weight:600}
+.izc-banner .izc-value{color:#fff;font-size:20px;font-weight:800;letter-spacing:1px}
+.izc-banner .izc-unit{color:rgba(255,255,255,.85);font-size:13px;font-weight:700}
+.result-box{background:#e8eaf6;border-radius:6px;padding:6px 8px;margin-top:4px;transition:background .3s ease}
+.result-flash{background:#c8e6c9!important}
+.result-row{display:flex;align-items:center;margin-bottom:3px;gap:3px}
+.result-row label{flex:0 0 190px;font-size:11.5px;color:#283593;font-weight:600}
+.result-row input{flex:1;padding:3px 5px;border:1px solid #9fa8da;border-radius:4px;font-size:13px;font-weight:700;color:#1a237e;background:#fff;text-align:center}
+.result-row .unit{font-size:12px;font-weight:700;color:#c62828;margin-left:3px;flex:0 0 20px}
+.result-formula{font-size:10px;color:#5c6bc0;text-align:center;margin-bottom:3px}
+.buttons{display:flex;gap:5px;margin-top:6px;justify-content:center}
+.btn{padding:6px 16px;border:none;border-radius:6px;font-size:13px;font-weight:600;cursor:pointer;transition:all .15s}
+.btn-calc{background:#3949ab;color:#fff}.btn-calc:hover{background:#283593}
+.btn-raz{background:#ef5350;color:#fff}.btn-raz:hover{background:#c62828}
+.btn-def{background:#78909c;color:#fff}.btn-def:hover{background:#546e7a}
+.info-box{margin-top:4px;background:#fff3e0;border:1px solid #ffcc80;border-radius:6px;padding:6px}
+.info-box textarea{width:100%;border:none;background:transparent;font-size:11px;color:#e65100;resize:vertical;min-height:30px;font-family:inherit}
+.footer{text-align:center;margin-top:6px;font-size:10px;color:#9e9e9e}
+.hist-bar{display:flex;gap:5px;margin-top:6px;justify-content:center;align-items:center}
+.hist-bar button{padding:4px 12px;border:1px solid #c5cae9;border-radius:5px;font-size:11px;font-weight:600;cursor:pointer;background:#fafbff;color:#3949ab}
+.hist-bar button:hover{background:#e8eaf6}
+.hist-bar .hist-count{font-size:10px;color:#888}
+.hist-panel{display:none;margin-top:6px;background:#fff;border-radius:8px;box-shadow:0 1px 4px rgba(0,0,0,.08);overflow-x:auto}
+.hist-panel.open{display:block}
+.hist-panel table{width:100%;border-collapse:collapse;font-size:11px}
+.hist-panel th{background:#e8eaf6;color:#283593;padding:5px 6px;text-align:left;font-weight:600;white-space:nowrap}
+.hist-panel td{padding:4px 6px;border-top:1px solid #e8eaf6;white-space:nowrap}
+.hist-panel tr:hover td{background:#f3f4fb}
+.hist-panel .hist-izc{color:#c62828;font-weight:700}
+@media(max-width:768px){
+  body{padding:4px;font-size:12px}
+  .grid{grid-template-columns:1fr;gap:4px}
+  .header{padding:6px 8px;margin-bottom:4px}
+  .header h1{font-size:14px}
+  .field{flex-wrap:wrap;gap:2px}
+  .field label{flex:0 0 100%;font-size:11px}
+  .field select,.field input[type=text]{width:100%;font-size:13px;padding:6px}
+  .radio-group{flex-wrap:wrap;gap:5px}
+  .radio-group label{font-size:12px;padding:3px 2px;min-height:40px;display:flex;align-items:center}
+  .izc-banner{display:none}
+  .result-row{flex-wrap:wrap}
+  .result-row label{flex:0 0 100%;font-size:11px}
+  .result-row input{font-size:13px;padding:6px}
+  .result-formula{font-size:10px}
+  .buttons{flex-wrap:wrap}
+  .btn{padding:8px 12px;font-size:13px;flex:1;min-width:100px}
+  .info-box textarea{font-size:11px;min-height:40px}
+  .card{padding:6px 8px}
+  .card h2{font-size:11px;margin-bottom:3px;padding-bottom:2px}
+  .grp-btn{min-height:40px;padding:4px 6px!important}
+}
+.field.disabled-field{opacity:.5}
+.field.disabled-field label{color:#999;text-decoration:line-through}
+.field.disabled-field select,.field.disabled-field input{background:#f0f0f0!important;pointer-events:none;color:#999}
+.field.disabled-field .radio-group label{text-decoration:none}
+.field-na{font-size:10px;color:#c62828;font-style:italic;margin-left:6px;display:none}
+.field.disabled-field .field-na{display:inline}
+/* Bloc Methode de calcul (regenere a chaque calcul, rien n'est stocke) — petits caracteres */
+.methode-box{background:#fff;border-radius:6px;padding:8px 10px;box-shadow:0 1px 3px rgba(0,0,0,.06);margin-top:10px;border-left:3px solid #9fa8da;color:#333;font-size:10.5px;line-height:1.3}
+.mc-head{display:flex;align-items:center;justify-content:space-between;gap:6px;flex-wrap:wrap;border-bottom:1px solid #e8eaf6;padding-bottom:4px;margin-bottom:4px}
+.mc-head h2{font-size:12px;color:#3949ab}
+.mc-btn{background:#2e7d32;color:#fff;font-size:11px;padding:4px 10px;border-radius:5px}.mc-btn:hover{background:#1b5e20}
+.mc-print-only{display:none}
+.btn-detail{background:#5c6bc0;color:#fff}.btn-detail:hover{background:#3f51b5}.btn-detail.actif{background:#283593;box-shadow:inset 0 2px 4px rgba(0,0,0,.25)}.btn-detail:disabled{background:#b0bec5;color:#eceff1;cursor:not-allowed;box-shadow:none}
+.mc-entete{border-bottom:1.5px solid #1a237e;padding-bottom:4px;margin-bottom:6px}
+.mc-entete b{font-size:12px;color:#1a237e}
+.mc-entete div{font-size:9px;color:#555}
+.mc-date{font-size:10px;color:#666;margin-bottom:3px}
+.methode-box h3{font-size:10.5px;color:#283593;margin:6px 0 2px}
+.methode-box p,.methode-box li{font-size:10.5px;line-height:1.3}
+.methode-box ul{margin-left:16px}
+.mc-tab{width:100%;border-collapse:collapse;font-size:10px;line-height:1.25;margin:1px 0}
+.mc-tab th,.mc-tab td{border:1px solid #dfe3f3;padding:1px 4px;text-align:left;vertical-align:top}
+.mc-tab th{background:#f0f2fa;color:#283593;font-weight:600}
+.mc-tab td.v{text-align:center;font-weight:700;white-space:nowrap}
+.mc-tab tr.na td{color:#999}
+.mc-formule{font-family:Consolas,monospace;font-size:10px;background:#f6f7f9;border-radius:3px;padding:3px 6px;margin:2px 0;word-break:break-word;line-height:1.35}
+.mc-res{background:#eef0f8;border-radius:4px;padding:4px 8px;margin-top:2px;font-size:11px}
+.mc-res b{color:#c62828}
+.mc-err{color:#c62828;font-weight:700}
+.mc-obs{white-space:pre-wrap;font-size:10px;color:#e65100;line-height:1.3}
+.mc-note{font-size:9px;color:#999;margin-top:6px;border-top:1px dashed #dfe3f3;padding-top:3px}
+@media(max-width:768px){.methode-box{padding:6px 7px}.mc-tab{font-size:9.5px}.mc-tab th,.mc-tab td{padding:1px 3px}.mc-formule{font-size:9.5px}}
+@media print{
+  @page{size:A4;margin:10mm}
+  .mc-print-only{display:block!important}
+  .mc-noprint{display:none!important}
+  body.print-methode{background:#fff;padding:0}
+  body.print-methode>*:not(#methodeBox){display:none!important}
+  body.print-methode #methodeBox{box-shadow:none;border-left:none;margin:0;padding:0;font-size:8pt;line-height:1.25}
+  body.print-methode .methode-box p,body.print-methode .methode-box li,body.print-methode .mc-tab,body.print-methode .mc-res,body.print-methode .methode-box h3{font-size:8pt;line-height:1.25}
+  body.print-methode .mc-formule,body.print-methode .mc-obs,body.print-methode .mc-date{font-size:7.5pt}
+  body.print-methode .mc-note,body.print-methode .mc-entete div{font-size:7pt}
+  body.print-methode .mc-head h2,body.print-methode .mc-entete b{font-size:10pt}
+  .mc-tab th,.mc-res,.mc-formule{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .mc-tab tr,.mc-res{break-inside:avoid}
+}
+</style>
+</head>
+<body>
+
+</div>
+<div class="header">
+  <h1>Iz : Détermination des courants admissibles</h1>
+  <small>NF C 15-100-1 (V2024) — Tableaux 52.8A à 52.8H.2</small>
+</div>
+
+<div class="grid">
+  <!-- COLONNE GAUCHE : Caractéristiques principales -->
+  <div class="card">
+    <h2>Caractéristiques principales</h2>
+
+    <div class="field">
+      <label>Section (mm2)</label>
+      <select id="cSPh">
+        <option>1.5</option><option selected>2.5</option><option>4</option><option>6</option>
+        <option>10</option><option>16</option><option>25</option><option>35</option>
+        <option>50</option><option>70</option><option>95</option><option>120</option>
+        <option>150</option><option>185</option><option>240</option><option>300</option>
+      </select>
+    </div>
+
+    <div class="field">
+      <label>Isolation</label>
+      <div class="radio-group">
+        <label><input type="radio" name="cIsol" value="PR" checked> PR/XLPE</label>
+        <label><input type="radio" name="cIsol" value="PVC"> PVC</label>
+      </div>
+    </div>
+
+    <div class="field">
+      <label>Conducteurs chargés</label>
+      <div class="radio-group">
+        <label><input type="radio" name="cNbCond" value="2"> 2</label>
+        <label><input type="radio" name="cNbCond" value="3" checked> 3</label>
+        <label><input type="radio" name="cNbCond" value="4"> 4 <span style="font-size:10px;color:#555">(N chargé : harmoniques ou déséquilibre)</span></label>
+      </div>
+    </div>
+
+    <div class="field">
+      <label>Type de câble</label>
+      <div class="radio-group">
+        <label><input type="radio" name="cCable" value="multi" checked> Multipolaire
+          <svg width="18" height="18" viewBox="0 0 28 28" style="vertical-align:middle;margin-left:2px;opacity:.6">
+            <circle cx="14" cy="14" r="12" fill="#ddd" stroke="#555" stroke-width="1.5"/>
+            <circle cx="10" cy="10" r="3" fill="#c62828"/><circle cx="18" cy="10" r="3" fill="#1565c0"/>
+            <circle cx="14" cy="18" r="3" fill="#2e7d32"/><circle cx="14" cy="14" r="1.5" fill="#fdd835"/>
+          </svg></label>
+        <label><input type="radio" name="cCable" value="uni"> Unipolaire
+          <svg width="28" height="18" viewBox="0 0 40 28" style="vertical-align:middle;margin-left:2px;opacity:.6">
+            <circle cx="9" cy="14" r="7" fill="#ddd" stroke="#555" stroke-width="1.2"/><circle cx="9" cy="14" r="3" fill="#c62828"/>
+            <circle cx="23" cy="14" r="7" fill="#ddd" stroke="#555" stroke-width="1.2"/><circle cx="23" cy="14" r="3" fill="#1565c0"/>
+            <circle cx="36" cy="14" r="3.5" fill="#ddd" stroke="#555" stroke-width="1.2" opacity=".5"/>
+          </svg></label>
+        <label><input type="radio" name="cCable" value="isole"> Cond. isolés
+          <svg width="28" height="18" viewBox="0 0 40 28" style="vertical-align:middle;margin-left:2px;opacity:.6">
+            <line x1="6" y1="4" x2="6" y2="24" stroke="#c62828" stroke-width="2.5" stroke-linecap="round"/>
+            <line x1="20" y1="4" x2="20" y2="24" stroke="#1565c0" stroke-width="2.5" stroke-linecap="round"/>
+            <line x1="34" y1="4" x2="34" y2="24" stroke="#2e7d32" stroke-width="2.5" stroke-linecap="round"/>
+          </svg></label>
+      </div>
+    </div>
+
+    <div class="field">
+      <label>Nature</label>
+      <div class="radio-group">
+        <label><input type="radio" name="cNat" value="cu" checked> Cuivre</label>
+        <label><input type="radio" name="cNat" value="al"> Aluminium</label>
+      </div>
+    </div>
+
+    <div class="field">
+      <label>Mode de pose</label>
+      <select id="cMdP">
+        <option value="1">Chemin câble perforé ouvert (n°31 — E/F)</option>
+        <option value="2">Chemin câble plein ouvert (n°30 — C)</option>
+        <option value="3">Chemin câble perforé fermé (n°14 — B1)</option>
+        <option value="4">Chemin câble plein fermé (n°14 — B1)</option>
+        <option value="5">Sans fixation (n°20, 41, 72)</option>
+        <option value="6">Fixation directe (n°20 — C)</option>
+        <option value="7" selected>Sous conduit (n°3 — B1)</option>
+        <option value="8">Goulottes (n°14 — B1/B2)</option>
+        <option value="9">Plinthe rainurée (n°12 — A1)</option>
+        <option value="10">Conduit profilé (n°4 — B1)</option>
+        <option value="11">Échelles (n°34 — E/F)</option>
+        <option value="12">Corbeaux / Treillis soudés (n°32 — E/F)</option>
+        <option value="13">Isolateurs (n°36 — G)</option>
+        <option value="14">Câbles porteurs (n°38 — E/F)</option>
+        <option value="15">Colliers (n°20 — C)</option>
+        <option value="16">Moulures (n°12 — A1)</option>
+      </select>
+    </div>
+
+    <div class="field">
+      <label>Situation</label>
+      <select id="cSit">
+        <option value="1" selected>Apparent horiz. &amp; vertical (Tab. 52.3)</option>
+        <option value="2">Caniveau fermé (n°41)</option>
+        <option value="3">Caniveau ouvert / ventilé (n°42, 43)</option>
+        <option value="4">Enterré (n°70, 72, 73 — D1/D2)</option>
+        <option value="5">Vide de construction (n°20 — B1/B2)</option>
+        <option value="6">Faux plafond démontable (n°20, 21)</option>
+        <option value="7">Chambranle (n°47 — B1)</option>
+        <option value="8">Huisserie (n°47 — B1)</option>
+        <option value="9">Encastré paroi isolante (n°1, 2 — A1/A2)</option>
+        <option value="10">Encastré paroi &amp; plancher (n°5, 43 — B1)</option>
+        <option value="11">Aérien (Tab. 52.3)</option>
+      </select>
+    </div>
+
+    <div class="field" id="fieldSP">
+      <label>Pose sous plafond <span class="field-na">(N/A hors fix. directe app.)</span></label>
+      <div class="radio-group">
+        <label><input type="radio" name="cSP" value="1"> Oui</label>
+        <label><input type="radio" name="cSP" value="0" checked> Non</label>
+      </div>
+    </div>
+  </div>
+
+  <!-- COLONNE DROITE : Résultat Izc en bannière + Autres caractéristiques -->
+  <div class="card">
+    <div class="izc-banner" id="izcBanner">
+      <span class="izc-label">Izc =</span>
+      <span class="izc-value" id="rIzcTop">&mdash;</span>
+      <span class="izc-unit">A</span>
+    </div>
+    <h2>Autres caractéristiques</h2>
+
+    <div class="field">
+      <label>Local BE3 (explosion)</label>
+      <div class="radio-group">
+        <label><input type="radio" name="cBE3" value="1"> Oui</label>
+        <label><input type="radio" name="cBE3" value="0" checked> Non</label>
+      </div>
+    </div>
+
+    <div class="field">
+      <label>Température ambiante</label>
+      <select id="cTemp">
+        <option>10</option><option>15</option><option>20</option><option>25</option>
+        <option selected>30</option><option>35</option><option>40</option><option>45</option><option>50</option>
+      </select>
+      <span style="font-size:11px;font-weight:700;color:#c62828">°C</span>
+    </div>
+
+    <div class="field">
+      <label>Facteur de groupement</label>
+      <input type="text" id="cGroupe" value="0.8" style="max-width:70px">
+      <span style="display:inline-flex;gap:4px;margin-left:4px;align-items:center;flex-wrap:wrap">
+        <span role="button" tabindex="0" onclick="document.getElementById('cGroupe').value='1';calculer()" onkeydown="if(event.key==='Enter'){this.click()}" style="cursor:pointer;display:inline-flex;align-items:center;gap:2px;padding:4px 8px;border:1px solid #c5cae9;border-radius:3px;font-size:10px;color:#555;background:#fafbff" title="1 seul circuit multi (ex: 1 cable 3G16 seul)" class="grp-btn" aria-label="Groupement = 1 (1 circuit multipolaire)">
+          <svg width="30" height="22" viewBox="0 0 30 22" role="img" aria-hidden="true">
+            <rect x="1" y="1" width="28" height="20" rx="4" fill="none" stroke="#bbb" stroke-width="1" stroke-dasharray="3,2"/>
+            <circle cx="15" cy="11" r="7" fill="#e8eaf6" stroke="#3949ab" stroke-width="1.5"/>
+            <circle cx="12" cy="9" r="1.8" fill="#c62828"/><circle cx="18" cy="9" r="1.8" fill="#1565c0"/>
+            <circle cx="15" cy="14" r="1.8" fill="#fdd835"/>
+          </svg>= 1
+        </span>
+        <span role="button" tabindex="0" onclick="document.getElementById('cGroupe').value='1';calculer()" onkeydown="if(event.key==='Enter'){this.click()}" style="cursor:pointer;display:inline-flex;align-items:center;gap:2px;padding:4px 8px;border:1px solid #c5cae9;border-radius:3px;font-size:10px;color:#555;background:#fafbff" title="1 seul circuit uni (ex: 4x1x16 seul)" class="grp-btn" aria-label="Groupement = 1 (1 circuit unipolaire)">
+          <svg width="38" height="22" viewBox="0 0 38 22">
+            <rect x="1" y="1" width="36" height="20" rx="4" fill="none" stroke="#bbb" stroke-width="1" stroke-dasharray="3,2"/>
+            <circle cx="8" cy="11" r="4.5" fill="#e8eaf6" stroke="#c62828" stroke-width="1.2"/><circle cx="8" cy="11" r="1.8" fill="#c62828"/>
+            <circle cx="17" cy="11" r="4.5" fill="#e8eaf6" stroke="#1565c0" stroke-width="1.2"/><circle cx="17" cy="11" r="1.8" fill="#1565c0"/>
+            <circle cx="26" cy="11" r="4.5" fill="#e8eaf6" stroke="#2e7d32" stroke-width="1.2"/><circle cx="26" cy="11" r="1.8" fill="#2e7d32"/>
+          </svg>= 1
+        </span>
+        <span role="button" tabindex="0" onclick="document.getElementById('cGroupe').value='0.8';calculer()" onkeydown="if(event.key==='Enter'){this.click()}" style="cursor:pointer;display:inline-flex;align-items:center;gap:2px;padding:4px 8px;border:1px solid #ffcdd2;border-radius:3px;font-size:10px;color:#555;background:#fff8f8" title="Plusieurs circuits multi groupes (ex: 3 cables 3G16 dans le meme conduit)" class="grp-btn" aria-label="Groupement = 0.8 (plusieurs circuits multipolaires)">
+          <svg width="46" height="22" viewBox="0 0 46 22">
+            <rect x="1" y="1" width="44" height="20" rx="4" fill="none" stroke="#bbb" stroke-width="1" stroke-dasharray="3,2"/>
+            <circle cx="11" cy="11" r="6" fill="#e8eaf6" stroke="#3949ab" stroke-width="1.2"/>
+            <circle cx="9" cy="9.5" r="1.5" fill="#c62828"/><circle cx="13" cy="9.5" r="1.5" fill="#1565c0"/><circle cx="11" cy="13.5" r="1.5" fill="#fdd835"/>
+            <circle cx="24" cy="11" r="6" fill="#e8eaf6" stroke="#c62828" stroke-width="1.2"/>
+            <circle cx="22" cy="9.5" r="1.5" fill="#c62828"/><circle cx="26" cy="9.5" r="1.5" fill="#1565c0"/><circle cx="24" cy="13.5" r="1.5" fill="#fdd835"/>
+            <circle cx="37" cy="11" r="6" fill="#e8eaf6" stroke="#2e7d32" stroke-width="1.2"/>
+            <circle cx="35" cy="9.5" r="1.5" fill="#c62828"/><circle cx="39" cy="9.5" r="1.5" fill="#1565c0"/><circle cx="37" cy="13.5" r="1.5" fill="#fdd835"/>
+          </svg>= 0.8
+        </span>
+        <span role="button" tabindex="0" onclick="document.getElementById('cGroupe').value='0.8';calculer()" onkeydown="if(event.key==='Enter'){this.click()}" style="cursor:pointer;display:inline-flex;align-items:center;gap:2px;padding:4px 8px;border:1px solid #ffcdd2;border-radius:3px;font-size:10px;color:#555;background:#fff8f8" title="Plusieurs circuits uni groupes (ex: 2 jeux de 3x1x16 dans le meme conduit)" class="grp-btn" aria-label="Groupement = 0.8 (plusieurs circuits unipolaires)">
+          <svg width="60" height="22" viewBox="0 0 60 22">
+            <rect x="1" y="1" width="58" height="20" rx="4" fill="none" stroke="#bbb" stroke-width="1" stroke-dasharray="3,2"/>
+            <circle cx="7" cy="11" r="4" fill="#e8eaf6" stroke="#c62828" stroke-width="1"/><circle cx="7" cy="11" r="1.5" fill="#c62828"/>
+            <circle cx="15" cy="11" r="4" fill="#e8eaf6" stroke="#1565c0" stroke-width="1"/><circle cx="15" cy="11" r="1.5" fill="#1565c0"/>
+            <circle cx="23" cy="11" r="4" fill="#e8eaf6" stroke="#2e7d32" stroke-width="1"/><circle cx="23" cy="11" r="1.5" fill="#2e7d32"/>
+            <line x1="29" y1="3" x2="29" y2="19" stroke="#bbb" stroke-width="0.5" stroke-dasharray="2,2"/>
+            <circle cx="35" cy="11" r="4" fill="#e8eaf6" stroke="#c62828" stroke-width="1"/><circle cx="35" cy="11" r="1.5" fill="#c62828"/>
+            <circle cx="43" cy="11" r="4" fill="#e8eaf6" stroke="#1565c0" stroke-width="1"/><circle cx="43" cy="11" r="1.5" fill="#1565c0"/>
+            <circle cx="51" cy="11" r="4" fill="#e8eaf6" stroke="#2e7d32" stroke-width="1"/><circle cx="51" cy="11" r="1.5" fill="#2e7d32"/>
+          </svg>= 0.8
+        </span>
+      </span>
+    </div>
+
+    <div class="field">
+      <label>Protection</label>
+      <select id="cProt">
+        <option value="0" selected>Disjoncteur / Relais / Fu AM</option>
+        <option value="1">Fusible gI</option>
+        <option value="2">Fusible gG</option>
+      </select>
+    </div>
+
+    <div class="field">
+      <label>Harmoniques rang 3 (&gt;15%)</label>
+      <div class="radio-group">
+        <label><input type="radio" name="cH3" value="0" checked> Non</label>
+        <label><input type="radio" name="cH3" value="1"> Oui (x0.86)</label>
+      </div>
+    </div>
+
+    <div class="field" id="fieldSoleil">
+      <label>Rayonnement solaire direct <span class="field-na">(N/A hors E/F/G)</span></label>
+      <div class="radio-group">
+        <label><input type="radio" name="cSoleil" value="0" checked> Non</label>
+        <label><input type="radio" name="cSoleil" value="1"> Oui (x0.85)</label>
+      </div>
+    </div>
+
+    <div class="field" id="fieldRhoSol">
+      <label>Résistivité sol (K.m/W) <span class="field-na">(N/A hors D1/D2)</span></label>
+      <select id="cRhoSol">
+        <option value="0.5">0.5 — sol très humide (saturé)</option>
+        <option value="0.7">0.7 — sol humide</option>
+        <option value="1.0">1.0 — sol mouillé</option>
+        <option value="1.5">1.5 — sol légèrement humide</option>
+        <option value="2.0">2.0 — sol frais</option>
+        <option value="2.5" selected>2.5 — sol sec (réf. V2024)</option>
+        <option value="3.0">3.0 — sol très sec</option>
+      </select>
+    </div>
+
+    <!-- RÉSULTATS -->
+    <div class="result-box" id="resultBox" role="region" aria-live="polite" aria-label="Resultats du calcul">
+      <h2 style="color:#c62828;border-color:#ef9a9a">Résultats du calcul</h2>
+      <div class="result-formula">Izc = Iz × K (K = K52E × Ctemp × Cgrp × Cprot × Cequil × CBE3 × Csp × Ch3 × Csol × Crhosol)</div>
+
+      <div class="result-row">
+        <label for="rIz">Iz (courant admissible)</label>
+        <input type="text" id="rIz" readonly value="—">
+        <span class="unit">A</span>
+      </div>
+      <div class="result-row">
+        <label for="rK">K (facteur correction global)</label>
+        <input type="text" id="rK" readonly value="—">
+      </div>
+      <div class="result-row">
+        <label for="rIzc">Izc (courant corrigé)</label>
+        <input type="text" id="rIzc" readonly value="—" style="color:#c62828;font-size:15px">
+        <span class="unit">A</span>
+      </div>
+      <div class="result-row">
+        <label for="rMethode">Mode de pose / Méthode</label>
+        <input type="text" id="rMethode" readonly value="—">
+      </div>
+    </div>
+
+    <div class="info-box">
+      <textarea id="rObs" readonly placeholder="Observations..."></textarea>
+    </div>
+  </div>
+</div>
+
+<div class="buttons">
+  <button type="button" class="btn btn-calc" onclick="calculer()">Calculer</button>
+  <button type="button" class="btn btn-detail" id="btnDetail" onclick="basculerMethode()" aria-expanded="false" disabled title="Afficher / masquer le détail du calcul">Détail du calcul</button>
+  <button type="button" class="btn btn-def" onclick="defaut()">Valeurs par défaut</button>
+</div>
+<div class="buttons" style="margin-top:4px">
+  <button type="button" class="btn" style="background:#1565c0;color:#fff;font-size:11px;padding:6px 14px" onclick="openRef('norme')">Méthodologie selon NF C 15-100-1 V2024</button>
+  <button type="button" class="btn" style="background:#e65100;color:#fff;font-size:11px;padding:6px 14px" onclick="openRef('equiv')">Tables d'équivalence (preuve)</button>
+  <a class="btn" href="Sections.htm" style="background:#78909c;color:#fff;font-size:11px;padding:6px 14px;text-decoration:none">Outil V2002 (ancienne norme)</a>
+</div>
+
+<div id="methodeBox" class="methode-box" hidden>
+  <div class="mc-print-only mc-entete">
+    <b>ARGOS Bureau de Contrôle</b>
+    <div>Chemin des Chênes Verts, 04700 Oraison — argos@argos-controle.fr — 06 23 65 27 03</div>
+    <div>Note de calcul Iz — NF C 15-100-1 (V2024) — <span id="mcEdition"></span></div>
+  </div>
+  <div class="mc-head">
+    <h2>Méthode de calcul</h2>
+    <button type="button" class="btn mc-btn mc-noprint" onclick="imprimerMethode()">PDF de la méthode</button>
+  </div>
+  <div id="methodeContenu"></div>
+</div>
+
+<div class="hist-bar">
+  <button onclick="toggleHist()">Historique <span id="histCount" class="hist-count"></span></button>
+  <button onclick="exportHist()">Exporter CSV</button>
+  <button onclick="clearHist()">Vider</button>
+</div>
+<div class="hist-panel" id="histPanel"></div>
+
+<div class="footer">
+  ARGOS Bureau de Contrôle — Outil de calcul NF C 15-100-1 V2024 — Données tableaux 52.8A à 52.8H.2 — v11
+  <div style="margin-top:6px;font-size:10px;color:#999;line-height:1.4">Outil réservé aux détenteurs de la norme NF C 15-100-1 (AFNOR). Les données sont issues des tableaux normatifs — toute reproduction ou diffusion est interdite. © ARGOS Bureau de Contrôle.</div>
+</div>
+
+<script>
+// ═══════════════════════════════════════════════════════════════════════════════
+// DONNÉES NF C 15-100-1 V2024 — Version en ligne (pas de licence)
+// ═══════════════════════════════════════════════════════════════════════════════
+
+
+// Expiration 6 mois (10/03/2027)
+(function(){
+  var _k=[50,55,45,48,51,45,49,48];
+  var _s='';for(var i=0;i<_k.length;i++)_s+=String.fromCharCode(_k[i]);
+  var _p=_s.split('-');
+  var _e=new Date(2000+parseInt(_p[0]),parseInt(_p[1])-1,parseInt(_p[2]));
+  if(Date.now()>_e.getTime()){
+    showBlock('La période d\'utilisation de cet outil est terminée (6 mois).');
+    throw new Error('_');
+  }
+})();
+
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// DONNÉES NF C 15-100-1 V2024 — Tableaux 52.8A à 52.8H.2 (harmonisés IEC 60364-5-52)
+// ═══════════════════════════════════════════════════════════════════════════════
+
+const SECTIONS = [1.5, 2.5, 4, 6, 10, 16, 25, 35, 50, 70, 95, 120, 150, 185, 240, 300];
+
+// IZ[methode][materiau][isolation][nbCond] = tableau de courants admissibles
+// materiau: 'cu'/'al', isolation: 'pvc'/'pr', nbCond: 2/3
+const IZ = {
+  // Tableau 52.8A — Méthode de référence A1
+  // Modes : 1, 12, 15, 16
+  A1: {
+    cu: {
+      pvc: {
+        2: [14.5,19.5,26,34,46,61,80,99,119,151,182,210,240,273,321,367],
+        3: [13.5,18,24,31,42,56,73,89,108,136,164,188,216,245,286,328]
+      },
+      pr: {
+        2: [19,26,35,45,60,80,106,131,158,200,241,278,318,362,424,486],
+        3: [17,23,31,40,54,73,95,117,141,179,216,249,285,324,380,435]
+      }
+    },
+    al: {
+      pvc: {
+        2: [0,15,20,26,36,47,62,77,93,118,142,164,189,215,252,289],
+        3: [0,14,18.5,24,32,43,57,70,84,107,129,149,170,194,227,261]
+      },
+      pr: {
+        2: [0,20,27,35,46,61,81,100,121,153,184,213,244,278,326,373],
+        3: [0,18,24,31,42,56,73,90,109,138,167,192,220,251,294,337]
+      }
+    }
+  },
+
+  // Tableau 52.8B — Méthode de référence A2
+  // Mode : 2
+  A2: {
+    cu: {
+      pvc: {
+        2: [14,18.5,25,32,43,57,75,92,110,139,167,192,219,248,291,334],
+        3: [13,17.5,23,29,39,52,68,83,99,125,150,172,196,223,261,298]
+      },
+      pr: {
+        2: [18.5,25,33,42,56,74,97,120,144,183,220,253,290,329,386,442],
+        3: [16.5,22,30,38,51,68,89,110,132,167,202,232,265,300,351,401]
+      }
+    },
+    al: {
+      pvc: {
+        2: [0,14.5,19.5,25,33,44,58,71,86,108,130,150,172,195,229,263],
+        3: [0,13.5,17.5,22.5,30.5,41,53,65,78,99,118,136,155,176,207,237]
+      },
+      pr: {
+        2: [0,19.5,26,33,44,58,76,94,113,142,171,197,226,256,300,344],
+        3: [0,17,23,29,39,53,69,85,103,130,157,181,207,234,275,314]
+      }
+    }
+  },
+
+  // Tableau 52.8C — Méthode de référence B1
+  // Modes : 3, 4, 5, 10, 14, 20, 41, 42, 43, 44, 45, 46, 47, 50, 51, 53, 54
+  B1: {
+    cu: {
+      pvc: {
+        2: [17.5,24,32,41,57,76,101,125,151,192,232,269,300,341,400,458],
+        3: [15.5,21,28,36,50,66,84,104,125,160,194,225,260,297,350,404]
+      },
+      pr: {
+        2: [23,31,42,54,75,100,133,164,198,253,306,354,393,449,528,603],
+        3: [19.5,27,36,46,63,85,112,138,168,213,258,299,341,389,457,523]
+      }
+    },
+    al: {
+      pvc: {
+        2: [0,18.5,25,32,44,59,78,97,118,150,181,210,240,273,321,368],
+        3: [0,16.5,22,28,39,52,67,83,100,127,153,178,205,233,274,315]
+      },
+      pr: {
+        2: [0,24,32,42,58,77,102,127,154,196,237,275,314,358,420,481],
+        3: [0,21,28,36,49,66,87,107,130,165,200,232,265,303,356,407]
+      }
+    }
+  },
+
+  // Tableau 52.8D — Méthode de référence B2
+  // Modes : 8, 9, 11, 40, 41, 42, 43, 44, 45, 46, 47, 51, 53, 54, 60, 65
+  B2: {
+    cu: {
+      pvc: {
+        2: [16.5,22,30,38,52,69,90,111,133,168,201,232,258,294,344,394],
+        3: [15,20,27,34,46,62,80,99,118,149,179,206,236,268,313,358]
+      },
+      pr: {
+        2: [22,30,40,51,69,91,119,146,175,222,269,312,355,405,477,545],
+        3: [19.5,26,35,44,60,80,105,128,155,197,239,276,319,364,430,494]
+      }
+    },
+    al: {
+      pvc: {
+        2: [0,17,23,29,40,53,70,86,104,131,157,181,207,237,276,316],
+        3: [0,15.5,21,27,36,48,62,77,93,118,142,164,189,214,252,289]
+      },
+      pr: {
+        2: [0,23,31,39,54,70,92,113,136,173,210,242,277,316,371,425],
+        3: [0,20,27,34,46,62,81,100,121,154,186,214,248,283,335,384]
+      }
+    }
+  },
+
+  // Tableau 52.8E — Méthode de référence C
+  // Modes : 20, 21, 30
+  C: {
+    cu: {
+      pvc: {
+        2: [19.5,27,36,46,63,85,112,138,168,213,258,299,344,392,461,530],
+        3: [17.5,24,32,41,57,76,96,119,144,184,223,259,299,341,403,464]
+      },
+      pr: {
+        2: [24,33,45,58,80,107,138,171,209,269,328,382,441,506,599,693],
+        3: [22,30,40,52,71,96,119,147,179,229,278,322,371,424,500,576]
+      }
+    },
+    al: {
+      pvc: {
+        2: [0,21,28,36,49,66,83,103,125,160,195,226,261,298,352,406],
+        3: [0,18.5,25,32,44,59,73,90,110,140,170,197,227,259,305,351]
+      },
+      pr: {
+        2: [0,26,35,45,62,84,107,135,164,211,257,300,346,397,470,543],
+        3: [0,23,31,40,55,73,90,112,136,174,211,245,283,323,382,440]
+      }
+    }
+  },
+
+  // Tableau 52.8F — Méthode de référence E (câbles multiconducteurs à l'air libre)
+  // Modes : 31, 32, 34, 38
+  E: {
+    cu: {
+      pvc: {
+        2: [22,30,40,51,70,94,119,148,180,232,282,328,379,434,514,593],
+        3: [18.5,25,34,43,60,80,101,126,153,196,238,276,319,364,430,497]
+      },
+      pr: {
+        2: [28,38,52,67,91,122,161,200,242,310,377,437,504,575,679,783],
+        3: [23,32,42,54,75,100,127,158,192,246,298,346,395,450,538,621]
+      }
+    },
+    al: {
+      pvc: {
+        2: [0,23,31,40,54,73,93,115,140,181,220,256,296,339,401,463],
+        3: [0,19.5,26,34,46,62,79,98,120,154,186,216,251,285,337,390]
+      },
+      pr: {
+        2: [0,29,40,52,70,94,125,155,188,240,292,340,393,449,530,612],
+        3: [0,24,33,42,58,77,99,122,149,192,232,270,308,352,420,485]
+      }
+    }
+  },
+
+  // Tableau 52.8F — Méthode de référence F (câbles monoconducteurs à l'air libre, en trèfle)
+  // Modes : 31, 32, 34, 38
+  F: {
+    cu: {
+      pvc: {
+        2: [22,30,40,51,70,94,121,150,184,237,289,337,389,447,530,613],
+        3: [18.5,25,34,43,60,80,103,128,156,199,241,280,324,371,439,508]
+      },
+      pr: {
+        2: [28,38,52,67,91,122,161,200,244,314,383,447,515,594,704,815],
+        3: [24,33,45,58,79,105,140,174,213,274,334,390,451,519,616,714]
+      }
+    },
+    al: {
+      pvc: {
+        2: [0,23,31,39,54,73,94,117,144,185,224,261,303,347,411,476],
+        3: [0,19.5,26,33,46,61,78,97,120,154,186,216,250,287,340,394]
+      },
+      pr: {
+        2: [0,29,40,52,71,94,125,154,189,243,296,345,399,459,543,629],
+        3: [0,24,33,45,61,81,106,131,162,208,254,297,343,396,470,545]
+      }
+    }
+  },
+
+  // Tableau 52.8G — Méthode de référence G (conducteurs nus sur isolateurs)
+  // Mode : 36
+  G: {
+    cu: {
+      pvc: {
+        2: [0,0,0,0,0,0,146,180,219,282,341,396,456,521,615,709],
+        3: [0,0,0,0,0,0,130,162,182,234,284,330,381,436,515,595]
+      },
+      pr: {
+        2: [0,0,0,0,0,0,182,226,275,353,430,500,577,661,781,902],
+        3: [0,0,0,0,0,0,161,204,246,304,369,429,493,565,665,770]
+      }
+    },
+    al: {
+      pvc: {
+        2: [0,0,0,0,0,0,113,140,170,220,265,308,355,406,480,554],
+        3: [0,0,0,0,0,0,101,126,155,180,221,257,297,340,401,464]
+      },
+      pr: {
+        2: [0,0,0,0,0,0,141,176,214,275,335,390,449,515,608,703],
+        3: [0,0,0,0,0,0,125,159,191,237,287,334,384,440,519,601]
+      }
+    }
+  },
+
+  // Tableau 52.8H.1 — Méthode de référence D1 (conduits enterrés)
+  // Modes : 70, 71
+  D1: {
+    cu: {
+      pvc: {
+        2: [22,29,37,46,60,77,97,114,135,165,192,216,240,264,300,332],
+        3: [18,24,30,37,48,62,78,92,108,132,154,174,192,212,240,266]
+      },
+      pr: {
+        2: [26,34,44,56,73,95,121,146,173,213,252,287,324,363,419,474],
+        3: [22,29,37,46,60,78,99,119,140,174,203,231,261,293,338,382]
+      }
+    },
+    al: {
+      pvc: {
+        2: [0,22,29,36,46,60,75,88,105,128,150,169,188,207,235,261],
+        3: [0,18.5,24,29,37,48,61,72,84,103,120,136,150,166,189,210]
+      },
+      pr: {
+        2: [0,27,34,43,57,74,94,114,135,166,196,224,252,284,327,370],
+        3: [0,22,29,36,47,61,77,93,110,136,159,181,204,230,266,300]
+      }
+    }
+  },
+
+  // Tableau 52.8H.2 — Méthode de référence D2 (câbles enterrés directs)
+  // Modes : 72, 73
+  D2: {
+    cu: {
+      pvc: {
+        2: [25,34,44,56,74,96,123,147,174,216,256,290,328,367,424,480],
+        3: [22,29,37,46,61,79,101,122,144,178,211,240,271,304,351,396]
+      },
+      pr: {
+        2: [33,44,57,73,98,129,164,197,234,289,342,388,440,494,572,649],
+        3: [29,38,49,63,83,110,140,169,200,248,293,333,377,423,490,555]
+      }
+    },
+    al: {
+      pvc: {
+        2: [0,26,34,43,57,74,95,113,134,167,197,224,254,284,328,371],
+        3: [0,22,29,36,47,61,78,94,112,139,164,186,210,236,272,308]
+      },
+      pr: {
+        2: [0,34,44,57,75,98,125,150,179,221,261,297,336,378,437,497],
+        3: [0,29,38,49,64,84,107,129,153,190,224,255,288,324,376,426]
+      }
+    }
+  }
+};
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// FACTEURS DE CORRECTION — Tableaux 52.9 et 52.10
+// ═══════════════════════════════════════════════════════════════════════════════
+
+const TEMP_AIR = [10,15,20,25,30,35,40,45,50];
+const TEMP_SOL = [10,15,20,25,30,35,40,45,50];
+
+// Tableau 52.9 — Facteurs de correction température ambiante (air)
+const KTEMP_AIR = {
+  pvc: [1.22,1.17,1.12,1.06,1.00,0.94,0.87,0.79,0.71],
+  pr:  [1.15,1.12,1.08,1.04,1.00,0.96,0.91,0.87,0.82]
+};
+
+// Tableau 52.10 — Facteurs de correction température du sol
+const KTEMP_SOL = {
+  pvc: [1.10,1.05,1.00,0.95,0.89,0.84,0.77,0.71,0.63],
+  pr:  [1.07,1.04,1.00,0.96,0.93,0.89,0.85,0.80,0.76]
+};
+
+// Tableau 52.11 — Facteurs de correction résistivité thermique du sol (réf. 2.5 K.m/W = sol sec)
+// D1 = câbles en conduit enterré, D2 = câbles directement enterrés
+const KRHOSOL = {
+  D1: {'0.5':1.28, '0.7':1.20, '1.0':1.18, '1.5':1.10, '2.0':1.05, '2.5':1.00, '3.0':0.96},
+  D2: {'0.5':1.88, '0.7':1.62, '1.0':1.50, '1.5':1.28, '2.0':1.12, '2.5':1.00, '3.0':0.90}
+};
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// MAPPING — (Mode de pose, Situation, Type câble) → (Mode V2024, Méthode, K52E)
+// ═══════════════════════════════════════════════════════════════════════════════
+
+function determinerMethode(mdp, sit, cable) {
+  // mdp: 1-16, sit: 1-11, cable: 'multi'/'uni'/'isole'
+  // Retourne { mode: string, methode: string, k52e: number } ou null si impossible
+
+  const isIsole = cable === 'isole';
+  const isUni = cable === 'uni';
+  const isMulti = cable === 'multi';
+  const EouF = isMulti ? 'E' : 'F';
+
+  // CC Perforé Ouvert
+  if (mdp === 1 && !isIsole) {
+    if ([1,6,11].includes(sit)) return { mode:'31', methode:EouF, k52e:1 };
+    if (sit === 2) return { mode:'41', methode:'B1', k52e:1 };
+    if (sit === 3) return { mode:'43', methode:'B1', k52e:1 };
+  }
+  // CC Plein Ouvert
+  if (mdp === 2 && !isIsole) {
+    if ([1,6,11].includes(sit)) return { mode:'30', methode:'C', k52e:1 };
+    if (sit === 2) return { mode:'41', methode:'B1', k52e:1 };
+    if (sit === 3) return { mode:'43', methode:'B1', k52e:1 };
+  }
+  // CC Perforé Fermé
+  if (mdp === 3 && !isIsole) {
+    if ([1,2,3,6].includes(sit)) return { mode:'14', methode:'B1', k52e:1 };
+    if (sit === 11) return { mode:'14', methode:'B1', k52e:1 };
+  }
+  // CC Plein Fermé
+  if (mdp === 4 && !isIsole) {
+    if ([1,2,3,6].includes(sit)) return { mode:'14', methode:'B1', k52e:1 };
+    if (sit === 11) return { mode:'14', methode:'B1', k52e:1 };
+  }
+  // Sans Fixation
+  if (mdp === 5 && !isIsole) {
+    if (sit === 2) return { mode:'41', methode:'B1', k52e:1 };
+    if (sit === 3) return { mode:'43', methode:'B1', k52e:1 };
+    if (sit === 4) return { mode:'72', methode:'D2', k52e:1 };
+    if (sit === 5) return { mode:'20', methode:'B1', k52e:0.95 };
+    if (sit === 6) return { mode:'20', methode:'B1', k52e:0.95 };
+    if ([7,8].includes(sit)) return { mode:'47', methode:'B1', k52e:1 };
+  }
+  // Fixation directe
+  if (mdp === 6 && !isIsole) {
+    if (sit === 1) return { mode:'20', methode:'C', k52e:1 };
+    if (sit === 2) return { mode:'41', methode:'B1', k52e:1 };
+    if (sit === 3) return { mode:'43', methode:'B1', k52e:1 };
+    if (sit === 6) return { mode:'21', methode:'C', k52e:0.95 };
+    if (sit === 9) return { mode:'1', methode:'A1', k52e:1 };
+  }
+  // Sous conduit
+  if (mdp === 7) {
+    if (sit === 1) return { mode:'3', methode:'B1', k52e:1 };
+    if (sit === 2) return { mode:'41', methode:'B1', k52e:1 };
+    if (sit === 3) return { mode:'42', methode:'B1', k52e:1 };
+    if (sit === 4) return { mode:'70', methode:'D1', k52e:1 };
+    if (sit === 5) return { mode:'41', methode:'B2', k52e:1 };
+    if (sit === 6) return { mode:'3', methode:'B1', k52e:1 };
+    if ([7,8].includes(sit)) return { mode:'47', methode:'B1', k52e:1 };
+    if (sit === 9) {
+      if (isIsole) return { mode:'1', methode:'A1', k52e:1 };
+      return { mode:'2', methode:'A2', k52e:1 };
+    }
+    if (sit === 10) return { mode:'5', methode:'B1', k52e:1 };
+  }
+  // Goulottes
+  if (mdp === 8) {
+    if ([1,2,3,6].includes(sit)) return { mode:'14', methode:'B1', k52e:1 };
+    if (sit === 10) return { mode:'14', methode:'B1', k52e:1 };
+    if (sit === 11) return { mode:'14', methode:'B1', k52e:1 };
+  }
+  // Plinthe rainurée
+  if (mdp === 9) {
+    if (sit === 1) return { mode:'12', methode:'A1', k52e:1 };
+  }
+  // Conduit profilé
+  if (mdp === 10) {
+    if (sit === 1) return { mode:'4', methode:'B1', k52e:1 };
+    if (sit === 2) return { mode:'41', methode:'B1', k52e:1 };
+    if (sit === 3) return { mode:'42', methode:'B1', k52e:1 };
+    if (sit === 4) return { mode:'70', methode:'D1', k52e:1 };
+    if (sit === 5) return { mode:'43', methode:'B2', k52e:1 };
+    if (sit === 6) return { mode:'4', methode:'B1', k52e:1 };
+    if (sit === 9) {
+      if (isIsole) return { mode:'1', methode:'A1', k52e:1 };
+      return { mode:'2', methode:'A2', k52e:1 };
+    }
+    if (sit === 10) return { mode:'43', methode:'B1', k52e:1 };
+  }
+  // Échelles
+  if (mdp === 11 && !isIsole) {
+    if ([1,6,11].includes(sit)) return { mode:'34', methode:EouF, k52e:1 };
+    if (sit === 2) return { mode:'41', methode:'B1', k52e:1 };
+    if (sit === 3) return { mode:'43', methode:'B1', k52e:1 };
+  }
+  // Corbeaux / Treillis soudés
+  if (mdp === 12 && !isIsole) {
+    if ([1,6,11].includes(sit)) return { mode:'32', methode:EouF, k52e:1 };
+    if (sit === 2) return { mode:'41', methode:'B1', k52e:1 };
+    if (sit === 3) return { mode:'43', methode:'B1', k52e:1 };
+  }
+  // Isolateurs
+  if (mdp === 13 && isIsole) {
+    if ([1,11].includes(sit)) return { mode:'36', methode:'G', k52e:1 };
+  }
+  // Câbles porteurs
+  if (mdp === 14 && !isIsole) {
+    if ([1,11].includes(sit)) return { mode:'38', methode:EouF, k52e:1 };
+  }
+  // Colliers
+  if (mdp === 15 && !isIsole) {
+    if ([1,6].includes(sit)) return { mode:'20', methode:'C', k52e:1 };
+    if (sit === 2) return { mode:'41', methode:'B1', k52e:1 };
+    if (sit === 3) return { mode:'43', methode:'B1', k52e:1 };
+  }
+  // Moulures
+  if (mdp === 16) {
+    if ([1,6].includes(sit)) return { mode:'12', methode:'A1', k52e:1 };
+  }
+
+  return null; // combinaison impossible
+}
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// CONSTANTES NORMATIVES — Facteurs de correction
+// ═══════════════════════════════════════════════════════════════════════════════
+
+const FACTORS = {
+  BE3: 0.85,            // §422.6 — Atmosphère explosive
+  H3: 0.86,             // §523.6 — Harmoniques rang 3 > 15%
+  SOLAIRE: 0.85,        // §52.1.3.3 — Rayonnement solaire direct (E/F/G)
+  EQUILIBRE: 0.84,      // §523.7 — 4 conducteurs chargés
+  PLAFOND: 0.95         // §52.1.4 — Fixation directe sous plafond
+};
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// HISTORIQUE DES CALCULS (localStorage)
+// ═══════════════════════════════════════════════════════════════════════════════
+
+const HIST_KEY = '_iz24_hist';
+const HIST_MAX = 50;
+
+function getHist() { try { return JSON.parse(localStorage.getItem(HIST_KEY) || '[]'); } catch(e) { return []; } }
+function saveHist(h) { localStorage.setItem(HIST_KEY, JSON.stringify(h.slice(-HIST_MAX))); updateHistCount(); }
+
+function addHist(entry) {
+  var h = getHist();
+  h.push(entry);
+  saveHist(h);
+}
+
+function updateHistCount() {
+  var c = document.getElementById('histCount');
+  var n = getHist().length;
+  if (c) c.textContent = n > 0 ? '(' + n + ')' : '';
+}
+
+function toggleHist() {
+  var p = document.getElementById('histPanel');
+  p.classList.toggle('open');
+  if (p.classList.contains('open')) renderHist();
+}
+
+function renderHist() {
+  var h = getHist();
+  var p = document.getElementById('histPanel');
+  if (!h.length) { p.textContent = ''; var em = document.createElement('p'); em.style.cssText = 'padding:12px;text-align:center;color:#888;font-size:12px'; em.textContent = 'Aucun calcul enregistré'; p.appendChild(em); return; }
+  var tbl = document.createElement('table');
+  var thead = document.createElement('thead');
+  var tr = document.createElement('tr');
+  ['Heure','Section','Nat','Isol','Cond','Câble','Mode','Méth.','Iz','K','Izc'].forEach(function(t) {
+    var th = document.createElement('th'); th.textContent = t; tr.appendChild(th);
+  });
+  thead.appendChild(tr);
+  tbl.appendChild(thead);
+  var tbody = document.createElement('tbody');
+  for (var i = h.length - 1; i >= 0; i--) {
+    var r = h[i], row = document.createElement('tr');
+    [r.time, r.section + ' mm²', r.nat.toUpperCase(), r.isol.toUpperCase(), r.nbCond, r.cable, r.mode, r.methode, r.Iz + ' A', r.K, r.Izc + ' A'].forEach(function(v, j) {
+      var td = document.createElement('td'); td.textContent = v; if (j === 10) td.className = 'hist-izc'; row.appendChild(td);
+    });
+    tbody.appendChild(row);
+  }
+  tbl.appendChild(tbody);
+  while (p.firstChild) p.removeChild(p.firstChild);
+  p.appendChild(tbl);
+}
+
+function exportHist() {
+  var h = getHist();
+  if (!h.length) return;
+  var csv = 'Heure;Section;Nature;Isolation;Conducteurs;Cable;Mode;Methode;Iz;K;Izc\n';
+  h.forEach(function(r) {
+    csv += [r.time, r.section, r.nat, r.isol, r.nbCond, r.cable, r.mode, r.methode, r.Iz, r.K, r.Izc].join(';') + '\n';
+  });
+  var blob = new Blob(['\ufeff' + csv], {type: 'text/csv;charset=utf-8'});
+  var a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'iz-calculs-' + new Date().toISOString().slice(0,10) + '.csv';
+  a.click();
+  URL.revokeObjectURL(a.href);
+}
+
+function clearHist() {
+  localStorage.removeItem(HIST_KEY);
+  updateHistCount();
+  var p = document.getElementById('histPanel');
+  if (p.classList.contains('open')) renderHist();
+}
+
+// Met a jour l'etat visuel des champs selon la methode calculee
+function updateFieldsState() {
+  const cable = document.querySelector('input[name="cCable"]:checked').value;
+  const mdp = parseInt(document.getElementById('cMdP').value);
+  const sit = parseInt(document.getElementById('cSit').value);
+  const m = determinerMethode(mdp, sit, cable);
+  const methode = m ? m.methode : '';
+  const isEFG = ['E','F','G'].includes(methode);
+  const isD = ['D1','D2'].includes(methode);
+  const isDirectApparent = (mdp === 6 && sit === 1);
+  document.getElementById('fieldSoleil').classList.toggle('disabled-field', !isEFG);
+  document.getElementById('fieldRhoSol').classList.toggle('disabled-field', !isD);
+  document.getElementById('fieldSP').classList.toggle('disabled-field', !isDirectApparent);
+}
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// CALCUL
+// ═══════════════════════════════════════════════════════════════════════════════
+
+function calculer() { try {
+  updateFieldsState();
+  const sphIdx = document.getElementById('cSPh').selectedIndex;
+  const sph = SECTIONS[sphIdx];
+  const isol = document.querySelector('input[name="cIsol"]:checked').value.toLowerCase();
+  const nbCond = parseInt(document.querySelector('input[name="cNbCond"]:checked').value);
+  const cable = document.querySelector('input[name="cCable"]:checked').value;
+  const nat = document.querySelector('input[name="cNat"]:checked').value;
+  const mdp = parseInt(document.getElementById('cMdP').value);
+  const sit = parseInt(document.getElementById('cSit').value);
+  const sousPlafond = document.querySelector('input[name="cSP"]:checked').value === '1';
+  const be3 = document.querySelector('input[name="cBE3"]:checked').value === '1';
+  const tempIdx = document.getElementById('cTemp').selectedIndex;
+  const temp = TEMP_AIR[tempIdx];
+  const prot = parseInt(document.getElementById('cProt').value);
+  let cGroupe = parseFloat(document.getElementById('cGroupe').value.replace(',','.'));
+
+  const obs = [];
+  // Trace des étapes réelles du calcul (affichée dans le bloc Méthode, jamais stockée)
+  const T = { sph, isol, nbCond, cable, nat, mdp, sit, sousPlafond, be3, temp, prot,
+    groupeSaisi: document.getElementById('cGroupe').value };
+  T.h3 = document.querySelector('input[name="cH3"]:checked').value === '1';
+  T.soleil = document.querySelector('input[name="cSoleil"]:checked').value === '1';
+  T.rhoVal = document.getElementById('cRhoSol').value;
+
+  // Validation groupement
+  if (isNaN(cGroupe)) { cGroupe = 1; obs.push('Facteur de groupement invalide, utilisation de 1.'); }
+  if (cGroupe > 1) { cGroupe = 1; obs.push('Facteur de groupement limité à 1.'); }
+  if (cGroupe < 0.1) { cGroupe = 0.1; obs.push('Facteur de groupement limité à 0.1.'); }
+  document.getElementById('cGroupe').value = cGroupe;
+  T.cGroupe = cGroupe;
+
+  // Déterminer méthode
+  const m = determinerMethode(mdp, sit, cable);
+  T.m = m;
+  if (!m) {
+    afficherResultat(0, 0, 0, '0 / 0', 'Mode de pose non prévu, inadapté ou impossible.', T);
+    return;
+  }
+
+  // Nombre de conducteurs effectif (4 → traité comme 3 avec facteur)
+  const nbEff = nbCond >= 4 ? 3 : nbCond;
+  T.nbEff = nbEff;
+
+  // Vérifier que la table existe
+  const table = IZ[m.methode];
+  if (!table || !table[nat] || !table[nat][isol] || !table[nat][isol][nbEff]) {
+    afficherResultat(0, 0, 0, m.mode + ' / ' + m.methode, 'Données non disponibles pour cette configuration.', T);
+    return;
+  }
+
+  // Lire Iz
+  let Iz = table[nat][isol][nbEff][sphIdx];
+  T.Iz = Iz;
+  if (!Iz || Iz === 0) {
+    afficherResultat(0, 0, 0, m.mode + ' / ' + m.methode,
+      nat === 'al' ? 'Section non disponible en aluminium pour cette méthode.' :
+      'Section non prévue pour cette méthode de référence.', T);
+    return;
+  }
+
+  // Facteur de température
+  const isEnterre = ['D1','D2'].includes(m.methode);
+  let Ctemp;
+  if (isEnterre) {
+    Ctemp = KTEMP_SOL[isol][tempIdx];
+    if (sit !== 4 && temp !== 20) obs.push('Attention : température de référence pour enterré = 20°C.');
+  } else {
+    Ctemp = KTEMP_AIR[isol][tempIdx];
+  }
+  T.isEnterre = isEnterre; T.Ctemp = Ctemp;
+
+  // Facteur équilibre (4 conducteurs chargés)
+  const Cequil = nbCond === 4 ? FACTORS.EQUILIBRE : 1;
+  if (nbCond === 4) obs.push('Circuit 4 conducteurs chargés : facteur ' + FACTORS.EQUILIBRE + ' appliqué (§523.7).');
+  T.Cequil = Cequil;
+
+  // Facteur BE3
+  let Cbe3 = 1;
+  if (be3) {
+    Cbe3 = FACTORS.BE3;
+    if (isol === 'pvc') {
+      obs.push('BE3 : isolation PVC normalement non autorisée en atmosphère explosive.');
+      afficherResultat(0, 0, 0, m.mode + ' / ' + m.methode, obs.join('\n'), T);
+      return;
+    }
+    if (cable === 'isole') {
+      obs.push('BE3 : conducteurs isolés non autorisés en atmosphère explosive.');
+      afficherResultat(0, 0, 0, m.mode + ' / ' + m.methode, obs.join('\n'), T);
+      return;
+    }
+    if ([8,9,10,16].includes(mdp)) {
+      obs.push('BE3 : mode de pose interdit en atmosphère explosive.');
+      afficherResultat(0, 0, 0, m.mode + ' / ' + m.methode, obs.join('\n'), T);
+      return;
+    }
+  }
+
+  // Facteur protection (fusibles)
+  let Cprot = 1;
+  if (prot > 0) {
+    Cprot = 0.91;
+    const Izc_test = Iz * m.k52e * Ctemp * cGroupe * Cequil * Cbe3;
+    if (prot === 1) { // gI
+      if (Izc_test / 1.21 <= 25) Cprot = 0.826;
+      if (Izc_test / 1.31 <= 10) Cprot = 0.763;
+    } else { // gG
+      if (Izc_test < 16 * 1.31) Cprot = 0.76;
+    }
+    if (Izc_test / 1.45 <= 4) Cprot = 0.69;
+    T.izcTest = Izc_test;
+  }
+  T.Cbe3 = Cbe3; T.Cprot = Cprot;
+
+  // Facteur harmoniques rang 3 (§523.6)
+  const h3 = document.querySelector('input[name="cH3"]:checked').value === '1';
+  const Ch3 = h3 ? FACTORS.H3 : 1;
+  if (h3) obs.push('Harmoniques rang 3 > 15% : facteur ' + FACTORS.H3 + ' appliqué (§523.6).');
+  T.Ch3 = Ch3;
+
+  // Facteur rayonnement solaire direct (§52.1.3.3)
+  const soleil = document.querySelector('input[name="cSoleil"]:checked').value === '1';
+  let Csol = 1;
+  if (soleil) {
+    if (['E','F','G'].includes(m.methode)) {
+      Csol = FACTORS.SOLAIRE;
+      obs.push('Rayonnement solaire direct : facteur ' + FACTORS.SOLAIRE + ' appliqué (méthodes E/F/G).');
+    } else {
+      obs.push('Rayonnement solaire : sans effet pour méthode ' + m.methode + ' (applicable E, F, G uniquement).');
+    }
+  }
+  T.Csol = Csol;
+
+  // Facteur résistivité thermique sol (Tab. 52.11, réf. 2.5 K.m/W = sol sec)
+  let Crhosol = 1;
+  if (isEnterre) {
+    const rhoVal = document.getElementById('cRhoSol').value;
+    const rhoTable = KRHOSOL[m.methode] || KRHOSOL.D1;
+    Crhosol = rhoTable[rhoVal] || 1;
+    if (rhoVal !== '2.5') obs.push('Résistivité sol ' + rhoVal + ' K.m/W (' + m.methode + ') : facteur ' + Crhosol + ' appliqué (Tab. 52.11).');
+  } else {
+    const rhoVal = document.getElementById('cRhoSol').value;
+    if (rhoVal !== '2.5') obs.push('Résistivité sol : sans effet (applicable D1/D2 uniquement).');
+  }
+  T.Crhosol = Crhosol;
+
+  // Facteur sous plafond (fixation directe apparente)
+  let Csp = 1;
+  if (sousPlafond && mdp === 6 && sit === 1) {
+    Csp = FACTORS.PLAFOND;
+    obs.push('Pose sous plafond : facteur ' + FACTORS.PLAFOND + ' appliqué (§52.1.4).');
+  } else if (sousPlafond && (mdp !== 6 || sit !== 1)) {
+    obs.push('Pose sous plafond : utile uniquement pour fixation directe en apparent.');
+  }
+  T.Csp = Csp;
+
+  // K global
+  const K = m.k52e * Ctemp * cGroupe * Cprot * Cequil * Cbe3 * Csp * Ch3 * Csol * Crhosol;
+  const Izc = Iz * K;
+  T.K = K; T.Izc = Izc;
+
+  // Vérifications
+  if (cable === 'isole' && sph > 35)
+    obs.push('Section des conducteurs isolés normalement limitée à 35 mm².');
+  if (cable === 'multi' && sph > 300)
+    obs.push('Section des câbles multipolaires normalement limitée à 300 mm².');
+  if (cable === 'uni' && sph < 25)
+    obs.push('Section des câbles unipolaires normalement >= 25 mm².');
+  if (nat === 'al' && sph < 2.5)
+    obs.push('Section minimale aluminium = 2.5 mm².');
+  if (sit === 4 && cable === 'isole') {
+    obs.push('Conducteurs isolés enterrés non autorisés.');
+    afficherResultat(0, 0, 0, m.mode + ' / ' + m.methode, obs.join('\n'), T);
+    return;
+  }
+
+  // Note par défaut si aucun facteur particulier n'a été modifié
+  if (cGroupe === 0.8 && !h3 && !soleil && !be3 && nbCond !== 4) {
+    obs.push('---');
+    obs.push('Valeurs par défaut : en première approche et sans information spécifique, le calcul retient un facteur de groupement de 0.8 (plusieurs circuits), sans harmoniques, sans rayonnement solaire (installation intérieure) et une résistivité de sol standard (2.5 K.m/W). Ajuster ces paramètres selon les conditions réelles de l\'installation.');
+  }
+
+  T.complet = true;
+  afficherResultat(Izc, K, Iz, m.mode + ' / ' + m.methode, obs.join('\n'), T);
+
+  // Enregistrer dans l'historique
+  var now = new Date();
+  addHist({
+    time: ('0'+now.getHours()).slice(-2)+':'+('0'+now.getMinutes()).slice(-2),
+    section: sph, nat: nat, isol: isol, nbCond: nbCond, cable: cable,
+    mode: m.mode, methode: m.methode,
+    Iz: Math.round(Iz), K: Math.round(K*1000)/1000, Izc: Math.round(Izc)
+  });
+
+} catch(e) { if (e.message !== '_') { document.getElementById('rObs').value = 'Erreur de calcul : ' + e.message; } } }
+
+function afficherResultat(Izc, K, Iz, methode, obsText, trace) {
+  document.getElementById('rIz').value = Iz ? Math.round(Iz) : '—';
+  document.getElementById('rK').value = K ? (Math.round(K * 1000) / 1000) : '—';
+  document.getElementById('rIzc').value = Izc ? Math.round(Izc) : '—';
+  document.getElementById('rMethode').value = methode || '—';
+  document.getElementById('rObs').value = obsText || '';
+  // Bandeau Izc haut (desktop) + bas sticky (mobile)
+  var val = Izc ? Math.round(Izc) : '\u2014';
+  var top = document.getElementById('rIzcTop'); if (top) top.textContent = val;
+  // Flash visuel
+  var rb = document.getElementById('resultBox');
+  var bn = document.getElementById('izcBanner');
+  if (rb) { rb.classList.add('result-flash'); setTimeout(function(){ rb.classList.remove('result-flash'); }, 400); }
+  if (bn && Izc) { bn.style.background = 'linear-gradient(135deg,#1b5e20,#2e7d32)'; setTimeout(function(){ bn.style.background = ''; }, 500); }
+  afficherMethode(trace, Izc, K, Iz, methode, obsText);
+}
+
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// MÉTHODE DE CALCUL — trace pas à pas du calcul réellement effectué
+// Les valeurs affichées sont celles des variables du calcul (objet trace T) :
+// aucun recalcul à part. Rien n'est stocké (ni localStorage, ni fichier) :
+// le bloc est régénéré à chaque calcul et disparaît au rechargement.
+// ═══════════════════════════════════════════════════════════════════════════════
+const TAB_IZ_NOM = { A1:'52.8A', A2:'52.8B', B1:'52.8C', B2:'52.8D', C:'52.8E', E:'52.8F', F:'52.8F', G:'52.8G', D1:'52.8H.1', D2:'52.8H.2' };
+
+function mcFr(x, d) {
+  if (x === undefined || x === null || isNaN(x)) return '—';
+  return Number(x).toLocaleString('fr-FR', { maximumFractionDigits: d === undefined ? 4 : d, useGrouping: false });
+}
+function mcEsc(t) { return String(t).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+function mcOpt(id) { const el = document.getElementById(id); return el && el.selectedIndex >= 0 ? el.options[el.selectedIndex].text : ''; }
+function mcDate(d) {
+  const p = n => String(n).padStart(2, '0');
+  return p(d.getDate()) + '/' + p(d.getMonth() + 1) + '/' + d.getFullYear() + ' à ' + p(d.getHours()) + 'h' + p(d.getMinutes());
+}
+
+// Bloc masqué par défaut : le bouton « Détail du calcul » l'ouvre / le ferme.
+// L'état ouvert/fermé reste en mémoire de la page (rien n'est stocké).
+let mcOuvert = false;
+function mcMajBouton(actif) {
+  const b = document.getElementById('btnDetail');
+  if (!b) return;
+  b.disabled = !actif;
+  b.classList.toggle('actif', !!(actif && mcOuvert));
+  b.setAttribute('aria-expanded', String(!!(actif && mcOuvert)));
+}
+function basculerMethode() {
+  const box = document.getElementById('methodeBox');
+  const out = document.getElementById('methodeContenu');
+  if (!box || !out || !out.innerHTML) return;
+  mcOuvert = !mcOuvert;
+  box.hidden = !mcOuvert;
+  mcMajBouton(true);
+  if (mcOuvert && box.scrollIntoView) box.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+}
+
+function afficherMethode(T, Izc, K, Iz, methodeTxt, obsText) {
+  const box = document.getElementById('methodeBox');
+  const out = document.getElementById('methodeContenu');
+  if (!box || !out) return;
+  if (!T) { box.hidden = true; out.innerHTML = ''; mcOuvert = false; mcMajBouton(false); return; }
+  const h = [];
+  const oui = b => b ? 'Oui' : 'Non';
+  const libCable = { multi:'Multipolaire', uni:'Unipolaire', isole:'Conducteurs isolés' }[T.cable];
+  const libNat = T.nat === 'al' ? 'Aluminium' : 'Cuivre';
+  const libIsol = T.isol === 'pr' ? 'PR/XLPE' : 'PVC';
+  const m = T.m;
+  const isD = m && ['D1','D2'].includes(m.methode);
+
+  h.push('<p class="mc-date">Calcul effectué le ' + mcDate(new Date()) + ' — NF C 15-100-1 (V2024), tableaux 52.8A à 52.8H.2, 52.9, 52.10, 52.11</p>');
+
+  // 1. Données saisies
+  h.push('<h3>1. Données saisies</h3><table class="mc-tab"><tbody>');
+  const row = (a, b, c, d) => h.push('<tr><th>' + a + '</th><td>' + b + '</td><th>' + c + '</th><td>' + d + '</td></tr>');
+  row('Section', mcFr(T.sph) + ' mm²', 'Température ambiante', T.temp + ' °C');
+  row('Isolation', libIsol, 'Facteur de groupement', mcEsc(String(T.groupeSaisi).replace('.', ',')) + (String(T.cGroupe) !== String(T.groupeSaisi) ? ' → retenu ' + mcFr(T.cGroupe) : ''));
+  row('Conducteurs chargés', T.nbCond, 'Protection', mcEsc(mcOpt('cProt')));
+  row('Type de câble', libCable, 'Harmoniques rang 3 > 15 %', oui(T.h3));
+  row('Nature', libNat, 'Rayonnement solaire direct', oui(T.soleil));
+  row('Mode de pose', mcEsc(mcOpt('cMdP')), 'Résistivité du sol', mcEsc(T.rhoVal.replace('.', ',')) + ' K.m/W' + (isD ? '' : ' (sans objet hors D1/D2)'));
+  row('Situation', mcEsc(mcOpt('cSit')), 'Local BE3', oui(T.be3));
+  row('Pose sous plafond', oui(T.sousPlafond), '', '');
+  h.push('</tbody></table>');
+
+  // 2. Méthode de référence
+  h.push('<h3>2. Mode de pose et méthode de référence</h3>');
+  if (!m) {
+    h.push('<p class="mc-err">Combinaison mode de pose × situation × type de câble non prévue par le tableau 52.3 : calcul impossible.</p>');
+  } else {
+    h.push('<p>Mode de pose saisi + situation + câble ' + libCable.toLowerCase() + ' → <b>mode de pose n° ' + m.mode + '</b>, <b>méthode de référence ' + m.methode + '</b> (tableau 52.3), facteur lié au mode de pose K52E = <b>' + mcFr(m.k52e) + '</b>.</p>');
+  }
+
+  // 3. Iz de base
+  if (m && T.nbEff !== undefined) {
+    h.push('<h3>3. Courant admissible de base Iz (lecture tableau)</h3>');
+    const col = T.nbEff + ' conducteurs chargés' + (T.nbCond >= 4 ? ' (4 conducteurs chargés → colonne 3, facteur 0,84 en §4)' : '');
+    h.push('<p>Tableau <b>' + (TAB_IZ_NOM[m.methode] || '?') + '</b> — méthode ' + m.methode + ' — ' + libNat.toLowerCase() + ' — isolation ' + libIsol + ' — colonne ' + col + ' — ligne ' + mcFr(T.sph) + ' mm².</p>');
+    if (T.Iz) {
+      h.push('<p class="mc-formule">Iz = ' + mcFr(T.Iz) + ' A' + (Math.round(T.Iz) !== T.Iz ? '   (affiché arrondi : ' + Math.round(T.Iz) + ' A)' : '') + '</p>');
+    } else {
+      h.push('<p class="mc-err">Pas de valeur dans le tableau pour cette section' + (T.nat === 'al' ? ' en aluminium' : '') + ' : calcul impossible.</p>');
+    }
+  }
+
+  // 4. Facteurs de correction
+  if (m && T.Iz && T.Ctemp !== undefined) {
+    h.push('<h3>4. Facteurs de correction appliqués</h3><table class="mc-tab"><thead><tr><th>Facteur</th><th>Valeur</th><th>Justification / source</th></tr></thead><tbody>');
+    const f = (nom, val, just, na) => h.push('<tr' + (na ? ' class="na"' : '') + '><td>' + nom + '</td><td class="v">' + (val === undefined ? '—' : mcFr(val)) + '</td><td>' + just + '</td></tr>');
+    f('K52E (mode de pose)', m.k52e, 'Mode de pose n° ' + m.mode + ' / méthode ' + m.methode + (m.k52e === 1 ? ' : pas de réduction.' : ' : réduction liée au mode de pose.'), m.k52e === 1);
+    f('Ctemp (température)', T.Ctemp, (T.isEnterre ? 'Tableau 52.10 (température du sol)' : 'Tableau 52.9 (température de l\'air)') + ', isolation ' + libIsol + ', ' + T.temp + ' °C.');
+    f('Cgrp (groupement)', T.cGroupe, 'Valeur saisie par l\'opérateur' + (T.cGroupe === 1 ? ' (circuit seul).' : '.'), T.cGroupe === 1);
+    let jp = 'Disjoncteur / relais / fusible aM : pas de réduction.';
+    if (T.prot > 0 && T.izcTest !== undefined) {
+      const it = T.izcTest;
+      jp = (T.prot === 1 ? 'Fusible gI' : 'Fusible gG') + ' : courant de test Iz × K52E × Ctemp × Cgrp × Céquil × CBE3 = ' + mcFr(it, 2) + ' A. Base 0,91';
+      if (T.prot === 1) {
+        if (it / 1.21 <= 25) jp += ' ; ' + mcFr(it, 2) + ' / 1,21 = ' + mcFr(it / 1.21, 2) + ' ≤ 25 → 0,826';
+        if (it / 1.31 <= 10) jp += ' ; ' + mcFr(it, 2) + ' / 1,31 = ' + mcFr(it / 1.31, 2) + ' ≤ 10 → 0,763';
+      } else if (it < 16 * 1.31) jp += ' ; ' + mcFr(it, 2) + ' < 16 × 1,31 = 20,96 → 0,76';
+      if (it / 1.45 <= 4) jp += ' ; ' + mcFr(it, 2) + ' / 1,45 = ' + mcFr(it / 1.45, 2) + ' ≤ 4 → 0,69';
+      jp += '. Facteur retenu.';
+    }
+    f('Cprot (protection)', T.Cprot, jp, T.Cprot === 1);
+    f('Céquil (4 cond. chargés)', T.Cequil, T.nbCond === 4 ? 'Neutre chargé (déséquilibre) : ' + mcFr(T.Cequil) + ' (§523.7).' : 'Non applicable (' + T.nbCond + ' conducteurs chargés).', T.Cequil === 1);
+    f('CBE3 (risque d\'explosion)', T.Cbe3, T.be3 ? 'Local BE3 (atmosphère explosive) : ' + mcFr(T.Cbe3) + ' (§422.6).' : 'Non applicable.', T.Cbe3 === 1);
+    f('Csp (sous plafond)', T.Csp, T.Csp !== 1 ? 'Fixation directe apparente sous plafond : ' + mcFr(T.Csp) + ' (§52.1.4).' : (T.sousPlafond ? 'Sans effet hors fixation directe apparente.' : 'Non applicable.'), T.Csp === 1);
+    f('Ch3 (harmoniques rang 3)', T.Ch3, T.h3 ? 'Taux d\'harmoniques de rang 3 > 15 % : ' + mcFr(T.Ch3) + ' (§523.6).' : 'Non applicable.', T.Ch3 === 1);
+    f('Csol (rayonnement solaire)', T.Csol, T.Csol !== 1 ? 'Rayonnement solaire direct, méthode ' + m.methode + ' : ' + mcFr(T.Csol) + ' (§52.1.3.3).' : (T.soleil ? 'Sans effet pour la méthode ' + m.methode + ' (E, F, G uniquement).' : 'Non applicable.'), T.Csol === 1);
+    f('Crhosol (résistivité du sol)', T.Crhosol, isD ? 'Tableau 52.11, colonne ' + m.methode + ', ' + mcEsc(T.rhoVal.replace('.', ',')) + ' K.m/W (référence 2,5 K.m/W).' : 'Non applicable (méthode ' + m.methode + ').', T.Crhosol === 1);
+    h.push('</tbody></table>');
+  }
+
+  // 5. Calcul et résultat
+  if (T.complet) {
+    const fac = [m.k52e, T.Ctemp, T.cGroupe, T.Cprot, T.Cequil, T.Cbe3, T.Csp, T.Ch3, T.Csol, T.Crhosol];
+    h.push('<h3>5. Calcul</h3>');
+    h.push('<p class="mc-formule">K = K52E × Ctemp × Cgrp × Cprot × Céquil × CBE3 × Csp × Ch3 × Csol × Crhosol<br>K = ' + fac.map(x => mcFr(x)).join(' × ') + ' = ' + mcFr(T.K, 6) + ' ≈ <b>' + mcFr(Math.round(T.K * 1000) / 1000, 3) + '</b></p>');
+    h.push('<p class="mc-formule">Izc = Iz × K = ' + mcFr(T.Iz) + ' × ' + mcFr(T.K, 6) + ' = ' + mcFr(T.Izc, 2) + ' A ≈ <b>' + Math.round(T.Izc) + ' A</b></p>');
+    h.push('<h3>6. Résultat</h3>');
+    h.push('<div class="mc-res" data-izc="' + Math.round(T.Izc) + '" data-k="' + (Math.round(T.K * 1000) / 1000) + '" data-iz="' + Math.round(T.Iz) + '">Mode de pose / méthode : <b>' + mcEsc(methodeTxt) + '</b> — Iz (tableau) = <b>' + mcFr(T.Iz) + ' A</b> — K = <b>' + mcFr(Math.round(T.K * 1000) / 1000, 3) + '</b> — Courant admissible corrigé <b>Izc = ' + Math.round(T.Izc) + ' A</b></div>');
+  } else if (m && T.Iz) {
+    h.push('<h3>5. Résultat</h3><p class="mc-err">Calcul interrompu : voir observations ci-dessous.</p>');
+  }
+
+  if (obsText) h.push('<h3>Observations</h3><div class="mc-obs">' + mcEsc(obsText) + '</div>');
+  h.push('<p class="mc-note">Valeurs issues des tableaux codés dans l\'outil Iz ARGOS (NF C 15-100-1 V2024). Note régénérée à chaque calcul, non conservée. Le facteur de groupement est saisi par l\'opérateur : il reste à justifier selon les tableaux de groupement applicables.</p>');
+  out.innerHTML = h.join('');
+  const ed = document.getElementById('mcEdition');
+  if (ed) ed.textContent = 'édité le ' + mcDate(new Date());
+  box.hidden = !mcOuvert;
+  mcMajBouton(true);
+}
+
+function imprimerMethode() {
+  const box = document.getElementById('methodeBox');
+  if (!document.getElementById('methodeContenu').innerHTML) calculer();
+  if (box.hidden) { mcOuvert = true; box.hidden = false; mcMajBouton(true); }
+  document.getElementById('mcEdition').textContent = 'édité le ' + mcDate(new Date());
+  const titre = document.title;
+  const d = new Date();
+  document.title = 'Methode Iz V2024 ' + String(d.getDate()).padStart(2,'0') + '-' + String(d.getMonth()+1).padStart(2,'0') + '-' + d.getFullYear();
+  document.body.classList.add('print-methode');
+  const fin = () => { document.body.classList.remove('print-methode'); document.title = titre; window.removeEventListener('afterprint', fin); };
+  window.addEventListener('afterprint', fin);
+  window.print();
+}
+
+function raz() {
+  document.getElementById('rIz').value = '—';
+  document.getElementById('rK').value = '—';
+  document.getElementById('rIzc').value = '—';
+  document.getElementById('rMethode').value = '—';
+  document.getElementById('rObs').value = '';
+  var top = document.getElementById('rIzcTop'); if (top) top.textContent = '\u2014';
+  const mb = document.getElementById('methodeBox');
+  if (mb) { mb.hidden = true; document.getElementById('methodeContenu').innerHTML = ''; }
+  mcOuvert = false; mcMajBouton(false);
+}
+
+function defaut() {
+  document.getElementById('cSPh').selectedIndex = 1; // 2.5
+  document.querySelector('input[name="cIsol"][value="PR"]').checked = true;
+  document.querySelector('input[name="cNbCond"][value="3"]').checked = true;
+  document.querySelector('input[name="cCable"][value="multi"]').checked = true;
+  document.querySelector('input[name="cNat"][value="cu"]').checked = true;
+  document.getElementById('cMdP').selectedIndex = 6; // Sous conduit
+  document.getElementById('cSit').selectedIndex = 0; // Apparent
+  document.querySelector('input[name="cSP"][value="0"]').checked = true;
+  document.querySelector('input[name="cBE3"][value="0"]').checked = true;
+  document.getElementById('cTemp').selectedIndex = 4; // 30°C
+  document.getElementById('cGroupe').value = '0.8';
+  document.getElementById('cProt').selectedIndex = 0;
+  document.querySelector('input[name="cH3"][value="0"]').checked = true;
+  document.querySelector('input[name="cSoleil"][value="0"]').checked = true;
+  document.getElementById('cRhoSol').value = '2.5';
+  raz();
+}
+
+function openRef(type) {
+  // Chemin relatif depuis Calcul IE/ (anciens liens Google Drive morts — fichier introuvable)
+  if (type === 'norme') {
+    window.open('NFC_15-100-1_V2024_Methodologie_Iz.pdf', '_blank');
+  } else {
+    window.open('Equivalences_V2024.htm', '_blank');
+  }
+}
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// FILTRAGE DYNAMIQUE — Combinaisons autorisées (mode de pose × situation)
+// Basé sur le Tableau 52.3 NF C 15-100-1 V2024
+// ═══════════════════════════════════════════════════════════════════════════════
+
+// Situations valides par mode de pose (index 1-16 → tableau de sit valides 1-11)
+// Câbles exigés : 'any' = tous, 'cable' = multi+uni (pas isolé), 'isole' = isolé uniquement
+// sits: situations autorisées, cable: type câble, defSit: situation par défaut terrain
+const VALID_SITS = {
+  1:  { sits:[1,2,3,6,11], cable:'cable', defSit:1 },        // CC perforé ouvert → apparent
+  2:  { sits:[1,2,3,6,11], cable:'cable', defSit:1 },        // CC plein ouvert → apparent
+  3:  { sits:[1,2,3,6,11], cable:'cable', defSit:1 },        // CC perforé fermé → apparent
+  4:  { sits:[1,2,3,6,11], cable:'cable', defSit:1 },        // CC plein fermé → apparent
+  5:  { sits:[2,3,4,5,6,7,8], cable:'cable', defSit:4 },     // Sans fixation → enterré
+  6:  { sits:[1,2,3,6,9], cable:'cable', defSit:1 },          // Fixation directe → apparent
+  7:  { sits:[1,2,3,4,5,6,7,8,9,10], cable:'any', defSit:4 },// Sous conduit → enterré
+  8:  { sits:[1,6,10,11], cable:'any', defSit:1 },            // Goulottes → apparent
+  9:  { sits:[1], cable:'any', defSit:1 },                     // Plinthe rainurée → apparent
+  10: { sits:[1,2,3,4,5,6,9,10], cable:'any', defSit:1 },    // Conduit profilé → apparent
+  11: { sits:[1,2,3,6,11], cable:'cable', defSit:1 },         // Échelles → apparent
+  12: { sits:[1,2,3,6,11], cable:'cable', defSit:1 },         // Corbeaux → apparent
+  13: { sits:[1,11], cable:'isole', defSit:1 },                // Isolateurs → apparent
+  14: { sits:[1,11], cable:'cable', defSit:1 },                // Câbles porteurs → apparent
+  15: { sits:[1,2,3,6], cable:'cable', defSit:1 },             // Colliers → apparent
+  16: { sits:[1,6], cable:'any', defSit:1 }                    // Moulures → apparent
+};
+
+function updateSituations(forceDefault) {
+  const mdp = parseInt(document.getElementById('cMdP').value);
+  const sitSel = document.getElementById('cSit');
+  const currentSit = parseInt(sitSel.value);
+  const rule = VALID_SITS[mdp];
+  if (!rule) return;
+
+  const validSits = rule.sits;
+
+  for (let i = 0; i < sitSel.options.length; i++) {
+    const opt = sitSel.options[i];
+    const val = parseInt(opt.value);
+    const isValid = validSits.includes(val);
+    opt.disabled = !isValid;
+    opt.style.color = isValid ? '' : '#bbb';
+  }
+
+  // Appliquer la situation par défaut du mode de pose (changement utilisateur ou init)
+  if (forceDefault || !validSits.includes(currentSit)) {
+    sitSel.value = rule.defSit;
+  }
+
+  // Mettre à jour les radio câble
+  updateCableTypes(mdp);
+
+  // Mettre à jour température si enterré
+  updateTempForSit();
+}
+
+function updateCableTypes(mdp) {
+  const rule = VALID_SITS[mdp];
+  if (!rule) return;
+
+  const radios = document.querySelectorAll('input[name="cCable"]');
+  radios.forEach(r => {
+    const val = r.value;
+    let enabled = true;
+    if (rule.cable === 'cable' && val === 'isole') enabled = false;
+    if (rule.cable === 'isole' && val !== 'isole') enabled = false;
+    r.disabled = !enabled;
+    r.parentElement.style.opacity = enabled ? '1' : '0.4';
+  });
+
+  // Si le type sélectionné est désactivé, basculer
+  const selected = document.querySelector('input[name="cCable"]:checked');
+  if (selected && selected.disabled) {
+    const first = document.querySelector('input[name="cCable"]:not(:disabled)');
+    if (first) first.checked = true;
+  }
+}
+
+function updateTempForSit() {
+  const sit = parseInt(document.getElementById('cSit').value);
+  const tempSel = document.getElementById('cTemp');
+  if (sit === 4 && tempSel.selectedIndex !== 2) {
+    tempSel.selectedIndex = 2; // 20°C pour enterré
+  } else if (sit !== 4 && tempSel.selectedIndex === 2) {
+    tempSel.selectedIndex = 4; // 30°C sinon
+  }
+}
+
+// Écouteurs
+document.getElementById('cMdP').addEventListener('change', function() {
+  updateSituations(true);
+  calculer();
+});
+document.getElementById('cSit').addEventListener('change', function() {
+  updateTempForSit();
+  calculer();
+});
+
+// Calcul automatique dès qu'un paramètre change
+document.querySelectorAll('select, input[type=text]').forEach(el => {
+  if (!['cMdP','cSit'].includes(el.id)) el.addEventListener('change', calculer);
+  if (el.type === 'text') el.addEventListener('input', calculer);
+});
+document.querySelectorAll('input[type=radio]').forEach(el => {
+  el.addEventListener('change', calculer);
+});
+
+// Init au chargement
+updateSituations();
+updateHistCount();
+calculer();
+
+</script>
+</body>
+</html>

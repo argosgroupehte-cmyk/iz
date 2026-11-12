@@ -1,0 +1,248 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0095)http://www.elec-planet.com:8080/elecplanet/Calcul.nsf/a3546c877582d30dc1256b180033e720?OpenForm -->
+<HTML><HEAD>
+<META http-equiv=Content-Type content="text/html; charset=utf-8">
+<SCRIPT language=JavaScript>
+<!-- 
+var bRAZ = true;
+function GEN_Afficher_Aide (sStatus , sInfo)
+{
+if ( sStatus == "" )
+    { document.forms[0].cInfo.value = sInfo; }
+else
+    { document.forms[0].cInfo.value = sStatus + "\n" + sInfo; }
+}
+
+function GEN_Initialiser_Res ()
+{
+with (document.forms[0])
+{
+cIP.value="";
+cIK.value ="";
+cChoc.value ="";
+bRAZ = true;
+}
+}
+function GEN_Affecter_Res (IP,IK,Choc, sInfo)
+{
+with (document.forms[0])
+{
+// valeurs
+cIP.value = IP;
+cIK.value = IK;
+cChoc.value = Choc;
+cInfo.value = sInfo;
+bRAZ= false;
+}
+}
+function GEN_Initialiser_Ent ()
+{
+with (document.forms[0])
+{
+// radio
+cAE[2].checked =true;
+cAG[0].checked =true;
+cAD[0].checked =true;
+}
+}
+// -->
+</SCRIPT>
+
+<SCRIPT language=JavaScript>
+<!-- 
+document._domino_target = "_self";
+function _doClick(v, o, t, h) {
+  var form = document._DominoForm;
+  if (form.onsubmit) {
+     var retVal = form.onsubmit();
+     if (typeof retVal == "boolean" && retVal == false)
+       return false;
+  }
+  var target = document._domino_target;
+  if (o.href != null) {
+    if (o.target != null)
+       target = o.target;
+  } else {
+    if (t != null)
+      target = t;
+  }
+  form.target = target;
+  form.__Click.value = v;
+  if (h != null)
+    form.action += h;
+  form.submit();
+  return false;
+}
+// -->
+</SCRIPT>
+
+<META content="MSHTML 6.00.6000.16809" name=GENERATOR></HEAD>
+<BODY text=#000000 bgColor=#ffffff leftMargin=5 topMargin=10>
+<FORM name=_DominoForm 
+action=/elecplanet/Calcul.nsf/a3546c877582d30dc1256b180033e720?OpenForm&amp;Seq=1 
+method=post><INPUT type=hidden value=0 name=__Click> 
+<TABLE cellSpacing=0 cellPadding=0 border=0>
+  <TBODY>
+  <TR vAlign=top>
+    <TD width=567 bgColor=#8080ff colSpan=4>
+      <DIV align=center><B><FONT face="Times New Roman" color=#ffffff 
+      size=4>Détermination des degrés de protection : Codes IP et 
+      IK</FONT></B></DIV></TD></TR>
+  <TR vAlign=top>
+    <TD width=567 bgColor=#8080ff colSpan=4>
+      <DIV align=center><B><I><FONT color=#ffff00 size=2>Caractéristiques 
+      (Données à saisir)</FONT></I></B></DIV></TD></TR>
+  <TR vAlign=top>
+    <TD width=285 bgColor=#8080ff><FONT color=#ffff00 size=1>Corps 
+      solides</FONT></TD>
+    <TD width=282 bgColor=#8080ff colSpan=3><FONT color=#ffff00 
+      size=1>Présence d'eau</FONT></TD></TR>
+  <TR vAlign=top>
+    <TD width=285 bgColor=#bfbfff><FONT face=Arial size=1>
+      <P style="MARGIN-LEFT: 20px"></FONT><FONT color=#0000ff size=1><INPUT 
+      onmouseover='sStatus ="Décrivez les agressions des solides que le matériel devra subir dans les conditions de fonctionnement";&#13;sInfo = "";&#13;GEN_Afficher_Aide (sStatus , sInfo)' 
+      onfocus=document.forms[0].cInfo.focus() 
+      onclick="if (! bRAZ) GEN_Initialiser_Res ();" type=radio 
+      value=_k852j282eg9jmoqb7clgm4r3540k6srre41o74rrkg9jo4a8_ name=cAE>AE1 
+      Négligeable (non protégé)<BR><INPUT 
+      onmouseover='sStatus ="Décrivez les agressions des solides que le matériel devra subir dans les conditions de fonctionnement";&#13;sInfo = "";&#13;GEN_Afficher_Aide (sStatus , sInfo)' 
+      onfocus=document.forms[0].cInfo.focus() 
+      onclick="if (! bRAZ) GEN_Initialiser_Res ();" type=radio 
+      value=_f852j282ge9nn90j7g8g48qb1dkg3sf906ko20rbd_ name=cAE>AE1 Protégé 
+      Diam &gt;= 50 mm<BR><INPUT 
+      onmouseover='sStatus ="Décrivez les agressions des solides que le matériel devra subir dans les conditions de fonctionnement";&#13;sInfo = "";&#13;GEN_Afficher_Aide (sStatus , sInfo)' 
+      onfocus=document.forms[0].cInfo.focus() 
+      onclick="if (! bRAZ) GEN_Initialiser_Res ();" type=radio CHECKED 
+      value=_o852j482ge9nn90j7g8g48qb1dkg3sf9064p20rbd_ name=cAE>AE2 Protégé 
+      Diam &gt;= 12 mm<BR><INPUT 
+      onmouseover='sStatus ="Décrivez les agressions des solides que le matériel devra subir dans les conditions de fonctionnement";&#13;sInfo = "";&#13;GEN_Afficher_Aide (sStatus , sInfo)' 
+      onfocus=document.forms[0].cInfo.focus() 
+      onclick="if (! bRAZ) GEN_Initialiser_Res ();" type=radio 
+      value="AE2 Petits objets Diam >= 2.5 mm" name=cAE>AE2 Petits objets Diam 
+      &gt;= 2.5 mm<BR><INPUT 
+      onmouseover='sStatus ="Décrivez les agressions des solides que le matériel devra subir dans les conditions de fonctionnement";&#13;sInfo = "";&#13;GEN_Afficher_Aide (sStatus , sInfo)' 
+      onfocus=document.forms[0].cInfo.focus() 
+      onclick="if (! bRAZ) GEN_Initialiser_Res ();" type=radio 
+      value=_r852j682kea57683gclq6it3j41nm4qj5ehpi0h39c5mi0fht40oi0rbd_ 
+      name=cAE>AE3 Très petits objets Diam &gt;= 1 mm<BR><INPUT 
+      onmouseover='sStatus ="Décrivez les agressions des solides que le matériel devra subir dans les conditions de fonctionnement";&#13;sInfo = "";&#13;GEN_Afficher_Aide (sStatus , sInfo)' 
+      onfocus=document.forms[0].cInfo.focus() 
+      onclick="if (! bRAZ) GEN_Initialiser_Res ();" type=radio 
+      value=_i852j882gdtqn6sr9h9p6aso_ name=cAE>AE4 Poussières<BR><INPUT 
+      onmouseover='sStatus ="Décrivez les agressions des solides que le matériel devra subir dans les conditions de fonctionnement";&#13;sInfo = "";&#13;GEN_Afficher_Aide (sStatus , sInfo)' 
+      onfocus=document.forms[0].cInfo.focus() 
+      onclick="if (! bRAZ) GEN_Initialiser_Res ();" type=radio 
+      value=_p852j882gdtqn6sr9h9p6asp0516m2t42e9kmar10g9q62rj3d1iii_ 
+      name=cAE>AE4 Poussières (Matériel étanche)</FONT></P></TD>
+    <TD width=282 bgColor=#bfbfff colSpan=3><FONT face=Arial size=1>
+      <P style="MARGIN-LEFT: 20px"></FONT><FONT color=#0000ff size=1><INPUT 
+      onmouseover="sStatus =&quot;Décrivez les agressions que l'eau fera subir au matériel dans les conditions de fonctionnement&quot;;&#13;sInfo = &quot;&quot;;&#13;GEN_Afficher_Aide (sStatus , sInfo)" 
+      onfocus=document.forms[0].cInfo.focus() 
+      onclick="if (! bRAZ) GEN_Initialiser_Res ();" type=radio CHECKED 
+      value=_48523282eg9jmoqb7clgm4r3540k6srre41o74rrkg9jo4a8_ name=cAD>AD1 
+      Négligeable (non protégé)<BR><INPUT 
+      onmouseover="sStatus =&quot;Décrivez les agressions que l'eau fera subir au matériel dans les conditions de fonctionnement&quot;;&#13;sInfo = &quot;&quot;;&#13;GEN_Afficher_Aide (sStatus , sInfo)" 
+      onfocus=document.forms[0].cInfo.focus() 
+      onclick="if (! bRAZ) GEN_Initialiser_Res ();" type=radio 
+      value="AD2 Chutes de gouttes d'eau verticales" name=cAD>AD2 Chutes de 
+      gouttes d'eau verticales<BR><INPUT 
+      onmouseover="sStatus =&quot;Décrivez les agressions que l'eau fera subir au matériel dans les conditions de fonctionnement&quot;;&#13;sInfo = &quot;&quot;;&#13;GEN_Afficher_Aide (sStatus , sInfo)" 
+      onfocus=document.forms[0].cInfo.focus() 
+      onclick="if (! bRAZ) GEN_Initialiser_Res ();" type=radio 
+      value="AD3 Aspersions d'eau (pluie)" name=cAD>AD3 Aspersions d'eau 
+      (pluie)<BR><INPUT 
+      onmouseover="sStatus =&quot;Décrivez les agressions que l'eau fera subir au matériel dans les conditions de fonctionnement&quot;;&#13;sInfo = &quot;&quot;;&#13;GEN_Afficher_Aide (sStatus , sInfo)" 
+      onfocus=document.forms[0].cInfo.focus() 
+      onclick="if (! bRAZ) GEN_Initialiser_Res ();" type=radio 
+      value="AD4 Projections d'eau" name=cAD>AD4 Projections d'eau<BR><INPUT 
+      onmouseover="sStatus =&quot;Décrivez les agressions que l'eau fera subir au matériel dans les conditions de fonctionnement&quot;;&#13;sInfo = &quot;&quot;;&#13;GEN_Afficher_Aide (sStatus , sInfo)" 
+      onfocus=document.forms[0].cInfo.focus() 
+      onclick="if (! bRAZ) GEN_Initialiser_Res ();" type=radio 
+      value=_r8523a82aclq768344tim2t90gkg6oo90dhgmsor5_ name=cAD>AD5 Jets d'eau 
+      à la lance<BR><INPUT 
+      onmouseover="sStatus =&quot;Décrivez les agressions que l'eau fera subir au matériel dans les conditions de fonctionnement&quot;;&#13;sInfo = &quot;&quot;;&#13;GEN_Afficher_Aide (sStatus , sInfo)" 
+      onfocus=document.forms[0].cInfo.focus() 
+      onclick="if (! bRAZ) GEN_Initialiser_Res ();" type=radio 
+      value="AD6 Paquets d'eau" name=cAD>AD6 Paquets d'eau<BR><INPUT 
+      onmouseover="sStatus =&quot;Décrivez les agressions que l'eau fera subir au matériel dans les conditions de fonctionnement&quot;;&#13;sInfo = &quot;&quot;;&#13;GEN_Afficher_Aide (sStatus , sInfo)" 
+      onfocus=document.forms[0].cInfo.focus() 
+      onclick="if (! bRAZ) GEN_Initialiser_Res ();" type=radio 
+      value="AD7 Immersion temporaire" name=cAD>AD7 Immersion 
+      temporaire<BR><INPUT 
+      onmouseover="sStatus =&quot;Décrivez les agressions que l'eau fera subir au matériel dans les conditions de fonctionnement&quot;;&#13;sInfo = &quot;&quot;;&#13;GEN_Afficher_Aide (sStatus , sInfo)" 
+      onfocus=document.forms[0].cInfo.focus() 
+      onclick="if (! bRAZ) GEN_Initialiser_Res ();" type=radio 
+      value="AD8 Submersion permanente" name=cAD>AD8 Submersion 
+      permanente</FONT></P></TD></TR>
+  <TR vAlign=top>
+    <TD width=285 bgColor=#8080ff><FONT color=#ffff00 size=1>Chocs 
+      mécaniques</FONT></TD>
+    <TD width=282 bgColor=#8080ff colSpan=3><B><I><FONT color=#ff0000 
+      size=2>Résultats du calcul</FONT></I></B></TD></TR>
+  <TR vAlign=top>
+    <TD width=285 bgColor=#bfbfff rowSpan=3><FONT face=Arial size=1>
+      <P style="MARGIN-LEFT: 20px"></FONT><FONT color=#0000ff size=1><INPUT 
+      onmouseover='sStatus ="Décrivez les agressions dues aux chocs que le matériel devra subir dans les conditions de fonctionnement";&#13;sInfo = "";&#13;GEN_Afficher_Aide (sStatus , sInfo)' 
+      onfocus=document.forms[0].cInfo.focus() 
+      onclick="if (! bRAZ) GEN_Initialiser_Res ();" type=radio CHECKED 
+      value="AG1 Faibles <= 0.2 J" name=cAG>AG1 Faibles &lt;= 0.2 J<BR><INPUT 
+      onmouseover='sStatus ="Décrivez les agressions dues aux chocs que le matériel devra subir dans les conditions de fonctionnement";&#13;sInfo = "";&#13;GEN_Afficher_Aide (sStatus , sInfo)' 
+      onfocus=document.forms[0].cInfo.focus() 
+      onclick="if (! bRAZ) GEN_Initialiser_Res ();" type=radio 
+      value="AG2 Moyens <= 2 J" name=cAG>AG2 Moyens &lt;= 2 J<BR><INPUT 
+      onmouseover='sStatus ="Décrivez les agressions dues aux chocs que le matériel devra subir dans les conditions de fonctionnement";&#13;sInfo = "";&#13;GEN_Afficher_Aide (sStatus , sInfo)' 
+      onfocus=document.forms[0].cInfo.focus() 
+      onclick="if (! bRAZ) GEN_Initialiser_Res ();" type=radio 
+      value="AG3 Importants <= 5 J" name=cAG>AG3 Importants &lt;= 5 J<BR><INPUT 
+      onmouseover='sStatus ="Décrivez les agressions dues aux chocs que le matériel devra subir dans les conditions de fonctionnement";&#13;sInfo = "";&#13;GEN_Afficher_Aide (sStatus , sInfo)' 
+      onfocus=document.forms[0].cInfo.focus() 
+      onclick="if (! bRAZ) GEN_Initialiser_Res ();" type=radio 
+      value=_8853j882kea576839dlo6usjkc5n78sp07gui0chg4150_ name=cAG>AG4 Très 
+      importants &lt;= 20 J</FONT></P></TD>
+    <TD width=93 bgColor=#bfbfff>
+      <DIV align=center><FONT face=Arial color=#ffff00 size=1>Code 
+      IP</FONT></DIV></TD>
+    <TD width=94 bgColor=#bfbfff>
+      <DIV align=center><FONT face=Arial color=#ffff00 size=1>Code 
+      IK</FONT></DIV></TD>
+    <TD width=94 bgColor=#bfbfff>
+      <DIV align=center><FONT face=Arial color=#ffff00 
+    size=1>Chocs</FONT></DIV></TD></TR>
+  <TR vAlign=top>
+    <TD width=93 bgColor=#e0e0ff><FONT face=Arial size=1>
+      <P style="MARGIN-LEFT: 20px"></FONT><FONT face=Arial color=#ff0000 
+      size=1><INPUT onfocus=document.forms[0].cInfo.focus() size=8 
+      name=cIP></FONT></P></TD>
+    <TD width=94 bgColor=#e0e0ff><FONT face=Arial size=1>
+      <P style="MARGIN-LEFT: 20px"></FONT><FONT face=Arial color=#ff0000 
+      size=1><INPUT onfocus=document.forms[0].cInfo.focus() size=8 
+      name=cIK></FONT></P></TD>
+    <TD width=94 bgColor=#e0e0ff><FONT face=Arial size=1>
+      <P style="MARGIN-LEFT: 20px"></FONT><FONT face=Arial color=#ff0000 
+      size=1><INPUT onfocus=document.forms[0].cInfo.focus() size=8 
+      name=cChoc></FONT></P></TD></TR>
+  <TR vAlign=top>
+    <TD width=93 bgColor=#bfbfff>
+      <DIV align=center><A 
+      onmouseover='GEN_Afficher_Aide ("","Cliquez pour Affecter les valeurs par défaut")&#13;' 
+      onclick="GEN_Initialiser_Ent ();&#13;if (! bRAZ) GEN_Initialiser_Res ();&#13;&#13;&#13;&#13;&#13;return false;" 
+      href="http://www.elec-planet.com:8080/elecplanet/Calcul.nsf/"><B><FONT 
+      face=Arial color=#ffff00>Valeurs par défaut</FONT></B></A></DIV></TD>
+    <TD width=94 bgColor=#bfbfff>
+      <DIV align=center><A 
+      onmouseover='GEN_Afficher_Aide ("", "Cliquez pour mettre à zéro les résultats.")' 
+      onclick="GEN_Initialiser_Res ()&#13;&#13;&#13;&#13;&#13;return false;" 
+      href="http://www.elec-planet.com:8080/elecplanet/Calcul.nsf/"><B><FONT 
+      face=Arial color=#ffff00>Raz</FONT></B></A><B><FONT face=Arial 
+      color=#ffff00> </FONT></B></DIV></TD>
+    <TD width=94 bgColor=#bfbfff>
+      <DIV align=center><A 
+      onmouseover='GEN_Afficher_Aide ("", "Cliquez pour Calculer.")' 
+      onclick="tst =  window.location.href;&#13;position = tst.lastIndexOf(&quot;/&quot;);&#13;url = tst.substring(0,position) + &quot;/ReRoute?openform&quot;;&#13;&#13;if (window.document.forms[0].UserName.value == &quot;Anonymous&quot;)&#13;&#9;window.open(url,target=&quot;cadres_contenu&quot;);&#13;else&#13;{&#13;IP =&quot;&quot;;&#13;IK = &quot;&quot;;&#13;Choc = &quot;&quot;;&#13;sInfo = &quot;&quot;;&#13;bFin = true;&#13;AE =0;&#13;AD=0;&#13;AG=0;&#13;IPAE =&quot;&quot;;&#13;IPAD =&quot;&quot;;&#13;&#13;&#13;GEN_Initialiser_Res ();&#13;&#13;with(window.document.forms[0])&#13;     {&#13;      for (n=0; n<cAE.length; n++) &#13;           {&#13;                if (cAE[n].checked == true)&#13;                      {&#13;                          AE = n +1;&#13;                       }   &#13;             }&#13;      for (n=0; n<cAG.length; n++) &#13;           {&#13;                if (cAG[n].checked == true)&#13;                      {&#13;                          AG = n +1;&#13;                       }   &#13;             }&#13;      for (n=0; n<cAD.length; n++) &#13;           {&#13;                if (cAD[n].checked == true)&#13;                      {&#13;                          AD = n +1;&#13;                       }   &#13;             }&#13;      }&#13;&#13;&#9;&#9;switch (AE)&#13;&#9;         {&#13;     &#9;&#9;case 1 :&#13;                       {&#13;                        IPAE=&quot;0&quot;;&#13;                        sInfo =&quot;La protection contre les contacts directs n'est pas assurée.\nPrévoir IP2x ou xxB en Basse tension et IP3x ou xxC en Haute Tension&quot;;&#13;                        break;&#13;                        }&#13;&#9;     &#9;case 2 : &#13;                       {&#13;                        IPAE=&quot;1&quot;;&#13;                        sInfo = &quot;La protection contre les contacts directs n'est pas assurée.\nPrévoir IP 1xB ou 2x en Basse tension et IP1xC ou 3x en Haute Tension&quot;;&#13;                        break;&#13;                        }&#13;&#9;&#9;     case 3 : &#13;                       {&#13;&#9;&#9;              IPAE=&quot;2&quot;&#13;                        sInfo = &quot;La protection contre les contacts directs n'est pas assurée en Haute tension. Si Haute tension, prévoir IP 2xC ou 3x.&quot;;&#13;                        break;&#13;                        }&#13;&#9;&#9;     case 4 : &#13;                       {&#13;&#9;&#9;              IPAE=&quot;3&quot;;&#13;                        break;&#13;                        }&#13;&#9;&#9;     case 5 : &#13;                       {&#13;   &#9;&#9;              IPAE=&quot;4&quot;;&#13;                        break;&#13;                        }&#13;    &#9;&#9;     case 6 : &#13;                       {&#13;   &#9;&#9;              IPAE=&quot;5&quot;;&#13;                        break;&#13;                        }&#13;&#9;&#9;     case 7 : &#13;                       {&#13;   &#9;&#9;              IPAE= &quot;6&quot;;&#13;                        break;&#13;&#9;&#9;&#9;&#9;&#9;}&#13;&#9;&#9;&#9;}&#13;&#9;&#9;switch (AD)&#13;&#9;         {&#13;     &#9;&#9;case 1 :&#13;                       {&#13;                        IPAD=&quot;0&quot;;&#13;                        break;&#13;                        }&#13;&#9;     &#9;case 2 : &#13;                       {&#13;                        IPAD=&quot;1&quot;;&#13;                        break;&#13;                        }&#13;&#9;&#9;     default : &#13;                       {&#13;   &#9;&#9;              IPAD= AD;&#13;                        break;&#13;                        }&#13;               }&#13;&#9;&#9;switch (AG)&#13;&#9;         {&#13;     &#9;&#9;case 1 :&#13;                       {&#13;                        IK=&quot;02&quot;;&#13;                        Choc= &quot;1&quot;;&#13;                        break;&#13;                        }&#13;&#9;     &#9;case 2 : &#13;                       {&#13;                        IK=&quot;07&quot;;&#13;                        Choc= &quot;5&quot;;&#13;                        break;&#13;                        }&#13;              case 3 : &#13;                       {&#13;                        IK=&quot;08&quot;;&#13;                        Choc= &quot;7&quot;;&#13;                        break;&#13;                        }&#13;              case 4 : &#13;                       {&#13;                        IK=&quot;10&quot;;&#13;                        Choc= &quot;9&quot;;&#13;                        break;&#13;                        }&#13;               }&#13;&#13;if (bFin == true)&#13;      {&#13;// Affectation Resultat&#13;      GEN_Affecter_Res (IPAE + IPAD,IK,Choc, sInfo);&#13;      }&#13;else&#13;     {&#13;     GEN_Affecter_Res (&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;Problème Critique&quot;);&#13;      }&#13;}&#13;&#13;return false;" 
+      href="http://www.elec-planet.com:8080/elecplanet/Calcul.nsf/"><B><FONT 
+      face=Arial color=#ffff00>Calculer</FONT></B></A></DIV></TD></TR>
+  <TR vAlign=top>
+    <TD width=567 bgColor=#c2efff colSpan=4><B><I><FONT face=Arial size=1><TEXTAREA name=cInfo rows=3 cols=75></TEXTAREA> 
+      </FONT></I></B><BR><B><FONT face=Arial 
+size=1><BR></FONT></B></TD></TR></TBODY></TABLE><INPUT type=hidden 
+value=Anonymous name=UserName></FORM></BODY></HTML>

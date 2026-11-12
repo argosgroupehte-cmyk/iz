@@ -1,0 +1,246 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0095)http://www.elec-planet.com:8080/elecplanet/Calcul.nsf/930b9d44b56c2da4c1256b180033900d?OpenForm -->
+<HTML><HEAD>
+<META http-equiv=Content-Type content="text/html; charset=utf-8">
+<SCRIPT language=JavaScript>
+<!-- 
+var bRAZ = true;
+function GEN_Afficher_Aide (sStatus , sInfo)
+{
+if ( sStatus == "" )
+    { document.forms[0].cInfo.value = sInfo; }
+else
+    { document.forms[0].cInfo.value = sStatus + "\n" + sInfo; }
+}
+
+function GEN_Initialiser_Res ()
+{
+with (document.forms[0])
+{
+cRXE.value=0;
+cZE.value =0;
+cRS.value =0;
+cXS.value= 0;
+cRXS.value= 0;
+cZS.value=0;
+bRAZ = true;
+}
+}
+function GEN_Affecter_Res (RXE, ZE,RS,XS,RXS,ZS,U02, sInfo)
+{
+with (document.forms[0])
+{
+// valeurs
+cRXE.value = Math.round(RXE*1000)/1000;
+cZE.value = Math.round(ZE*1000)/1000;
+cRS.value = Math.round(RS*1000)/1000;
+cXS.value = Math.round(XS*1000)/1000;
+cRXS.value = Math.round(RXS*1000)/1000;
+cZS.value = Math.round(ZS*1000)/1000;
+cU02.value = Math.round(U02*10)/10;
+cInfo.value = sInfo;
+bRAZ= false;
+}
+}
+function GEN_Initialiser_Ent ()
+{
+with (document.forms[0])
+{
+// valeurs
+cU01.value=420;
+cU02.value =230;
+cRE.value =2;
+cXE.value= 8;
+}
+}
+// -->
+</SCRIPT>
+
+<SCRIPT language=JavaScript>
+<!-- 
+document._domino_target = "_self";
+function _doClick(v, o, t, h) {
+  var form = document._DominoForm;
+  if (form.onsubmit) {
+     var retVal = form.onsubmit();
+     if (typeof retVal == "boolean" && retVal == false)
+       return false;
+  }
+  var target = document._domino_target;
+  if (o.href != null) {
+    if (o.target != null)
+       target = o.target;
+  } else {
+    if (t != null)
+      target = t;
+  }
+  form.target = target;
+  form.__Click.value = v;
+  if (h != null)
+    form.action += h;
+  form.submit();
+  return false;
+}
+// -->
+</SCRIPT>
+
+<META content="MSHTML 6.00.6000.16809" name=GENERATOR></HEAD>
+<BODY text=#000000 bgColor=#ffffff leftMargin=5 topMargin=10>
+<FORM name=_DominoForm 
+action=/elecplanet/Calcul.nsf/930b9d44b56c2da4c1256b180033900d?OpenForm&amp;Seq=1 
+method=post><INPUT type=hidden value=0 name=__Click> 
+<TABLE cellSpacing=0 cellPadding=0 border=0>
+  <TBODY>
+  <TR vAlign=top>
+    <TD width=490 bgColor=#8080ff colSpan=3>
+      <DIV align=center><B><FONT face="Times New Roman" color=#ffffff 
+      size=4>Transfert d'Impédance</FONT></B></DIV></TD></TR>
+  <TR vAlign=top>
+    <TD width=227 bgColor=#bfbfff>
+      <DIV align=center><B><I><FONT face=Arial color=#ffff00 
+      size=2>Caractéristiques (Données à saisir)</FONT></I></B></DIV></TD>
+    <TD width=38 bgColor=#bfbfff><IMG height=1 alt="" 
+      src="Z%20transfert_fichiers/ecblank.gif" width=1 border=0></TD>
+    <TD width=225 bgColor=#e0e0ff>
+      <DIV align=center><B><I><FONT face=Arial color=#ff0000 size=2>Résultats du 
+      calcul</FONT></I></B></DIV></TD></TR>
+  <TR vAlign=top>
+    <TD width=227 bgColor=#8080ff><FONT face=Arial color=#ffff00 
+      size=1>Tension à vide Entrée</FONT></TD>
+    <TD width=38 bgColor=#8080ff><IMG height=1 alt="" 
+      src="Z%20transfert_fichiers/ecblank.gif" width=1 border=0></TD>
+    <TD width=225 bgColor=#8080ff><FONT face=Arial color=#ffff00 
+      size=1>Rapport Us/Ue</FONT></TD></TR>
+  <TR vAlign=top>
+    <TD width=227 bgColor=#bfbfff><FONT face=Arial size=1>
+      <P style="MARGIN-LEFT: 20px"></FONT><FONT face=Arial color=#0000ff 
+      size=1><INPUT 
+      onblur='sVal =new String(document.forms[0].cU01.value);&#13;sVal = sVal.replace ("," ,".");&#13;nVal = parseFloat (sVal);&#13;var bPb = false;&#13;if ( isNaN(nVal) == false )&#13;   {&#13;   if (nVal > 50000) {&#13;      window.alert ("La Tension à vide Entrée ne peut-être supèrieure à 50000 Volts");&#13;      nVal = 50000;&#13;       };&#13;   if (nVal <0.1) {&#13;       window.alert ("La Tension à vide Entrée ne peut-être inférieure à 0.1 Volt");&#13;       nVal = 0.1;&#13;       };&#13;   }&#13;else&#13;  {&#13;   window.alert ("Vous devez saisir une valeur numérique");&#13;   bPb =true;&#13;   nVal = 420;&#13;   }&#13;if (bPb == true)   document.forms[0].cU01.focus();&#13;document.forms[0].cU01.value= nVal;&#13;&#13;&#13;&#13;&#13;&#13;&#13;&#13;&#13;&#13;&#13;&#13;' 
+      onmouseover='GEN_Afficher_Aide ("Saisir une valeur entre 0.1 et 50000 volts, valeur par défaut 400 Volts" , "")' 
+      onfocus="if (! bRAZ) GEN_Initialiser_Res ();" size=8 value=420 
+      name=cU01></FONT><B><FONT face=Arial size=1> </FONT></B><B><FONT 
+      face=Arial color=#ffff00 size=1>V</FONT></B><FONT face=Arial 
+      size=1><O:P></FONT></P></TD>
+    <TD width=38 bgColor=#bfbfff><IMG height=1 alt="" 
+      src="Z%20transfert_fichiers/ecblank.gif" width=1 border=0></TD>
+    <TD width=225 bgColor=#e0e0ff><FONT face=Arial size=1>
+      <P style="MARGIN-LEFT: 20px"></FONT><FONT face=Arial color=#ff0000 
+      size=1><INPUT onfocus=document.forms[0].cU01.focus() size=8 value=0 
+      name=cRXE></FONT><FONT face=Arial size=1><O:P></FONT></P></TD></TR>
+  <TR vAlign=top>
+    <TD width=227 bgColor=#8080ff><FONT face=Arial color=#ffff00 
+      size=1>Tension à vide Sortie</FONT></TD>
+    <TD width=38 bgColor=#8080ff><IMG height=1 alt="" 
+      src="Z%20transfert_fichiers/ecblank.gif" width=1 border=0></TD>
+    <TD width=225 bgColor=#8080ff><FONT face=Arial color=#ffff00 
+      size=1>Impédance Z Entrée</FONT></TD></TR>
+  <TR vAlign=top>
+    <TD width=227 bgColor=#bfbfff><FONT face=Arial size=1>
+      <P style="MARGIN-LEFT: 20px"></FONT><FONT face=Arial color=#0000ff 
+      size=1><INPUT 
+      onblur='sVal =new String(document.forms[0].cU02.value);&#13;sVal = sVal.replace ("," ,".");&#13;nVal = parseFloat (sVal);&#13;var bPb = false;&#13;if ( isNaN(nVal) == false )&#13;   {&#13;   if (nVal > 50000) {&#13;      window.alert ("La Tension à vide Sortie ne peut-être supèrieure à 50000 Volts");&#13;      nVal = 50000;&#13;       };&#13;   if (nVal <0.1) {&#13;       window.alert ("La Tension à vide Sortie ne peut-être inférieure à 0.1 Volt");&#13;       nVal = 0.1;&#13;       };&#13;   }&#13;else&#13;  {&#13;   window.alert ("Vous devez saisir une valeur numérique");&#13;   bPb =true;&#13;   nVal = 230;&#13;   }&#13;if (bPb == true)   document.forms[0].cU02.focus();&#13;document.forms[0].cU02.value= nVal;&#13;&#13;&#13;&#13;&#13;&#13;&#13;&#13;&#13;&#13;&#13;&#13;' 
+      onmouseover='GEN_Afficher_Aide ("Saisir une valeur entre 0.1 et 50000 volts, valeur par défaut 230 Volts" , "")' 
+      onfocus="if (! bRAZ) GEN_Initialiser_Res ();" size=8 value=230 
+      name=cU02></FONT><B><FONT face=Arial size=1> </FONT></B><B><FONT 
+      face=Arial color=#ffff00 size=1>V</FONT></B><FONT face=Arial 
+      size=1><O:P></FONT></P></TD>
+    <TD width=38 bgColor=#bfbfff><IMG height=1 alt="" 
+      src="Z%20transfert_fichiers/ecblank.gif" width=1 border=0></TD>
+    <TD width=225 bgColor=#e0e0ff><FONT face=Arial size=1>
+      <P style="MARGIN-LEFT: 20px"></FONT><FONT face=Arial color=#ff0000 
+      size=1><INPUT onfocus=document.forms[0].cU01.focus() size=8 value=0 
+      name=cZE></FONT><FONT face=Arial size=1> </FONT><B><FONT face=Arial 
+      color=#ff0000 size=1>mOhm</FONT></B><FONT face=Arial 
+      size=1><O:P></FONT></P></TD></TR>
+  <TR vAlign=top>
+    <TD width=227 bgColor=#8080ff><FONT face=Arial color=#ffff00 
+      size=1>Résistance R Entrée</FONT></TD>
+    <TD width=38 bgColor=#8080ff><IMG height=1 alt="" 
+      src="Z%20transfert_fichiers/ecblank.gif" width=1 border=0></TD>
+    <TD width=225 bgColor=#8080ff><FONT face=Arial color=#ffff00 
+      size=1>Résistance R Sortie</FONT></TD></TR>
+  <TR vAlign=top>
+    <TD width=227 bgColor=#bfbfff><FONT face=Arial size=1>
+      <P style="MARGIN-LEFT: 20px"></FONT><FONT face=Arial color=#0000ff 
+      size=1><INPUT 
+      onblur='sVal =new String(document.forms[0].cRE.value);&#13;sVal = sVal.replace ("," ,".");&#13;nVal = parseFloat (sVal );&#13;var bPb = false;&#13;if ( isNaN(nVal) == false )&#13;   {&#13;   if (nVal > 20000) {&#13;      window.alert ("La Résistance R Entrée ne peut-être supèrieure à 2000 mOhms");&#13;      nVal = 20000;&#13;       };&#13;   if (nVal <0.01) {&#13;       window.alert ("La Résistance R Entrée ne peut-être inférieure à 0.01 mOhm");&#13;       nVal = 0.01;&#13;       };&#13;   }&#13;else&#13;  {&#13;   window.alert ("Vous devez saisir une valeur numérique");&#13;   bPb =true;&#13;   nVal = 2;&#13;   }&#13;if (bPb == true)   document.forms[0].cRE.focus();&#13;document.forms[0].cRE.value= nVal;&#13;&#13;&#13;&#13;&#13;&#13;&#13;&#13;&#13;&#13;&#13;&#13;' 
+      onmouseover='GEN_Afficher_Aide ("Saisir une valeur entre 0.01 et 20000 volts, valeur par défaut 2 mOhms" , "")' 
+      onfocus="if (! bRAZ) GEN_Initialiser_Res ();" size=8 value=2 
+      name=cRE></FONT><B><FONT face=Arial size=1> </FONT></B><B><FONT face=Arial 
+      color=#ffff00 size=1>mOhm</FONT></B><FONT face=Arial 
+      size=1><O:P></FONT></P></TD>
+    <TD width=38 bgColor=#bfbfff><IMG height=1 alt="" 
+      src="Z%20transfert_fichiers/ecblank.gif" width=1 border=0></TD>
+    <TD width=225 bgColor=#e0e0ff><FONT face=Arial size=1>
+      <P style="MARGIN-LEFT: 20px"></FONT><FONT face=Arial color=#ff0000 
+      size=1><INPUT onfocus=document.forms[0].cU02.focus() size=8 value=0 
+      name=cRS></FONT><B><FONT face=Arial color=#ff0000 size=1> 
+      mOhm</FONT></B><FONT face=Arial size=1><O:P></FONT></P></TD></TR>
+  <TR vAlign=top>
+    <TD width=227 bgColor=#8080ff><FONT face=Arial color=#ffff00 
+      size=1>Réactance X Entrée</FONT></TD>
+    <TD width=38 bgColor=#8080ff><IMG height=1 alt="" 
+      src="Z%20transfert_fichiers/ecblank.gif" width=1 border=0></TD>
+    <TD width=225 bgColor=#8080ff><FONT face=Arial color=#ffff00 
+      size=1>Réactance X Sortie</FONT></TD></TR>
+  <TR vAlign=top>
+    <TD width=265 bgColor=#bfbfff colSpan=2 rowSpan=5><FONT face=Arial size=1>
+      <P style="MARGIN-LEFT: 20px"></FONT><FONT face=Arial color=#0000ff 
+      size=1><INPUT 
+      onblur='sVal =new String(document.forms[0].cXE.value);&#13;sVal = sVal.replace ("," ,".");&#13;nVal = parseFloat (sVal );&#13;var bPb = false;&#13;if ( isNaN(nVal) == false )&#13;   {&#13;   if (nVal > 20000) {&#13;      window.alert ("La Réactance X Entrée ne peut-être supèrieure à 20000 mOhms");&#13;      nVal = 20000;&#13;       };&#13;   if (nVal <0.01) {&#13;       window.alert ("La Réactance X Entrée ne peut-être inférieure à 0.01 mOhm");&#13;       nVal = 0.01;&#13;       };&#13;   }&#13;else&#13;  {&#13;   window.alert ("Vous devez saisir une valeur numérique");&#13;   bPb =true;&#13;   nVal = 8;&#13;   }&#13;if (bPb == true)   document.forms[0].cXE.focus();&#13;document.forms[0].cXE.value= nVal;&#13;&#13;&#13;&#13;&#13;&#13;&#13;&#13;&#13;&#13;&#13;&#13;' 
+      onmouseover='GEN_Afficher_Aide ("Saisir une valeur entre 0.01 et 20000 volts, valeur par défaut 8 mOhms" , "")' 
+      onfocus="if (! bRAZ) GEN_Initialiser_Res ();" size=8 value=8 
+      name=cXE></FONT><B><FONT face=Arial size=1> </FONT></B><B><FONT face=Arial 
+      color=#ffff00 size=1>mOhm</FONT></B><FONT face=Arial 
+      size=1><O:P></FONT></P></TD>
+    <TD width=225 bgColor=#e0e0ff><FONT face=Arial size=1>
+      <P style="MARGIN-LEFT: 20px"></FONT><FONT face=Arial color=#ff0000 
+      size=1><INPUT onfocus=document.forms[0].cU02.focus() size=8 value=0 
+      name=cXS></FONT><FONT face=Arial size=1> </FONT><B><FONT face=Arial 
+      color=#ff0000 size=1>mOhm</FONT></B><FONT face=Arial 
+      size=1><O:P></FONT></P></TD></TR>
+  <TR vAlign=top>
+    <TD width=225 bgColor=#8080ff><FONT face=Arial color=#ffff00 
+      size=1>Rapport R/X</FONT></TD></TR>
+  <TR vAlign=top>
+    <TD width=225 bgColor=#e0e0ff><FONT face=Arial size=1>
+      <P style="MARGIN-LEFT: 20px"></FONT><FONT face=Arial color=#ff0000 
+      size=1><INPUT onfocus=document.forms[0].cU02.focus() size=8 value=0 
+      name=cRXS></FONT></P></TD></TR>
+  <TR vAlign=top>
+    <TD width=225 bgColor=#8080ff><FONT face=Arial color=#ffff00 
+      size=1>Impédance Z Sortie</FONT></TD></TR>
+  <TR vAlign=top>
+    <TD width=225 bgColor=#e0e0ff><FONT face=Arial color=#ffff00 
+      size=1></FONT><FONT face=Arial size=1>
+      <P style="MARGIN-LEFT: 20px"></FONT><FONT face=Arial color=#ff0000 
+      size=1><INPUT onfocus=document.forms[0].cU02.focus() size=8 value=0 
+      name=cZS></FONT><B><FONT face=Arial color=#ff0000 size=1> 
+      mOhm</FONT></B><FONT face=Arial size=1><O:P></FONT></P></TD></TR>
+  <TR vAlign=top>
+    <TD width=227 bgColor=#8080ff>
+      <DIV align=center><A 
+      onmouseover='GEN_Afficher_Aide ("","Cliquez pour Affecter les valeurs par défaut")&#13;' 
+      onclick="GEN_Initialiser_Ent ();&#13;if (! bRAZ) GEN_Initialiser_Res ();&#13;&#13;&#13;&#13;&#13;return false;" 
+      href="http://www.elec-planet.com:8080/elecplanet/Calcul.nsf/"><B><FONT 
+      face=Arial color=#ffff00>Valeurs par défaut</FONT></B></A><B><FONT 
+      face=Arial color=#ffff00> </FONT></B></DIV></TD>
+    <TD width=38 bgColor=#8080ff>
+      <DIV align=center><A 
+      onmouseover='GEN_Afficher_Aide ("", "Cliquez pour mettre à zéro les résultats.")' 
+      onclick="GEN_Initialiser_Res ()&#13;&#13;&#13;&#13;&#13;return false;" 
+      href="http://www.elec-planet.com:8080/elecplanet/Calcul.nsf/"><B><FONT 
+      face=Arial color=#ffff00>Raz</FONT></B></A><B><FONT face=Arial 
+      color=#ffff00> </FONT></B></DIV></TD>
+    <TD width=225 bgColor=#8080ff>
+      <DIV align=center><A 
+      onmouseover="GEN_Afficher_Aide (&quot;&quot;, &quot;Cliquez pour Calculer\nAttention les données d'entrées peuvent être modifiées&quot;)" 
+      onclick="tst =  window.location.href;&#13;position = tst.lastIndexOf(&quot;/&quot;);&#13;url = tst.substring(0,position) + &quot;/ReRoute?openform&quot;;&#13;&#13;if (window.document.forms[0].UserName.value == &quot;Anonymous&quot;)&#13;&#9;window.open(url,target=&quot;cadres_contenu&quot;);&#13;else&#13;{&#13;// Entrées&#13;U01 = 0.00;&#13;U02=0.00;&#13;RE=0.00;&#13;XE =0.00;&#13;&#13;// Sorties&#13;RXE = 0.00;&#13;ZE =0.00;&#13;RS =0.00;&#13;XS=0.00;&#13;RXS=0.00;&#13;ZS=0.00;&#13;sInfo =&quot;&quot;;&#13;&#13;// VAR CALCUL INTERMEDIAIRES&#13;M =0.00; RXS =0.00;&#13;bFin = true;&#13;&#13;GEN_Initialiser_Res ();&#13;&#13;with(window.document.forms[0])&#13;     {&#13;      U01 = parseFloat (cU01.value);&#13;      U02 = parseFloat (cU02.value);&#13;      RE = parseFloat (cRE.value);    &#13;      XE = parseFloat (cXE.value);&#13;      }&#13;&#13;// Limites&#13;    if ( U02/U01 > 500 ||  U01/U02 > 500 )&#13;    {&#13;&#9;    if(U02/U01 > 500)&#13;&#9;&#9;{&#13;&#9;&#9;sInfo =&quot;Le rapport entre la tension de sortie et la tension d'entrée doit être <= à 500.\nU02 a été modifiée.&quot;;&#13;&#9;&#9;U02 =(500 * U01) -1;&#13;&#9;&#9;}&#13;&#9;&#9;if(U01/U02 > 500)&#13;&#9;&#9;{&#13;&#9;&#9;sInfo =&quot;Le rapport entre la tension d'entrée et la tension de sortie doit être <= à 500.\nU02 a été modifiée.&quot;;&#13;&#9;&#9;U02 = (U01/500) +1;&#13;&#9;&#9;}&#13;&#9;}&#13;  &#13;// Début Calcul&#13;     RXE = U02/U01;&#13;     RXE = ( RXE > 999999.999 ) ? 999999.99 : RXE;&#13;     ZE =  Math.sqrt( (RE*RE) + (XE*XE));&#13;     ZE = ( ZE > 999999.999 ) ? 999999.99 : ZE;&#13;     M= (U02/U01)*(U02/U01);&#13;     RS = RE * M;&#13;     XS= XE * M;&#13;     ZS = Math.sqrt( (RS*RS) + (XS*XS));&#13;     if (XS != 0)&#13;&#9;&#9;RXS = RS/XS;&#13;     RS = ( RS > 999999.999 ) ? 999999.99 : RS;&#13;     XS = ( XS > 999999.999 ) ? 999999.99 : XS;&#13;     RXS = ( RXS > 999999.999 ) ? 999999.99 : RXS;&#13;     ZS = ( ZS > 999999.999 ) ? 999999.99 : ZS;&#13;// Fin Calcul&#13;&#13;if (bFin == true )&#13;    {&#13;// Affectation Resultat&#13;      GEN_Affecter_Res (RXE, ZE, RS,XS, RXS, ZS, U02, sInfo)&#13;      }&#13;else&#13;     {&#13;     GEN_Affecter_Res (0, 0,0,0,0,0, U02, &quot;Problème Critique&quot;);&#13;      }&#13;}&#13;&#13;return false;" 
+      href="http://www.elec-planet.com:8080/elecplanet/Calcul.nsf/"><B><FONT 
+      face=Arial color=#ffff00>Calculer</FONT></B></A></DIV></TD></TR>
+  <TR vAlign=top>
+    <TD width=490 bgColor=#ffe1b0 colSpan=3><B><I><FONT face=Arial 
+      color=#ff0000 size=1><TEXTAREA onfocus=document.forms[0].cU01.focus() name=cInfo rows=3 cols=75></TEXTAREA> 
+      </FONT></I></B><BR><B><FONT face=Arial 
+size=1><BR></FONT></B></TD></TR></TBODY></TABLE><INPUT type=hidden 
+value=BEMELINON1 name=UserName></FORM></BODY></HTML>

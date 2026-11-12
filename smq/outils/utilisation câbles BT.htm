@@ -1,0 +1,230 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0095)http://www.elec-planet.com:8080/elecplanet/Calcul.nsf/55fa029d995c6190c1256b1800381e72?OpenForm -->
+<HTML><HEAD>
+<META http-equiv=Content-Type content="text/html; charset=utf-8">
+<SCRIPT language=JavaScript>
+<!-- 
+var bRAZ = true;
+function GEN_Afficher_Aide (sStatus , sInfo)
+{
+if ( sStatus == "" )
+    { document.forms[0].cInfo.value = sInfo; }
+else
+    { document.forms[0].cInfo.value = sStatus + "\n" + sInfo; }
+}
+function GEN_Initialiser_Res ()
+{
+  with (document.forms[0])
+  {
+  cInfo_Des.value="";
+  cInfo_Comp.value="";
+  cAD.value="";
+  cAG.value="";
+  cAH.value ="";
+  cInfo_Influ.value="";
+  cCC.value="";
+  cCR.value="";
+  cBE.value ="";
+  cInfo_Feu.value="";
+  bRAZ = true;
+  }
+}
+function GEN_Affecter_Res (sInfo_Des,sInfo_Comp,AD,AG,AH,sInfo_Influ,CC,CR,BE,sInfo_Feu,sInfo)
+{
+  with (document.forms[0])
+  {
+  // valeurs
+  cInfo_Des.value=sInfo_Des;
+  cInfo_Comp.value=sInfo_Comp;
+  cAD.value=AD;
+  cAG.value=AG;
+  cAH.value =AH;
+  cInfo_Influ.value=sInfo_Influ;
+  cCC.value=CC;
+  cCR.value=CR;
+  cBE.value =BE;
+  cInfo_Feu.value=sInfo_Feu;
+  cInfo.value=sInfo;
+  bRAZ = true;
+  }
+}
+function GEN_Initialiser_Ent ()
+{
+  with (document.forms[0])
+  {
+  // listes
+   cDesignation.options[1].selected =true ;
+   }
+}
+
+// -->
+</SCRIPT>
+
+<SCRIPT language=JavaScript>
+<!-- 
+document._domino_target = "_self";
+function _doClick(v, o, t, h) {
+  var form = document._DominoForm;
+  if (form.onsubmit) {
+     var retVal = form.onsubmit();
+     if (typeof retVal == "boolean" && retVal == false)
+       return false;
+  }
+  var target = document._domino_target;
+  if (o.href != null) {
+    if (o.target != null)
+       target = o.target;
+  } else {
+    if (t != null)
+      target = t;
+  }
+  form.target = target;
+  form.__Click.value = v;
+  if (h != null)
+    form.action += h;
+  form.submit();
+  return false;
+}
+// -->
+</SCRIPT>
+
+<META content="MSHTML 6.00.6000.16809" name=GENERATOR></HEAD>
+<BODY text=#000000 bgColor=#ffffff leftMargin=5 topMargin=0>
+<FORM name=_DominoForm 
+action=/elecplanet/Calcul.nsf/55fa029d995c6190c1256b1800381e72?OpenForm&amp;Seq=1 
+method=post><INPUT type=hidden value=0 name=__Click> 
+<TABLE cellSpacing=0 cellPadding=0 border=0>
+  <TBODY>
+  <TR vAlign=top>
+    <TD width=582 bgColor=#8080ff colSpan=3>
+      <DIV align=center><B><FONT face="Times New Roman" color=#ffffff 
+      size=4>Utilisation des Câbles BT</FONT></B><B><FONT face="Times New Roman" 
+      color=#ffffff> (extrait Tab. 52GA et 52GB NF C 
+  15-100)</FONT></B></DIV></TD></TR>
+  <TR vAlign=top>
+    <TD width=582 bgColor=#8080ff colSpan=3><B><I><FONT face=Arial 
+      color=#ffff00 size=2>DESIGNATION </FONT></I></B><B><I><FONT face=Arial 
+      color=#ffff00 size=1>(Données à choisir)</FONT></I></B></TD></TR>
+  <TR vAlign=top>
+    <TD width=271 bgColor=#8080ff><IMG height=1 alt="" 
+      src="utilisation%20câbles%20BT_fichiers/ecblank.gif" width=1 border=0></TD>
+    <TD width=41 bgColor=#8080ff><IMG height=1 alt="" 
+      src="utilisation%20câbles%20BT_fichiers/ecblank.gif" width=1 border=0></TD>
+    <TD width=271 bgColor=#8080ff><IMG height=1 alt="" 
+      src="utilisation%20câbles%20BT_fichiers/ecblank.gif" width=1 
+  border=0></TD></TR>
+  <TR vAlign=top>
+    <TD width=582 bgColor=#bfbfff colSpan=3><FONT face=Arial size=1>
+      <P style="MARGIN-LEFT: 20px"></FONT><FONT face=Arial color=#0000ff 
+      size=1><SELECT 
+      onfocus="if (! bRAZ) GEN_Initialiser_Res ();&#13;GEN_Afficher_Aide (&quot;Choisissez la désignation du câble et cliquez sur 'Calculer'&quot; , &quot;&quot;)" 
+      onclick="// if (! bRAZ) GEN_Initialiser_Res ();&#13;GEN_Initialiser_Res ();&#13;&#13;&#9;&#13;" 
+      name=cDesignation> <OPTION>U-1000 R12N<OPTION selected>U-1000 
+        R2V<OPTION>U-1000 RVFV<OPTION>U-1000 RGPFV<OPTION>FR-N 1 
+        X1X2<OPTION>FR-N 1 X1G1<OPTION>FR-N X1X2Z4X2<OPTION>FR-N 
+        X1G1Z4G1<OPTION>H07RN-F<OPTION>FR-N07RN-F<OPTION>A07RN-F<OPTION>FR-N07 
+        X4X5-F<OPTION>FR-N05VV-U / R / AR<OPTION>FR-N05VL2V-U / 
+        R<OPTION>A05VV-F<OPTION>A05VVH2-F</OPTION></SELECT> </FONT><FONT 
+      face=Arial size=1><O:P></FONT></P></TD></TR>
+  <TR vAlign=top>
+    <TD width=582 bgColor=#bfbfff colSpan=3><IMG height=1 alt="" 
+      src="utilisation%20câbles%20BT_fichiers/ecblank.gif" width=1 
+  border=0></TD></TR>
+  <TR vAlign=top>
+    <TD width=271 bgColor=#8080ff><IMG height=1 alt="" 
+      src="utilisation%20câbles%20BT_fichiers/ecblank.gif" width=1 border=0></TD>
+    <TD width=41 bgColor=#8080ff><IMG height=1 alt="" 
+      src="utilisation%20câbles%20BT_fichiers/ecblank.gif" width=1 border=0></TD>
+    <TD width=271 bgColor=#8080ff><IMG height=1 alt="" 
+      src="utilisation%20câbles%20BT_fichiers/ecblank.gif" width=1 
+  border=0></TD></TR>
+  <TR vAlign=top>
+    <TD width=582 bgColor=#e0e0ff colSpan=3><B><I><FONT face=Arial 
+      color=#ff0000 size=2>INFORMATIONS</FONT></I></B></TD></TR>
+  <TR vAlign=top>
+    <TD width=582 bgColor=#8080ff colSpan=3><FONT face=Arial color=#ffff00 
+      size=1>Nature des câbles</FONT></TD></TR>
+  <TR vAlign=top>
+    <TD width=582 bgColor=#8080ff colSpan=3><B><I><FONT face=Arial 
+      color=#ff0000 size=1><TEXTAREA onfocus=document.forms[0].cInfo.focus() name=cInfo_Des rows=3 cols=75></TEXTAREA> 
+      </FONT></I></B></TD></TR>
+  <TR vAlign=top>
+    <TD width=582 bgColor=#8080ff colSpan=3><FONT face=Arial color=#ffff00 
+      size=1>Informations complémentaires</FONT></TD></TR>
+  <TR vAlign=top>
+    <TD width=582 bgColor=#8080ff colSpan=3><B><I><FONT face=Arial 
+      color=#ff0000 size=1><TEXTAREA onfocus=document.forms[0].cInfo.focus() name=cInfo_Comp rows=3 cols=75></TEXTAREA> 
+      </FONT></I></B></TD></TR>
+  <TR vAlign=top>
+    <TD width=582 bgColor=#8080ff colSpan=3><FONT face=Arial color=#ffff00 
+      size=1>Influences externes : AD (présence d'eau) / AG (chocs) / AH 
+      (Vibrations)</FONT></TD></TR>
+  <TR vAlign=top>
+    <TD width=582 bgColor=#e0e0ff colSpan=3><FONT face=Arial size=1>
+      <P style="MARGIN-LEFT: 80px"></FONT><FONT face=Arial color=#0000ff 
+      size=1><INPUT onfocus=document.forms[0].cInfo.focus() size=8 
+      name=cAD></FONT><FONT face=Arial color=#ff0000 size=1> / </FONT><FONT 
+      face=Arial color=#0000ff size=1><INPUT 
+      onfocus=document.forms[0].cInfo.focus() size=8 name=cAG></FONT><FONT 
+      face=Arial color=#ff0000 size=1> / </FONT><FONT face=Arial color=#0000ff 
+      size=1><INPUT onfocus=document.forms[0].cInfo.focus() size=8 
+      name=cAH></FONT><FONT face=Arial size=1><O:P></FONT></P></TD></TR>
+  <TR vAlign=top>
+    <TD width=582 bgColor=#e0e0ff colSpan=3><B><I><FONT face=Arial 
+      color=#ff0000 size=1><TEXTAREA onfocus=document.forms[0].cInfo.focus() name=cInfo_Influ rows=3 cols=75></TEXTAREA> 
+      </FONT></I></B></TD></TR>
+  <TR vAlign=top>
+    <TD width=582 bgColor=#8080ff colSpan=3><FONT face=Arial color=#ffff00 
+      size=1>Comportement au feu : C (réaction au feu) / CR (résistance au feu) 
+      / Risques BE2= incendie - BE3 = explosions</FONT></TD></TR>
+  <TR vAlign=top>
+    <TD width=582 bgColor=#8080ff colSpan=3><FONT face=Arial size=1>
+      <P style="MARGIN-LEFT: 80px"></FONT><FONT face=Arial color=#0000ff 
+      size=1><INPUT onfocus=document.forms[0].cInfo.focus() size=8 
+      name=cCC></FONT><FONT face=Arial color=#ff0000 size=1> / </FONT><FONT 
+      face=Arial color=#0000ff size=1><INPUT 
+      onfocus=document.forms[0].cInfo.focus() size=8 name=cCR></FONT><FONT 
+      face=Arial color=#ff0000 size=1> / </FONT><FONT face=Arial color=#0000ff 
+      size=1><INPUT onfocus=document.forms[0].cInfo.focus() size=8 
+      name=cBE></FONT><FONT face=Arial size=1><O:P></FONT></P></TD></TR>
+  <TR vAlign=top>
+    <TD width=582 bgColor=#e0e0ff colSpan=3><B><FONT face=Arial color=#ffff00 
+      size=1></FONT></B></TD></TR>
+  <TR vAlign=top>
+    <TD width=582 bgColor=#e0e0ff colSpan=3><B><I><FONT face=Arial 
+      color=#ff0000 size=1><TEXTAREA onfocus=document.forms[0].cInfo.focus() name=cInfo_Feu rows=3 cols=75></TEXTAREA> 
+      </FONT></I></B></TD></TR>
+  <TR vAlign=top>
+    <TD width=271 bgColor=#8080ff><IMG height=1 alt="" 
+      src="utilisation%20câbles%20BT_fichiers/ecblank.gif" width=1 border=0></TD>
+    <TD width=41 bgColor=#8080ff><IMG height=1 alt="" 
+      src="utilisation%20câbles%20BT_fichiers/ecblank.gif" width=1 border=0></TD>
+    <TD width=271 bgColor=#8080ff><IMG height=1 alt="" 
+      src="utilisation%20câbles%20BT_fichiers/ecblank.gif" width=1 
+  border=0></TD></TR>
+  <TR vAlign=top>
+    <TD width=271 bgColor=#bfbfff>
+      <DIV align=center><A 
+      onmouseover='GEN_Afficher_Aide ("","Cliquez pour Affecter les valeurs par défaut")&#13;' 
+      onclick="GEN_Initialiser_Ent ();&#13;//if (! bRAZ) GEN_Initialiser_Res ();&#13;GEN_Initialiser_Res ();&#13;&#13;&#13;&#13;&#13;return false;" 
+      href="http://www.elec-planet.com:8080/elecplanet/Calcul.nsf/"><B><FONT 
+      face=Arial color=#ffff00>Valeurs par défaut</FONT></B></A><B><FONT 
+      face=Arial color=#ffff00> </FONT></B></DIV></TD>
+    <TD width=41 bgColor=#bfbfff>
+      <DIV align=center><A 
+      onmouseover='GEN_Afficher_Aide ("", "Cliquez pour mettre à zéro les résultats.")' 
+      onclick="GEN_Initialiser_Res ()&#13;&#13;&#13;&#13;&#13;return false;" 
+      href="http://www.elec-planet.com:8080/elecplanet/Calcul.nsf/"><B><FONT 
+      face=Arial color=#ffff00>Raz</FONT></B></A></DIV></TD>
+    <TD width=271 bgColor=#bfbfff>
+      <DIV align=center><A 
+      onmouseover="GEN_Afficher_Aide (&quot;&quot;, &quot;Cliquez pour Calculer\nAttention les données d'entrées peuvent être modifiées&quot;)" 
+      onclick="tst =  window.location.href;&#13;position = tst.lastIndexOf(&quot;/&quot;);&#13;url = tst.substring(0,position) + &quot;/ReRoute?openform&quot;;&#13;&#13;if (window.document.forms[0].UserName.value == &quot;Anonymous&quot;)&#13;&#9;window.open(url,target=&quot;cadres_contenu&quot;);&#13;else&#13;{&#13;// Entrées&#13;&#13;// Sorties&#13;sInfo_Des =&quot;&quot;;&#13;sInfo_Comp =&quot;&quot;;&#13;AD=&quot;&quot;;&#13;AG=&quot;&quot;;&#13;AH=&quot;-&quot;;&#13;sInfo_Influ =&quot;&quot;;&#13;CC=&quot;&quot;;&#13;CR=&quot;&quot;;&#13;BE=&quot;&quot;;&#13;sInfo_Feu =&quot;&quot;;&#13;sInfo =&quot;&quot;;&#13;&#13;// VAR CALCUL INTERMEDIAIRES&#13;bFin = true;&#13;&#13;GEN_Initialiser_Res ();&#13;&#13;with(window.document.forms[0])&#13;&#9;{&#13;      for (n=0; n<cDesignation.length; n++) &#13;          {&#13;            if (cDesignation.options[n].selected) &#13;                 Cable = n+1; &#13;          }&#13;      }&#13;&#13;// Initialisation&#13;&#13;// Messages&#13;&#13;Info_Des1=&quot;Câbles (600/1000 V) rigides isolés au polyéthylène réticulé (PR).\n&quot;;&#13;Info_Des2=&quot;Câbles (600/1000 V) rigides sans halogène.\n&quot;;&#13;Info_Des3=&quot;Câbles (450/750 V) souples isolés aux élastomères.\n&quot;;&#13;Info_Des4=&quot;Câbles (450/750 V) souples sans halogène.\n&quot;;&#13;Info_Des5=&quot;Câbles (300/500 V) rigides isolés au polychlorure de vinyle.\n&quot;;&#13;&#13;Info_Des11=&quot;Classe I\n&quot;;&#13;Info_Des12=&quot;Classe II pour une tension maximale par rapport à la terre de 500 V.\n&quot;;&#13;Info_Des13=&quot;Classe II pour une tension maximale par rapport à la terre de 250 V.\n&quot;;&#13;Info_Des14=&quot;\nAncienne désignation= U-1000 SC12N&quot;;&#13;Info_Des15=&quot;\nAncienne désignation= U-500 VGV&quot;;&#13;&#13;Info_Des2011=&quot;Gaine interne épaisse d'assemblage ou de protection formant bourrage.&quot;;&#13;Info_Des2012=&quot;Gaine externe en polychloroprène ou produit équivalent&quot;;&#13;Info_Des2013= &quot;(par exemple en caoutchouc nitrile-acrylique vulcanisé).&quot;;&#13;&#13;Info_Des2021=&quot;Gaine interne épaisse. Gaine externe en PVC.&quot;;&#13;&#13;// U - 1000 RVFV&#13;Info_Des2031=&quot;Gaine interne en PVC. Armure métallique : feuillard. Gaine externe en PVC&quot;;&#13;&#13;// U - 1000 RGPFV&#13;Info_Des2041=&quot;G= Gaine de bourrage ou ruban. P= Gaine interne en plomb.\n&quot;;&#13;Info_Des2042=&quot;F= Armure métallique : feuillard. V= Gaine externe en PVC&quot;;&#13;&#13;// FR-N 1 X1X2 - FR-N 1 X1G1&#13;Info_Des2051=&quot;X1 = enveloppes isolantes en polyéthylène réticulé (PR). &quot;;&#13;Info_Des2052=&quot;Gaine externe en matériau ignifuge sans halogène : &quot;;&#13;Info_Des2053=&quot;X2 = Réticulé&quot;;&#13;Info_Des2061=Info_Des2051;&#13;Info_Des2062=Info_Des2052;&#13;Info_Des2063=&quot;G1 = Thermoplastique&quot;;&#13;&#13;// FR-N X1X2Z4X2&#13;Info_Des2071=&quot;X1= enveloppes isolantes en polyéthylène réticulé (PR). &quot;;&#13;Info_Des2072=&quot;Gaine externe en matériau ignifuge sans halogène : &quot;;&#13;Info_Des2073=&quot;Z4= Armure en feuillards acier. X2 = Réticulé&quot;;&#13;&#13;// FR-N X1X2Z4G1&#13;Info_Des2081=&quot;X1= enveloppes isolantes en polyéthylène réticulé (PR). X2= Réticulé&quot;;&#13;Info_Des2082=&quot;Gaine externe en matériau ignifuge sans halogène : &quot;;&#13;Info_Des2083=&quot;Z4= Armure en feuillards acier. G1= Thermoplastique.&quot;;&#13;&#13;// H 07 RN - F&#13;Info_Des2091=&quot;H= câble harmonisé. &quot;;&#13;Info_Des2092=&quot;R= Enveloppe isolante en caouchouc naturel ou équivalent (Rubber). &quot;;&#13;Info_Des2093=&quot;N= Gaine Polychloroprène.(Néoprène (PCP)). &quot;;&#13;Info_Des2094=&quot;F= Ame souple classe 5 (flexible).&quot;;&#13;&#13;// FRN 07 RN - F&#13;Info_Des2101=&quot;FRN= câble d'un type national. &quot;;&#13;Info_Des2102=Info_Des2092;&#13;Info_Des2103=Info_Des2093;&#13;Info_Des2104=Info_Des2094;&#13;&#13;// A 07 RN - F&#13;Info_Des2111=&quot;A= câble dérivé d'un type harmonisé. &quot;;&#13;Info_Des2112=Info_Des2092;&#13;Info_Des2113=Info_Des2093;&#13;Info_Des2114=Info_Des2094;&#13;&#13;// FRN - 07 X4X5 - F&#13;Info_Des2121=&quot;FRN= câble d'un type national. &quot;;&#13;Info_Des2122=&quot;X= Polyéthylène réticulé (4 et 5 selon NF C 30-202). &quot;;&#13;Info_Des2123=&quot;F= Ame souple classe 5 (flexible).&quot;;&#13;&#13;// FR-N05 VV-U / R / AR&#13;Info_Des2131=&quot;FR-N= câble d'un type national. &quot;;&#13;Info_Des2132=&quot;VV= PVC (enveloppe et gaine). &quot;;&#13;Info_Des2133=&quot;U= âme rigide massive (unique). R= âme rigide câblée (rigide à brins réunis). A= aluminium.&quot;;&#13;&#13;// FR-N05VL2V-U / R&#13;Info_Des2141=&quot;FR-N= câble d'un type national. &quot;;&#13;Info_Des2142=&quot;V= gaine extérieure PVC). L2= gaine en plomb  &quot;;&#13;Info_Des2143=&quot;U= âme rigide massive (unique). R= âme rigide câblée (rigide à brins réunis).&quot;;&#13;&#13;// A 05 VV - F&#13;Info_Des2151=&quot;Gaine extérieure en PVC. Câble rond.&quot;;&#13;&#13;// A 05 VVH2 - F&#13;Info_Des2161=&quot;Gaine extérieure en PVC. Câble méplat (conducteurs disposés parallèlement).&quot;;&#13;&#13;Section_1 = &quot;Sections usitées (mm2) : &quot;&#13;&#13;Info_Influ1=&quot;AD7 avec durée immersion cumulée limitée à 2 mois par an.\n&quot;;&#13;Info_Influ2=&quot;Câble AF3 : Présence de substances corrosives ou polluantes : Intermittente ou accidentelle.&quot;;&#13;&#13;Info_Feu1=&quot;Câble C1 dit <<non propagateur de l'incendie>>.\n&quot;;&#13;Info_Feu2=&quot;Câble C2 dit <<non propagateur de la flamme>>.\n&quot;;&#13;Info_Feu3=&quot;Câble CR2 sans résistance particulière au feu.\n&quot;;&#13;Info_BE=&quot;Câble non admis dans les locaux à risques d'explosion.\n&quot;;&#13;&#13;&#13;&#13;// Début Calcul&#13;&#13;switch (Cable)&#13;{&#13;&#9;//U - 1000 R12N&#13;&#9;case 1 :&#13;&#9;&#9;{&#13;&#9;&#9;sInfo_Des = Info_Des1+Info_Des2011+Info_Des2012+Info_Des2013;&#13;&#9;&#9;sInfo_Comp = Info_Des12 + Section_1 +&quot;1,5 - 630&quot;;&#13;&#9;&#9;AD=7;&#13;&#9;&#9;sInfo_Influ=Info_Influ1;&#13;&#9;&#9;AG=3;&#13;&#9;&#9;AH=1;&#13;&#9;&#9;CC=2;&#13;&#9;&#9;CR=2;&#13;&#9;&#9;BE=3;&#13;          break;&#13;          }&#13;// U - 1000 R2V&#13;&#9;case 2 :&#13;&#9;&#9;{&#13;&#9;&#9;sInfo_Des = Info_Des1+Info_Des2021;&#13;&#9;&#9;sInfo_Comp = Info_Des12 + Section_1 + &quot;1,5 - 630&quot;;&#13;&#9;&#9;AD=7;&#13;&#9;&#9;sInfo_Influ=Info_Influ1;&#13;&#9;&#9;AG=3;&#13;&#9;&#9;AH=1;&#13;&#9;&#9;CC=2;&#13;&#9;&#9;CR=2;&#13;&#9;&#9;BE=3;&#13;          break;&#13;          }&#13;// U - 1000 RVFV&#13;&#9;case 3 :&#13;&#9;&#9;{&#13;&#9;&#9;sInfo_Des = Info_Des1+Info_Des2031;&#13;&#9;&#9;sInfo_Comp = Info_Des11 + Section_1 +&quot;1,5 - 300&quot;;&#13;&#9;&#9;AD=7;&#13;&#9;&#9;sInfo_Influ=Info_Influ1;&#13;&#9;&#9;AG=4;&#13;&#9;&#9;AH=1;&#13;&#9;&#9;CC=2;&#13;&#9;&#9;CR=2;&#13;&#9;&#9;BE=3;&#13;          break;&#13;          }&#13;// U - 1000 RGPFV&#13;&#9;case 4 :&#13;&#9;&#9;{&#13;&#9;&#9;sInfo_Des = Info_Des1+Info_Des2041+Info_Des2042;&#13;&#9;&#9;sInfo_Comp = Info_Des11 + Section_1 +&quot;1,5 - 240&quot;;&#13;&#9;&#9;AD=8;&#13;&#9;&#9;AG=4;&#13;&#9;&#9;AH=1;&#13;&#9;&#9;CC=2;&#13;&#9;&#9;CR=2;&#13;&#9;&#9;BE=3;&#13;          break;&#13;          }&#13;// FR-N 1 X1X2&#13;&#9;case 5 :&#13;&#9;&#9;{&#13;&#9;&#9;sInfo_Des = Info_Des2+Info_Des2051+Info_Des2052+Info_Des2053;&#13;&#9;&#9;sInfo_Comp = Info_Des12 + Section_1 +&quot;1,5 - 630&quot;;&#13;&#9;&#9;AD=6;&#13;&#9;&#9;AG=3;&#13;&#9;&#9;AH=1;&#13;&#9;&#9;CC=1;&#13;&#9;&#9;CR=2;&#13;&#9;&#9;BE=3;&#13;          break;&#13;          }&#13;// FR-N 1 X1G1&#13;&#9;case 6 :&#13;&#9;&#9;{&#13;&#9;&#9;sInfo_Des = Info_Des2+Info_Des2061+Info_Des2062+Info_Des2063;&#13;&#9;&#9;sInfo_Comp = Info_Des12 + Section_1 +&quot;1,5 - 630&quot;;&#13;&#9;&#9;AD=6;&#13;&#9;&#9;AG=3;&#13;&#9;&#9;AH=1;&#13;&#9;&#9;CC=1;&#13;&#9;&#9;CR=2;&#13;&#9;&#9;BE=3;&#13;          break;&#13;          }&#13;// FR-N X1X2Z4X2&#13;&#9;case 7 :&#13;&#9;&#9;{&#13;&#9;&#9;sInfo_Des = Info_Des2+Info_Des2071+Info_Des2072+Info_Des2073;&#13;&#9;&#9;sInfo_Comp = Info_Des11 + Section_1 +&quot;1,5 - 300&quot;;&#13;&#9;&#9;AD=6;&#13;&#9;&#9;AG=4;&#13;&#9;&#9;AH=1;&#13;&#9;&#9;CC=1;&#13;&#9;&#9;CR=2;&#13;&#9;&#9;BE=3;&#13;          break;&#13;          }&#13;// FR-N X1G1Z4G1&#13;&#9;case 8 :&#13;&#9;&#9;{&#13;&#9;&#9;sInfo_Des = Info_Des2+Info_Des2071+Info_Des2082+Info_Des2083;&#13;&#9;&#9;sInfo_Comp = Info_Des11 + Section_1 +&quot;1,5 - 300&quot;;&#13;&#9;&#9;AD=6;&#13;&#9;&#9;AG=4;&#13;&#9;&#9;AH=1;&#13;&#9;&#9;CC=1;&#13;&#9;&#9;CR=2;&#13;&#9;&#9;BE=3;&#13;          break;&#13;          }&#13;// H - 07 RN - F&#13;&#9;case 9 :&#13;&#9;&#9;{&#13;&#9;&#9;sInfo_Des = Info_Des3+Info_Des2091+Info_Des2092+Info_Des2093+Info_Des2094;&#13;&#9;&#9;sInfo_Comp = Info_Des12 + Section_1 +&quot;1,5 - 500&quot;+ Info_Des14;&#13;&#9;&#9;AD=7;&#13;&#9;&#9;sInfo_Influ=Info_Influ1;&#13;&#9;&#9;AG=4;&#13;&#9;&#9;AH=3;&#13;&#9;&#9;CC=2;&#13;&#9;&#9;CR=2;&#13;&#9;&#9;BE=3;&#13;          break;&#13;          }&#13;// FR-N 07 RN - F&#13;&#9;case 10 :&#13;&#9;&#9;{&#13;&#9;&#9;sInfo_Des = Info_Des3+Info_Des2101+Info_Des2102+Info_Des2103+Info_Des2104;&#13;&#9;&#9;sInfo_Comp = Info_Des12 + Section_1 +&quot;1,5 - 4&quot;;&#13;&#9;&#9;AD=7;&#13;&#9;&#9;sInfo_Influ=Info_Influ1;&#13;&#9;&#9;AG=4;&#13;&#9;&#9;AH=3;&#13;&#9;&#9;CC=2;&#13;&#9;&#9;CR=2;&#13;&#9;&#9;BE=3;&#13;          break;&#13;          }&#13;// A 07 RN - F&#13;&#9;case 11 :&#13;&#9;&#9;{&#13;&#9;&#9;sInfo_Des = Info_Des3+Info_Des2111+Info_Des2112+Info_Des2113+Info_Des2114;&#13;&#9;&#9;sInfo_Comp = Info_Des12 + Section_1 +&quot;1 - 300&quot;;&#13;&#9;&#9;AD=7;&#13;&#9;&#9;sInfo_Influ=Info_Influ1;&#13;&#9;&#9;AG=4;&#13;&#9;&#9;AH=3;&#13;&#9;&#9;CC=2;&#13;&#9;&#9;CR=2;&#13;&#9;&#9;BE=3;&#13;          break;&#13;          }&#13;// FRN - 07 X4X5 - F&#13;&#9;case 12 :&#13;&#9;&#9;{&#13;&#9;&#9;sInfo_Des = Info_Des4+Info_Des2121+Info_Des2122+Info_Des2123;&#13;&#9;&#9;sInfo_Comp = Info_Des12 + Section_1 +&quot;1,5 - 500&quot;;&#13;&#9;&#9;AD=7;&#13;&#9;&#9;AG=4;&#13;&#9;&#9;AH=3;&#13;&#9;&#9;CC=1;&#13;&#9;&#9;CR=2;&#13;&#9;&#9;BE=3;&#13;          break;&#13;          }&#13;// FR-N05 VV-U / R / AR&#13;&#9;case 13 :&#13;&#9;&#9;{&#13;&#9;&#9;sInfo_Des = Info_Des5+Info_Des2131+Info_Des2132+Info_Des2133+Info_Des15;&#13;&#9;&#9;sInfo_Comp = Info_Des13 + Section_1 +&quot;1,5-35 (10-35 alu) &quot;;&#13;&#9;&#9;AD=5;&#13;&#9;&#9;AG=2;&#13;&#9;&#9;AH=1;&#13;&#9;&#9;CC=2;&#13;&#9;&#9;CR=2;&#13;&#9;&#9;BE=2;&#13;          break;&#13;          }&#13;// FR-N05VL2V-U / R&#13;&#9;case 14 :&#13;&#9;&#9;{&#13;&#9;&#9;sInfo_Des = Info_Des5+Info_Des2141+Info_Des2142+Info_Des2143;&#13;&#9;&#9;sInfo_Comp = Info_Des11 + Section_1 +&quot;1,5 - 25&quot;;&#13;&#9;&#9;AD=5;&#13;&#9;&#9;AG=2;&#13;&#9;&#9;AH=1;&#13;&#9;&#9;CC=2;&#13;&#9;&#9;CR=2;&#13;&#9;&#9;BE=2;&#13;          break;&#13;          }&#13;// A 05 VV - F&#13;&#9;case 15 :&#13;&#9;&#9;{&#13;&#9;&#9;sInfo_Des = Info_Des5+Info_Des2151;&#13;&#9;&#9;sInfo_Comp = Info_Des13 + Section_1 +&quot;0,75 - 4&quot;;&#13;&#9;&#9;AD=5;&#13;&#9;&#9;AG=2;&#13;&#9;&#9;AH=3;&#13;&#9;&#9;CC=2;&#13;&#9;&#9;CR=2;&#13;&#9;&#9;BE=2;&#13;          break;&#13;          }&#13;// A 05 VVH2 - F&#13;&#9;case 16 :&#13;&#9;&#9;{&#13;&#9;&#9;sInfo_Des = Info_Des5+Info_Des2161;&#13;&#9;&#9;sInfo_Comp = Info_Des13 + Section_1 +&quot;0,75 - 4&quot;;&#13;&#9;&#9;AD=5;&#13;&#9;&#9;AG=2;&#13;&#9;&#9;AH=3;&#13;&#9;&#9;CC=2;&#13;&#9;&#9;CR=2;&#13;&#9;&#9;BE=2;&#13;          break;&#13;          }&#13;}&#13;&#13;sInfo_Influ = sInfo_Influ + Info_Influ2;&#13;&#13;if (CC==1)&#13;&#9;sInfo_Feu = Info_Feu1;&#13;if (CC==2)&#13;&#9;sInfo_Feu = Info_Feu2;&#13;if (CR==2)&#13;&#9;sInfo_Feu = sInfo_Feu + Info_Feu3;&#13;if (BE<3)&#13;&#9;sInfo_Feu = sInfo_Feu + Info_BE;&#13;&#13;AD = &quot;AD&quot;+AD&#13;AG = &quot;AG&quot;+AG;&#13;if (AH !=&quot;-&quot;)&#13;{&#13;&#9;if (AH ==1)&#13;&#9;&#9;sInfo_Influ = sInfo_Influ + &quot; AH1 : Vibrations faibles.&quot;&#13;&#9;if (AH ==2)&#13;&#9;&#9;sInfo_Influ = sInfo_Influ + &quot; AH2 : Vibrations moyennes.&quot;&#13;&#9;if (AH ==3)&#13;&#9;&#9;sInfo_Influ = sInfo_Influ + &quot; AH3 : Vibrations importantes.&quot;&#13;&#9; AH = &quot;AH&quot;+AH;&#13;}&#13;CC = &quot;C&quot;+CC;&#13;CR = &quot;CR&quot;+CR;&#13;BE = &quot;BE&quot;+BE;&#13;&#13;bFin = true;&#13;&#13;// Fin Calcul&#13;&#13;if (bFin == true )&#13;    {&#13;// Affectation Resultat&#13;      GEN_Affecter_Res (sInfo_Des,sInfo_Comp,AD,AG,AH,sInfo_Influ,CC,CR,BE,sInfo_Feu,sInfo)&#13;      }&#13;else&#13;     {&#13;     GEN_Affecter_Res (0,0,0,0,0,0,0,0,0,0,&quot;Problème Critique&quot;)&#13;      }&#13;}&#13;&#13;return false;" 
+ href="http://www.elec-planet.com:8080/elecplanet/Calcul.nsf/"><B><U><FONT 
+      face=Arial color=#ffff00>Calculer</FONT></U></B></A></DIV></TD></TR>
+  <TR vAlign=top>
+    <TD width=582 bgColor=#ffe1b0 colSpan=3><B><I><FONT face=Arial 
+      color=#ff0000 size=1><TEXTAREA onfocus=document.forms[0].cSPh.focus() name=cInfo rows=3 cols=75></TEXTAREA> 
+      </FONT></I></B><BR><B><FONT face=Arial 
+size=1><BR></FONT></B></TD></TR></TBODY></TABLE><INPUT type=hidden 
+value=BEMELINON1 name=UserName></FORM></BODY></HTML>

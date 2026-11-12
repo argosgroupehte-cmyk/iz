@@ -1,0 +1,207 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0095)http://www.elec-planet.com:8080/elecplanet/Calcul.nsf/728327a6dd6e7b43c1256b180036c96b?OpenForm -->
+<HTML><HEAD>
+<META http-equiv=Content-Type content="text/html; charset=utf-8">
+<SCRIPT language=JavaScript>
+<!-- 
+var bRAZ = true;
+function GEN_Afficher_Aide (sStatus , sInfo)
+{
+if ( sStatus == "" )
+    { document.forms[0].cInfo.value = sInfo; }
+else
+    { document.forms[0].cInfo.value = sStatus + "\n" + sInfo; }
+}
+
+function GEN_Initialiser_Res ()
+{
+  with (document.forms[0])
+  {
+  cCL.value=0;
+  cPP.value =0;
+  cPL.value =0;
+  bRAZ = true;
+  }
+}
+function GEN_Affecter_Res (CL,PP,PL, sInfo)
+{
+  with (document.forms[0])
+  {
+  // valeurs
+  cCL.value = Math.round(CL*10)/10;
+  cPP.value = Math.round(PP*10)/10;
+  cPL.value = Math.round(PL*10)/10;
+  cInfo.value = sInfo;
+  bRAZ= false;
+  }
+}
+function GEN_Initialiser_Ent ()
+{
+  with (document.forms[0])
+  {
+  // valeurs
+  cS.value=50;
+  cM.value =50;
+  cPT.value =100;
+  }
+}
+
+// -->
+</SCRIPT>
+
+<SCRIPT language=JavaScript>
+<!-- 
+document._domino_target = "_self";
+function _doClick(v, o, t, h) {
+  var form = document._DominoForm;
+  if (form.onsubmit) {
+     var retVal = form.onsubmit();
+     if (typeof retVal == "boolean" && retVal == false)
+       return false;
+  }
+  var target = document._domino_target;
+  if (o.href != null) {
+    if (o.target != null)
+       target = o.target;
+  } else {
+    if (t != null)
+      target = t;
+  }
+  form.target = target;
+  form.__Click.value = v;
+  if (h != null)
+    form.action += h;
+  form.submit();
+  return false;
+}
+// -->
+</SCRIPT>
+
+<META content="MSHTML 6.00.6000.16809" name=GENERATOR></HEAD>
+<BODY text=#000000 bgColor=#ffffff leftMargin=5 topMargin=0>
+<FORM name=_DominoForm 
+action=/elecplanet/Calcul.nsf/728327a6dd6e7b43c1256b180036c96b?OpenForm&amp;Seq=1 
+method=post><INPUT type=hidden value=0 name=__Click> 
+<TABLE cellSpacing=0 cellPadding=0 border=0>
+  <TBODY>
+  <TR vAlign=top>
+    <TD width=529 bgColor=#8080ff colSpan=3>
+      <DIV align=center><B><FONT face="Times New Roman" color=#ffffff 
+      size=4>Calcul de prises de terre</FONT></B></DIV></TD></TR>
+  <TR vAlign=top>
+    <TD width=340 bgColor=#bfbfff>
+      <DIV align=center><B><I><FONT face=Arial color=#ffff00 
+      size=2>Caractéristiques (Données à saisir)</FONT></I></B></DIV></TD>
+    <TD width=189 bgColor=#e0e0ff colSpan=2>
+      <DIV align=center><B><I><FONT face=Arial color=#ff0000 size=2>Résultats du 
+      calcul</FONT></I></B></DIV></TD></TR>
+  <TR vAlign=top>
+    <TD width=340 bgColor=#8080ff><FONT face=Arial color=#ffff00 
+      size=1>Résistivité moyenne du terrain</FONT></TD>
+    <TD width=189 bgColor=#8080ff colSpan=2><FONT face=Arial color=#ffff00 
+      size=1>Dimensions minimales des éléments enfouis</FONT></TD></TR>
+  <TR vAlign=top>
+    <TD width=340 bgColor=#bfbfff rowSpan=5><FONT face=Arial color=#0000ff 
+      size=1><INPUT 
+      onmouseover='GEN_Afficher_Aide ("Cliquez sur 50, 500, 3000 ou Autre, si Autre saisissez la valeur mesurée " , "")' 
+      onclick="var S = 0;&#13;if (! bRAZ) GEN_Initialiser_Res ();&#13;" 
+      type=radio CHECKED 
+      value="50 Ohm.m : Terrains arables gras / remblais compacts humides" 
+      name=cS>50 Ohm.m : Terrains arables gras / remblais compacts 
+      humides<BR><INPUT 
+      onmouseover='GEN_Afficher_Aide ("Cliquez sur 50, 500, 3000 ou Autre, si Autre saisissez la valeur mesurée " , "")' 
+      onclick="var S = 0;&#13;if (! bRAZ) GEN_Initialiser_Res ();&#13;" 
+      type=radio 
+      value="500 Ohm.m :Terrains arables maigres / graviers / remblais grossiers" 
+      name=cS>500 Ohm.m :Terrains arables maigres / graviers / remblais 
+      grossiers<BR><INPUT 
+      onmouseover='GEN_Afficher_Aide ("Cliquez sur 50, 500, 3000 ou Autre, si Autre saisissez la valeur mesurée " , "")' 
+      onclick="var S = 0;&#13;if (! bRAZ) GEN_Initialiser_Res ();&#13;" 
+      type=radio 
+      value=_46co30c109tk6qbjd40t20krfdhpi0s39clp74pblf0g6stbj40ni0sr1c9m6asp0edim6sp05sg76rrcecg6irbgclp6r0j1c9m6aso_ 
+      name=cS>3000 Ohm.m : Sols pierreux nus / sables secs / sols 
+      imperméables<BR><INPUT 
+      onmouseover='GEN_Afficher_Aide ("Cliquez sur 50, 500, 3000 ou Autre, si Autre saisissez la valeur mesurée " , "")' 
+      onclick="var S = 0;&#13;if (! bRAZ) GEN_Initialiser_Res ();&#13;" 
+      type=radio value=_485qn8sj540t20lj1dhinash0dlin6tbig9ig_ name=cS>Autre : 
+      Valeur mesurée</FONT></TD>
+    <TD width=189 bgColor=#e0e0ff colSpan=2 rowSpan=2><FONT color=#c2efff 
+      size=1>e</FONT><BR><FONT color=#c2efff size=1>e</FONT><BR><FONT 
+      color=#c2efff size=1>ee</FONT></TD></TR>
+  <TR></TR>
+  <TR vAlign=top>
+    <TD width=189 bgColor=#8080ff colSpan=2><FONT face=Arial color=#ffff00 
+      size=1>Conducteurs enfouis : Longueur</FONT></TD></TR>
+  <TR vAlign=top>
+    <TD width=38 bgColor=#e0e0ff><IMG height=1 alt="" 
+      src="Prise%20de%20terre_fichiers/ecblank.gif" width=1 border=0></TD>
+    <TD width=151 bgColor=#e0e0ff><FONT face=Arial color=#ff0000 size=1><INPUT 
+      onfocus=document.forms[0].cPT.focus() size=8 value=0 
+      name=cCL></FONT><B><FONT face=Arial color=#ff0000 size=1> 
+  m</FONT></B></TD></TR>
+  <TR vAlign=top>
+    <TD width=189 bgColor=#8080ff colSpan=2><FONT face=Arial color=#ffff00 
+      size=1>Plaque mince enterrée : Périmètre</FONT></TD></TR>
+  <TR vAlign=top>
+    <TD width=340 bgColor=#bfbfff><FONT face=Arial size=1>
+      <P style="MARGIN-LEFT: 20px"></FONT><FONT face=Arial color=#0000ff 
+      size=1><INPUT 
+      onblur='sVal =new String(document.forms[0].cM.value);&#13;sVal = sVal.replace ("," ,".");&#13;nVal = parseFloat (sVal );&#13;var bPb = false;&#13;if ( isNaN(nVal) == false )&#13;   {&#13;    if (nVal > 9999) &#13;       {&#13;        window.alert ("La résistivité ne peut être supérieure à 9999 Ohm.m");&#13;        nVal= 9999;&#13;        }&#13;     if (nVal <1)&#13;        {&#13;        window.alert ("La résistivité ne peut-être inférieure à 1 Ohm.m");&#13;        nVal= 1;&#13;        }   &#13;    }&#13;else&#13;  {&#13;   window.alert ("Vous devez saisir une valeur numérique");&#13;   bPb =true;&#13;   nVal = 50;&#13;   }&#13;if (bPb == true)   document.forms[0].cM.focus();&#13;document.forms[0].cM.value= nVal;&#13;' 
+      onmouseover='GEN_Afficher_Aide ("Saisir une valeur entre 1 et 9999 Ohm.m, valeur par défaut 50" , "")' 
+      onfocus="if (! bRAZ) GEN_Initialiser_Res ();" size=8 value=50 
+      name=cM></FONT><B><FONT face=Arial color=#ffff00 size=1> 
+      Ohm.m</FONT></B><FONT face=Arial size=1><O:P></FONT></P></TD>
+    <TD width=38 bgColor=#e0e0ff><IMG height=1 alt="" 
+      src="Prise%20de%20terre_fichiers/ecblank.gif" width=1 border=0></TD>
+    <TD width=151 bgColor=#e0e0ff><FONT face=Arial color=#ff0000 size=1><INPUT 
+      onfocus=document.forms[0].cPT.focus() size=8 value=0 
+      name=cPP></FONT><B><FONT face=Arial color=#ff0000 size=1> 
+  m</FONT></B></TD></TR>
+  <TR vAlign=top>
+    <TD width=340 bgColor=#8080ff><FONT face=Arial color=#ffff00 size=1>Valeur 
+      Maximale de la prise de Terre</FONT></TD>
+    <TD width=189 bgColor=#8080ff colSpan=2><FONT face=Arial color=#ffff00 
+      size=1>Piquets verticaux : Longueur</FONT></TD></TR>
+  <TR vAlign=top>
+    <TD width=340 bgColor=#bfbfff><FONT face=Arial size=1>
+      <P style="MARGIN-LEFT: 20px"></FONT><FONT face=Arial color=#0000ff 
+      size=1><INPUT 
+      onblur='sVal =new String(document.forms[0].cPT.value);&#13;sVal = sVal.replace ("," ,".");&#13;nVal = parseFloat (sVal );&#13;var bPb = false;&#13;if ( isNaN(nVal) == false )&#13;   {&#13;    if (nVal > 9999)&#13;       {&#13;        window.alert ("La valeur de la prise  de terre ne peut être supérieure à 9999 Ohm");&#13;        nVal= 9999;&#13;        }&#13;     if (nVal <1)&#13;       {&#13;        window.alert ("La valeur de la prise de terre ne peut-être inférieure à 1 Ohm");&#13;        nVal= 1;&#13;        }   &#13;    }&#13;else&#13;  {&#13;   window.alert ("Vous devez saisir une valeur numérique");&#13;   bPb =true;&#13;   nVal = 100;&#13;   }&#13;if (bPb == true)   document.forms[0].cPT.focus();&#13;document.forms[0].cPT.value= nVal;&#13;' 
+      onmouseover='GEN_Afficher_Aide ("Saisir une valeur entre 1 et 100 Ohm. Valeur par défaut 100" , "")&#13;' 
+      onfocus="if (! bRAZ) GEN_Initialiser_Res ();" size=8 value=100 
+      name=cPT></FONT><FONT face=Arial size=1> </FONT><B><FONT face=Arial 
+      color=#ffff00 size=1>Ohms</FONT></B><FONT face=Arial 
+      size=1><O:P></FONT></P></TD>
+    <TD width=38 bgColor=#e0e0ff><IMG height=1 alt="" 
+      src="Prise%20de%20terre_fichiers/ecblank.gif" width=1 border=0></TD>
+    <TD width=151 bgColor=#e0e0ff><FONT face=Arial color=#ff0000 size=1><INPUT 
+      onfocus=document.forms[0].cPT.focus() size=8 value=0 
+      name=cPL></FONT><B><FONT face=Arial color=#ff0000 size=1> 
+  m</FONT></B></TD></TR>
+  <TR vAlign=top>
+    <TD width=340 bgColor=#8080ff>
+      <DIV align=center><A 
+      onmouseover='GEN_Afficher_Aide ("","Cliquez pour Affecter les valeurs par défaut")&#13;' 
+      onclick="GEN_Initialiser_Ent ();&#13;if (! bRAZ) GEN_Initialiser_Res ();&#13;&#13;&#13;&#13;&#13;return false;" 
+      href="http://www.elec-planet.com:8080/elecplanet/Calcul.nsf/"><B><FONT 
+      face=Arial color=#ffff00>Valeurs par défaut</FONT></B></A><B><FONT 
+      face=Arial color=#ffff00> </FONT></B></DIV></TD>
+    <TD width=38 bgColor=#8080ff>
+      <DIV align=center><A 
+      onmouseover='GEN_Afficher_Aide ("", "Cliquez pour mettre à zéro les résultats.")' 
+      onclick="GEN_Initialiser_Res ()&#13;&#13;&#13;&#13;&#13;return false;" 
+      href="http://www.elec-planet.com:8080/elecplanet/Calcul.nsf/"><B><FONT 
+      face=Arial color=#ffff00>Raz</FONT></B></A><B><FONT face=Arial 
+      color=#ffff00> </FONT></B></DIV></TD>
+    <TD width=151 bgColor=#8080ff>
+      <DIV align=center><A 
+      onmouseover="GEN_Afficher_Aide (&quot;&quot;, &quot;Cliquez pour Calculer\nAttention les données d'entrées peuvent être modifiées&quot;)" 
+      onclick='tst =  window.location.href;&#13;position = tst.lastIndexOf("/");&#13;url = tst.substring(0,position) + "/ReRoute?openform";&#13;&#13;if (window.document.forms[0].UserName.value == "Anonymous")&#13;&#9;window.open(url,target="cadres_contenu");&#13;else&#13;{&#13;// Entrées&#13;S = 0.00;&#13;M=0.00;&#13;PT=0.00;&#13;&#13;// Sorties&#13;CL = 0.00;&#13;PP =0.00;&#13;PL =0.00;&#13;sInfo ="";&#13;&#13;// VAR CALCUL INTERMEDIAIRES&#13;MM =0.00; &#13;bFin = true;&#13;&#13;GEN_Initialiser_Res ();&#13;&#13;with(window.document.forms[0])&#13;     {&#13;      for (n=0; n<cS.length; n++) &#13;           {&#13;                if (cS[n].checked == true)&#13;                      {&#13;                          S = n +1;&#13;                       }   &#13;             }&#13;      M = parseFloat (cM.value);&#13;      PT = parseFloat (cPT.value);    &#13;      }&#13;&#13;// Début Calcul&#13;     switch (S)&#13;&#9;          {&#13;     &#9;&#9;&#9;case 1 : &#13;     &#9;&#9;&#9;      {&#13;                          MM = 50;&#13;                          break;&#13;                          }&#13;&#9;     &#9;&#9;case 2 :&#13;&#9;     &#9;&#9;      {&#13;                          MM = 500;&#13;                          break;&#13;                          }&#13;&#9;&#9;     &#9;case 3 :&#13;                           { &#13;                           MM = 3000;&#13;                           break;&#13;                           }&#13;&#9;&#9;     &#9;case 4 :&#13;                           { &#13;                           MM = M;&#13;                           break;&#13;                           }&#13;&#9;&#9;          }&#13;&#13;&#9;CL=MM*2/PT;&#13;&#9;PP=MM*.8/PT;&#13;&#9;PL=MM/PT;&#13;&#13;     if (CL >9999)&#13;          CL =9999.9;&#13;    if (PP >9999)&#13;          PP =9999.9;&#13;     if (PL >9999)&#13;          PL =9999.9;&#13;&#13;// Fin Calcul&#13;&#13;if (bFin == true )&#13;    {&#13;// Affectation Resultat&#13;      GEN_Affecter_Res (CL, PP,PL, sInfo)&#13;      }&#13;else&#13;     {&#13;     GEN_Affecter_Res (0,0,0, "Problème Critique")&#13;      }&#13;}&#13;&#13;return false;' 
+      href="http://www.elec-planet.com:8080/elecplanet/Calcul.nsf/"><B><FONT 
+      face=Arial color=#ffff00>Calculer</FONT></B></A></DIV></TD></TR>
+  <TR vAlign=top>
+    <TD width=529 bgColor=#ffe1b0 colSpan=3><B><I><FONT face=Arial 
+      color=#ff0000 size=1><TEXTAREA onfocus=document.forms[0].cPT.focus() name=cInfo rows=3 cols=75></TEXTAREA> 
+      </FONT></I></B><BR><B><FONT face=Arial 
+size=1><BR></FONT></B></TD></TR></TBODY></TABLE><INPUT type=hidden 
+value=BEMELINON1 name=UserName></FORM></BODY></HTML>

@@ -1,0 +1,297 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0095)http://www.elec-planet.com:8080/elecplanet/Calcul.nsf/e2719e784df83702c1256b18003760fb?OpenForm -->
+<HTML><HEAD>
+<META http-equiv=Content-Type content="text/html; charset=utf-8">
+<SCRIPT language=JavaScript>
+<!-- 
+var bRAZ = true;
+function GEN_Afficher_Aide (sStatus , sInfo)
+{
+if ( sStatus == "" )
+    { document.forms[0].cInfo.value = sInfo; }
+else
+    { document.forms[0].cInfo.value = sStatus + "\n" + sInfo; }
+}
+
+function GEN_Initialiser_Res ()
+{
+  with (document.forms[0])
+  {
+  cE1.value=0;
+  cE2.value=0;
+  cE3.value=0;
+  cE4.value=0;
+  cE5.value=0;
+  cE6.value=0;
+  cE7.value=0;
+  cE8.value=0;
+  cE9.value=0;
+  cE10.value=0;              
+  bRAZ = true;
+  }
+}
+function GEN_Affecter_Res (E1,E2,E3,E4,E5,E6,E7,E8,E9,E10,sInfo)
+{
+  with (document.forms[0])
+  {
+  // valeurs
+  cE1.value = Math.round(E1*1000000)/1000000;
+  cE2.value = Math.round(E2*1000000)/1000000;
+  cE3.value = Math.round(E3*1000000)/1000000;
+  cE4.value = Math.round(E4*1000000)/1000000;
+  cE5.value = Math.round(E5*1000000)/1000000;
+  cE6.value = Math.round(E6*1000000)/1000000;
+  cE7.value = Math.round(E7*1000000)/1000000;
+  cE8.value = Math.round(E8*1000000)/1000000;
+  cE9.value = Math.round(E9*1000000)/1000000;
+  cE10.value = Math.round(E10*1000000)/1000000;
+  cInfo.value = sInfo;
+  bRAZ= false;
+  }
+}
+function GEN_Initialiser_Ent ()
+{
+  with (document.forms[0])
+  {
+  // valeurs
+  cValeur.value=1;
+  cCosPhi.value =0.8;
+  }
+}
+
+// -->
+</SCRIPT>
+
+<SCRIPT language=JavaScript>
+<!-- 
+document._domino_target = "_self";
+function _doClick(v, o, t, h) {
+  var form = document._DominoForm;
+  if (form.onsubmit) {
+     var retVal = form.onsubmit();
+     if (typeof retVal == "boolean" && retVal == false)
+       return false;
+  }
+  var target = document._domino_target;
+  if (o.href != null) {
+    if (o.target != null)
+       target = o.target;
+  } else {
+    if (t != null)
+      target = t;
+  }
+  form.target = target;
+  form.__Click.value = v;
+  if (h != null)
+    form.action += h;
+  form.submit();
+  return false;
+}
+// -->
+</SCRIPT>
+
+<META content="MSHTML 6.00.6000.16809" name=GENERATOR></HEAD>
+<BODY text=#000000 bgColor=#ffffff leftMargin=5 topMargin=0>
+<FORM name=_DominoForm 
+action=/elecplanet/Calcul.nsf/e2719e784df83702c1256b18003760fb?OpenForm&amp;Seq=1 
+method=post><INPUT type=hidden value=0 name=__Click> 
+<TABLE cellSpacing=0 cellPadding=0 border=0>
+  <TBODY>
+  <TR vAlign=top>
+    <TD width=491 bgColor=#8080ff colSpan=3>
+      <DIV align=center><B><FONT face="Times New Roman" color=#ffffff 
+      size=4>Conversions d'unités électriques</FONT></B></DIV></TD></TR>
+  <TR vAlign=top>
+    <TD width=491 bgColor=#bfbfff colSpan=3>
+      <DIV align=center><B><I><FONT face=Arial color=#ffff00 
+      size=2>Caractéristiques (Données à saisir)</FONT></I></B></DIV></TD></TR>
+  <TR vAlign=top>
+    <TD width=227 bgColor=#8080ff><FONT face=Arial size=1>
+      <P style="MARGIN-LEFT: 20px"></FONT><FONT face=Arial color=#ffff00 
+      size=1>Valeur à convertir</FONT></P></TD>
+    <TD width=41 bgColor=#8080ff><IMG height=1 alt="" 
+      src="Conversions%20Electriques_fichiers/ecblank.gif" width=1 border=0></TD>
+    <TD width=223 bgColor=#8080ff><FONT face=Arial color=#ffff00 
+      size=1>Cosinus phi</FONT></TD></TR>
+  <TR vAlign=top>
+    <TD width=227 bgColor=#bfbfff><FONT face=Arial size=1>
+      <P style="MARGIN-LEFT: 40px"></FONT><FONT face=Arial color=#0000ff 
+      size=1><INPUT 
+      onblur='sVal =new String(document.forms[0].cValeur.value);&#13;sVal = sVal.replace ("," ,".");&#13;nVal = parseFloat (sVal);&#13;var bPb = false;&#13;if ( isNaN(nVal) == false )&#13;   {&#13;    if (nVal > 999999.999) &#13;       {&#13;        window.alert ("La valeur à convertir ne peut pas être supérieure à 999999.999.");&#13;        nVal= 999999;&#13;        }&#13;     if (nVal <0.001)&#13;        {&#13;        window.alert ("La valeur à convertir ne peut pas être inférieure à 0.001.");&#13;        nVal= 0.001;&#13;        }   &#13;    }&#13;else&#13;  {&#13;   window.alert ("Vous devez saisir une valeur numérique");&#13;   bPb =true;&#13;   nVal = 0;&#13;   }&#13;if (bPb == true)   document.forms[0].cValeur.focus();&#13;document.forms[0].cValeur.value= nVal;&#13;' 
+      onmouseover='GEN_Afficher_Aide ("Saisir une valeur entre 0.001 et 999999.999. Valeur par défaut 0" , "")' 
+      onfocus="if (! bRAZ) GEN_Initialiser_Res ();" size=8 value=1 
+      name=cValeur></FONT><FONT face=Arial size=1><O:P></FONT></P></TD>
+    <TD width=41 bgColor=#bfbfff><IMG height=1 alt="" 
+      src="Conversions%20Electriques_fichiers/ecblank.gif" width=1 border=0></TD>
+    <TD width=223 bgColor=#bfbfff><FONT face=Arial size=1>
+      <P style="MARGIN-LEFT: 40px"></FONT><FONT face=Arial color=#0000ff 
+      size=1><INPUT 
+      onblur='sVal =new String(document.forms[0].cCosPhi.value);&#13;sVal = sVal.replace ("," ,".");&#13;nVal = parseFloat (sVal );&#13;var bPb = false;&#13;if ( isNaN(nVal) == false )&#13;   {&#13;    if (nVal > 1) &#13;       {&#13;        window.alert ("Le cos phi ne peut être supérieure à 1");&#13;        nVal= 1;&#13;        }&#13;     if (nVal <0.1)&#13;        {&#13;        window.alert ("Le cos phi ne peut-être inférieur à 0.1");&#13;        nVal= 0.1;&#13;        }   &#13;    }&#13;else&#13;  {&#13;   window.alert ("Vous devez saisir une valeur numérique");&#13;   bPb =true;&#13;   nVal = 0.8;&#13;   }&#13;if (bPb == true)   document.forms[0].cCosPhi.focus();&#13;document.forms[0].cCosPhi.value= nVal;&#13;' 
+      onmouseover='GEN_Afficher_Aide ("Saisir une valeur entre 0.1 et 1, valeur par défaut 0.8" , "")' 
+      onfocus="if (! bRAZ) GEN_Initialiser_Res ();" size=8 value=0.8 
+      name=cCosPhi></FONT><B><FONT face=Arial color=#ffff00 size=1> 
+      </FONT></B><FONT face=Arial size=1><O:P></FONT></P></TD></TR>
+  <TR vAlign=top>
+    <TD width=227 bgColor=#bfbfff><IMG height=1 alt="" 
+      src="Conversions%20Electriques_fichiers/ecblank.gif" width=1 border=0></TD>
+    <TD width=41 bgColor=#bfbfff><IMG height=1 alt="" 
+      src="Conversions%20Electriques_fichiers/ecblank.gif" width=1 border=0></TD>
+    <TD width=223 bgColor=#bfbfff><IMG height=1 alt="" 
+      src="Conversions%20Electriques_fichiers/ecblank.gif" width=1 
+  border=0></TD></TR>
+  <TR vAlign=top>
+    <TD width=491 bgColor=#e0e0ff colSpan=3>
+      <DIV align=center><B><I><FONT face=Arial color=#ff0000 size=2>Résultats du 
+      calcul</FONT></I></B></DIV></TD></TR>
+  <TR vAlign=top>
+    <TD width=227 bgColor=#8080ff><FONT face=Arial size=1>
+      <P style="MARGIN-LEFT: 20px"></FONT><FONT face=Arial color=#ffff00 
+      size=1>W (watt) -----&gt; ch (cheval vapeur)</FONT><FONT face=Arial 
+      size=1><O:P></FONT></P></TD>
+    <TD width=41 bgColor=#8080ff><IMG height=1 alt="" 
+      src="Conversions%20Electriques_fichiers/ecblank.gif" width=1 border=0></TD>
+    <TD width=223 bgColor=#8080ff><FONT face=Arial color=#ffff00 size=1>ch 
+      (cheval vapeur) -----&gt; W (watt)</FONT></TD></TR>
+  <TR vAlign=top>
+    <TD width=227 bgColor=#e0e0ff><FONT face=Arial size=1>
+      <P style="MARGIN-LEFT: 50px"></FONT><FONT face=Arial color=#ff0000 
+      size=1>W </FONT><FONT face=Arial color=#0000ff size=1><INPUT 
+      onfocus=document.forms[0].cValeur.focus() size=8 value=0 
+      name=cE1></FONT><B><FONT face=Arial color=#ff0000 size=1> 
+      ch</FONT></B><FONT face=Arial size=1><O:P></FONT></P></TD>
+    <TD width=41 bgColor=#e0e0ff><IMG height=1 alt="" 
+      src="Conversions%20Electriques_fichiers/ecblank.gif" width=1 border=0></TD>
+    <TD width=223 bgColor=#e0e0ff><FONT face=Arial size=1>
+      <P style="MARGIN-LEFT: 40px"></FONT><FONT face=Arial color=#ff0000 
+      size=1>ch</FONT><B><FONT face=Arial> </FONT></B><FONT face=Arial 
+      color=#0000ff size=1><INPUT onfocus=document.forms[0].cValeur.focus() 
+      size=8 value=0 name=cE2></FONT><B><FONT face=Arial color=#ff0000 size=1> 
+      W</FONT></B><FONT face=Arial size=1><O:P></FONT></P></TD></TR>
+  <TR vAlign=top>
+    <TD width=227 bgColor=#8080ff><FONT face=Arial size=1>
+      <P style="MARGIN-LEFT: 20px"></FONT><FONT face=Arial color=#ffff00 
+      size=1>W (Watt) -----&gt; VA (Volt Ampère)</FONT><FONT face=Arial 
+      size=1><O:P></FONT></P></TD>
+    <TD width=41 bgColor=#8080ff><IMG height=1 alt="" 
+      src="Conversions%20Electriques_fichiers/ecblank.gif" width=1 border=0></TD>
+    <TD width=223 bgColor=#8080ff><FONT face=Arial color=#ffff00 size=1>VA 
+      (Volt Ampere) -----&gt; W (Watt)</FONT></TD></TR>
+  <TR vAlign=top>
+    <TD width=227 bgColor=#e0e0ff><FONT face=Arial size=1>
+      <P style="MARGIN-LEFT: 50px"></FONT><FONT face=Arial color=#ff0000 
+      size=1>W </FONT><B><FONT face=Arial></FONT></B><FONT face=Arial 
+      color=#0000ff size=1><INPUT onfocus=document.forms[0].cValeur.focus() 
+      size=8 value=0 name=cE3></FONT><B><FONT face=Arial color=#ffff00 size=1> 
+      </FONT></B><B><FONT face=Arial color=#ff0000 size=1>VA</FONT></B><FONT 
+      face=Arial size=1><O:P></FONT></P></TD>
+    <TD width=41 bgColor=#e0e0ff><IMG height=1 alt="" 
+      src="Conversions%20Electriques_fichiers/ecblank.gif" width=1 border=0></TD>
+    <TD width=223 bgColor=#e0e0ff><FONT face=Arial size=1>
+      <P style="MARGIN-LEFT: 40px"></FONT><FONT face=Arial color=#ff0000 
+      size=1>VA</FONT><B><FONT face=Arial> </FONT></B><FONT face=Arial 
+      color=#0000ff size=1><INPUT onfocus=document.forms[0].cValeur.focus() 
+      size=8 value=0 name=cE4></FONT><B><FONT face=Arial color=#ffff00 size=1> 
+      </FONT></B><B><FONT face=Arial color=#ff0000 size=1>W</FONT></B><FONT 
+      face=Arial size=1><O:P></FONT></P></TD></TR>
+  <TR vAlign=top>
+    <TD width=227 bgColor=#8080ff><FONT face=Arial size=1>
+      <P style="MARGIN-LEFT: 20px"></FONT><FONT face=Arial color=#ffff00 
+      size=1>W (Watt) -----&gt; var (volt ampère réactif)</FONT><FONT face=Arial 
+      size=1><O:P></FONT></P></TD>
+    <TD width=41 bgColor=#8080ff><IMG height=1 alt="" 
+      src="Conversions%20Electriques_fichiers/ecblank.gif" width=1 border=0></TD>
+    <TD width=223 bgColor=#8080ff><FONT face=Arial color=#ffff00 size=1>var 
+      (volt ampère réactif) -----&gt; W (Watt)</FONT><FONT face=Arial 
+      color=#ffff00 size=1> </FONT></TD></TR>
+  <TR vAlign=top>
+    <TD width=227 bgColor=#e0e0ff><FONT face=Arial size=1>
+      <P style="MARGIN-LEFT: 50px"></FONT><FONT face=Arial color=#ff0000 
+      size=1>W</FONT><B><FONT face=Arial> </FONT></B><FONT face=Arial 
+      color=#0000ff size=1><INPUT onfocus=document.forms[0].cValeur.focus() 
+      size=8 value=0 name=cE5></FONT><B><FONT face=Arial color=#ffff00 size=1> 
+      </FONT></B><B><FONT face=Arial color=#ff0000 size=1>var</FONT></B><FONT 
+      face=Arial size=1><O:P></FONT></P></TD>
+    <TD width=41 bgColor=#e0e0ff><IMG height=1 alt="" 
+      src="Conversions%20Electriques_fichiers/ecblank.gif" width=1 border=0></TD>
+    <TD width=223 bgColor=#e0e0ff><FONT face=Arial size=1>
+      <P style="MARGIN-LEFT: 38px"></FONT><FONT face=Arial color=#ff0000 
+      size=1>var</FONT><B><FONT face=Arial> </FONT></B><FONT face=Arial 
+      color=#0000ff size=1><INPUT onfocus=document.forms[0].cValeur.focus() 
+      size=8 value=0 name=cE6></FONT><B><FONT face=Arial color=#ff0000 size=1> 
+      W</FONT></B><FONT face=Arial size=1><O:P></FONT></P></TD></TR>
+  <TR vAlign=top>
+    <TD width=227 bgColor=#8080ff><FONT face=Arial size=1>
+      <P style="MARGIN-LEFT: 10px"></FONT><FONT face=Arial color=#ffff00 
+      size=1>VA (Volt Ampère) ----&gt; var (volt ampère réactif)</FONT><FONT 
+      face=Arial size=1><O:P></FONT></P></TD>
+    <TD width=41 bgColor=#8080ff><IMG height=1 alt="" 
+      src="Conversions%20Electriques_fichiers/ecblank.gif" width=1 border=0></TD>
+    <TD width=223 bgColor=#8080ff><FONT face=Arial color=#ffff00 size=1>var 
+      (volt ampère réactif) -----&gt; VA (Volt Ampère)</FONT></TD></TR>
+  <TR vAlign=top>
+    <TD width=227 bgColor=#e0e0ff><FONT face=Arial size=1>
+      <P style="MARGIN-LEFT: 45px"></FONT><FONT face=Arial color=#ff0000 
+      size=1>VA</FONT><B><FONT face=Arial> </FONT></B><FONT face=Arial 
+      color=#0000ff size=1><INPUT onfocus=document.forms[0].cValeur.focus() 
+      size=8 value=0 name=cE7></FONT><B><FONT face=Arial color=#ff0000 size=1> 
+      var</FONT></B><FONT face=Arial size=1><O:P></FONT></P></TD>
+    <TD width=41 bgColor=#e0e0ff><IMG height=1 alt="" 
+      src="Conversions%20Electriques_fichiers/ecblank.gif" width=1 border=0></TD>
+    <TD width=223 bgColor=#e0e0ff><FONT face=Arial size=1>
+      <P style="MARGIN-LEFT: 38px"></FONT><FONT face=Arial color=#ff0000 
+      size=1>var</FONT><B><FONT face=Arial> </FONT></B><FONT face=Arial 
+      color=#0000ff size=1><INPUT onfocus=document.forms[0].cValeur.focus() 
+      size=8 value=0 name=cE8></FONT><B><FONT face=Arial color=#ff0000 size=1> 
+      VA</FONT></B><FONT face=Arial size=1><O:P></FONT></P></TD></TR>
+  <TR vAlign=top>
+    <TD width=227 bgColor=#8080ff><FONT face=Arial size=1>
+      <P style="MARGIN-LEFT: 20px"></FONT><FONT face=Arial color=#ffff00 
+      size=1>mm2 Cuivre -----&gt; mm2 Aluminium</FONT><FONT face=Arial 
+      size=1><O:P></FONT></P></TD>
+    <TD width=41 bgColor=#8080ff><IMG height=1 alt="" 
+      src="Conversions%20Electriques_fichiers/ecblank.gif" width=1 border=0></TD>
+    <TD width=223 bgColor=#8080ff><FONT face=Arial color=#ffff00 size=1>mm2 
+      Aluminium ----&gt; mm2 Cuivre</FONT></TD></TR>
+  <TR vAlign=top>
+    <TD width=227 bgColor=#e0e0ff><FONT face=Arial size=1>
+      <P style="MARGIN-LEFT: 20px"></FONT><FONT face=Arial color=#ff0000 
+      size=1>mm2 Cu</FONT><B><FONT face=Arial> </FONT></B><FONT face=Arial 
+      color=#0000ff size=1><INPUT onfocus=document.forms[0].cValeur.focus() 
+      size=8 value=0 name=cE9></FONT><B><FONT face=Arial color=#ffff00 size=1> 
+      </FONT></B><B><FONT face=Arial color=#ff0000 size=1>mm2 Al</FONT></B><FONT 
+      face=Arial size=1><O:P></FONT></P></TD>
+    <TD width=41 bgColor=#e0e0ff><IMG height=1 alt="" 
+      src="Conversions%20Electriques_fichiers/ecblank.gif" width=1 border=0></TD>
+    <TD width=223 bgColor=#e0e0ff><FONT face=Arial size=1>
+      <P style="MARGIN-LEFT: 15px"></FONT><FONT face=Arial color=#ff0000 
+      size=1>mm2 Al</FONT><B><FONT face=Arial> </FONT></B><FONT face=Arial 
+      color=#0000ff size=1><INPUT onfocus=document.forms[0].cValeur.focus() 
+      size=8 value=0 name=cE10></FONT><B><FONT face=Arial color=#ffff00 size=1> 
+      </FONT></B><B><FONT face=Arial color=#ff0000 size=1>mm2 Cu</FONT></B><FONT 
+      face=Arial size=1><O:P></FONT></P></TD></TR>
+  <TR vAlign=top>
+    <TD width=227 bgColor=#8080ff>
+      <DIV align=center><A 
+      onmouseover='GEN_Afficher_Aide ("","Cliquez pour Affecter les valeurs par défaut")&#13;' 
+      onclick="GEN_Initialiser_Ent ();&#13;if (! bRAZ) GEN_Initialiser_Res ();&#13;&#13;&#13;&#13;&#13;return false;" 
+      href="http://www.elec-planet.com:8080/elecplanet/Calcul.nsf/"><B><FONT 
+      face=Arial color=#ffff00>Valeurs par défaut</FONT></B></A><B><FONT 
+      face=Arial color=#ffff00> </FONT></B></DIV></TD>
+    <TD width=41 bgColor=#8080ff>
+      <DIV align=center><A 
+      onmouseover='GEN_Afficher_Aide ("", "Cliquez pour mettre à zéro les résultats.")' 
+      onclick="GEN_Initialiser_Res ()&#13;&#13;&#13;&#13;&#13;return false;" 
+      href="http://www.elec-planet.com:8080/elecplanet/Calcul.nsf/"><B><FONT 
+      face=Arial color=#ffff00>Raz</FONT></B></A></DIV></TD>
+    <TD width=223 bgColor=#8080ff>
+      <DIV align=center><A 
+      onmouseover="GEN_Afficher_Aide (&quot;&quot;, &quot;Cliquez pour Calculer\nAttention les données d'entrées peuvent être modifiées&quot;)" 
+      onclick='tst =  window.location.href;&#13;position = tst.lastIndexOf("/");&#13;url = tst.substring(0,position) + "/ReRoute?openform";&#13;&#13;if (window.document.forms[0].UserName.value == "Anonymous")&#13;&#9;window.open(url,target="cadres_contenu");&#13;else&#13;{&#13;// Entrées&#13;Valeur = 0.00;&#13;CosPhi=0.00;&#13;&#13;// Sorties&#13;E1 = 0.00;&#13;E2 = 0.00;&#13;E3 = 0.00;&#13;E4 = 0.00;&#13;E5 = 0.00;&#13;E6 = 0.00;&#13;E7 = 0.00;&#13;E8 = 0.00;&#13;E9 = 0.00;&#13;E10 = 0.00;&#13;sInfo ="";&#13;&#13;// VAR CALCUL INTERMEDIAIRES&#13;bFin = true;&#13;&#13;GEN_Initialiser_Res ();&#13;&#13;with(window.document.forms[0])&#13;     {&#13;      Valeur = parseFloat (cValeur.value);&#13;      CosPhi =parseFloat (cCosPhi.value);&#13;      }&#13;// Initialisation&#13;SinPhi=0;&#13;&#13;// Début Calcul&#13;&#9;if (Valeur<0.01)&#13;&#9;&#9;Valeur=0.01;&#13;&#9;if (Valeur> 999999.999)&#13;&#9;&#9;Valeur=999999;&#13;&#9;if (CosPhi<0.1)&#13;&#9;&#9;CosPhi=0.1;&#13;&#9;if (CosPhi >1)&#13;&#9;&#9;CosPhi=1;&#13;&#9;if (CosPhi <1)&#13;&#9;&#9;SinPhi=Math.sqrt(1-CosPhi*CosPhi);&#13;&#9;else&#13;&#9;&#9;SinPhi=0;&#13;&#9;E1=Valeur/735.499;&#13;&#9;E2=Valeur*735.499;&#13;&#9;E3=Valeur/CosPhi;&#13;&#9;E4=Valeur*CosPhi;&#13;&#9;E5=Valeur*SinPhi/CosPhi;&#13;&#9;if (SinPhi>0)&#13;&#9;&#9;E6=Valeur*CosPhi/SinPhi;&#13;&#9;else&#13;&#9;&#9;E6=0;&#13;&#9;E7=Valeur*SinPhi;&#13;&#9;if (SinPhi>0)&#13;&#9;&#9;E8=Valeur/SinPhi;&#13;&#9;else&#13;&#9;&#9;E8=0;&#13;&#9;E9=Valeur/.625;&#13;&#9;E10=Valeur/1.6;&#13;&#13;// Fin Calcul&#13;&#13;if (bFin == true )&#13;    {&#13;// Affectation Resultat&#13;      GEN_Affecter_Res (E1,E2,E3,E4,E5,E6,E7,E8,E9,E10,sInfo)&#13;      }&#13;else&#13;     {&#13;     GEN_Affecter_Res (0,0,0,0,0,0,0,0,0,0, "Problème Critique")&#13;      }&#13;}&#13;&#13;return false;' 
+       href="http://www.elec-planet.com:8080/elecplanet/Calcul.nsf/"><B><U><FONT 
+      face=Arial color=#ffff00>Calculer</FONT></U></B></A></DIV></TD></TR>
+  <TR vAlign=top>
+    <TD width=582 bgColor=#ffe1b0 colSpan=3><B><I><FONT face=Arial 
+      color=#ff0000 size=1><TEXTAREA onfocus=document.forms[0].cSPh.focus() name=cInfo rows=3 cols=75></TEXTAREA> 
+      </FONT></I></B><BR><B><FONT face=Arial 
+size=1><BR></FONT></B></TD></TR></TBODY></TABLE><INPUT type=hidden 
+value=BEMELINON1 name=UserName></FORM></BODY></HTML>

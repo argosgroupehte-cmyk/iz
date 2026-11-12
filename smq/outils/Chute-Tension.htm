@@ -1,0 +1,348 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0079)http://www.elec-planet.com:8080/elecplanet/Calcul.nsf/04-Chute-Tension?OpenForm -->
+<HTML><HEAD>
+<META http-equiv=Content-Type content="text/html; charset=utf-8">
+<SCRIPT language=JavaScript>
+<!-- 
+var bRAZ = true;
+function GEN_Afficher_Aide (sStatus , sInfo)
+{
+if ( sStatus == "" )
+    { document.forms[0].cInfo.value = sInfo; }
+else
+    { document.forms[0].cInfo.value = sStatus + "\n" + sInfo; }
+}
+
+function GEN_Initialiser_Res ()
+{
+with (document.forms[0])
+{
+cR.value=0;
+cX.value =0;
+cRX.value =0;
+cZ.value= 0;
+cDUAT.value= 0;
+cDURT.value=0;
+cDUAM.value=0;
+cDURM.value=0;
+bRAZ = true;
+}
+}
+function GEN_Affecter_Res (R, X,RX,Z,DUAT,DURT,DUAM,DURM, SPhIndex, NbreCond, sInfo)
+{
+with (document.forms[0])
+{
+// listes
+ cSPh.options[SPhIndex -1].selected =true ;
+ cNbreCond.options[NbreCond - 1].selected =true ;
+
+// valeurs
+cR.value=Math.round(R*100)/100;
+cX.value =Math.round(X*100)/100;
+cRX.value =Math.round(RX*100)/100;
+cZ.value= Math.round(Z*100)/100;
+cDUAT.value= Math.round(DUAT*10)/10;
+cDURT.value=Math.round(DURT*100)/100;
+cDUAM.value=Math.round(DUAM*10)/10;
+cDURM.value=Math.round(DURM*100)/100;
+cInfo.value=sInfo;
+bRAZ= false;
+}
+}
+function GEN_Initialiser_Ent ()
+{
+with (document.forms[0])
+{
+// listes
+cSPh.options[1].selected =true ;
+cCircuit.options[3].selected =true ;
+cNbreCond.options[0].selected =true ;
+// radio
+cNappeTrefle[0].checked =true;
+cCtCable[0].checked =true;
+cNature[0].checked =true;
+cIsolationPh[0].checked =true;
+// valeurs
+cLongueur.value=25;
+cIB.value =10;
+cUN.value =400;
+cCosPhi.value= 0.8;
+cDuMax.value = 5;
+}
+}
+// -->
+</SCRIPT>
+
+<SCRIPT language=JavaScript>
+<!-- 
+document._domino_target = "_self";
+function _doClick(v, o, t, h) {
+  var form = document._DominoForm;
+  if (form.onsubmit) {
+     var retVal = form.onsubmit();
+     if (typeof retVal == "boolean" && retVal == false)
+       return false;
+  }
+  var target = document._domino_target;
+  if (o.href != null) {
+    if (o.target != null)
+       target = o.target;
+  } else {
+    if (t != null)
+      target = t;
+  }
+  form.target = target;
+  form.__Click.value = v;
+  if (h != null)
+    form.action += h;
+  form.submit();
+  return false;
+}
+// -->
+</SCRIPT>
+
+<META content="MSHTML 6.00.6000.16809" name=GENERATOR></HEAD>
+<BODY text=#000000 bgColor=#ffffff leftMargin=5 topMargin=10>
+<FORM name=_DominoForm 
+action=/elecplanet/Calcul.nsf/04-Chute-Tension?OpenForm&amp;Seq=1 
+method=post><INPUT type=hidden value=0 name=__Click> 
+<TABLE cellSpacing=0 cellPadding=0 border=0>
+  <TBODY>
+  <TR vAlign=top>
+    <TD width=576 bgColor=#8080ff colSpan=3>
+      <DIV align=center><B><FONT face="Times New Roman" color=#ffffff 
+      size=4>Chute de Tension </FONT></B><B><FONT face="Times New Roman" 
+      color=#ffffff size=2>(Cenelec R064-003)</FONT></B></DIV></TD></TR>
+  <TR vAlign=top>
+    <TD width=351 bgColor=#bfbfff colSpan=2>
+      <DIV align=center><B><I><FONT face=Arial color=#ffff00 
+      size=2>Caractéristiques (Données à saisir)</FONT></I></B></DIV></TD>
+    <TD width=225 bgColor=#e0e0ff>
+      <DIV align=center><B><I><FONT face=Arial color=#ff0000 size=2>Résultats du 
+      calcul</FONT></I></B></DIV></TD></TR>
+  <TR vAlign=top>
+    <TD width=176 bgColor=#8080ff><FONT face=Arial color=#ffff00 
+      size=1>Nature</FONT></TD>
+    <TD width=176 bgColor=#8080ff><FONT face=Arial color=#ffff00 
+      size=1>Tension Nominale</FONT></TD>
+    <TD width=225 bgColor=#8080ff><FONT face=Arial color=#ffff00 
+      size=1>Résistance Rph</FONT></TD></TR>
+  <TR vAlign=top>
+    <TD width=176 bgColor=#bfbfff rowSpan=5><FONT face=Arial size=1>
+      <P style="MARGIN-LEFT: 20px"></FONT><FONT face=Arial color=#0000ff 
+      size=1><INPUT 
+      onmouseover='GEN_Afficher_Aide ("Choisissez Cuivre ou Aluminium, valeur par défaut Cuivre" , "")' 
+      onclick="if (! bRAZ) GEN_Initialiser_Res ();&#13;" type=radio CHECKED 
+      value=Cuivre name=cNature>Cuivre<BR><INPUT 
+      onmouseover='GEN_Afficher_Aide ("Choisissez Cuivre ou Aluminium, valeur par défaut Cuivre" , "")' 
+      onclick="if (! bRAZ) GEN_Initialiser_Res ();&#13;" type=radio 
+      value=Aluminium name=cNature>Aluminium</FONT><FONT face=Arial 
+      size=1><O:P></FONT></P></TD>
+    <TD width=176 bgColor=#bfbfff><FONT face=Arial color=#0000ff size=1><INPUT 
+      onblur='sVal =new String(document.forms[0].cUN.value);&#13;sVal = sVal.replace ("," ,".");&#13;nVal = parseFloat (sVal);&#13;var bPb = false;&#13;if ( isNaN(nVal) == false )&#13;   {&#13;   if (nVal > 1000) {&#13;      window.alert ("La Tension Nominale ne peut-être supèrieure à 1000 Volts");&#13;      nVal = 1000;&#13;       };&#13;   if (nVal <12) {&#13;       window.alert ("La Tension Nominale ne peut-être inférieure à 12 Volts");&#13;       nVal = 12;&#13;       };&#13;   }&#13;else&#13;  {&#13;   window.alert ("Vous devez saisir une valeur numérique");&#13;   bPb =true;&#13;   nVal = 400;&#13;   }&#13;if (bPb == true)   document.forms[0].cUN.focus();&#13;document.forms[0].cUN.value= nVal;&#13;&#13;&#13;&#13;&#13;&#13;&#13;&#13;&#13;&#13;&#13;&#13;' 
+      onmouseover='GEN_Afficher_Aide ("Saisir une valeur entre 12 et 1000 volts, valeur par défaut 400 Volts" , "")' 
+      onfocus="if (! bRAZ) GEN_Initialiser_Res ();" size=8 value=400 
+      name=cUN></FONT><B><FONT face=Arial size=1> </FONT></B><B><FONT face=Arial 
+      color=#ffff00 size=1>V</FONT></B></TD>
+    <TD width=225 bgColor=#e0e0ff><FONT face=Arial size=1>
+      <P style="MARGIN-LEFT: 20px"></FONT><FONT face=Arial color=#ff0000 
+      size=1><INPUT onfocus=document.forms[0].cUN.focus() size=8 value=0 
+      name=cR></FONT><FONT face=Arial size=1> </FONT><B><FONT face=Arial 
+      color=#ff0000 size=1>mOhm</FONT></B><FONT face=Arial 
+      size=1><O:P></FONT></P></TD></TR>
+  <TR vAlign=top>
+    <TD width=176 bgColor=#8080ff><FONT face=Arial color=#ffff00 
+      size=1>Circuit</FONT></TD>
+    <TD width=225 bgColor=#8080ff><FONT face=Arial color=#ffff00 
+      size=1>Réactance Xph</FONT></TD></TR>
+  <TR vAlign=top>
+    <TD width=176 bgColor=#bfbfff><FONT face=Arial color=#0000ff 
+      size=1><SELECT 
+      onfocus='if (! bRAZ) GEN_Initialiser_Res ();&#13;GEN_Afficher_Aide ("Sélectionnez le type de votre circuit, valeur par défaut Triphasé + N Equilibré" , "")' 
+      name=cCircuit> <OPTION value=1>Monophasé PH/N<OPTION 
+        value=2>Biphasé<OPTION value=3>Triphasé<OPTION value=4 selected>Triphasé 
+        + N équilibré<OPTION value=5>Triphasé + N déséquilibré</OPTION></SELECT> 
+      </FONT></TD>
+    <TD width=225 bgColor=#e0e0ff><FONT face=Arial size=1>
+      <P style="MARGIN-LEFT: 20px"></FONT><FONT face=Arial color=#ff0000 
+      size=1><INPUT onfocus=document.forms[0].cUN.focus() size=8 value=0 
+      name=cX></FONT><FONT face=Arial size=1> </FONT><B><FONT face=Arial 
+      color=#ff0000 size=1>mOhm</FONT></B><FONT face=Arial 
+      size=1><O:P></FONT></P></TD></TR>
+  <TR vAlign=top>
+    <TD width=176 bgColor=#8080ff><FONT face=Arial color=#ffff00 
+      size=1>Longueur</FONT></TD>
+    <TD width=225 bgColor=#8080ff><FONT face=Arial color=#ffff00 
+      size=1>Rapport Rph/Xph</FONT></TD></TR>
+  <TR vAlign=top>
+    <TD width=176 bgColor=#bfbfff><FONT face=Arial color=#0000ff size=1><INPUT 
+      onblur='sVal =new String(document.forms[0].cLongueur.value);&#13;sVal = sVal.replace ("," ,".");&#13;nVal = parseFloat (sVal );&#13;var bPb = false;&#13;if ( isNaN(nVal) == false )&#13;   {&#13;    if (nVal > 9999)&#13;        {&#13;        window.alert ("La longueur du conducteur ne peut être supérieure à 9999 mètres");&#13;        nVal= 9999;&#13;        }&#13;     if (nVal <0.1)&#13;        {&#13;        window.alert ("La longueur du conducteur ne peut-être inférieure à 0.1 mètre");&#13;        nVal= 0.1;&#13;        }&#13;    }&#13;else&#13;  {&#13;   window.alert ("Vous devez saisir une valeur numérique");&#13;   bPb =true;&#13;   nVal = 25;&#13;   }&#13;if (bPb == true)   document.forms[0].cLongueur.focus();&#13;document.forms[0].cLongueur.value= nVal;&#13;&#13;&#13;&#13;&#13;&#13;&#13;&#13;' 
+      onmouseover='GEN_Afficher_Aide ("Saisir une valeur entre 0 et 9999.9 mètres, valeur par défaut 25 mètres" , "")' 
+      onfocus="if (! bRAZ) GEN_Initialiser_Res ();" size=8 value=25 
+      name=cLongueur></FONT><FONT face=Arial size=1> </FONT><B><FONT face=Arial 
+      color=#ffff00 size=1>m</FONT></B></TD>
+    <TD width=225 bgColor=#e0e0ff><FONT face=Arial size=1>
+      <P style="MARGIN-LEFT: 20px"></FONT><FONT face=Arial color=#ff0000 
+      size=1><INPUT onfocus=document.forms[0].cUN.focus() size=8 value=0 
+      name=cRX></FONT><FONT face=Arial size=1><O:P></FONT></P></TD></TR>
+  <TR vAlign=top>
+    <TD width=176 bgColor=#8080ff><FONT face=Arial color=#ffff00 
+      size=1>Section</FONT></TD>
+    <TD width=176 bgColor=#8080ff><FONT face=Arial color=#ffff00 
+      size=1>Courant d'emploi</FONT></TD>
+    <TD width=225 bgColor=#8080ff><FONT face=Arial color=#ffff00 
+      size=1>Impédance Zph</FONT></TD></TR>
+  <TR vAlign=top>
+    <TD width=176 bgColor=#bfbfff><FONT face=Arial size=1>
+      <P style="MARGIN-LEFT: 20px"></FONT><FONT face=Arial color=#0000ff 
+      size=1><SELECT 
+      onfocus='if (! bRAZ) GEN_Initialiser_Res ();&#13;GEN_Afficher_Aide ("Saisir une valeur entre 0,19 et 630 mm2, valeur par défaut 2,5 mm2" , "")' 
+      name=cSPh> <OPTION>1.5<OPTION 
+        selected>2.5<OPTION>4<OPTION>6<OPTION>10<OPTION>16<OPTION>25<OPTION>35<OPTION>50<OPTION>70<OPTION>95<OPTION>120<OPTION>150<OPTION>185<OPTION>240<OPTION>300<OPTION>400<OPTION>500<OPTION>630</OPTION></SELECT> 
+      </FONT><FONT face=Arial size=1></FONT><B><FONT face=Arial color=#ffff00 
+      size=1>mm2</FONT></B><FONT face=Arial size=1><O:P></FONT></P></TD>
+    <TD width=176 bgColor=#bfbfff><FONT face=Arial color=#0000ff size=1><INPUT 
+      onblur="sVal =new String(document.forms[0].cIB.value);&#13;sVal = sVal.replace (&quot;,&quot; ,&quot;.&quot;);&#13;nVal = parseFloat (sVal );&#13;var bPb = false;&#13;if ( isNaN(nVal) == false )&#13;   {&#13;    if (nVal > 9999.99) {&#13;         window.alert (&quot;Le courant d'emploi ne peut-être supérieur à 9999.99 A&quot;);&#13;         nVal= 9999.99;&#13;          };&#13;    if (nVal <0.01) {&#13;         window.alert (&quot;Le courant d'emploi ne peut-être inférieur à 0.01 A&quot;);&#13;         nVal= 0.01;&#13;         };&#13;   }&#13;else&#13;  {&#13;   window.alert (&quot;Vous devez saisir une valeur numérique&quot;);&#13;   bPb =true;&#13;   nVal = 10;&#13;   }&#13;if (bPb == true)   document.forms[0].cIB.focus();&#13;document.forms[0].cIB.value= nVal;&#13;&#13;&#13;&#13;&#13;&#13;" 
+      onmouseover='GEN_Afficher_Aide ("Saisir une valeur entre 0.01 et 9999.99 A, valeur par défaut 10 A" , "")' 
+      onfocus="if (! bRAZ) GEN_Initialiser_Res ();" size=8 value=10 
+      name=cIB></FONT><FONT face=Arial color=#ffff00 size=1> </FONT><B><FONT 
+      face=Arial color=#ffff00 size=1>A</FONT></B></TD>
+    <TD width=225 bgColor=#e0e0ff rowSpan=3><FONT face=Arial size=1>
+      <P style="MARGIN-LEFT: 20px"></FONT><FONT face=Arial color=#ff0000 
+      size=1><INPUT onfocus=document.forms[0].cUN.focus() size=8 value=0 
+      name=cZ></FONT><FONT face=Arial size=1> </FONT><B><FONT face=Arial 
+      color=#ff0000 size=1>mOhm</FONT></B><FONT face=Arial 
+      size=1><O:P></FONT></P></TD></TR>
+  <TR vAlign=top>
+    <TD width=176 bgColor=#8080ff><FONT face=Arial color=#ffff00 size=1>Nbre 
+      de conducteurs en //</FONT></TD>
+    <TD width=176 bgColor=#8080ff><FONT face=Arial color=#ffff00 size=1>Cos 
+      Phi</FONT></TD></TR>
+  <TR vAlign=top>
+    <TD width=176 bgColor=#bfbfff><FONT face=Arial size=1>
+      <P style="MARGIN-LEFT: 20px"></FONT><FONT face=Arial color=#0000ff 
+      size=1><SELECT 
+      onfocus='if (! bRAZ) GEN_Initialiser_Res ();&#13;GEN_Afficher_Aide ("Choisissez le nombre de conducteurs de 1 à 9, valeur par défaut 1" , "")' 
+      name=cNbreCond> <OPTION 
+        selected>1<OPTION>2<OPTION>3<OPTION>4<OPTION>5<OPTION>6<OPTION>7<OPTION>8<OPTION>9</OPTION></SELECT> 
+      </FONT><FONT face=Arial size=1><O:P></FONT></P></TD>
+    <TD width=176 bgColor=#bfbfff><FONT face=Arial color=#0000ff size=1><INPUT 
+      onblur='sVal =new String(document.forms[0].cCosPhi.value);&#13;sVal = sVal.replace ("," ,".");&#13;nVal = parseFloat (sVal );&#13;var bPb = false;&#13;if ( isNaN(nVal) == false )&#13;   {&#13;   if (nVal >1)&#13;      {&#13;       window.alert ("CosPhi ne peut pas être supèrieur à 1");&#13;       bPb =true;&#13;       nVal= 1;&#13;      };&#13;   if (nVal <0.2)&#13;     {&#13;       window.alert ("CosPhi ne peut pas être inférieur à 0.2");&#13;       bPb =true;&#13;       nVal= 0.2;&#13;      };&#13;   }&#13;else&#13;  {&#13;   window.alert ("Vous devez saisir une valeur numérique");&#13;   bPb =true;&#13;   nVal = 0.8;&#13;   }&#13;if (bPb == true)   document.forms[0].cCosPhi.focus();&#13;document.forms[0].cCosPhi.value= nVal;&#13;' 
+      onmouseover='GEN_Afficher_Aide ("Saisir une valeur entre 0.2 et 0.8, valeur par défaut 0.8" , "")' 
+      onfocus="if (! bRAZ) GEN_Initialiser_Res ();" size=8 value=0.8 
+      name=cCosPhi></FONT></TD></TR>
+  <TR vAlign=top>
+    <TD width=176 bgColor=#8080ff><FONT face=Arial color=#ffff00 size=1>Type 
+      de Câble</FONT></TD>
+    <TD width=176 bgColor=#8080ff><FONT face=Arial color=#ffff00 size=1>Pose 
+      des conducteurs</FONT></TD>
+    <TD width=225 bgColor=#8080ff><FONT face=Arial color=#ffff00 size=1>Chute 
+      de tension</FONT></TD></TR>
+  <TR vAlign=top>
+    <TD width=176 bgColor=#bfbfff rowSpan=2><FONT face=Arial size=1>
+      <P style="MARGIN-LEFT: 20px"></FONT><FONT face=Arial color=#0000ff 
+      size=1><INPUT 
+      onmouseover='sStatus ="Choisissez le Type de votre câble Multipolaire, Unipolaire, Conducteurs isolés, Valeur par défaut Multipolaire";&#13;GEN_Afficher_Aide (sStatus , "")' 
+      onclick='if (! bRAZ) GEN_Initialiser_Res ();&#13;with(window.document.forms[0])&#13;     {&#13;     for (n=0; n<cCtCable.length; n++) &#13;           {&#13;                if (cCtCable[n].checked == true)&#13;                      {&#13;                        if (cCtCable[n].value == "Multipolaire" ) &#13;                             { &#13;                             cNappeTrefle[0].checked =true;&#13;                              }&#13;                       }   &#13;             }&#13;   &#13;     }' 
+      type=radio CHECKED value=Multipolaire name=cCtCable>Multipolaire<BR><INPUT 
+      onmouseover='sStatus ="Choisissez le Type de votre câble Multipolaire, Unipolaire, Conducteurs isolés, Valeur par défaut Multipolaire";&#13;GEN_Afficher_Aide (sStatus , "")' 
+      onclick='if (! bRAZ) GEN_Initialiser_Res ();&#13;with(window.document.forms[0])&#13;     {&#13;     for (n=0; n<cCtCable.length; n++) &#13;           {&#13;                if (cCtCable[n].checked == true)&#13;                      {&#13;                        if (cCtCable[n].value == "Multipolaire" ) &#13;                             { &#13;                             cNappeTrefle[0].checked =true;&#13;                              }&#13;                       }   &#13;             }&#13;   &#13;     }' 
+      type=radio value=Unipolaire name=cCtCable>Unipolaire<BR><INPUT 
+      onmouseover='sStatus ="Choisissez le Type de votre câble Multipolaire, Unipolaire, Conducteurs isolés, Valeur par défaut Multipolaire";&#13;GEN_Afficher_Aide (sStatus , "")' 
+      onclick='if (! bRAZ) GEN_Initialiser_Res ();&#13;with(window.document.forms[0])&#13;     {&#13;     for (n=0; n<cCtCable.length; n++) &#13;           {&#13;                if (cCtCable[n].checked == true)&#13;                      {&#13;                        if (cCtCable[n].value == "Multipolaire" ) &#13;                             { &#13;                             cNappeTrefle[0].checked =true;&#13;                              }&#13;                       }   &#13;             }&#13;   &#13;     }' 
+      type=radio value=_l8dnmsp3lcdq6atbiecg6isrfdi176_ 
+      name=cCtCable>Conducteurs isolés</FONT><FONT face=Arial 
+      size=1><O:P></FONT></P></TD>
+    <TD width=176 bgColor=#bfbfff rowSpan=2><FONT face=Arial color=#0000ff 
+      size=1><INPUT 
+      onmouseover="sStatus =&quot;Chosissez le type de pose de vos conducteurs, valeur par défaut En trèfle&quot;;&#13;GEN_Afficher_Aide (sStatus , &quot;La valeur Espacé ne peut être choisie que si l'espacement est supérieur à 1 Diamètre&quot;)" 
+      onclick='if (! bRAZ) GEN_Initialiser_Res ();&#13;with(window.document.forms[0])&#13;     { &#13;     for (n=0; n<cCtCable.length; n++) &#13;           {&#13;                if (cCtCable[n].checked == true)&#13;                     {&#13;                      if (cCtCable[n].value == "Multipolaire" ) &#13;                         { &#13;                          window.alert ("Pour un Câble Multipolaire, la pose est En Trèfle.");&#13;                          cNappeTrefle[0].checked =true;&#13;                          document.forms[0].cUN.focus();&#13;                          }&#13;                     }   &#13;             }&#13;      }' 
+      type=radio CHECKED value=_88ln20l3ih9j6op8_ name=cNappeTrefle>En 
+      Trèfle<BR><INPUT 
+      onmouseover="sStatus =&quot;Chosissez le type de pose de vos conducteurs, valeur par défaut En trèfle&quot;;&#13;GEN_Afficher_Aide (sStatus , &quot;La valeur Espacé ne peut être choisie que si l'espacement est supérieur à 1 Diamètre&quot;)" 
+      onclick='if (! bRAZ) GEN_Initialiser_Res ();&#13;with(window.document.forms[0])&#13;     { &#13;     for (n=0; n<cCtCable.length; n++) &#13;           {&#13;                if (cCtCable[n].checked == true)&#13;                     {&#13;                      if (cCtCable[n].value == "Multipolaire" ) &#13;                         { &#13;                          window.alert ("Pour un Câble Multipolaire, la pose est En Trèfle.");&#13;                          cNappeTrefle[0].checked =true;&#13;                          document.forms[0].cUN.focus();&#13;                          }&#13;                     }   &#13;             }&#13;      }' 
+      type=radio value="En Nappe" name=cNappeTrefle>En Nappe<BR><INPUT 
+      onmouseover="sStatus =&quot;Chosissez le type de pose de vos conducteurs, valeur par défaut En trèfle&quot;;&#13;GEN_Afficher_Aide (sStatus , &quot;La valeur Espacé ne peut être choisie que si l'espacement est supérieur à 1 Diamètre&quot;)" 
+      onclick='if (! bRAZ) GEN_Initialiser_Res ();&#13;with(window.document.forms[0])&#13;     { &#13;     for (n=0; n<cCtCable.length; n++) &#13;           {&#13;                if (cCtCable[n].checked == true)&#13;                     {&#13;                      if (cCtCable[n].value == "Multipolaire" ) &#13;                         { &#13;                          window.alert ("Pour un Câble Multipolaire, la pose est En Trèfle.");&#13;                          cNappeTrefle[0].checked =true;&#13;                          document.forms[0].cUN.focus();&#13;                          }&#13;                     }   &#13;             }&#13;      }' 
+      type=radio value=_r8lpn0ob3g8_ name=cNappeTrefle>Espacé</FONT></TD>
+    <TD width=225 bgColor=#8080ff><FONT face=Arial color=#ffff00 
+      size=1>Phase/Phase</FONT></TD></TR>
+  <TR vAlign=top>
+    <TD width=225 bgColor=#e0e0ff><FONT face=Arial size=1>
+      <P style="MARGIN-LEFT: 20px"></FONT><FONT face=Arial color=#ff0000 
+      size=1><INPUT onfocus=document.forms[0].cUN.focus() size=8 value=0 
+      name=cDUAT></FONT><FONT face=Arial size=1> </FONT><B><FONT face=Arial 
+      color=#ff0000 size=1>V</FONT></B><BR><FONT face=Arial color=#ff0000 
+      size=1><INPUT onfocus=document.forms[0].cUN.focus() size=8 value=0 
+      name=cDURT></FONT><FONT face=Arial size=1> </FONT><B><FONT face=Arial 
+      color=#ff0000 size=1>%</FONT></B><FONT face=Arial 
+    size=1><O:P></FONT></P></TD></TR>
+  <TR vAlign=top>
+    <TD width=176 bgColor=#8080ff><FONT face=Arial color=#ffff00 
+      size=1>Isolant principal</FONT></TD>
+    <TD width=176 bgColor=#8080ff><IMG height=1 alt="" 
+      src="Chute-Tension_fichiers/ecblank.gif" width=1 border=0></TD>
+    <TD width=225 bgColor=#8080ff><FONT face=Arial color=#ffff00 
+      size=1>Phase/Neutre</FONT></TD></TR>
+  <TR vAlign=top>
+    <TD width=176 bgColor=#bfbfff><FONT face=Arial size=1>
+      <P style="MARGIN-LEFT: 20px"></FONT><FONT face=Arial color=#0000ff 
+      size=1><INPUT 
+      onmouseover='sStatus ="Choisissez la matière de votre isolant PR-EPR ou PVC, valeur par PR-EPR";&#13;sInfo = "PR-EPR = Polypropylène Réticulé, \nPVC= Polychlorure de vinyle"&#13;GEN_Afficher_Aide (sStatus , sInfo)' 
+      onclick="if (! bRAZ) GEN_Initialiser_Res ();" type=radio CHECKED 
+      value=PR-EPR name=cIsolationPh>PR-EPR <INPUT 
+      onmouseover='sStatus ="Choisissez la matière de votre isolant PR-EPR ou PVC, valeur par PR-EPR";&#13;sInfo = "PR-EPR = Polypropylène Réticulé, \nPVC= Polychlorure de vinyle"&#13;GEN_Afficher_Aide (sStatus , sInfo)' 
+      onclick="if (! bRAZ) GEN_Initialiser_Res ();" type=radio value=PVC 
+      name=cIsolationPh>PVC</FONT><FONT face=Arial size=1><O:P></FONT></P></TD>
+    <TD width=176 bgColor=#bfbfff>
+      <DIV align=center><A 
+      onmouseover='GEN_Afficher_Aide ("","Cliquez pour Affecter les valeurs par défaut")&#13;' 
+      onclick="GEN_Initialiser_Ent ();&#13;if (! bRAZ) GEN_Initialiser_Res ();&#13;&#13;&#13;&#13;&#13;return false;" 
+      href="http://www.elec-planet.com:8080/elecplanet/Calcul.nsf/"><B><FONT 
+      face=Arial color=#ffff00>Valeurs par défaut</FONT></B></A></DIV></TD>
+    <TD width=225 bgColor=#e0e0ff rowSpan=3><FONT face=Arial size=1>
+      <P style="MARGIN-LEFT: 20px"></FONT><FONT face=Arial color=#ff0000 
+      size=1><INPUT onfocus=document.forms[0].cUN.focus() size=8 value=0 
+      name=cDUAM></FONT><B><FONT face=Arial color=#ff0000 size=1> 
+      V</FONT></B><FONT face=Arial size=1><O:P></FONT><BR><FONT face=Arial 
+      size=1>
+      <P style="MARGIN-LEFT: 20px"></FONT><FONT face=Arial color=#ff0000 
+      size=1><INPUT onfocus=document.forms[0].cUN.focus() size=8 value=0 
+      name=cDURM></FONT><FONT face=Arial size=1> </FONT><B><FONT face=Arial 
+      color=#ff0000 size=1>%</FONT></B><FONT face=Arial 
+    size=1><O:P></FONT></P></TD></TR>
+  <TR vAlign=top>
+    <TD width=351 bgColor=#8080ff colSpan=2><FONT face=Arial color=#ffff00 
+      size=1>Chute de tension max utilisateur</FONT></TD></TR>
+  <TR vAlign=top>
+    <TD width=176 bgColor=#bfbfff><FONT face=Arial size=1>
+      <P style="MARGIN-LEFT: 20px"></FONT><FONT face=Arial color=#0000ff 
+      size=1><INPUT 
+      onblur='sVal =new String(document.forms[0].cDuMax.value);&#13;sVal = sVal.replace ("," ,".");&#13;nVal = parseFloat (sVal );&#13;var bPb = false;&#13;if ( isNaN(nVal) == false )&#13;   {&#13;    if (nVal >99.9) {&#13;       window.alert ("La chute de tension ne peut être supèrieure à 99.9 %");&#13;       bPb =true;&#13;       nVal =  99.9;&#13;        };&#13;    if (nVal <0.1) {&#13;        window.alert ("La chute de tension ne peut être inférieure à 0.1 %");&#13;        bPb =true;&#13;        nVal= 0.1;&#13;        };&#13;   }&#13;else&#13;  {&#13;   window.alert ("Vous devez saisir une valeur numérique");&#13;   bPb =true;&#13;   nVal = 5;&#13;   }&#13;if (bPb == true)   document.forms[0].cDuMax.focus();&#13;document.forms[0].cDuMax.value= nVal;&#13;&#13;&#13;&#13;' 
+      onmouseover='GEN_Afficher_Aide ("Saisir une valeur entre 0,1 et 99,9 %, Valeur par défaut 5 %" , "")&#13;' 
+      onfocus="if (! bRAZ) GEN_Initialiser_Res ();" size=8 value=5 
+      name=cDuMax></FONT><FONT face=Arial size=1> </FONT><B><FONT face=Arial 
+      color=#ffff00 size=1>%</FONT></B><FONT face=Arial 
+    size=1><O:P></FONT></P></TD>
+    <TD width=176 bgColor=#bfbfff>
+      <DIV align=center><A 
+      onmouseover='GEN_Afficher_Aide ("", "Cliquez pour mettre à zéro les résultats.")' 
+      onclick="GEN_Initialiser_Res ()&#13;&#13;&#13;&#13;&#13;return false;" 
+      href="http://www.elec-planet.com:8080/elecplanet/Calcul.nsf/"><B><FONT 
+      face=Arial color=#ffff00>Raz</FONT></B></A><B><FONT face=Arial 
+      color=#ffff00> </FONT></B><A 
+      onmouseover="GEN_Afficher_Aide (&quot;&quot;, &quot;Cliquez pour Calculer\nAttention les données d'entrées peuvent être modifiées&quot;)" 
+      onclick="tst =  window.location.href;&#13;position = tst.lastIndexOf(&quot;/&quot;);&#13;url = tst.substring(0,position) + &quot;/ReRoute?openform&quot;;&#13;&#13;if (window.document.forms[0].UserName.value == &quot;Anonymous&quot;)&#13;&#9;window.open(url,target=&quot;cadres_contenu&quot;);&#13;else&#13;{&#13;Section = new Array (19) ;&#13;Ro = new Array (2);&#13;&#13;// Entrées&#13;NatPh = 0.00;&#13;CtCable=0.00;&#13;IsolationPh=0.00;&#13;NappeTrefle =0.00;&#13;Circuit = 0.00;&#13;NbreCond = 0.00;&#13;SPh = 0.00;&#13;UN = 0.00;&#13;DuMax = 0.00 ;&#13;CosPhi = 0.00;    &#13;IB = 0.00;&#13;Longueur = 0.00;&#13;&#13;// Sorties&#13;R = 0.00;&#13;X =0.00;&#13;RX =0.00;&#13;Z=0.00;&#13;DUAT=0.00;&#13;DURT=0.00;&#13;DUAM=0.00;&#13;DURM=0.00;&#13;sInfo =&quot;&quot;;&#13;sInfo1=&quot;&quot;;&#13;sInfo2=&quot;&quot;;&#13;&#13;// VAR CALCUL INTERMEDIAIRES&#13;K =0.00; ST =0.00; DU=0.00;&#13;bFin = false;&#13;MsgDuMax =0;&#13;Res_Util =0.00;&#13;Res_20 =0.00;&#13;XL =0.00;&#13;SPhIndex = 0;&#13;&#13;Section[0]= 1.5;&#13;Section[1]=2.5;&#13;Section[2]= 4;&#13;Section[3]=6;&#13;Section[4]= 10;&#13;Section[5]=16;&#13;Section[6]= 25;&#13;Section[7]=35;&#13;Section[8]= 50;&#13;Section[9]=70;&#13;Section[10]= 95;&#13;Section[11]=120;&#13;Section[12]=150;&#13;Section[13]= 185;&#13;Section[14]=240;&#13;Section[15]= 300;&#13;Section[16]=400;&#13;Section[17]=500;&#13;Section[18]= 630;&#13;&#13;Ro[0] =18.51;&#13;Ro[1]=29.41;&#13;&#13;GEN_Initialiser_Res ();&#13;&#13;with(window.document.forms[0])&#13;     {&#13;      for (n=0; n<cNature.length; n++) &#13;           {&#13;                if (cNature[n].checked == true)&#13;                      {&#13;                          NatPh = n +1;&#13;                       }   &#13;             }&#13;      for (n=0; n<cCtCable.length; n++) &#13;           {&#13;                if (cCtCable[n].checked == true)&#13;                      {&#13;                          CtCable = n +1;&#13;                       }   &#13;             }&#13;      for (n=0; n<cIsolationPh.length; n++) &#13;           {&#13;                if (cIsolationPh[n].checked == true)&#13;                      {&#13;                          IsolationPh = n +1;&#13;                       }   &#13;             }&#13;     if (CtCable != 1)        &#13;           {&#13;           for (n=0; n<cNappeTrefle.length; n++) &#13;                {&#13;                 if (cNappeTrefle[n].checked == true)&#13;                       {&#13;                        NappeTrefle = n +1;&#13;                       }   &#13;                 }&#13;          }&#13;      for (n=0; n<cCircuit.length; n++) &#13;          {&#13;            if (cCircuit.options[n].selected) &#13;                {&#13;                 Circuit = n+1&#13;                }&#13;          }&#13;      for (n=0; n<cNbreCond.length; n++) &#13;          {&#13;            if (cNbreCond.options[n].selected) &#13;                {&#13;                 NbreCond = n+1&#13;                }&#13;          }&#13;      for (n=0; n<cSPh.length; n++) &#13;          {&#13;            if (cSPh.options[n].selected) &#13;                {&#13;                 SPh = Section[n];&#13;                 SPhIndex = n + 1; &#13;                }&#13;          }&#13;      UN = parseFloat (cUN.value);&#13;      DuMax = parseFloat (cDuMax.value);&#13;      CosPhi = parseFloat (cCosPhi.value);    &#13;      IB = parseFloat (cIB.value);&#13;      Longueur = parseFloat (cLongueur.value);&#13;      }&#13;&#13;// GEN_Affecter_Res (NatPh,Circuit,SPh,NbreCond,CtCable,NappeTrefle,IsolationPh,UN,&quot;TestEntrée&quot;)&#13;// initialisation &#13;  K =  (Circuit == 1)  ? 577 : 1000;&#13;  if (UN > K) UN=K;&#13;  &#13;// Début Calcul&#13;do&#13;    {&#13;// Initialisation boucle  &#13;     R = 0.00;X =0.00;RX =0.00;Z=0.00;DUAT=0.00;DURT=0.00;DUAM=0.00;DURM=0.00; ST =0.00; DU=0.00;&#13;&#9;if ( NatPh != 0 &amp;&amp; Longueur != 0  &amp;&amp; SPh !=0  &amp;&amp; UN != 0 &amp;&amp; IB != 0 &amp;&amp; CosPhi != 0) &#13;         {&#13;     &#9;ST = (SPh == 50) ? 47.5 : SPh;&#13;&#9;     Res_20 = Ro[NatPh-1];&#13;          Res_Util = ( IsolationPh == 1 )  ? Res_20 * 1.28 : Res_20 * 1.20 ;&#13;&#9;     R = (Res_Util * Longueur) / (ST * NbreCond) ;&#13;&#9;     if (CtCable == 1)&#13;&#9;         {&#13;      &#9;&#9;XL = 0.08 ;&#13;      &#9;&#9;}&#13;          else&#9;&#13;               {&#13;&#9;&#9;     switch (NappeTrefle)&#13;&#9;&#9;          {&#13;     &#9;&#9;&#9;case 1 : &#13;     &#9;&#9;&#9;      {&#13;                          XL = 0.08;&#13;                          break;&#13;                          }&#13;&#9;     &#9;&#9;case 2 :&#13;&#9;     &#9;&#9;      {&#13;                          XL = 0.09;&#13;                          break;&#13;                          }&#13;&#9;&#9;     &#9;case 3 :&#13;                           { &#13;                           XL = 0.13;&#13;                           break;&#13;                           }&#13;&#9;&#9;          }&#13;               }&#13;&#9;     X = (XL * Longueur) / NbreCond;&#13;      &#9;RX = R / X;&#13;          Z= Math.sqrt(R*R+X*X);&#13;          DUA= IB*((R*CosPhi)+(X*(Math.sqrt(1-CosPhi*CosPhi))))/1000;&#13;&#9;&#9;switch (Circuit)&#13;&#9;         {&#13;     &#9;&#9;case 1 :&#13;                       {&#13;                        DUAM = 2*DUA ;&#13;                        DUAT=0;&#13;&#9;&#9;&#9;&#9;    DURM = DUAM*100/UN;&#13;                        DURT=0;&#13;                        break;&#13;                        }&#13;&#9;     &#9;case 2 : &#13;                        DUAM = 0;&#13;                        DUAT=2*DUA;&#13;&#9;&#9;&#9;&#9;    DURM = 0 ;&#13;                        DURT=DUAT*100/UN;&#13;                        break;&#13;&#9;&#9;     case 3 : &#13;&#9;&#9;              DUAM = 0 ;&#13;                        DUAT=Math.sqrt(3)*DUA;&#13;&#9;&#9;&#9;&#9;    DURM = 0;&#13;                        DURT= DUAT*100/UN;&#13;                        break;&#13;&#9;&#9;     case 4 : &#13;&#9;&#9;              DUAM = DUA;&#13;                        DUAT= Math.sqrt(3)*DUA;&#13;&#9;&#9;&#9;&#9;    DURM = DUAM*100*Math.sqrt(3)/UN;&#13;                        DURT= DUAT*100/UN;&#13;                        break;&#13;&#9;&#9;     case 5 : &#13;                        DUAM = 2*DUA;&#13;                        DUAT=Math.sqrt(3)*DUA;&#13;&#9;&#9;&#9;&#9;    DURM = DUAM*100*Math.sqrt(3)/UN;&#13;                        DURT= DUAT*100/UN;&#13;                        break;&#13;               }&#13;          if ( ( DURM > DuMax  ||  DURT>DuMax ) &amp;&amp; ( NbreCond < 9 ) ) &#13;     &#9;     {&#13;&#9;     &#9;if (SPh<630)&#13;&#9;&#9;         {&#13;&#9;&#9;     &#9;I =0;&#13;&#9;&#9;&#9;     while ( SPh >= Section[I] )  I=I+1;&#13;      &#9;&#9;&#9;SPh=Section[I];  &#13;                    SPhIndex = I + 1; &#13;                    sInfo1 = &quot;Attention: la section du câble a été modifiée.&quot;                        &#13;&#9;     &#9;&#9;}&#13;&#9;&#9;    else&#13;&#9;&#9;          {&#13;&#9;&#9;&#9;     NbreCond=NbreCond+1;&#13;&#9;&#9;&#9;     sInfo2 =&quot;Attention: le nombre de conducteurs a été modifié.&quot;&#13;                    SPh=1.5;&#13;                    SPhIndex = 1;&#13;                    }&#13;           &#9;MsgDuMax=1;&#13;&#9;&#9;     bFin=false;&#13;&#9;&#9;     }&#13;          else&#13;               {&#13;                bFin = true;&#13;               }&#13;          }&#13;     }&#13;while ( bFin == false );&#13;// Fin Calcul&#13;&#13;if (bFin == true )&#13;    {&#13;// Dépassement Limites&#13;      if (DUAT > UN) DUAT=999999;&#13;      if (DUAM > UN) DUAM=999999;&#13;      if (DURM > 100) DURM=99999;&#13;      if (DURT > 100) DURT=99999;&#13;&#13;// Affectation message&#13;      if (DUAT > UN || DUAM > UN || DURM >100 || DURT >100)&#13;      {&#13;&#9;&#9;NbreCond=1;     &#13;&#9;&#9;sInfo= &quot;999999 : Résultats hors domaine !!&quot;;&#13;&#9; }&#13;&#9; else&#13;&#9; {&#13;&#9;      if (MsgDuMax ==1)&#13;&#9;&#9;&#9;sInfo= &quot;Modification des données d'entrée en fonction de la chute de tension Maxi.&quot;;&#13;&#9; }&#13;&#9; sInfo = sInfo + &quot;\n&quot; + sInfo1 + &quot;\n&quot; + sInfo2;&#13;     &#13;      &#13;// Affectation Resultat&#13;      GEN_Affecter_Res (R, X,RX,Z,DUAT,DURT,DUAM,DURM, SPhIndex, NbreCond, sInfo)&#13;      }&#13;else&#13;     {&#13;     GEN_Affecter_Res (0, 0,0,0,0,0,0,0,&quot;Problème Critique&quot;);&#13;      }&#13;}&#13;&#13;return false;" 
+      href="http://www.elec-planet.com:8080/elecplanet/Calcul.nsf/"><B><FONT 
+      face=Arial color=#ffff00>Calculer</FONT></B></A></DIV></TD></TR>
+  <TR vAlign=top>
+    <TD width=576 bgColor=#ffe1b0 colSpan=3>
+      <TABLE cellSpacing=0 cellPadding=0 border=0>
+        <TBODY>
+        <TR vAlign=top>
+          <TD width=19><IMG height=1 alt="" 
+            src="Chute-Tension_fichiers/ecblank.gif" width=1 border=0></TD>
+          <TD width=529><B><I><FONT face=Arial color=#ff0000 size=1><TEXTAREA onfocus=document.forms[0].cUN.focus() name=cInfo rows=3 cols=75></TEXTAREA> 
+            </FONT></I></B></TD></TR></TBODY></TABLE><B><FONT face=Arial 
+      size=1><BR></FONT></B></TD></TR></TBODY></TABLE><INPUT type=hidden 
+value=BEMELINON1 name=UserName></FORM></BODY></HTML>

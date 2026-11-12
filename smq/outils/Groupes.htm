@@ -1,0 +1,310 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0095)http://www.elec-planet.com:8080/elecplanet/Calcul.nsf/eefc2d4fbb7248e5c1256b1800313638?OpenForm -->
+<HTML><HEAD>
+<META http-equiv=Content-Type content="text/html; charset=utf-8">
+<SCRIPT language=JavaScript>
+<!-- 
+var bRAZ = true;
+function GEN_Afficher_Aide (sStatus , sInfo)
+{
+if ( sStatus == "" )
+    { document.forms[0].cInfo.value = sInfo; }
+else
+    { document.forms[0].cInfo.value = sStatus + "\n" + sInfo; }
+}
+
+function GEN_Initialiser_Res ()
+{
+  with (document.forms[0])
+  {
+  cPGM.value=0;
+  cInGM.value =0;
+  cXdGM.value =0;
+  cXoGM.value=0;
+  cXIcc1.value =0;
+  cIcc3BTRAN.value =0;
+  cIcc2BGM.value=0;
+  cIcc1BGM.value =0;
+  bRAZ = true;
+  }
+}
+function GEN_Affecter_Res (PGM,InGM,XdGM,XoGM,XIcc1,Icc3BTRAN,Icc2BGM,Icc1BGM,sInfo)
+{
+  with (document.forms[0])
+  {
+  // valeurs
+  cPGM.value = Math.round(PGM*100)/100;
+  cInGM.value = Math.round(InGM*10)/10;
+  cXdGM.value = Math.round(XdGM*100)/100;
+  cXoGM.value = Math.round(XoGM*100)/100;
+  cXIcc1.value = Math.round(XIcc1*100)/100;
+  cIcc3BTRAN.value = Math.round(Icc3BTRAN*100)/100;
+  cIcc2BGM.value = Math.round(Icc2BGM*100)/100;
+  cIcc1BGM.value = Math.round(Icc1BGM*100)/100;
+  cInfo.value = sInfo;
+  bRAZ= false;
+  }
+}
+function GEN_Initialiser_Ent ()
+{
+  with (document.forms[0])
+  {
+  // valeurs
+  cSGM.value=250;
+  cUNGM.value =400;
+  cCOSGM.value =0.8;
+  cXdrGM.value =30;
+  cXorGM.value =6;
+  }
+}
+
+// -->
+</SCRIPT>
+
+<SCRIPT language=JavaScript>
+<!-- 
+document._domino_target = "_self";
+function _doClick(v, o, t, h) {
+  var form = document._DominoForm;
+  if (form.onsubmit) {
+     var retVal = form.onsubmit();
+     if (typeof retVal == "boolean" && retVal == false)
+       return false;
+  }
+  var target = document._domino_target;
+  if (o.href != null) {
+    if (o.target != null)
+       target = o.target;
+  } else {
+    if (t != null)
+      target = t;
+  }
+  form.target = target;
+  form.__Click.value = v;
+  if (h != null)
+    form.action += h;
+  form.submit();
+  return false;
+}
+// -->
+</SCRIPT>
+
+<META content="MSHTML 6.00.6000.16809" name=GENERATOR></HEAD>
+<BODY text=#000000 bgColor=#ffffff leftMargin=5 topMargin=0>
+<FORM name=_DominoForm 
+action=/elecplanet/Calcul.nsf/eefc2d4fbb7248e5c1256b1800313638?OpenForm&amp;Seq=1 
+method=post><INPUT type=hidden value=0 name=__Click> 
+<TABLE cellSpacing=0 cellPadding=0 border=0>
+  <TBODY>
+  <TR vAlign=top>
+    <TD width=582 bgColor=#8080ff colSpan=3>
+      <DIV align=center><B><FONT face="Times New Roman" color=#ffffff 
+      size=4>Groupe Moteur Thermique Générateur : Impédance et 
+      Icc</FONT></B><B><FONT face="Times New Roman" color=#ffffff size=2> 
+      (Cenelec R064-003)</FONT></B></DIV></TD></TR>
+  <TR vAlign=top>
+    <TD width=271 bgColor=#bfbfff>
+      <DIV align=center><B><I><FONT face=Arial color=#ffff00 
+      size=2>Caractéristiques (Données à saisir)</FONT></I></B></DIV></TD>
+    <TD width=41 bgColor=#bfbfff><IMG height=1 alt="" 
+      src="Groupes_fichiers/ecblank.gif" width=1 border=0></TD>
+    <TD width=271 bgColor=#e0e0ff>
+      <DIV align=center><B><I><FONT face=Arial color=#ff0000 size=2>Résultats du 
+      calcul</FONT></I></B></DIV></TD></TR>
+  <TR vAlign=top>
+    <TD width=271 bgColor=#8080ff><FONT face=Arial color=#ffff00 size=1>S : 
+      Puissance assignée</FONT></TD>
+    <TD width=41 bgColor=#8080ff><IMG height=1 alt="" 
+      src="Groupes_fichiers/ecblank.gif" width=1 border=0></TD>
+    <TD width=271 bgColor=#8080ff><FONT face=Arial color=#ffff00 size=1>P : 
+      Puissance active</FONT></TD></TR>
+  <TR vAlign=top>
+    <TD width=271 bgColor=#bfbfff><FONT face=Arial size=1>
+      <P style="MARGIN-LEFT: 20px"></FONT><FONT face=Arial color=#0000ff 
+      size=1><INPUT 
+      onblur='sVal =new String(document.forms[0].cSGM.value);&#13;sVal = sVal.replace ("," ,".");&#13;nVal = parseFloat (sVal);&#13;var bPb = false;&#13;if ( isNaN(nVal) == false )&#13;   {&#13;    if (nVal > 6300) &#13;       {&#13;        window.alert ("La puissance ne peut être supérieure à 6300 kVA");&#13;        nVal= 6300;&#13;        }&#13;     if (nVal <1)&#13;        {&#13;        window.alert ("La puissance ne peut-être inférieure à 1 kVA");&#13;        nVal= 1;&#13;        }   &#13;    }&#13;else&#13;  {&#13;   window.alert ("Vous devez saisir une valeur numérique");&#13;   bPb =true;&#13;   nVal = 250;&#13;   }&#13;if (bPb == true)   document.forms[0].cSGM.focus();&#13;document.forms[0].cSGM.value= nVal;&#13;' 
+      onmouseover='GEN_Afficher_Aide ("Saisir une valeur entre 1 et 6300 kVA. Valeur par défaut 250" , "")' 
+      onfocus="if (! bRAZ) GEN_Initialiser_Res ();" size=8 value=250 
+      name=cSGM></FONT><B><FONT face=Arial color=#ffff00 size=1> 
+      kVA</FONT></B><FONT face=Arial size=1><O:P></FONT></P></TD>
+    <TD width=41 bgColor=#bfbfff><IMG height=1 alt="" 
+      src="Groupes_fichiers/ecblank.gif" width=1 border=0></TD>
+    <TD width=271 bgColor=#e0e0ff><FONT face=Arial size=1>
+      <P style="MARGIN-LEFT: 20px"></FONT><FONT face=Arial color=#0000ff 
+      size=1><INPUT onfocus=document.forms[0].cSGM.focus() size=8 value=0 
+      name=cPGM></FONT><B><FONT face=Arial color=#ffff00 size=1> 
+      </FONT></B><B><FONT face=Arial color=#ff0000 size=1>kW</FONT></B><FONT 
+      face=Arial size=1><O:P></FONT></P></TD></TR>
+  <TR vAlign=top>
+    <TD width=271 bgColor=#8080ff><FONT face=Arial color=#ffff00 
+      size=1>Tension assignée</FONT></TD>
+    <TD width=41 bgColor=#8080ff><IMG height=1 alt="" 
+      src="Groupes_fichiers/ecblank.gif" width=1 border=0></TD>
+    <TD width=271 bgColor=#8080ff><FONT face=Arial color=#ffff00 
+      size=1>Courant assigné</FONT></TD></TR>
+  <TR vAlign=top>
+    <TD width=271 bgColor=#bfbfff><FONT face=Arial size=1>
+      <P style="MARGIN-LEFT: 20px"></FONT><FONT face=Arial color=#0000ff 
+      size=1><INPUT 
+      onblur='sVal =new String(document.forms[0].cUNGM.value);&#13;sVal = sVal.replace ("," ,".");&#13;nVal = parseFloat (sVal );&#13;var bPb = false;&#13;if ( isNaN(nVal) == false )&#13;   {&#13;    if (nVal > 1000) &#13;       {&#13;        window.alert ("La tension ne peut être supérieure à 1000 V.");&#13;        nVal= 1000;&#13;        }&#13;     if (nVal <50)&#13;        {&#13;        window.alert ("La tension ne peut-être inférieure à 50 V.");&#13;        nVal= 50;&#13;        }   &#13;    }&#13;else&#13;  {&#13;   window.alert ("Vous devez saisir une valeur numérique");&#13;   bPb =true;&#13;   nVal = 400;&#13;   }&#13;if (bPb == true)   document.forms[0].cUNGM.focus();&#13;document.forms[0].cUNGM.value= nVal;&#13;' 
+      onmouseover='GEN_Afficher_Aide ("Saisir une valeur entre 50 et 1000 V, valeur par défaut 400" , "")' 
+      onfocus="if (! bRAZ) GEN_Initialiser_Res ();" size=8 value=400 
+      name=cUNGM></FONT><B><FONT face=Arial color=#ffff00 size=1> 
+      V</FONT></B><FONT face=Arial size=1><O:P></FONT></P></TD>
+    <TD width=41 bgColor=#bfbfff><IMG height=1 alt="" 
+      src="Groupes_fichiers/ecblank.gif" width=1 border=0></TD>
+    <TD width=271 bgColor=#e0e0ff><FONT face=Arial size=1>
+      <P style="MARGIN-LEFT: 20px"></FONT><FONT face=Arial color=#0000ff 
+      size=1><INPUT onfocus=document.forms[0].cSGM.focus() size=8 value=0 
+      name=cInGM></FONT><B><FONT face=Arial color=#ffff00 size=1> 
+      </FONT></B><B><FONT face=Arial color=#ff0000 size=1>A</FONT></B><FONT 
+      face=Arial size=1><O:P></FONT></P></TD></TR>
+  <TR vAlign=top>
+    <TD width=271 bgColor=#8080ff><FONT face=Arial color=#ffff00 
+      size=1>Cosinus phi</FONT></TD>
+    <TD width=41 bgColor=#8080ff><IMG height=1 alt="" 
+      src="Groupes_fichiers/ecblank.gif" width=1 border=0></TD>
+    <TD width=271 bgColor=#8080ff><FONT face=Arial color=#ffff00 
+      size=1>Réactance directe/inverse</FONT></TD></TR>
+  <TR vAlign=top>
+    <TD width=271 bgColor=#bfbfff><FONT face=Arial size=1>
+      <P style="MARGIN-LEFT: 20px"></FONT><FONT face=Arial color=#0000ff 
+      size=1><INPUT 
+      onblur='sVal =new String(document.forms[0].cCOSGM.value);&#13;sVal = sVal.replace ("," ,".");&#13;nVal = parseFloat (sVal );&#13;var bPb = false;&#13;if ( isNaN(nVal) == false )&#13;   {&#13;    if (nVal > 1) &#13;       {&#13;        window.alert ("Le cos phi ne peut être supérieure à 1");&#13;        nVal= 1;&#13;        }&#13;     if (nVal <0.5)&#13;        {&#13;        window.alert ("Le cos phi ne peut-être inférieur à 0.5");&#13;        nVal= 0.5;&#13;        }   &#13;    }&#13;else&#13;  {&#13;   window.alert ("Vous devez saisir une valeur numérique");&#13;   bPb =true;&#13;   nVal = 0.8;&#13;   }&#13;if (bPb == true)   document.forms[0].cCOSGM.focus();&#13;document.forms[0].cCOSGM.value= nVal;&#13;' 
+      onmouseover='GEN_Afficher_Aide ("Saisir une valeur entre 0.5 et 1, valeur par défaut 0.8" , "")' 
+      onfocus="if (! bRAZ) GEN_Initialiser_Res ();" size=8 value=0.8 
+      name=cCOSGM></FONT><B><FONT face=Arial color=#ffff00 size=1> 
+      </FONT></B><FONT face=Arial size=1><O:P></FONT></P></TD>
+    <TD width=41 bgColor=#bfbfff><IMG height=1 alt="" 
+      src="Groupes_fichiers/ecblank.gif" width=1 border=0></TD>
+    <TD width=271 bgColor=#e0e0ff><FONT face=Arial size=1>
+      <P style="MARGIN-LEFT: 20px"></FONT><FONT face=Arial color=#0000ff 
+      size=1><INPUT onfocus=document.forms[0].cXdrGM.focus() size=8 value=0 
+      name=cXdGM></FONT><B><FONT face=Arial color=#ff0000 size=1> 
+      mOhm</FONT></B><FONT face=Arial size=1><O:P></FONT></P></TD></TR>
+  <TR vAlign=top>
+    <TD width=271 bgColor=#8080ff><FONT face=Arial color=#ffff00 
+      size=1>Réactance transitoire directe</FONT></TD>
+    <TD width=41 bgColor=#8080ff><IMG height=1 alt="" 
+      src="Groupes_fichiers/ecblank.gif" width=1 border=0></TD>
+    <TD width=271 bgColor=#8080ff><FONT face=Arial color=#ffff00 
+      size=1>Réactance homopolaire</FONT></TD></TR>
+  <TR vAlign=top>
+    <TD width=271 bgColor=#bfbfff><FONT face=Arial size=1>
+      <P style="MARGIN-LEFT: 20px"></FONT><FONT face=Arial color=#0000ff 
+      size=1><INPUT 
+      onblur='sVal =new String(document.forms[0].cXdrGM.value);&#13;sVal = sVal.replace ("," ,".");&#13;nVal = parseFloat (sVal);&#13;var bPb = false;&#13;if ( isNaN(nVal) == false )&#13;   {&#13;    if (nVal > 40) &#13;       {&#13;        window.alert ("La réactance directe ne peut être supérieure à 40 %");&#13;        nVal= 40;&#13;        }&#13;     if (nVal <10)&#13;        {&#13;        window.alert ("La réactance directe ne peut-être inférieure à 10 %");&#13;        nVal= 10;&#13;        }   &#13;    }&#13;else&#13;  {&#13;   window.alert ("Vous devez saisir une valeur numérique");&#13;   bPb =true;&#13;   nVal = 30;&#13;   }&#13;if (bPb == true)   document.forms[0].cXdrGM.focus();&#13;document.forms[0].cXdrGM.value= nVal;&#13;' 
+      onmouseover='GEN_Afficher_Aide ("Saisir une valeur entre 10 et 40 %, valeur par défaut 30" , "")' 
+      onfocus="if (! bRAZ) GEN_Initialiser_Res ();" size=8 value=30 
+      name=cXdrGM></FONT><B><FONT face=Arial color=#ffff00 size=1> 
+      %</FONT></B><FONT face=Arial size=1><O:P></FONT></P></TD>
+    <TD width=41 bgColor=#bfbfff><IMG height=1 alt="" 
+      src="Groupes_fichiers/ecblank.gif" width=1 border=0></TD>
+    <TD width=271 bgColor=#e0e0ff><FONT face=Arial size=1>
+      <P style="MARGIN-LEFT: 20px"></FONT><FONT face=Arial color=#0000ff 
+      size=1><INPUT onfocus=document.forms[0].cXorGM.focus() size=8 value=0 
+      name=cXoGM></FONT><B><FONT face=Arial color=#ffff00 size=1> 
+      </FONT></B><B><FONT face=Arial color=#ff0000 size=1>mOhm</FONT></B><FONT 
+      face=Arial size=1><O:P></FONT></P></TD></TR>
+  <TR vAlign=top>
+    <TD width=271 bgColor=#8080ff><FONT face=Arial color=#ffff00 
+      size=1>Réactance transitoire homopolaire</FONT></TD>
+    <TD width=41 bgColor=#8080ff><IMG height=1 alt="" 
+      src="Groupes_fichiers/ecblank.gif" width=1 border=0></TD>
+    <TD width=271 bgColor=#8080ff><FONT face=Arial color=#ffff00 
+      size=1>Impédance Icc1 </FONT></TD></TR>
+  <TR vAlign=top>
+    <TD width=271 bgColor=#bfbfff><FONT face=Arial size=1>
+      <P style="MARGIN-LEFT: 20px"></FONT><FONT face=Arial color=#0000ff 
+      size=1><INPUT 
+      onblur='sVal =new String(document.forms[0].cXorGM.value);&#13;sVal = sVal.replace ("," ,".");&#13;nVal = parseFloat (sVal );&#13;var bPb = false;&#13;if ( isNaN(nVal) == false )&#13;   {&#13;    if (nVal > 20) &#13;       {&#13;        window.alert ("La réactance homopolaire ne peut être supérieure à 20 %.");&#13;        nVal= 20;&#13;        }&#13;     if (nVal <2)&#13;        {&#13;        window.alert ("La réactance homopolaire ne peut-être inférieure à 2 %.");&#13;        nVal= 2;&#13;        }   &#13;    }&#13;else&#13;  {&#13;   window.alert ("Vous devez saisir une valeur numérique");&#13;   bPb =true;&#13;   nVal = 6;&#13;   }&#13;if (bPb == true)   document.forms[0].cXorGM.focus();&#13;document.forms[0].cXorGM.value= nVal;&#13;' 
+      onmouseover='GEN_Afficher_Aide ("Saisir une valeur entre 2 et 20 %, valeur par défaut 6" , "")' 
+      onfocus="if (! bRAZ) GEN_Initialiser_Res ();" size=8 value=6 
+      name=cXorGM></FONT><B><FONT face=Arial color=#ffff00 size=1> 
+      %</FONT></B><FONT face=Arial size=1><O:P></FONT></P></TD>
+    <TD width=41 bgColor=#bfbfff><IMG height=1 alt="" 
+      src="Groupes_fichiers/ecblank.gif" width=1 border=0></TD>
+    <TD width=271 bgColor=#e0e0ff><FONT face=Arial size=1>
+      <P style="MARGIN-LEFT: 20px"></FONT><FONT face=Arial color=#0000ff 
+      size=1><INPUT onfocus=document.forms[0].cSGM.focus() size=8 value=0 
+      name=cXIcc1></FONT><B><FONT face=Arial color=#ff0000 size=1> 
+      mOhm</FONT></B><FONT face=Arial size=1><O:P></FONT></P></TD></TR>
+  <TR vAlign=top>
+    <TD width=271 bgColor=#bfbfff><IMG height=1 alt="" 
+      src="Groupes_fichiers/ecblank.gif" width=1 border=0></TD>
+    <TD width=41 bgColor=#bfbfff><IMG height=1 alt="" 
+      src="Groupes_fichiers/ecblank.gif" width=1 border=0></TD>
+    <TD width=271 bgColor=#8080ff><FONT face=Arial color=#ffff00 
+      size=1>Courant Icc3 Bornes</FONT></TD></TR>
+  <TR vAlign=top>
+    <TD width=271 bgColor=#bfbfff><IMG height=1 alt="" 
+      src="Groupes_fichiers/ecblank.gif" width=1 border=0></TD>
+    <TD width=41 bgColor=#bfbfff><IMG height=1 alt="" 
+      src="Groupes_fichiers/ecblank.gif" width=1 border=0></TD>
+    <TD width=271 bgColor=#e0e0ff><FONT face=Arial size=1>
+      <P style="MARGIN-LEFT: 20px"></FONT><FONT face=Arial color=#0000ff 
+      size=1><INPUT onfocus=document.forms[0].cSGM.focus() size=8 value=0 
+      name=cIcc3BTRAN></FONT><B><FONT face=Arial color=#ff0000 size=1> 
+      kA</FONT></B><FONT face=Arial size=1><O:P></FONT></P></TD></TR>
+  <TR vAlign=top>
+    <TD width=271 bgColor=#bfbfff><IMG height=1 alt="" 
+      src="Groupes_fichiers/ecblank.gif" width=1 border=0></TD>
+    <TD width=41 bgColor=#bfbfff><IMG height=1 alt="" 
+      src="Groupes_fichiers/ecblank.gif" width=1 border=0></TD>
+    <TD width=271 bgColor=#8080ff><FONT face=Arial color=#ffff00 
+      size=1>Courant Icc2 Bornes</FONT></TD></TR>
+  <TR vAlign=top>
+    <TD width=271 bgColor=#bfbfff><IMG height=1 alt="" 
+      src="Groupes_fichiers/ecblank.gif" width=1 border=0></TD>
+    <TD width=41 bgColor=#bfbfff><IMG height=1 alt="" 
+      src="Groupes_fichiers/ecblank.gif" width=1 border=0></TD>
+    <TD width=271 bgColor=#e0e0ff><FONT face=Arial size=1>
+      <P style="MARGIN-LEFT: 20px"></FONT><FONT face=Arial color=#0000ff 
+      size=1><INPUT onfocus=document.forms[0].cSGM.focus() size=8 value=0 
+      name=cIcc2BGM></FONT><B><FONT face=Arial color=#ffff00 size=1> 
+      </FONT></B><B><FONT face=Arial color=#ff0000 size=1>kA</FONT></B><FONT 
+      face=Arial size=1><O:P></FONT></P></TD></TR>
+  <TR vAlign=top>
+    <TD width=271 bgColor=#bfbfff><IMG height=1 alt="" 
+      src="Groupes_fichiers/ecblank.gif" width=1 border=0></TD>
+    <TD width=41 bgColor=#bfbfff><IMG height=1 alt="" 
+      src="Groupes_fichiers/ecblank.gif" width=1 border=0></TD>
+    <TD width=271 bgColor=#8080ff><FONT face=Arial color=#ffff00 
+      size=1>Courant Icc1 Bornes</FONT></TD></TR>
+  <TR vAlign=top>
+    <TD width=271 bgColor=#bfbfff><IMG height=1 alt="" 
+      src="Groupes_fichiers/ecblank.gif" width=1 border=0></TD>
+    <TD width=41 bgColor=#bfbfff><IMG height=1 alt="" 
+      src="Groupes_fichiers/ecblank.gif" width=1 border=0></TD>
+    <TD width=271 bgColor=#e0e0ff><FONT face=Arial size=1>
+      <P style="MARGIN-LEFT: 20px"></FONT><FONT face=Arial color=#0000ff 
+      size=1><INPUT onfocus=document.forms[0].cSGM.focus() size=8 value=0 
+      name=cIcc1BGM></FONT><B><FONT face=Arial color=#ffff00 size=1> 
+      </FONT></B><B><FONT face=Arial color=#ff0000 size=1>kA</FONT></B><FONT 
+      face=Arial size=1><O:P></FONT></P></TD></TR>
+  <TR vAlign=top>
+    <TD width=271 bgColor=#bfbfff>
+      <DIV align=center><A 
+      onmouseover='GEN_Afficher_Aide ("","Cliquez pour Affecter les valeurs par défaut")&#13;' 
+      onclick="GEN_Initialiser_Ent ();&#13;if (! bRAZ) GEN_Initialiser_Res ();&#13;&#13;&#13;&#13;&#13;return false;" 
+      href="http://www.elec-planet.com:8080/elecplanet/Calcul.nsf/"><B><FONT 
+      face=Arial color=#ffff00>Valeurs par défaut</FONT></B></A><B><FONT 
+      face=Arial color=#ffff00> </FONT></B></DIV></TD>
+    <TD width=41 bgColor=#bfbfff>
+      <DIV align=center><A 
+      onmouseover='GEN_Afficher_Aide ("", "Cliquez pour mettre à zéro les résultats.")' 
+      onclick="GEN_Initialiser_Res ()&#13;&#13;&#13;&#13;&#13;return false;" 
+      href="http://www.elec-planet.com:8080/elecplanet/Calcul.nsf/"><B><FONT 
+      face=Arial color=#ffff00>Raz</FONT></B></A></DIV></TD>
+    <TD width=271 bgColor=#bfbfff>
+      <DIV align=center><A 
+      onmouseover="GEN_Afficher_Aide (&quot;&quot;, &quot;Cliquez pour Calculer\nAttention les données d'entrées peuvent être modifiées&quot;)" 
+      onclick='tst =  window.location.href;&#13;position = tst.lastIndexOf("/");&#13;url = tst.substring(0,position) + "/ReRoute?openform";&#13;&#13;if (window.document.forms[0].UserName.value == "Anonymous")&#13;&#9;window.open(url,target="cadres_contenu");&#13;else&#13;{&#13;// Entrées&#13;SGM = 0.00;&#13;UNGM=0.00;&#13;COSGM=0.00;&#13;XdrGM=0.00;&#13;XorGM=0.00;&#13;&#13;// Sorties&#13;PGM = 0.00;&#13;InGM =0.00;&#13;XdGM =0.00;&#13;XoGM = 0.00;&#13;XIcc1 =0.00;&#13;&#13;Icc3BTRAN =0.00;&#13;&#13;Icc2BGM = 0.00;&#13;Icc1BGM =0.00;&#13;sInfo ="";&#13;&#13;// VAR CALCUL INTERMEDIAIRES&#13;bFin = true;&#13;&#9;&#13;GEN_Initialiser_Res ();&#13;&#13;with(window.document.forms[0])&#13;     {&#13;      SGM = parseFloat (cSGM.value);&#13;      UNGM = parseFloat (cUNGM.value);    &#13;      COSGM =parseFloat (cCOSGM.value);&#13;      XdrGM = parseFloat (cXdrGM.value);    &#13;      XorGM = parseFloat (cXorGM.value);    &#13;      }&#13;&#13;// Début Calcul&#13;   InGM=1000*SGM/(UNGM*Math.sqrt(3));&#13;   PGM=SGM*COSGM;&#13;   XdGM=(UNGM*UNGM*XdrGM)/(100*SGM);&#13;   XoGM=(UNGM*UNGM*XorGM)/(100*SGM);&#13;   XIcc1=(2*XdGM+XoGM)/3;&#13;   Icc3BTRAN = 1.05*1.05*UNGM/(XdGM*Math.sqrt(3));&#13;   Icc2BGM = 1.05*1.05*UNGM/(2*XdGM);&#13;   Icc1BGM = (1.05*1.05*UNGM*Math.sqrt(3))/(2*XdGM+XoGM);&#13;// Fin Calcul&#13;&#13;if (bFin == true )&#13;    {&#13;// Affectation Resultat&#13;      GEN_Affecter_Res (PGM,InGM,XdGM,XoGM,XIcc1,Icc3BTRAN,Icc2BGM,Icc1BGM,sInfo)&#13;      }&#13;else&#13;     {&#13;     GEN_Affecter_Res (0,0,0, "Problème Critique")&#13;      }&#13;}&#13;return false;' 
+      href="http://www.elec-planet.com:8080/elecplanet/Calcul.nsf/"><B><FONT 
+      face=Arial color=#ffff00>Calculer</FONT></B></A></DIV></TD></TR>
+  <TR vAlign=top>
+    <TD width=582 bgColor=#ffe1b0 colSpan=3><B><I><FONT face=Arial 
+      color=#ff0000 size=1><TEXTAREA onfocus=document.forms[0].cSGM.focus() name=cInfo rows=3 cols=75></TEXTAREA> 
+      </FONT></I></B><BR><B><FONT face=Arial 
+size=1><BR></FONT></B></TD></TR></TBODY></TABLE><BR><INPUT type=hidden 
+value=BEMELINON1 name=UserName></FORM></BODY></HTML>
