@@ -1456,8 +1456,8 @@ const THEMES = [
       { date:'17/06/2024', ref:'Decret 2024-552', type:'Decret', domaine:'Elec', statut:'JO 18/06/2024', application:'19/12/2024',
         desc:'Risque electrique travaux non electriques a proximite ouvrages. Evaluation risques, distances securite, travail hors tension.',
         action:'INFO — PAS D\'IMPACT — concerne donneurs d\'ordres, pas les verificateurs' },
-      { date:'28/06/2024', ref:'Arrete du 28/06/2024', type:'Arrete', domaine:'Incendie', statut:'JO 03/07/2024', application:'Immediate',
-        desc:'Communications radioelectriques ERP. Alimentation continuite radio renforcee, art. EL 12, autonomie 4h.',
+      { date:'28/06/2024', ref:'Arrete du 28/06/2024', type:'Arrete', domaine:'Elec/Incendie', statut:'JO 03/07/2024', application:'Immediate',
+        desc:'Communications radioelectriques ERP (continuite de la radio des secours). Modifie EL 3, MS 71, PS 20, PS 29 et l\'IT 250.',
         action:'INFO IMPORTANTE — impact verif. ERP art. EL 12' },
       { date:'05/07/2024', ref:'Arretes du 05/07/2024 (x2)', type:'Arrete', domaine:'Elec', statut:'JO 06/07/2024', application:'Immediate',
         desc:'1) Distances securite travaux non electriques. 2) MAJ NF C 18-510 operations sur installations electriques.',
@@ -2214,7 +2214,7 @@ const RENDERS = {
     var rappel = '';
     const vActions = JSON.parse(localStorage.getItem('smq_veille_actions') || '{}');
     function mkRows(list) {
-      var domColors = {Elec:'#2563eb','Elec/Levage':'#7c3aed',Incendie:'#dc2626',Gaz:'#ea580c','Gaz/Incendie':'#ea580c',Levage:'#0891b2','Elec/Gaz/Incendie':'#9333ea',Portes:'#0d9488',Tous:'#64748b'};
+      var domColors = {Elec:'#2563eb','Elec/Levage':'#7c3aed',Incendie:'#dc2626',Gaz:'#ea580c','Gaz/Incendie':'#ea580c','Elec/Incendie':'#9333ea',Levage:'#0891b2','Elec/Gaz/Incendie':'#9333ea',Portes:'#0d9488',Tous:'#64748b'};
       return list.map(function(v) {
         var color = v.type === 'Norme' ? '#2563eb' : v.type === 'Arrete' ? '#dc2626' : v.type === 'Recommandation' ? '#059669' : '#64748b';
         var dColor = domColors[v.domaine] || '#64748b';
