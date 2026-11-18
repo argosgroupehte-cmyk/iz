@@ -1171,6 +1171,13 @@ function calculer() { try {
     return;
   }
 
+  // Tolérance de 5 % sur Iz (NF C 15-100-1 §523.1.2, Tableau 52.8F note c, Tableau 52.8H.2)
+  if (['72','73'].includes(String(m.mode))) {
+    obs.push('TOLÉRANCE 5 % NON APPLICABLE : mode de pose ' + m.mode + ' (Tableau 52.8H.2, câbles enterrés). Iz du tableau à respecter strictement (§523.1.2).');
+  } else if (['31','32','34','35'].includes(String(m.mode))) {
+    obs.push('TOLÉRANCE 5 % : NON APPLICABLE si les câbles monoconducteurs sont posés en nappe (mode ' + m.mode + ', Tableau 52.8F, note c, §523.1.2). Admise en trèfle et pour les câbles multiconducteurs.');
+  }
+
   // Note par défaut si aucun facteur particulier n'a été modifié
   if (cGroupe === 0.8 && !soleil && !be3 && nbCond !== 4) {
     obs.push('---');
