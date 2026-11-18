@@ -204,14 +204,14 @@ body{font-family:Segoe UI,Tahoma,sans-serif;background:#f4f6f8;color:#1a1a2e;pad
         <option value="4">Chemin câble plein fermé (n°14 — B1)</option>
         <option value="5">Sans fixation (n°20, 41, 72)</option>
         <option value="6">Fixation directe (n°20 — C)</option>
-        <option value="7" selected>Sous conduit (n°3 — B1)</option>
-        <option value="8">Goulottes (n°14 — B1/B2)</option>
+        <option value="7" selected>Sous conduit (n°4 B1 / n°5 B2 multi)</option>
+        <option value="8">Goulottes (n°6 B1 / n°8 B2 multi)</option>
         <option value="9">Plinthe rainurée (n°12 — A1)</option>
-        <option value="10">Conduit profilé (n°4 — B1)</option>
+        <option value="10">Conduit profilé (n°6 B1 / n°8 B2 multi)</option>
         <option value="11">Échelles (n°34 — E/F)</option>
         <option value="12">Corbeaux / Treillis soudés (n°32 — E/F)</option>
         <option value="13">Isolateurs (n°36 — G)</option>
-        <option value="14">Câbles porteurs (n°38 — E/F)</option>
+        <option value="14">Câbles porteurs (n°35 — E/F)</option>
         <option value="15">Colliers (n°20 — C)</option>
         <option value="16">Moulures (n°12 — A1)</option>
       </select>
@@ -254,10 +254,16 @@ body{font-family:Segoe UI,Tahoma,sans-serif;background:#f4f6f8;color:#1a1a2e;pad
 
     <div class="field">
       <label>Local BE3 (explosion)</label>
-      <div class="radio-group">
-        <label><input type="radio" name="cBE3" value="1"> Oui</label>
-        <label><input type="radio" name="cBE3" value="0" checked> Non</label>
-      </div>
+      <select id="cBE3" title="NF C 15-100-1:2024 §424.4, Tableau 42.3 : réduction selon la température d'auto-inflammation">
+        <option value="0" selected>Non (hors BE3)</option>
+        <option value="g1">BE3 gaz/vapeur, T auto-inflammation &gt; 100 °C : 0 %</option>
+        <option value="g2">BE3 gaz/vapeur, T auto-inflammation &lt; 100 °C : -15 %</option>
+        <option value="n1">BE3 poussières en nuage, T &gt; 150 °C : 0 %</option>
+        <option value="n2">BE3 poussières en nuage, T &lt; 150 °C : -15 %</option>
+        <option value="c1">BE3 poussières en couche, T &gt; 175 °C : 0 %</option>
+        <option value="c2">BE3 poussières en couche, T &lt; 175 °C : -15 %</option>
+        <option value="x">BE3, T auto-inflammation inconnue : -15 % (prudence)</option>
+      </select>
     </div>
 
     <div class="field">
@@ -324,12 +330,15 @@ body{font-family:Segoe UI,Tahoma,sans-serif;background:#f4f6f8;color:#1a1a2e;pad
       </select>
     </div>
 
-    <div class="field">
-      <label>Harmoniques rang 3 (&gt;15%)</label>
-      <div class="radio-group">
-        <label><input type="radio" name="cH3" value="0" checked> Non</label>
-        <label><input type="radio" name="cH3" value="1"> Oui (x0.86)</label>
-      </div>
+    <div class="field" id="fieldTH3">
+      <label>Harmoniques rang 3 (TH3) <span class="field-na">(N/A hors 4 cond.)</span></label>
+      <select id="cTH3" title="NF C 15-100-1:2024 §523.6.3 et Tableau 52.20">
+        <option value="inc" selected>TH3 non défini : IB/0,86 (x0.86)</option>
+        <option value="1">TH3 ≤ 15 % : cas 1 (x1)</option>
+        <option value="2">15 % &lt; TH3 ≤ 33 % : cas 2 (x0.86)</option>
+        <option value="3">33 % &lt; TH3 ≤ 45 % : cas 3 (x0.86, IB neutre)</option>
+        <option value="4">TH3 &gt; 45 % : cas 4 (IB neutre)</option>
+      </select>
     </div>
 
     <div class="field" id="fieldSoleil">
@@ -356,7 +365,7 @@ body{font-family:Segoe UI,Tahoma,sans-serif;background:#f4f6f8;color:#1a1a2e;pad
     <!-- RÉSULTATS -->
     <div class="result-box" id="resultBox" role="region" aria-live="polite" aria-label="Resultats du calcul">
       <h2 style="color:#c62828;border-color:#ef9a9a">Résultats du calcul</h2>
-      <div class="result-formula">Izc = Iz × K (K = K52E × Ctemp × Cgrp × Cprot × Cequil × CBE3 × Csp × Ch3 × Csol × Crhosol)</div>
+      <div class="result-formula">Izc = Iz × K (K = K52E × Ctemp × Cgrp × Cprot × Cn × CBE3 × Csp × Csol × Crhosol)</div>
 
       <div class="result-row">
         <label for="rIz">Iz (courant admissible)</label>
@@ -457,18 +466,18 @@ const IZ = {
         3: [13.5,18,24,31,42,56,73,89,108,136,164,188,216,245,286,328]
       },
       pr: {
-        2: [19,26,35,45,60,80,106,131,158,200,241,278,318,362,424,486],
+        2: [19,26,35,45,61,81,106,131,158,200,241,278,318,362,424,486],
         3: [17,23,31,40,54,73,95,117,141,179,216,249,285,324,380,435]
       }
     },
     al: {
       pvc: {
-        2: [0,15,20,26,36,47,62,77,93,118,142,164,189,215,252,289],
-        3: [0,14,18.5,24,32,43,57,70,84,107,129,149,170,194,227,261]
+        2: [0,0,0,0,36,48,63,77,93,118,142,164,189,215,252,289],
+        3: [0,0,0,0,32,43,57,70,84,107,129,149,170,194,227,261]
       },
       pr: {
-        2: [0,20,27,35,46,61,81,100,121,153,184,213,244,278,326,373],
-        3: [0,18,24,31,42,56,73,90,109,138,167,192,220,251,294,337]
+        2: [0,0,0,0,48,64,84,103,125,158,191,220,253,288,338,387],
+        3: [0,0,0,0,44,58,76,94,113,142,171,197,226,256,300,344]
       }
     }
   },
@@ -482,18 +491,18 @@ const IZ = {
         3: [13,17.5,23,29,39,52,68,83,99,125,150,172,196,223,261,298]
       },
       pr: {
-        2: [18.5,25,33,42,56,74,97,120,144,183,220,253,290,329,386,442],
-        3: [16.5,22,30,38,51,68,89,110,132,167,202,232,265,300,351,401]
+        2: [18.5,25,33,42,57,76,99,121,145,183,220,253,290,329,386,442],
+        3: [16.5,22,30,38,51,68,89,109,130,164,197,227,259,295,346,396]
       }
     },
     al: {
       pvc: {
-        2: [0,14.5,19.5,25,33,44,58,71,86,108,130,150,172,195,229,263],
-        3: [0,13.5,17.5,22.5,30.5,41,53,65,78,99,118,136,155,176,207,237]
+        2: [0,0,0,0,33,44,58,71,86,108,130,150,172,195,229,263],
+        3: [0,0,0,0,31,41,53,65,78,98,118,135,155,176,207,237]
       },
       pr: {
-        2: [0,19.5,26,33,44,58,76,94,113,142,171,197,226,256,300,344],
-        3: [0,17,23,29,39,53,69,85,103,130,157,181,207,234,275,314]
+        2: [0,0,0,0,45,60,78,96,115,145,175,201,230,262,307,352],
+        3: [0,0,0,0,41,55,71,87,104,131,157,180,206,233,273,313]
       }
     }
   },
@@ -504,21 +513,21 @@ const IZ = {
     cu: {
       pvc: {
         2: [17.5,24,32,41,57,76,101,125,151,192,232,269,300,341,400,458],
-        3: [15.5,21,28,36,50,66,84,104,125,160,194,225,260,297,350,404]
+        3: [15.5,21,28,36,50,68,89,110,134,171,207,239,262,296,346,394]
       },
       pr: {
         2: [23,31,42,54,75,100,133,164,198,253,306,354,393,449,528,603],
-        3: [19.5,27,36,46,63,85,112,138,168,213,258,299,341,389,457,523]
+        3: [20,28,37,48,66,88,117,144,175,222,269,312,342,384,450,514]
       }
     },
     al: {
       pvc: {
-        2: [0,18.5,25,32,44,59,78,97,118,150,181,210,240,273,321,368],
-        3: [0,16.5,22,28,39,52,67,83,100,127,153,178,205,233,274,315]
+        2: [0,0,0,0,44,60,79,97,118,150,181,210,234,266,312,358],
+        3: [0,0,0,0,39,53,70,86,104,133,161,186,204,230,269,306]
       },
       pr: {
-        2: [0,24,32,42,58,77,102,127,154,196,237,275,314,358,420,481],
-        3: [0,21,28,36,49,66,87,107,130,165,200,232,265,303,356,407]
+        2: [0,0,0,0,59,79,105,130,157,200,242,281,307,351,412,471],
+        3: [0,0,0,0,52,71,93,116,140,179,217,251,267,300,351,402]
       }
     }
   },
@@ -528,22 +537,22 @@ const IZ = {
   B2: {
     cu: {
       pvc: {
-        2: [16.5,22,30,38,52,69,90,111,133,168,201,232,258,294,344,394],
-        3: [15,20,27,34,46,62,80,99,118,149,179,206,236,268,313,358]
+        2: [16.5,23,30,38,52,69,90,111,133,168,201,232,258,294,344,394],
+        3: [15,20,27,34,46,62,80,99,118,149,179,206,225,255,297,339]
       },
       pr: {
-        2: [22,30,40,51,69,91,119,146,175,222,269,312,355,405,477,545],
-        3: [19.5,26,35,44,60,80,105,128,155,197,239,276,319,364,430,494]
+        2: [22,30,40,51,69,91,119,146,175,221,265,305,334,384,459,532],
+        3: [19.5,26,35,44,60,80,105,128,154,194,233,268,300,340,398,455]
       }
     },
     al: {
       pvc: {
-        2: [0,17,23,29,40,53,70,86,104,131,157,181,207,237,276,316],
-        3: [0,15.5,21,27,36,48,62,77,93,118,142,164,189,214,252,289]
+        2: [0,0,0,0,41,54,71,86,104,131,157,181,201,230,269,308],
+        3: [0,0,0,0,36,48,62,77,92,116,139,160,176,199,232,265]
       },
       pr: {
-        2: [0,23,31,39,54,70,92,113,136,173,210,242,277,316,371,425],
-        3: [0,20,27,34,46,62,81,100,121,154,186,214,248,283,335,384]
+        2: [0,0,0,0,54,72,94,115,138,175,210,242,261,300,358,415],
+        3: [0,0,0,0,48,64,84,103,124,156,188,216,240,272,318,364]
       }
     }
   },
@@ -563,18 +572,18 @@ const IZ = {
     },
     al: {
       pvc: {
-        2: [0,21,28,36,49,66,83,103,125,160,195,226,261,298,352,406],
-        3: [0,18.5,25,32,44,59,73,90,110,140,170,197,227,259,305,351]
+        2: [0,0,0,0,49,66,83,103,125,160,195,226,261,298,352,406],
+        3: [0,0,0,0,44,59,73,90,110,140,170,197,227,259,305,351]
       },
       pr: {
-        2: [0,26,35,45,62,84,107,135,164,211,257,300,346,397,470,543],
-        3: [0,23,31,40,55,73,90,112,136,174,211,245,283,323,382,440]
+        2: [0,0,0,0,62,84,101,126,154,198,241,280,324,371,439,508],
+        3: [0,0,0,0,57,76,90,112,136,174,211,245,283,323,382,440]
       }
     }
   },
 
   // Tableau 52.8F — Méthode de référence E (câbles multiconducteurs à l'air libre)
-  // Modes : 31, 32, 34, 38
+  // Modes : 31, 32, 34, 35
   E: {
     cu: {
       pvc: {
@@ -582,43 +591,43 @@ const IZ = {
         3: [18.5,25,34,43,60,80,101,126,153,196,238,276,319,364,430,497]
       },
       pr: {
-        2: [28,38,52,67,91,122,161,200,242,310,377,437,504,575,679,783],
-        3: [23,32,42,54,75,100,127,158,192,246,298,346,395,450,538,621]
+        2: [26,36,49,63,86,115,149,185,225,289,352,410,473,542,641,741],
+        3: [23,32,42,54,75,100,127,158,192,246,298,346,399,456,538,621]
       }
     },
     al: {
       pvc: {
-        2: [0,23,31,40,54,73,93,115,140,181,220,256,296,339,401,463],
-        3: [0,19.5,26,34,46,62,79,98,120,154,186,216,251,285,337,390]
+        2: [0,0,0,0,54,73,89,111,135,173,210,244,282,322,380,439],
+        3: [0,0,0,0,46,61,78,96,117,150,183,212,245,280,330,381]
       },
       pr: {
-        2: [0,29,40,52,70,94,125,155,188,240,292,340,393,449,530,612],
-        3: [0,24,33,42,58,77,99,122,149,192,232,270,308,352,420,485]
+        2: [0,0,0,0,67,91,108,135,164,211,257,300,346,397,470,543],
+        3: [0,0,0,0,58,77,97,120,146,187,227,263,304,347,409,471]
       }
     }
   },
 
   // Tableau 52.8F — Méthode de référence F (câbles monoconducteurs à l'air libre, en trèfle)
-  // Modes : 31, 32, 34, 38
+  // Modes : 31, 32, 34, 35 — colonnes 2 conducteurs et 3 conducteurs en trèfle (nappe non codée)
   F: {
     cu: {
       pvc: {
-        2: [22,30,40,51,70,94,121,150,184,237,289,337,389,447,530,613],
-        3: [18.5,25,34,43,60,80,103,128,156,199,241,280,324,371,439,508]
+        2: [23,31,42,54,75,100,131,162,196,251,304,352,406,463,546,629],
+        3: [19.5,27,36,46,63,85,110,137,167,216,264,308,356,409,485,561]
       },
       pr: {
-        2: [28,38,52,67,91,122,161,200,244,314,383,447,515,594,704,815],
-        3: [24,33,45,58,79,105,140,174,213,274,334,390,451,519,616,714]
+        2: [0,0,0,0,0,0,161,200,242,310,377,437,504,575,679,783],
+        3: [24,33,45,58,80,107,135,169,207,268,328,383,444,510,607,703]
       }
     },
     al: {
       pvc: {
-        2: [0,23,31,39,54,73,94,117,144,185,224,261,303,347,411,476],
-        3: [0,19.5,26,33,46,61,78,97,120,154,186,216,250,287,340,394]
+        2: [0,0,0,0,58,77,97,120,146,187,227,263,304,347,409,471],
+        3: [0,0,0,0,49,66,84,105,128,166,203,237,274,315,375,434]
       },
       pr: {
-        2: [0,29,40,52,71,94,125,154,189,243,296,345,399,459,543,629],
-        3: [0,24,33,45,61,81,106,131,162,208,254,297,343,396,470,545]
+        2: [0,0,0,0,0,0,121,150,184,237,289,337,389,447,530,613],
+        3: [0,0,0,0,62,84,103,129,159,206,253,296,343,395,471,547]
       }
     }
   },
@@ -653,22 +662,22 @@ const IZ = {
   D1: {
     cu: {
       pvc: {
-        2: [22,29,37,46,60,77,97,114,135,165,192,216,240,264,300,332],
-        3: [18,24,30,37,48,62,78,92,108,132,154,174,192,212,240,266]
+        2: [22,29,37,46,60,78,99,119,140,173,204,231,261,292,336,379],
+        3: [18,24,30,38,50,64,82,98,116,143,169,192,217,243,280,316]
       },
       pr: {
-        2: [26,34,44,56,73,95,121,146,173,213,252,287,324,363,419,474],
-        3: [22,29,37,46,60,78,99,119,140,174,203,231,261,293,338,382]
+        2: [25,33,43,53,71,91,116,139,164,203,239,271,306,343,395,446],
+        3: [21,28,36,44,58,75,96,115,135,167,197,223,251,281,324,365]
       }
     },
     al: {
       pvc: {
-        2: [0,22,29,36,46,60,75,88,105,128,150,169,188,207,235,261],
-        3: [0,18.5,24,29,37,48,61,72,84,103,120,136,150,166,189,210]
+        2: [0,0,0,0,47,61,77,93,109,135,159,180,204,228,262,296],
+        3: [0,0,0,0,39,50,64,77,91,112,132,150,169,190,218,247]
       },
       pr: {
-        2: [0,27,34,43,57,74,94,114,135,166,196,224,252,284,327,370],
-        3: [0,22,29,36,47,61,77,93,110,136,159,181,204,230,266,300]
+        2: [0,0,0,0,55,71,90,108,128,158,186,211,238,267,307,346],
+        3: [0,0,0,0,46,59,75,90,106,130,154,174,197,220,253,286]
       }
     }
   },
@@ -678,22 +687,22 @@ const IZ = {
   D2: {
     cu: {
       pvc: {
-        2: [25,34,44,56,74,96,123,147,174,216,256,290,328,367,424,480],
-        3: [22,29,37,46,61,79,101,122,144,178,211,240,271,304,351,396]
+        2: [22,28,38,48,64,83,110,132,156,192,230,261,293,331,382,427],
+        3: [19,24,33,41,54,70,92,110,130,162,193,220,246,278,320,359]
       },
       pr: {
-        2: [33,44,57,73,98,129,164,197,234,289,342,388,440,494,572,649],
-        3: [29,38,49,63,83,110,140,169,200,248,293,333,377,423,490,555]
+        2: [27,35,46,58,77,100,129,155,183,225,270,306,343,387,448,502],
+        3: [23,30,39,49,65,84,107,129,153,188,226,257,287,324,375,419]
       }
     },
     al: {
       pvc: {
-        2: [0,26,34,43,57,74,95,113,134,167,197,224,254,284,328,371],
-        3: [0,22,29,36,47,61,78,94,112,139,164,186,210,236,272,308]
+        2: [0,0,0,0,0,63,82,98,117,145,173,200,224,255,298,336],
+        3: [0,0,0,0,0,53,69,83,99,122,148,169,189,214,250,282]
       },
       pr: {
-        2: [0,34,44,57,75,98,125,150,179,221,261,297,336,378,437,497],
-        3: [0,29,38,49,64,84,107,129,153,190,224,255,288,324,376,426]
+        2: [0,0,0,0,0,76,98,117,139,170,204,233,261,296,343,386],
+        3: [0,0,0,0,0,64,82,98,117,144,172,197,220,250,290,326]
       }
     }
   }
@@ -779,12 +788,12 @@ function determinerMethode(mdp, sit, cable) {
   }
   // Sous conduit
   if (mdp === 7) {
-    if (sit === 1) return { mode:'3', methode:'B1', k52e:1 };
+    if (sit === 1) return isMulti ? { mode:'5', methode:'B2', k52e:1 } : { mode:'4', methode:'B1', k52e:1 }; // Tab. 52.8D mode 5 (multi) / 52.8C mode 4
     if (sit === 2) return { mode:'41', methode:'B1', k52e:1 };
     if (sit === 3) return { mode:'42', methode:'B1', k52e:1 };
     if (sit === 4) return { mode:'70', methode:'D1', k52e:1 };
     if (sit === 5) return { mode:'41', methode:'B2', k52e:1 };
-    if (sit === 6) return { mode:'3', methode:'B1', k52e:1 };
+    if (sit === 6) return isMulti ? { mode:'5', methode:'B2', k52e:1 } : { mode:'4', methode:'B1', k52e:1 };
     if ([7,8].includes(sit)) return { mode:'47', methode:'B1', k52e:1 };
     if (sit === 9) {
       if (isIsole) return { mode:'1', methode:'A1', k52e:1 };
@@ -794,9 +803,11 @@ function determinerMethode(mdp, sit, cable) {
   }
   // Goulottes
   if (mdp === 8) {
-    if ([1,2,3,6].includes(sit)) return { mode:'14', methode:'B1', k52e:1 };
+    // Goulottes horizontales : mode 8 B2 (multi) / mode 6 B1 (mono, isolés) ; suspendues : mode 11 B2 / mode 10 B1
+    if ([1,6].includes(sit)) return isMulti ? { mode:'8', methode:'B2', k52e:1 } : { mode:'6', methode:'B1', k52e:1 };
+    if ([2,3].includes(sit)) return { mode:'14', methode:'B1', k52e:1 };
     if (sit === 10) return { mode:'14', methode:'B1', k52e:1 };
-    if (sit === 11) return { mode:'14', methode:'B1', k52e:1 };
+    if (sit === 11) return isMulti ? { mode:'11', methode:'B2', k52e:1 } : { mode:'10', methode:'B1', k52e:1 };
   }
   // Plinthe rainurée
   if (mdp === 9) {
@@ -804,12 +815,12 @@ function determinerMethode(mdp, sit, cable) {
   }
   // Conduit profilé
   if (mdp === 10) {
-    if (sit === 1) return { mode:'4', methode:'B1', k52e:1 };
+    if (sit === 1) return isMulti ? { mode:'8', methode:'B2', k52e:1 } : { mode:'6', methode:'B1', k52e:1 }; // conduit-profilé apparent = goulotte (52.8C mode 6 / 52.8D mode 8)
     if (sit === 2) return { mode:'41', methode:'B1', k52e:1 };
     if (sit === 3) return { mode:'42', methode:'B1', k52e:1 };
     if (sit === 4) return { mode:'70', methode:'D1', k52e:1 };
     if (sit === 5) return { mode:'43', methode:'B2', k52e:1 };
-    if (sit === 6) return { mode:'4', methode:'B1', k52e:1 };
+    if (sit === 6) return isMulti ? { mode:'8', methode:'B2', k52e:1 } : { mode:'6', methode:'B1', k52e:1 };
     if (sit === 9) {
       if (isIsole) return { mode:'1', methode:'A1', k52e:1 };
       return { mode:'2', methode:'A2', k52e:1 };
@@ -834,7 +845,7 @@ function determinerMethode(mdp, sit, cable) {
   }
   // Câbles porteurs
   if (mdp === 14 && !isIsole) {
-    if ([1,11].includes(sit)) return { mode:'38', methode:EouF, k52e:1 };
+    if ([1,11].includes(sit)) return { mode:'35', methode:EouF, k52e:1 };
   }
   // Colliers
   if (mdp === 15 && !isIsole) {
@@ -855,10 +866,9 @@ function determinerMethode(mdp, sit, cable) {
 // ═══════════════════════════════════════════════════════════════════════════════
 
 const FACTORS = {
-  BE3: 0.85,            // §422.6 — Atmosphère explosive
-  H3: 0.86,             // §523.6 — Harmoniques rang 3 > 15%
+  BE3: 0.85,            // §424.4 et Tableau 42.3 — BE3 : -15 % seulement si T auto-inflammation basse
+  NEUTRE: 0.86,         // §523.6.3 et Tableau 52.20 — neutre chargé (facteur unique ; le 0,84 de la NF C 15-100:2002 n'existe plus)
   SOLAIRE: 0.85,        // §52.1.3.3 — Rayonnement solaire direct (E/F/G)
-  EQUILIBRE: 0.84,      // §523.7 — 4 conducteurs chargés
   PLAFOND: 0.95         // §52.1.4 — Fixation directe sous plafond
 };
 
@@ -950,6 +960,8 @@ function updateFieldsState() {
   document.getElementById('fieldSoleil').classList.toggle('disabled-field', !isEFG);
   document.getElementById('fieldRhoSol').classList.toggle('disabled-field', !isD);
   document.getElementById('fieldSP').classList.toggle('disabled-field', !isDirectApparent);
+  const nbC = document.querySelector('input[name="cNbCond"]:checked');
+  document.getElementById('fieldTH3').classList.toggle('disabled-field', !nbC || nbC.value !== '4');
 }
 
 // ═══════════════════════════════════════════════════════════════════════════════
@@ -967,7 +979,8 @@ function calculer() { try {
   const mdp = parseInt(document.getElementById('cMdP').value);
   const sit = parseInt(document.getElementById('cSit').value);
   const sousPlafond = document.querySelector('input[name="cSP"]:checked').value === '1';
-  const be3 = document.querySelector('input[name="cBE3"]:checked').value === '1';
+  const be3Val = document.getElementById('cBE3').value;
+  const be3 = be3Val !== '0';
   const tempIdx = document.getElementById('cTemp').selectedIndex;
   const temp = TEMP_AIR[tempIdx];
   const prot = parseInt(document.getElementById('cProt').value);
@@ -977,7 +990,8 @@ function calculer() { try {
   // Trace des étapes réelles du calcul (affichée dans le bloc Méthode, jamais stockée)
   const T = { sph, isol, nbCond, cable, nat, mdp, sit, sousPlafond, be3, temp, prot,
     groupeSaisi: document.getElementById('cGroupe').value };
-  T.h3 = document.querySelector('input[name="cH3"]:checked').value === '1';
+  T.th3 = document.getElementById('cTH3').value;
+  T.be3Val = be3Val;
   T.soleil = document.querySelector('input[name="cSoleil"]:checked').value === '1';
   T.rhoVal = document.getElementById('cRhoSol').value;
 
@@ -1028,15 +1042,43 @@ function calculer() { try {
   }
   T.isEnterre = isEnterre; T.Ctemp = Ctemp;
 
-  // Facteur équilibre (4 conducteurs chargés)
-  const Cequil = nbCond === 4 ? FACTORS.EQUILIBRE : 1;
-  if (nbCond === 4) obs.push('Circuit 4 conducteurs chargés : facteur ' + FACTORS.EQUILIBRE + ' appliqué (§523.7).');
+  // Facteur neutre chargé Cn (f3) — §523.6.3 et Tableau 52.20 NF C 15-100-1:2024
+  // (FD C 15-105:2026 §7.3.1 et Tableau 5). Un seul facteur 0,86 : pas de cumul avec un facteur harmoniques.
+  // L'ancien facteur 0,84 (NF C 15-100:2002) n'existe plus.
+  const th3 = T.th3;
+  const isMono = cable !== 'multi';
+  let Cequil = 1;
+  if (nbCond === 4) {
+    if (th3 === '1') {
+      obs.push('3 ph + N, TH3 ≤ 15 % (cas 1, Tab. 52.20) : neutre non chargé, colonne 3 conducteurs sans réduction (§523.6.1).');
+    } else if (th3 === '2') {
+      Cequil = FACTORS.NEUTRE;
+      obs.push('3 ph + N, 15 % < TH3 ≤ 33 % (cas 2, Tab. 52.20) : neutre chargé, facteur 0,86 (§523.6.3). Section neutre = section phase.');
+    } else if (th3 === '3') {
+      Cequil = FACTORS.NEUTRE;
+      obs.push('3 ph + N, 33 % < TH3 ≤ 45 % (cas 3, Tab. 52.20) : facteur 0,86 (§523.6.3). Comparer Izc à IB neutre = IB × TH3 × 3' + (isMono ? ' (monoconducteurs : Sneutre > Sphase, §524.2.2 b).' : ' (multiconducteur : Sphase = Sneutre, §524.2.2 a).'));
+    } else if (th3 === '4') {
+      if (isMono) {
+        Cequil = FACTORS.NEUTRE;
+        obs.push('3 ph + N, TH3 > 45 % (cas 4, Tab. 52.20, monoconducteurs) : facteur 0,86. Comparer Izc à IB neutre = IB × TH3 × 3 (Sneutre > Sphase, §524.2.2 b).');
+      } else {
+        obs.push('3 ph + N, TH3 > 45 % (cas 4, Tab. 52.20, multiconducteur) : pas de facteur 0,86 dans le tableau. Comparer Izc à IB neutre = IB × TH3 × 3 (Sphase = Sneutre, §524.2.2 a).');
+      }
+    } else {
+      Cequil = FACTORS.NEUTRE;
+      obs.push('3 ph + N, TH3 non défini : intensité d\'emploi au moins égale à IB/0,86 (Tab. 52.20), soit un facteur 0,86 sur Iz (§523.6.3).');
+    }
+  } else if (th3 !== 'inc' && th3 !== '1') {
+    obs.push('TH3 sans effet : le facteur 0,86 ne concerne que les circuits triphasés + neutre (choisir 4 conducteurs). En monophasé, IB neutre = IB (Tab. 52.20).');
+  }
   T.Cequil = Cequil;
 
   // Facteur BE3
   let Cbe3 = 1;
   if (be3) {
-    Cbe3 = FACTORS.BE3;
+    Cbe3 = ['g2','n2','c2','x'].includes(be3Val) ? FACTORS.BE3 : 1;
+    if (be3Val === 'x') obs.push('BE3 : température d\'auto-inflammation non connue, réduction de 15 % retenue par prudence (choix ARGOS, Tab. 42.3).');
+    else obs.push('BE3 (§424.4, Tab. 42.3) : réduction ' + (Cbe3 < 1 ? 'de 15 %' : 'de 0 %') + ' selon la température d\'auto-inflammation.');
     if (isol === 'pvc') {
       obs.push('BE3 : isolation PVC normalement non autorisée en atmosphère explosive.');
       afficherResultat(0, 0, 0, m.mode + ' / ' + m.methode, obs.join('\n'), T);
@@ -1071,10 +1113,7 @@ function calculer() { try {
   T.Cbe3 = Cbe3; T.Cprot = Cprot;
 
   // Facteur harmoniques rang 3 (§523.6)
-  const h3 = document.querySelector('input[name="cH3"]:checked').value === '1';
-  const Ch3 = h3 ? FACTORS.H3 : 1;
-  if (h3) obs.push('Harmoniques rang 3 > 15% : facteur ' + FACTORS.H3 + ' appliqué (§523.6).');
-  T.Ch3 = Ch3;
+  // Harmoniques rang 3 : traitées une seule fois dans Cn (neutre chargé, Tab. 52.20). Aucun cumul.
 
   // Facteur rayonnement solaire direct (§52.1.3.3)
   const soleil = document.querySelector('input[name="cSoleil"]:checked').value === '1';
@@ -1113,7 +1152,7 @@ function calculer() { try {
   T.Csp = Csp;
 
   // K global
-  const K = m.k52e * Ctemp * cGroupe * Cprot * Cequil * Cbe3 * Csp * Ch3 * Csol * Crhosol;
+  const K = m.k52e * Ctemp * cGroupe * Cprot * Cequil * Cbe3 * Csp * Csol * Crhosol;
   const Izc = Iz * K;
   T.K = K; T.Izc = Izc;
 
@@ -1133,9 +1172,9 @@ function calculer() { try {
   }
 
   // Note par défaut si aucun facteur particulier n'a été modifié
-  if (cGroupe === 0.8 && !h3 && !soleil && !be3 && nbCond !== 4) {
+  if (cGroupe === 0.8 && !soleil && !be3 && nbCond !== 4) {
     obs.push('---');
-    obs.push('Valeurs par défaut : en première approche et sans information spécifique, le calcul retient un facteur de groupement de 0.8 (plusieurs circuits), sans harmoniques, sans rayonnement solaire (installation intérieure) et une résistivité de sol standard (2.5 K.m/W). Ajuster ces paramètres selon les conditions réelles de l\'installation.');
+    obs.push('Valeurs par défaut : en première approche et sans information spécifique, le calcul retient un facteur de groupement de 0.8 (plusieurs circuits), sans rayonnement solaire (installation intérieure) et une résistivité de sol standard (2.5 K.m/W). Ajuster ces paramètres selon les conditions réelles de l\'installation.');
   }
 
   T.complet = true;
@@ -1230,10 +1269,10 @@ function afficherMethode(T, Izc, K, Iz, methodeTxt, obsText) {
   row('Section', mcFr(T.sph) + ' mm²', 'Température ambiante', T.temp + ' °C');
   row('Isolation', libIsol, 'Facteur de groupement', mcEsc(String(T.groupeSaisi).replace('.', ',')) + (String(T.cGroupe) !== String(T.groupeSaisi) ? ' → retenu ' + mcFr(T.cGroupe) : ''));
   row('Conducteurs chargés', T.nbCond, 'Protection', mcEsc(mcOpt('cProt')));
-  row('Type de câble', libCable, 'Harmoniques rang 3 > 15 %', oui(T.h3));
+  row('Type de câble', libCable, 'Harmoniques rang 3 (TH3)', mcEsc(mcOpt('cTH3')) + (T.nbCond === 4 ? '' : ' (sans objet hors 3 ph + N)'));
   row('Nature', libNat, 'Rayonnement solaire direct', oui(T.soleil));
   row('Mode de pose', mcEsc(mcOpt('cMdP')), 'Résistivité du sol', mcEsc(T.rhoVal.replace('.', ',')) + ' K.m/W' + (isD ? '' : ' (sans objet hors D1/D2)'));
-  row('Situation', mcEsc(mcOpt('cSit')), 'Local BE3', oui(T.be3));
+  row('Situation', mcEsc(mcOpt('cSit')), 'Local BE3', mcEsc(mcOpt('cBE3')));
   row('Pose sous plafond', oui(T.sousPlafond), '', '');
   h.push('</tbody></table>');
 
@@ -1248,7 +1287,7 @@ function afficherMethode(T, Izc, K, Iz, methodeTxt, obsText) {
   // 3. Iz de base
   if (m && T.nbEff !== undefined) {
     h.push('<h3>3. Courant admissible de base Iz (lecture tableau)</h3>');
-    const col = T.nbEff + ' conducteurs chargés' + (T.nbCond >= 4 ? ' (4 conducteurs chargés → colonne 3, facteur 0,84 en §4)' : '');
+    const col = T.nbEff + ' conducteurs chargés' + (T.nbCond >= 4 ? ' (4 conducteurs chargés → colonne 3, facteur Cn 0,86 en §4 si neutre chargé)' : '');
     h.push('<p>Tableau <b>' + (TAB_IZ_NOM[m.methode] || '?') + '</b> — méthode ' + m.methode + ' — ' + libNat.toLowerCase() + ' — isolation ' + libIsol + ' — colonne ' + col + ' — ligne ' + mcFr(T.sph) + ' mm².</p>');
     if (T.Iz) {
       h.push('<p class="mc-formule">Iz = ' + mcFr(T.Iz) + ' A' + (Math.round(T.Iz) !== T.Iz ? '   (affiché arrondi : ' + Math.round(T.Iz) + ' A)' : '') + '</p>');
@@ -1267,7 +1306,7 @@ function afficherMethode(T, Izc, K, Iz, methodeTxt, obsText) {
     let jp = 'Disjoncteur / relais / fusible aM : pas de réduction.';
     if (T.prot > 0 && T.izcTest !== undefined) {
       const it = T.izcTest;
-      jp = (T.prot === 1 ? 'Fusible gI' : 'Fusible gG') + ' : courant de test Iz × K52E × Ctemp × Cgrp × Céquil × CBE3 = ' + mcFr(it, 2) + ' A. Base 0,91';
+      jp = (T.prot === 1 ? 'Fusible gI' : 'Fusible gG') + ' : courant de test Iz × K52E × Ctemp × Cgrp × Cn × CBE3 = ' + mcFr(it, 2) + ' A. Base 0,91';
       if (T.prot === 1) {
         if (it / 1.21 <= 25) jp += ' ; ' + mcFr(it, 2) + ' / 1,21 = ' + mcFr(it / 1.21, 2) + ' ≤ 25 → 0,826';
         if (it / 1.31 <= 10) jp += ' ; ' + mcFr(it, 2) + ' / 1,31 = ' + mcFr(it / 1.31, 2) + ' ≤ 10 → 0,763';
@@ -1276,10 +1315,9 @@ function afficherMethode(T, Izc, K, Iz, methodeTxt, obsText) {
       jp += '. Facteur retenu.';
     }
     f('Cprot (protection)', T.Cprot, jp, T.Cprot === 1);
-    f('Céquil (4 cond. chargés)', T.Cequil, T.nbCond === 4 ? 'Neutre chargé (déséquilibre) : ' + mcFr(T.Cequil) + ' (§523.7).' : 'Non applicable (' + T.nbCond + ' conducteurs chargés).', T.Cequil === 1);
-    f('CBE3 (risque d\'explosion)', T.Cbe3, T.be3 ? 'Local BE3 (atmosphère explosive) : ' + mcFr(T.Cbe3) + ' (§422.6).' : 'Non applicable.', T.Cbe3 === 1);
+    f('Cn (neutre chargé, f3)', T.Cequil, T.nbCond === 4 ? '3 ph + N, ' + mcEsc(mcOpt('cTH3')) + ' : ' + mcFr(T.Cequil) + ' (§523.6.3, Tableau 52.20).' : 'Non applicable (' + T.nbCond + ' conducteurs chargés).', T.Cequil === 1);
+    f('CBE3 (risque d\'explosion)', T.Cbe3, T.be3 ? mcEsc(mcOpt('cBE3')) + ' : ' + mcFr(T.Cbe3) + ' (§424.4, Tableau 42.3).' : 'Non applicable.', T.Cbe3 === 1);
     f('Csp (sous plafond)', T.Csp, T.Csp !== 1 ? 'Fixation directe apparente sous plafond : ' + mcFr(T.Csp) + ' (§52.1.4).' : (T.sousPlafond ? 'Sans effet hors fixation directe apparente.' : 'Non applicable.'), T.Csp === 1);
-    f('Ch3 (harmoniques rang 3)', T.Ch3, T.h3 ? 'Taux d\'harmoniques de rang 3 > 15 % : ' + mcFr(T.Ch3) + ' (§523.6).' : 'Non applicable.', T.Ch3 === 1);
     f('Csol (rayonnement solaire)', T.Csol, T.Csol !== 1 ? 'Rayonnement solaire direct, méthode ' + m.methode + ' : ' + mcFr(T.Csol) + ' (§52.1.3.3).' : (T.soleil ? 'Sans effet pour la méthode ' + m.methode + ' (E, F, G uniquement).' : 'Non applicable.'), T.Csol === 1);
     f('Crhosol (résistivité du sol)', T.Crhosol, isD ? 'Tableau 52.11, colonne ' + m.methode + ', ' + mcEsc(T.rhoVal.replace('.', ',')) + ' K.m/W (référence 2,5 K.m/W).' : 'Non applicable (méthode ' + m.methode + ').', T.Crhosol === 1);
     h.push('</tbody></table>');
@@ -1287,9 +1325,9 @@ function afficherMethode(T, Izc, K, Iz, methodeTxt, obsText) {
 
   // 5. Calcul et résultat
   if (T.complet) {
-    const fac = [m.k52e, T.Ctemp, T.cGroupe, T.Cprot, T.Cequil, T.Cbe3, T.Csp, T.Ch3, T.Csol, T.Crhosol];
+    const fac = [m.k52e, T.Ctemp, T.cGroupe, T.Cprot, T.Cequil, T.Cbe3, T.Csp, T.Csol, T.Crhosol];
     h.push('<h3>5. Calcul</h3>');
-    h.push('<p class="mc-formule">K = K52E × Ctemp × Cgrp × Cprot × Céquil × CBE3 × Csp × Ch3 × Csol × Crhosol<br>K = ' + fac.map(x => mcFr(x)).join(' × ') + ' = ' + mcFr(T.K, 6) + ' ≈ <b>' + mcFr(Math.round(T.K * 1000) / 1000, 3) + '</b></p>');
+    h.push('<p class="mc-formule">K = K52E × Ctemp × Cgrp × Cprot × Cn × CBE3 × Csp × Csol × Crhosol<br>K = ' + fac.map(x => mcFr(x)).join(' × ') + ' = ' + mcFr(T.K, 6) + ' ≈ <b>' + mcFr(Math.round(T.K * 1000) / 1000, 3) + '</b></p>');
     h.push('<p class="mc-formule">Izc = Iz × K = ' + mcFr(T.Iz) + ' × ' + mcFr(T.K, 6) + ' = ' + mcFr(T.Izc, 2) + ' A ≈ <b>' + Math.round(T.Izc) + ' A</b></p>');
     h.push('<h3>6. Résultat</h3>');
     h.push('<div class="mc-res" data-izc="' + Math.round(T.Izc) + '" data-k="' + (Math.round(T.K * 1000) / 1000) + '" data-iz="' + Math.round(T.Iz) + '">Mode de pose / méthode : <b>' + mcEsc(methodeTxt) + '</b> — Iz (tableau) = <b>' + mcFr(T.Iz) + ' A</b> — K = <b>' + mcFr(Math.round(T.K * 1000) / 1000, 3) + '</b> — Courant admissible corrigé <b>Izc = ' + Math.round(T.Izc) + ' A</b></div>');
@@ -1341,11 +1379,11 @@ function defaut() {
   document.getElementById('cMdP').selectedIndex = 6; // Sous conduit
   document.getElementById('cSit').selectedIndex = 0; // Apparent
   document.querySelector('input[name="cSP"][value="0"]').checked = true;
-  document.querySelector('input[name="cBE3"][value="0"]').checked = true;
+  document.getElementById('cBE3').value = '0';
   document.getElementById('cTemp').selectedIndex = 4; // 30°C
   document.getElementById('cGroupe').value = '0.8';
   document.getElementById('cProt').selectedIndex = 0;
-  document.querySelector('input[name="cH3"][value="0"]').checked = true;
+  document.getElementById('cTH3').value = 'inc';
   document.querySelector('input[name="cSoleil"][value="0"]').checked = true;
   document.getElementById('cRhoSol').value = '2.5';
   raz();
