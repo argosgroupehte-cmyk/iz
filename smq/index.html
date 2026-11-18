@@ -614,42 +614,16 @@ body { font-family: var(--font); background: var(--c-bg); color: var(--c-text); 
 </div>
 
 <!-- ==================== ASSISTANT CLAUDE ==================== -->
-<button id="claude-fab" onclick="CLAUDE_ASSIST.toggle()" title="Assistant technique">?</button>
+<button id="claude-fab" onclick="CLAUDE_ASSIST.toggle()" title="Assistant documentaire SMQ">?</button>
 <div id="claude-overlay" onclick="CLAUDE_ASSIST.close()"></div>
 <div id="claude-panel">
   <div class="cp-header">
-    <div class="cp-header-title">Assistant technique ARGOS</div>
+    <div class="cp-header-title">Assistant documentaire SMQ ARGOS</div>
     <button class="cp-close" onclick="CLAUDE_ASSIST.close()">✕</button>
   </div>
   <div class="cp-context">
-    <div class="cp-context-title">Contexte de la question</div>
-    <div class="cp-filters">
-      <div class="cp-filter">
-        <span class="cp-filter-label">Type batiment</span>
-        <select id="cp-filtre-bat" onchange="CLAUDE_ASSIST.onFilterChange()">
-          <option value="">-- Choisir --</option>
-          <option value="erp">ERP (Etablissement Recevant du Public)</option>
-          <option value="cdt">Code du travail</option>
-          <option value="hab">Habitation</option>
-        </select>
-      </div>
-      <div class="cp-filter">
-        <span class="cp-filter-label">Permis / travaux</span>
-        <select id="cp-filtre-date" onchange="CLAUDE_ASSIST.onFilterChange()">
-          <option value="">-- Choisir --</option>
-          <option value="avant">Avant mai 2025</option>
-          <option value="apres">Apres mai 2025</option>
-        </select>
-      </div>
-      <div class="cp-filter">
-        <span class="cp-filter-label">Norme applicable</span>
-        <select id="cp-filtre-norme" onchange="CLAUDE_ASSIST.onFilterChange()">
-          <option value="">-- Choisir --</option>
-          <option value="v2002">NFC 15-100 (2002)</option>
-          <option value="v2024">NFC 15-100-1 (2024)</option>
-        </select>
-      </div>
-    </div>
+    <div class="cp-context-title">Questions sur les documents du SMQ ARGOS uniquement</div>
+    <div style="font-size:.78rem;color:var(--c-text-light);line-height:1.4">Chaque réponse cite le document, sa révision, la page et l'extrait exact. Rien trouvé = c'est dit.</div>
   </div>
   <div class="cp-body" id="cp-body">
     <div id="cp-faq-section"></div>
@@ -657,10 +631,10 @@ body { font-family: var(--font); background: var(--c-bg); color: var(--c-text); 
     <div class="cp-chat" id="cp-chat"></div>
   </div>
   <div id="cp-nokey" class="cp-no-key" style="display:none;margin:0 1rem .5rem">
-    Cle API non configuree. <a onclick="CLAUDE_ASSIST.goAdmin()">Configurer dans Admin</a>
+    Jeton d'accès à saisir une fois : <input type="password" id="cp-token" placeholder="jeton assistant" style="width:55%;padding:.25rem .4rem;font-size:.8rem"> <button class="cp-send" style="padding:.25rem .6rem" onclick="CLAUDE_ASSIST.saveToken()">OK</button>
   </div>
   <div class="cp-input-bar">
-    <textarea class="cp-input" id="cp-input" placeholder="Posez votre question technique..." rows="1" onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();CLAUDE_ASSIST.send()}"></textarea>
+    <textarea class="cp-input" id="cp-input" placeholder="Question sur un document du SMQ (procédure, méthode, norme…)" rows="1" onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();CLAUDE_ASSIST.send()}"></textarea>
     <button class="cp-send" id="cp-send" onclick="CLAUDE_ASSIST.send()">Envoyer</button>
   </div>
 </div>
@@ -1931,7 +1905,7 @@ const APP = (() => {
       else if (theme.render === 'admin') {
         mc.innerHTML = RENDERS.admin(sess);
         const ks = document.getElementById('admin-claude-status');
-        if (ks) ks.textContent = localStorage.getItem('smq_claude_api_key') ? 'Cle configuree.' : 'Aucune cle configuree.';
+        if (ks) ks.textContent = localStorage.getItem('smq_assist_token') ? 'Jeton enregistré.' : 'Aucun jeton.';
         const su = document.getElementById('admin-share-url');
         if (su) su.value = localStorage.getItem('smq_share_url') || 'https://iz-argos.argos-groupehte.workers.dev/smq/';
         const ss = document.getElementById('admin-share-status');
@@ -2545,17 +2519,11 @@ const RENDERS = {
         </div>
       </div>
       <div class="admin-section">
-        <div class="admin-section-title">Assistant Claude — Cle API Anthropic</div>
+        <div class="admin-section-title">Assistant SMQ — jeton d\'accès</div>
         <div class="drive-info" style="background:#eff6ff;border-color:#93c5fd;border-left-color:#3b82f6">
-          <div class="drive-info-title" style="color:#1e40af">🤖 Configuration de l\'assistant technique</div>
-          <div class="drive-info-text" style="color:#1e3a8a">
-            <strong>Etape 1 :</strong> Creer un compte sur <code>console.anthropic.com</code><br>
-            <strong>Etape 2 :</strong> Generer une cle API (commence par <code>sk-ant-api...</code>)<br>
-            <strong>Etape 3 :</strong> Coller la cle ci-dessous. Elle sera stockee localement dans le navigateur.<br>
-            <strong>Cout :</strong> ~0.003 EUR par question (modele Haiku)
-          </div>
+          <div class="drive-info-text" style="color:#1e3a8a">L\'assistant répond depuis MARY (PC GESTAN), uniquement sur les documents du SMQ. Aucune clé API dans le navigateur. Le jeton d\'accès est fourni par SP.</div>
           <div style="margin-top:.8rem;display:flex;gap:.5rem;align-items:center">
-            <input type="password" id="admin-claude-key" placeholder="sk-ant-api..." style="flex:1;padding:.4rem .6rem;border:1px solid #93c5fd;border-radius:5px;font-size:.82rem;font-family:monospace">
+            <input type="password" id="admin-claude-key" placeholder="jeton assistant" style="flex:1;padding:.4rem .6rem;border:1px solid #93c5fd;border-radius:5px;font-size:.82rem;font-family:monospace">
             <button class="btn-primary" onclick="ADMIN.saveClaudeKey()">Sauver</button>
             <button class="btn-danger" style="width:auto;padding:.4rem .8rem" onclick="ADMIN.clearClaudeKey()">Effacer</button>
           </div>
@@ -3262,7 +3230,7 @@ const ADMIN = {
       + '</tr></thead><tbody>' + rows + '</tbody></table></div>';
   },
   exportConfig() {
-    const keys = ['smq_credentials_v3','smq_custom_users','smq_hidden_users','smq_user_emails','smq_doc_history','smq_doc_archives','smq_claude_api_key','smq_share_url','smq_iz_tokens'];
+    const keys = ['smq_credentials_v3','smq_custom_users','smq_hidden_users','smq_user_emails','smq_doc_history','smq_doc_archives','smq_share_url','smq_iz_tokens'];
     const data = { _exportDate: new Date().toISOString(), _version: VERSION };
     for (const k of keys) {
       const v = localStorage.getItem(k);
@@ -3303,16 +3271,16 @@ const ADMIN = {
   saveClaudeKey() {
     const input = document.getElementById('admin-claude-key');
     const key = input ? input.value.trim() : '';
-    if (!key) { toast('Saisissez une clé API.', 'error'); return; }
-    localStorage.setItem('smq_claude_api_key', key);
+    if (!key) { toast('Saisissez le jeton.', 'error'); return; }
+    localStorage.setItem('smq_assist_token', key);
     input.value = '';
     const status = document.getElementById('admin-claude-status');
-    if (status) status.textContent = 'Cle sauvegardee. L\'assistant est operationnel.';
+    if (status) status.textContent = 'Jeton enregistré. L\'assistant est opérationnel.';
   },
   clearClaudeKey() {
-    localStorage.removeItem('smq_claude_api_key');
+    localStorage.removeItem('smq_assist_token');
     const status = document.getElementById('admin-claude-status');
-    if (status) status.textContent = 'Cle supprimee. L\'assistant fonctionnera en mode FAQ uniquement.';
+    if (status) status.textContent = 'Jeton supprimé.';
   },
   saveShareUrl() {
     const input = document.getElementById('admin-share-url');
@@ -3327,239 +3295,92 @@ const ADMIN = {
   },
 };
 
-// ── Assistant Claude ──────────────────────────────────
+// ── Assistant documentaire SMQ (MARY, PC GESTAN) ─────────────
+// Lecture seule : questions sur les documents du SMQ, réponse = réf + extrait exact. Plus de clé API dans le navigateur.
 const CLAUDE_ASSIST = (() => {
-  const API_KEY_LS = 'smq_claude_api_key';
+  const URL_API = 'https://smq.argos-controle.fr/smq-assistant/ask';
+  const TOKEN_LS = 'smq_assist_token';
   let _open = false;
   let _busy = false;
+  try { localStorage.removeItem('smq_claude_api_key'); } catch (e) {}
 
-  const FAQ = [
-    { q:'Quelle protection differentielle pour une salle d\'eau ?', tags:['elec'],
-      r:{
-        v2002:'NFC 15-100 art. 701.411 : DDR 30mA obligatoire pour tous les circuits de la salle d\'eau (volumes 0, 1, 2 et 3). Art. 531.2 : type AC minimum, type A recommande pour les circuits avec electronique.',
-        v2024:'NFC 15-100-1 art. 7-701.411 : DDR 30mA obligatoire pour tous les circuits alimentant la salle d\'eau. Art. 531.2 : type A obligatoire si chauffage electrique ou lave-linge. Type F si variateur electronique.'
-      }},
-    { q:'Nombre minimum de circuits dans un logement ?', tags:['elec','hab'],
-      r:{
-        v2002:'NFC 15-100 art. 771.314 : minimum 2 circuits prises, 1 circuit eclairage, 1 circuit cuisson (32A), 1 circuit lave-linge (20A). Total minimum : 5 circuits.',
-        v2024:'NFC 15-100-1 art. 7-771.314 : memes exigences minimales. Ajout : 1 circuit 16A pour recharge vehicule electrique dans les logements neufs avec parking (art. 7-771.558).'
-      }},
-    { q:'Calibre maximum d\'un disjoncteur divisionnaire en 2.5mm2 ?', tags:['elec'],
-      r:{
-        v2002:'NFC 15-100 tableau 771F : 2.5mm2 protege par disjoncteur 20A maximum (circuit prises) ou 20A (circuit specialise).',
-        v2024:'NFC 15-100-1 tableau 7-771F : identique. 2.5mm2 -> 20A max pour prises et circuits specialises.'
-      }},
-    { q:'Selectivite entre ID et disjoncteur de branchement ?', tags:['elec'],
-      r:{
-        v2002:'NFC 15-100 art. 411.5.3 et guide UTE C 15-105 : selectivite chronometrique entre DB (type S, retarde) et ID aval (instantane). DB type S 500mA retarde, ID 30mA instantane = selectivite assuree.',
-        v2024:'NFC 15-100-1 art. 465 (ex-463) : memes principes. La selectivite est assuree si le DB est de type S (retarde) et les DDR aval sont instantanes.'
-      }},
-    { q:'Quels types d\'ERP sont soumis a verification periodique ?', tags:['erp'],
-      r:{
-        v2002:'Tous les ERP sont soumis a verification periodique des installations electriques (arrete du 25 juin 1980, art. EL 19). Frequence : annuelle pour les ERP 1er groupe (1ere a 4eme categorie), tous les 3 ans pour le 2eme groupe (5eme categorie).',
-        v2024:'Memes exigences reglementaires (texte ERP non modifie par la revision de la norme). L\'arrete du 25 juin 1980 reste la reference. Les references normatives dans les rapports changent : citer NFC 15-100-1 pour les installations neuves soumises a la nouvelle norme.'
-      }},
-    { q:'Frequence de verification ERP par categorie ?', tags:['erp'],
-      r:{
-        v2002:'ERP 1er groupe (cat. 1 a 4) : verification annuelle. ERP 2eme groupe (cat. 5) : verification triennale (3 ans). Art. EL 19 de l\'arrete du 25/06/1980.',
-        v2024:'Identique. La frequence est fixee par l\'arrete ERP, pas par la norme NFC 15-100. La revision 2024 ne change pas les obligations ERP.'
-      }},
-    { q:'Difference entre verification initiale et periodique ?', tags:['elec','erp','cdt'],
-      r:{
-        v2002:'Initiale (art. R4226-14 CDT) : avant mise en service ou apres modification importante. Porte sur la conformite a la NFC 15-100. Periodique (art. R4226-16 CDT) : maintien en etat. Porte sur le maintien en conformite et l\'absence de degradation.',
-        v2024:'Memes definitions reglementaires. La verification initiale d\'une installation neuve post-mai 2025 se fait selon la NFC 15-100-1 (2024). La verification periodique d\'une installation existante continue selon la NFC 15-100 (2002) sauf si l\'installation a ete modifiee selon la nouvelle norme.'
-      }},
-    { q:'Obligations eclairage de securite en ERT ?', tags:['cdt'],
-      r:{
-        v2002:'Art. R4227-14 CDT : eclairage de securite obligatoire. BAES ou LSC selon effectif et superficie. NFC 15-100 art. 558 : alimentation des blocs autonomes.',
-        v2024:'Art. R4227-14 CDT inchange. NFC 15-100-1 ne modifie pas les obligations d\'eclairage de securite. Celles-ci sont fixees par le Code du travail et la NF C 71-830.'
-      }},
-    { q:'Quand faut-il une coupure d\'urgence ?', tags:['elec','cdt','erp'],
-      r:{
-        v2002:'NFC 15-100 art. 536.3/536.4 : dispositif de coupure d\'urgence obligatoire a proximite de tout equipement ou zone presentant un danger electrique. Arret d\'urgence distinct de la coupure d\'urgence.',
-        v2024:'NFC 15-100-1 art. 537.3 (ex-536.3) et art. 464 (ex-536.4) : memes exigences, articles renumerotes. La coupure d\'urgence doit etre accessible et clairement identifiee.'
-      }},
-    { q:'Frequence VGP chariots elevateurs ?', tags:['vgp'],
-      r:{
-        v2002:'Art. R4323-23 CDT + arrete du 01/03/2004 : verification generale periodique tous les 6 mois pour les chariots automoteurs a conducteur porte.',
-        v2024:'Identique. Les VGP ne sont pas affectees par la revision de la NFC 15-100. Frequence : 6 mois.'
-      }},
-    { q:'Quels equipements sont soumis a VGP ?', tags:['vgp'],
-      r:{
-        v2002:'Art. R4323-23 a R4323-27 CDT : appareils de levage (grues, palans, ponts roulants), chariots elevateurs, hayons, monte-charges, nacelles, engins de chantier. Frequence variable selon l\'equipement (6 mois, 1 an, 3 ans).',
-        v2024:'Identique. Reglementation CDT inchangee.'
-      }},
-    { q:'Quand faire un Consuel vs une verification initiale ?', tags:['elec'],
-      r:{
-        v2002:'Consuel (attestation de conformite) : installations neuves alimentees par le distributeur (Enedis). Delivre par un organisme agree. Verification initiale (art. R4226-14 CDT) : installations electriques dans les lieux de travail. Les deux sont independants et peuvent etre requis simultanement.',
-        v2024:'Meme logique. Le Consuel vise la NFC 15-100-1 pour les installations deposees apres mai 2025. La verification initiale CDT aussi si l\'installation est sous la nouvelle norme.'
-      }},
-    { q:'Correspondance articles NFC 15-100 v2002 vers v2024 ?', tags:['elec'],
-      r:{
-        v2002:'N/A. Cette question concerne la transition vers la nouvelle norme.',
-        v2024:'Renumerotation principale : NFC 15-100-XXX vers NFC 15-100-1-XXX. Parties 7-XXX inchangees (NFC 15-100-7-XXX). Correspondances cles : art. 536.3/536.4 vers 537.3/464, art. 463 vers 465, art. 781 vers 7-729. Voir le fichier Equivalences_NFC15100_2024.xlsx sur le Drive.'
-      }},
-    { q:'Frequence verification chaufferie gaz ?', tags:['gaz'],
-      r:{
-        v2002:'Verification annuelle obligatoire (arrete du 25/06/1980 pour ERP, art. GZ). Pour les ERT : verification periodique selon le Code du travail. Chaufferies > 70kW : controle annuel.',
-        v2024:'Identique. La reglementation gaz n\'est pas affectee par la NFC 15-100.'
-      }},
-    { q:'Frequence verification extincteurs ?', tags:['incendie'],
-      r:{
-        v2002:'Verification annuelle obligatoire (art. R4227-39 CDT pour les ERT, arrete du 25/06/1980 art. MS 73 pour les ERP). Recharge ou remplacement tous les 10 ans.',
-        v2024:'Identique. Pas de lien avec la NFC 15-100.'
-      }}
+  const EXEMPLES = [
+    'Quel est le délai d\'envoi du rapport après la visite ?',
+    'Comment sont traitées les réclamations clients ?',
+    'Comment sont maîtrisés les documents du SMQ ?',
+    'Que prévoit la procédure sur les non-conformités ?'
   ];
 
-  function getFilters() {
-    return {
-      bat:   document.getElementById('cp-filtre-bat')?.value || '',
-      date:  document.getElementById('cp-filtre-date')?.value || '',
-      norme: document.getElementById('cp-filtre-norme')?.value || ''
-    };
-  }
-
-  function saveFilters() {
-    sessionStorage.setItem('cp_filters', JSON.stringify(getFilters()));
-  }
-
-  function restoreFilters() {
-    try {
-      const f = JSON.parse(sessionStorage.getItem('cp_filters') || '{}');
-      if (f.bat) document.getElementById('cp-filtre-bat').value = f.bat;
-      if (f.date) document.getElementById('cp-filtre-date').value = f.date;
-      if (f.norme) document.getElementById('cp-filtre-norme').value = f.norme;
-    } catch(e) {}
-  }
-
-  function normeVersion() {
-    const f = getFilters();
-    if (f.norme === 'v2024') return 'v2024';
-    if (f.norme === 'v2002') return 'v2002';
-    if (f.date === 'apres') return 'v2024';
-    return 'v2002';
-  }
-
-  function filteredFAQ() {
-    const f = getFilters();
-    return FAQ.filter(item => {
-      if (!f.bat) return true;
-      if (f.bat === 'erp' && item.tags.includes('erp')) return true;
-      if (f.bat === 'cdt' && item.tags.includes('cdt')) return true;
-      if (f.bat === 'hab' && item.tags.includes('hab')) return true;
-      if (item.tags.includes('elec') || item.tags.includes('vgp') || item.tags.includes('gaz') || item.tags.includes('incendie')) return true;
-      return false;
-    });
-  }
+  function el(tag, cls, txt) { const e = document.createElement(tag); if (cls) e.className = cls; if (txt != null) e.textContent = txt; return e; }
+  function getToken() { return localStorage.getItem(TOKEN_LS) || ''; }
+  function updateNoKeyBanner() { const e = document.getElementById('cp-nokey'); if (e) e.style.display = getToken() ? 'none' : ''; }
 
   function renderFAQ() {
     const section = document.getElementById('cp-faq-section');
-    const items = filteredFAQ();
-    const btns = items.map((item, i) => {
-      const btn = document.createElement('button');
-      btn.className = 'cp-faq-btn';
-      btn.textContent = item.q;
-      btn.onclick = () => CLAUDE_ASSIST.askFAQ(i);
-      return btn;
-    });
     section.textContent = '';
-    const title = document.createElement('div');
-    title.className = 'cp-faq-title';
-    title.textContent = 'Questions frequentes';
-    section.appendChild(title);
-    const grid = document.createElement('div');
-    grid.className = 'cp-faq-grid';
-    btns.forEach(b => grid.appendChild(b));
+    section.appendChild(el('div', 'cp-faq-title', 'Exemples de questions'));
+    const grid = el('div', 'cp-faq-grid');
+    EXEMPLES.forEach(q => { const b = el('button', 'cp-faq-btn', q); b.onclick = () => { document.getElementById('cp-input').value = q; CLAUDE_ASSIST.send(); }; grid.appendChild(b); });
     section.appendChild(grid);
   }
 
+  function scrollBottom() { const body = document.getElementById('cp-body'); body.scrollTop = body.scrollHeight; }
   function addMsg(text, cls) {
     const chat = document.getElementById('cp-chat');
-    const div = document.createElement('div');
-    div.className = 'cp-msg ' + cls;
-    div.textContent = text;
+    const div = el('div', 'cp-msg ' + cls, text);
     chat.appendChild(div);
     document.getElementById('cp-divider').style.display = '';
     scrollBottom();
   }
-
-  function scrollBottom() {
-    const body = document.getElementById('cp-body');
-    body.scrollTop = body.scrollHeight;
-  }
-
-  function showTyping() {
+  function addAnswer(data) {
     const chat = document.getElementById('cp-chat');
-    const div = document.createElement('div');
-    div.className = 'cp-typing';
-    div.id = 'cp-typing';
-    for (let i = 0; i < 3; i++) div.appendChild(document.createElement('span'));
+    const div = el('div', 'cp-msg bot');
+    if (data.message) div.appendChild(el('div', '', data.message));
+    (data.points || []).forEach(p => {
+      const box = el('div', '', null); box.style.cssText = 'margin-bottom:.8rem';
+      box.appendChild(el('div', '', p.texte));
+      const r = p.ref || {};
+      const refTxt = 'Réf : ' + r.document + ' · rév. ' + r.revision + (r.page ? ' · p. ' + r.page : '') + (r.article ? ' · ' + r.article : '');
+      const ref = el('div', '', refTxt); ref.style.cssText = 'font-size:.74rem;color:var(--c-text-light);margin:.25rem 0 .2rem;font-weight:600';
+      box.appendChild(ref);
+      const q = el('div', '', '« ' + p.extrait + ' »'); q.style.cssText = 'font-size:.78rem;border-left:3px solid var(--c-primary-l);padding:.25rem .6rem;background:#f1f5f9;font-style:italic';
+      box.appendChild(q);
+      div.appendChild(box);
+    });
+    if (data.pistes && data.pistes.length) {
+      const pl = el('div', '', 'Documents les plus proches : ' + data.pistes.map(x => x.document + ' (rév. ' + x.revision + (x.page ? ', p. ' + x.page : '') + ')').join(' ; '));
+      pl.style.cssText = 'font-size:.74rem;color:var(--c-text-light);margin-top:.4rem';
+      div.appendChild(pl);
+    }
     chat.appendChild(div);
+    document.getElementById('cp-divider').style.display = '';
     scrollBottom();
   }
-
-  function hideTyping() {
-    const el = document.getElementById('cp-typing');
-    if (el) el.remove();
+  function showTyping() {
+    const chat = document.getElementById('cp-chat');
+    const div = el('div', 'cp-typing'); div.id = 'cp-typing';
+    for (let i = 0; i < 3; i++) div.appendChild(document.createElement('span'));
+    chat.appendChild(div); scrollBottom();
   }
+  function hideTyping() { const e = document.getElementById('cp-typing'); if (e) e.remove(); }
 
-  function getApiKey() {
-    return localStorage.getItem(API_KEY_LS) || '';
-  }
-
-  function updateNoKeyBanner() {
-    const el = document.getElementById('cp-nokey');
-    if (el) el.style.display = getApiKey() ? 'none' : '';
-  }
-
-  function buildSystemPrompt() {
-    const f = getFilters();
-    const batLabel = {erp:'ERP (Etablissement Recevant du Public)', cdt:'Etablissement relevant du Code du travail', hab:'Habitation'}[f.bat] || 'Non precise';
-    const dateLabel = f.date === 'avant' ? 'avant mai 2025 (ancienne norme)' : f.date === 'apres' ? 'apres mai 2025 (nouvelle norme)' : 'non precise';
-    const normeLabel = normeVersion() === 'v2024' ? 'NFC 15-100-1 (revision 2024)' : 'NFC 15-100 (version 2002)';
-    return 'Tu es un assistant technique pour ARGOS SARL, bureau de controle reglementaire accredite COFRAC N\u00b03-0821. Tu reponds en francais.\n\nContexte de la question :\n- Type de batiment : ' + batLabel + '\n- Date du permis de construire / travaux : ' + dateLabel + '\n- Norme applicable : ' + normeLabel + '\n\nRegles :\n- Reponds de maniere concise et orientee terrain (inspecteur sur chantier).\n- Cite les articles de norme et textes reglementaires applicables.\n- Ne jamais inventer une reference normative. Si tu n\'es pas sur, dis-le.\n- Pour les ERP : cite les articles de l\'arrete du 25 juin 1980 quand applicable.\n- Pour le Code du travail : cite les articles R4226-xx et R4227-xx.\n- Si la question porte sur la renumerotation v2002 vers v2024, rappeler : NFC 15-100-XXX vers NFC 15-100-1-XXX, parties 7-XXX inchangees. Correspondances cles : 536.3/536.4 vers 537.3/464, 463 vers 465, 781 vers 7-729.\n- Adapte ta reponse a la version de norme selectionnee.\n- Maximum 300 mots.';
-  }
-
-  async function callClaude(question) {
-    const key = getApiKey();
-    if (!key) { addMsg('Cle API non configuree. Allez dans Admin pour la saisir.', 'error'); return; }
-
+  async function ask(question) {
+    const token = getToken();
+    if (!token) { updateNoKeyBanner(); addMsg('Saisissez d\'abord le jeton d\'accès.', 'error'); return; }
     _busy = true;
     document.getElementById('cp-send').disabled = true;
     showTyping();
-
     try {
-      const res = await fetch('https://api.anthropic.com/v1/messages', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'x-api-key': key,
-          'anthropic-version': '2023-06-01',
-          'anthropic-dangerous-direct-browser-access': 'true'
-        },
-        body: JSON.stringify({
-          model: 'claude-haiku-4-5-20251001',
-          max_tokens: 1024,
-          system: buildSystemPrompt(),
-          messages: [{ role: 'user', content: question }]
-        })
-      });
-
+      const res = await fetch(URL_API, { method: 'POST', headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token }, body: JSON.stringify({ question }) });
       hideTyping();
-
-      if (!res.ok) {
-        const err = await res.text();
-        if (res.status === 401) addMsg('Cle API invalide. Verifiez dans Admin.', 'error');
-        else addMsg('Erreur API (' + res.status + ') : ' + err.substring(0, 200), 'error');
-        return;
-      }
-
-      const data = await res.json();
-      const answer = data.content?.[0]?.text || 'Pas de reponse.';
-      addMsg(answer, 'bot');
+      if (res.status === 401) { localStorage.removeItem(TOKEN_LS); updateNoKeyBanner(); addMsg('Jeton refusé. Saisissez-le à nouveau.', 'error'); return; }
+      if (res.status === 429) { addMsg('Trop de questions d\'affilée. Patientez quelques minutes.', 'error'); return; }
+      const data = await res.json().catch(() => null);
+      if (!res.ok || !data) { addMsg((data && (data.message || data.erreur)) || ('Assistant indisponible (' + res.status + ').'), 'error'); return; }
+      addAnswer(data);
     } catch (e) {
       hideTyping();
-      addMsg('Erreur reseau : ' + e.message, 'error');
+      addMsg('Assistant injoignable (réseau ou PC GESTAN éteint). Réessayez plus tard.', 'error');
     } finally {
       _busy = false;
       document.getElementById('cp-send').disabled = false;
@@ -3567,16 +3388,12 @@ const CLAUDE_ASSIST = (() => {
   }
 
   return {
-    toggle() {
-      if (_open) this.close();
-      else this.openPanel();
-    },
+    toggle() { if (_open) this.close(); else this.openPanel(); },
     openPanel() {
       _open = true;
       document.getElementById('claude-panel').classList.add('open');
       document.getElementById('claude-overlay').classList.add('open');
       document.getElementById('claude-fab').classList.add('has-panel');
-      restoreFilters();
       renderFAQ();
       updateNoKeyBanner();
     },
@@ -3586,17 +3403,10 @@ const CLAUDE_ASSIST = (() => {
       document.getElementById('claude-overlay').classList.remove('open');
       document.getElementById('claude-fab').classList.remove('has-panel');
     },
-    onFilterChange() {
-      saveFilters();
-      renderFAQ();
-    },
-    askFAQ(idx) {
-      const items = filteredFAQ();
-      const item = items[idx];
-      if (!item) return;
-      addMsg(item.q, 'user');
-      const ver = normeVersion();
-      addMsg(item.r[ver] || item.r.v2002, 'bot');
+    saveToken() {
+      const i = document.getElementById('cp-token'); const v = i ? i.value.trim() : '';
+      if (!v) return;
+      localStorage.setItem(TOKEN_LS, v); i.value = ''; updateNoKeyBanner();
     },
     send() {
       if (_busy) return;
@@ -3604,29 +3414,11 @@ const CLAUDE_ASSIST = (() => {
       const q = input.value.trim();
       if (!q) return;
       input.value = '';
-
-      const match = FAQ.find(f => f.q.toLowerCase() === q.toLowerCase());
-      if (match) {
-        addMsg(q, 'user');
-        addMsg(match.r[normeVersion()] || match.r.v2002, 'bot');
-        return;
-      }
-
-      const f = getFilters();
-      if (!f.bat || !f.date) {
-        addMsg('Conseil : Renseignez le type de batiment et la date des travaux ci-dessus pour une reponse plus precise.', 'bot');
-      }
-
       addMsg(q, 'user');
-      callClaude(q);
+      ask(q);
     },
-    goAdmin() {
-      this.close();
-      APP.switchTab('admin');
-    },
-    showFab() {
-      document.getElementById('claude-fab').style.display = 'flex';
-    }
+    goAdmin() { this.close(); APP.switchTab('admin'); },
+    showFab() { document.getElementById('claude-fab').style.display = 'flex'; }
   };
 })();
 

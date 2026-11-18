@@ -1,4 +1,4 @@
-var CACHE = 'smq-v5';
+var CACHE = 'smq-v6';
 var ASSETS = ['./', 'index.html', 'manifest.json', 'icon.svg', 'icon-192.png', 'icon-512.png'];
 
 // Réseau d'abord (12/11/2026) : toujours la version en ligne, cache seulement hors connexion.
