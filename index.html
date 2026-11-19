@@ -341,6 +341,11 @@ body{font-family:Segoe UI,Tahoma,sans-serif;background:#f4f6f8;color:#1a1a2e;pad
       </select>
     </div>
 
+    <div class="field" id="fieldIn">
+      <label>Calibre In du fusible (A) <span class="field-na">(N/A hors fusibles gG / gI)</span></label>
+      <input type="text" id="cIn" value="" placeholder="ex. 16" style="max-width:70px" inputmode="decimal">
+    </div>
+
     <div class="field" id="fieldTH3">
       <label>Harmoniques rang 3 (TH3) <span class="field-na">(N/A hors 4 cond.)</span></label>
       <select id="cTH3" title="NF C 15-100-1:2024 §523.6.3 et Tableau 52.20">
@@ -438,7 +443,7 @@ body{font-family:Segoe UI,Tahoma,sans-serif;background:#f4f6f8;color:#1a1a2e;pad
 <div class="hist-panel" id="histPanel"></div>
 
 <div class="footer">
-  ARGOS Bureau de Contrôle — Outil de calcul NF C 15-100-1 V2024 — Données tableaux 52.8A à 52.8H.2 — v12
+  ARGOS Bureau de Contrôle — Outil de calcul NF C 15-100-1 V2024 — Données tableaux 52.8A à 52.8H.2 — v13
   <div style="margin-top:6px;font-size:10px;color:#999;line-height:1.4">Outil réservé aux détenteurs de la norme NF C 15-100-1 (AFNOR). Les données sont issues des tableaux normatifs — toute reproduction ou diffusion est interdite. © ARGOS Bureau de Contrôle.</div>
 </div>
 
@@ -1034,6 +1039,7 @@ function updateFieldsState() {
   document.getElementById('fieldSP').classList.toggle('disabled-field', !isDirectApparent);
   const nbC = document.querySelector('input[name="cNbCond"]:checked');
   document.getElementById('fieldTH3').classList.toggle('disabled-field', !nbC || nbC.value !== '4');
+  document.getElementById('fieldIn').classList.toggle('disabled-field', document.getElementById('cProt').value === '0');
 }
 
 // ═══════════════════════════════════════════════════════════════════════════════
@@ -1168,19 +1174,38 @@ function calculer() { try {
     }
   }
 
-  // Facteur protection (fusibles)
+  // Facteur protection (fusibles) : Cprot = 1/k3, k3 = k2/1,45
+  // Source : FD C 15-105 (mars 2026) §7.1.1 p.9-10, NF C 15-100-1 (août 2024) §433.1
+  //   gG : In ≤ 4 A → k3 1,45 ; 4 A < In < 16 A → k3 1,31 ; In ≥ 16 A → k3 1,10
+  //   gI (ancien, absent du FD 2026) : seuils 10 A / 25 A repris de la calculette V2002
   let Cprot = 1;
+  T.inFus = null;
   if (prot > 0) {
-    Cprot = 0.91;
+    const inTxt = document.getElementById('cIn').value.replace(',', '.').trim();
+    const inFus = inTxt === '' ? NaN : parseFloat(inTxt);
     const Izc_test = Iz * m.k52e * Ctemp * cGroupe * Cequil * Cbe3;
-    if (prot === 1) { // gI
-      if (Izc_test / 1.21 <= 25) Cprot = 0.826;
-      if (Izc_test / 1.31 <= 10) Cprot = 0.763;
-    } else { // gG
-      if (Izc_test < 16 * 1.31) Cprot = 0.76;
-    }
-    if (Izc_test / 1.45 <= 4) Cprot = 0.69;
     T.izcTest = Izc_test;
+    const typ = prot === 1 ? 'gI' : 'gG';
+    if (!isNaN(inFus) && inFus > 0) {
+      T.inFus = inFus;
+      let k3;
+      if (inFus <= 4) { Cprot = 0.69; k3 = '1,45'; }
+      else if (prot === 2 && inFus < 16) { Cprot = 0.76; k3 = '1,31'; }
+      else if (prot === 1 && inFus <= 10) { Cprot = 0.763; k3 = '1,31'; }
+      else if (prot === 1 && inFus <= 25) { Cprot = 0.826; k3 = '1,21'; }
+      else { Cprot = 0.91; k3 = '1,10'; }
+      obs.push('Fusible ' + typ + ' In = ' + String(inFus).replace('.', ',') + ' A : k3 = ' + k3 + ', Cprot = ' + String(Cprot).replace('.', ',') + (prot === 2 ? ' (FD C 15-105 mars 2026 §7.1.1, NF C 15-100-1 août 2024 §433.1).' : ' (fusible gI : valeurs de la calculette V2002, le FD C 15-105 de mars 2026 ne traite plus que gG/gM).'));
+    } else {
+      Cprot = 0.91;
+      if (prot === 1) { // gI
+        if (Izc_test / 1.21 <= 25) Cprot = 0.826;
+        if (Izc_test / 1.31 <= 10) Cprot = 0.763;
+      } else { // gG
+        if (Izc_test < 16 * 1.31) Cprot = 0.76;
+      }
+      if (Izc_test / 1.45 <= 4) Cprot = 0.69;
+      obs.push('CALIBRE DU FUSIBLE NON RENSEIGNÉ : k3 estimé d\'après le courant Iz corrigé (' + Izc_test.toFixed(1).replace('.', ',') + ' A), Cprot = ' + String(Cprot).replace('.', ',') + '. Près des seuils 4 A et 16 A, le résultat peut être faux : renseigner In (k3 selon In, FD C 15-105 mars 2026 §7.1.1).');
+    }
   }
   T.Cbe3 = Cbe3; T.Cprot = Cprot;
 
@@ -1350,7 +1375,7 @@ function afficherMethode(T, Izc, K, Iz, methodeTxt, obsText) {
   const row = (a, b, c, d) => h.push('<tr><th>' + a + '</th><td>' + b + '</td><th>' + c + '</th><td>' + d + '</td></tr>');
   row('Section', mcFr(T.sph) + ' mm²', 'Température ambiante', T.temp + ' °C');
   row('Isolation', libIsol, 'Facteur de groupement', mcEsc(String(T.groupeSaisi).replace('.', ',')) + (String(T.cGroupe) !== String(T.groupeSaisi) ? ' → retenu ' + mcFr(T.cGroupe) : ''));
-  row('Conducteurs chargés', T.nbCond, 'Protection', mcEsc(mcOpt('cProt')));
+  row('Conducteurs chargés', T.nbCond, 'Protection', mcEsc(mcOpt('cProt')) + (T.prot > 0 ? (T.inFus ? ', In = ' + mcFr(T.inFus) + ' A' : ', calibre non renseigné') : ''));
   row('Type de câble', libCable, 'Harmoniques rang 3 (TH3)', mcEsc(mcOpt('cTH3')) + (T.nbCond === 4 ? '' : ' (sans objet hors 3 ph + N)'));
   row('Nature', libNat, 'Rayonnement solaire direct', oui(T.soleil));
   row('Mode de pose', mcEsc(mcOpt('cMdP')), 'Résistivité du sol', mcEsc(T.rhoVal.replace('.', ',')) + ' K.m/W' + (isD ? '' : ' (sans objet hors D1/D2)'));
@@ -1386,7 +1411,10 @@ function afficherMethode(T, Izc, K, Iz, methodeTxt, obsText) {
     f('Ctemp (température)', T.Ctemp, (T.isEnterre ? 'Tableau 52.10 (température du sol)' : 'Tableau 52.9 (température de l\'air)') + ', isolation ' + libIsol + ', ' + T.temp + ' °C.');
     f('Cgrp (groupement)', T.cGroupe, 'Valeur saisie par l\'opérateur' + (T.cGroupe === 1 ? ' (circuit seul).' : '.'), T.cGroupe === 1);
     let jp = 'Disjoncteur / relais / fusible aM : pas de réduction.';
-    if (T.prot > 0 && T.izcTest !== undefined) {
+    if (T.prot > 0 && T.inFus) {
+      const g = T.prot === 2;
+      jp = 'Fusible ' + (g ? 'gG' : 'gI') + ', calibre In = ' + mcFr(T.inFus) + ' A : Cprot = 1/k3 = ' + mcFr(T.Cprot) + (g ? ' (k3 : 1,45 si In ≤ 4 A ; 1,31 si 4 A < In < 16 A ; 1,10 si In ≥ 16 A. FD C 15-105 mars 2026 §7.1.1, NF C 15-100-1 août 2024 §433.1).' : ' (fusible gI : valeurs de la calculette V2002, seuils 4, 10 et 25 A).');
+    } else if (T.prot > 0 && T.izcTest !== undefined) {
       const it = T.izcTest;
       jp = (T.prot === 1 ? 'Fusible gI' : 'Fusible gG') + ' : courant de test Iz × K52E × Ctemp × Cgrp × Cn × CBE3 = ' + mcFr(it, 2) + ' A. Base 0,91';
       if (T.prot === 1) {
@@ -1394,7 +1422,7 @@ function afficherMethode(T, Izc, K, Iz, methodeTxt, obsText) {
         if (it / 1.31 <= 10) jp += ' ; ' + mcFr(it, 2) + ' / 1,31 = ' + mcFr(it / 1.31, 2) + ' ≤ 10 → 0,763';
       } else if (it < 16 * 1.31) jp += ' ; ' + mcFr(it, 2) + ' < 16 × 1,31 = 20,96 → 0,76';
       if (it / 1.45 <= 4) jp += ' ; ' + mcFr(it, 2) + ' / 1,45 = ' + mcFr(it / 1.45, 2) + ' ≤ 4 → 0,69';
-      jp += '. Facteur retenu.';
+      jp += '. Facteur retenu. Calibre non renseigné : k3 estimé sur le courant, pas sur In.';
     }
     f('Cprot (protection)', T.Cprot, jp, T.Cprot === 1);
     f('Cn (neutre chargé, f3)', T.Cequil, T.nbCond === 4 ? '3 ph + N, ' + mcEsc(mcOpt('cTH3')) + ' : ' + mcFr(T.Cequil) + ' (§523.6.3, Tableau 52.20).' : 'Non applicable (' + T.nbCond + ' conducteurs chargés).', T.Cequil === 1);
@@ -1466,6 +1494,7 @@ function defaut() {
   document.getElementById('cTemp').selectedIndex = 4; // 30°C
   document.getElementById('cGroupe').value = '0.8';
   document.getElementById('cProt').selectedIndex = 0;
+  document.getElementById('cIn').value = '';
   document.getElementById('cTH3').value = 'inc';
   document.querySelector('input[name="cSoleil"][value="0"]').checked = true;
   document.getElementById('cRhoSol').value = '2.5';
