@@ -1228,7 +1228,7 @@ const THEMES = [
       }
     ],
     calculs:[
-      { titre:'Sections de câbles V2024',  path:'§7.1 - Methodes/Calcul IE/Sections_V2024.htm', v2024:true, ver:'V2024' },
+      { titre:'Sections de câbles V2024',  path:'§7.1 - Methodes/Calcul IE/Sections_V2024.htm', v2024:true, ver:'V2024', dossierSP:'https://drive.google.com/drive/folders/1Ef45OKY1Wbi_zocpKhXoIyRGGXbECtWo', dossierSPTitre:'Essais Iz v13 + Excel à la main (SP)' },
       { titre:'Ik3 / Ik1 — tableaux et méthode (FD C 15-105) : Ik selon longueur et distance du transformateur, longueurs maximales protégées', path:'§7.1 - Methodes/Calcul IE/Ik3-Ik1 FD C 15-105.htm', v2024:true, ver:'V2024' },
       { titre:'Sections de câbles',        path:'§7.1 - Methodes/Calcul IE/Sections.htm', ver:'V2002' },
       { titre:'Chute de Tension',          path:'§7.1 - Methodes/Calcul IE/Chute-Tension.htm', ver:'V2002 + V2024' },
@@ -2138,6 +2138,7 @@ const RENDERS = {
       <div class="calc-card${c.v2024 ? ' v2024' : ''}">
         <span class="calc-card-label">${c.titre}${c.ver ? '<span class="v2024-badge" style="' + (c.ver==='V2024' ? '' : c.ver==='V2002' ? 'background:#6b7280' : c.ver==='HT' ? 'background:#7c3aed' : 'background:#0b6b2f') + '">' + c.ver + '</span>' : ''}</span>
         <button class="calc-open" onclick="openDoc('${c.path.replace(/'/g,"\\'")}')">Ouvrir</button>
+        ${c.dossierSP && _isAdmin() ? `<button class="calc-open" style="background:#334155" title="${c.dossierSPTitre||''}" onclick="openDoc('${c.dossierSP}')">📁 Essais (SP)</button>` : ''}
       </div>`).join('');
 
     const sectionBlocks = (t.sections||[]).map(s => {
