@@ -352,13 +352,15 @@ body{font-family:Segoe UI,Tahoma,sans-serif;background:#f4f6f8;color:#1a1a2e;pad
     <div class="field" id="fieldRhoSol">
       <label>Résistivité sol (K.m/W) <span class="field-na">(N/A hors D1/D2)</span></label>
       <select id="cRhoSol">
-        <option value="0.5">0.5 — sol très humide (saturé)</option>
-        <option value="0.7">0.7 — sol humide</option>
-        <option value="1.0">1.0 — sol mouillé</option>
-        <option value="1.5">1.5 — sol légèrement humide</option>
-        <option value="2.0">2.0 — sol frais</option>
-        <option value="2.5" selected>2.5 — sol sec (réf. V2024)</option>
-        <option value="3.0">3.0 — sol très sec</option>
+        <option value="0.4">0,40 — pose immergée (marécage)</option>
+        <option value="0.5">0,50 — terrain très humide (sable)</option>
+        <option value="0.7">0,70 — terrain humide</option>
+        <option value="0.85">0,85 — terrain dit normal</option>
+        <option value="1.0">1,00 — terrain sec</option>
+        <option value="1.5">1,50 — terrain très sec</option>
+        <option value="2.0">2,00 — cendres ou mâchefer</option>
+        <option value="2.5" selected>2,50 — valeur de référence des tableaux</option>
+        <option value="3.0">3,00 — cendres ou mâchefer</option>
       </select>
     </div>
 
@@ -727,11 +729,11 @@ const KTEMP_SOL = {
   pr:  [1.07,1.04,1.00,0.96,0.93,0.89,0.85,0.80,0.76]
 };
 
-// Tableau 52.11 — Facteurs de correction résistivité thermique du sol (réf. 2.5 K.m/W = sol sec)
+// Tableau 52.11 — Facteurs de correction résistivité thermique du sol (réf. 2,5 K.m/W = valeur des tableaux)
 // D1 = câbles en conduit enterré, D2 = câbles directement enterrés
 const KRHOSOL = {
-  D1: {'0.5':1.28, '0.7':1.20, '1.0':1.18, '1.5':1.10, '2.0':1.05, '2.5':1.00, '3.0':0.96},
-  D2: {'0.5':1.88, '0.7':1.62, '1.0':1.50, '1.5':1.28, '2.0':1.12, '2.5':1.00, '3.0':0.90}
+  D1: {'0.4':2.00, '0.5':1.28, '0.7':1.20, '0.85':1.19, '1.0':1.18, '1.5':1.10, '2.0':1.05, '2.5':1.00, '3.0':0.96},
+  D2: {'0.4':2.31, '0.5':1.88, '0.7':1.62, '0.85':1.56, '1.0':1.50, '1.5':1.28, '2.0':1.12, '2.5':1.00, '3.0':0.90}
 };
 
 // ═══════════════════════════════════════════════════════════════════════════════
@@ -868,7 +870,7 @@ function determinerMethode(mdp, sit, cable) {
 const FACTORS = {
   BE3: 0.85,            // §424.4 et Tableau 42.3 — BE3 : -15 % seulement si T auto-inflammation basse
   NEUTRE: 0.86,         // §523.6.3 et Tableau 52.20 — neutre chargé (facteur unique ; le 0,84 de la NF C 15-100:2002 n'existe plus)
-  SOLAIRE: 0.85,        // §52.1.3.3 — Rayonnement solaire direct (E/F/G)
+  SOLAIRE: 0.85,        // §523.4.1, renvoi 512.2.11 — Rayonnement solaire direct (E/F/G)
   PLAFOND: 0.95         // §52.1.4 — Fixation directe sous plafond
 };
 
@@ -1115,7 +1117,7 @@ function calculer() { try {
   // Facteur harmoniques rang 3 (§523.6)
   // Harmoniques rang 3 : traitées une seule fois dans Cn (neutre chargé, Tab. 52.20). Aucun cumul.
 
-  // Facteur rayonnement solaire direct (§52.1.3.3)
+  // Facteur rayonnement solaire direct (§523.4.1, renvoi 512.2.11)
   const soleil = document.querySelector('input[name="cSoleil"]:checked').value === '1';
   let Csol = 1;
   if (soleil) {
@@ -1325,7 +1327,7 @@ function afficherMethode(T, Izc, K, Iz, methodeTxt, obsText) {
     f('Cn (neutre chargé, f3)', T.Cequil, T.nbCond === 4 ? '3 ph + N, ' + mcEsc(mcOpt('cTH3')) + ' : ' + mcFr(T.Cequil) + ' (§523.6.3, Tableau 52.20).' : 'Non applicable (' + T.nbCond + ' conducteurs chargés).', T.Cequil === 1);
     f('CBE3 (risque d\'explosion)', T.Cbe3, T.be3 ? mcEsc(mcOpt('cBE3')) + ' : ' + mcFr(T.Cbe3) + ' (§424.4, Tableau 42.3).' : 'Non applicable.', T.Cbe3 === 1);
     f('Csp (sous plafond)', T.Csp, T.Csp !== 1 ? 'Fixation directe apparente sous plafond : ' + mcFr(T.Csp) + ' (§52.1.4).' : (T.sousPlafond ? 'Sans effet hors fixation directe apparente.' : 'Non applicable.'), T.Csp === 1);
-    f('Csol (rayonnement solaire)', T.Csol, T.Csol !== 1 ? 'Rayonnement solaire direct, méthode ' + m.methode + ' : ' + mcFr(T.Csol) + ' (§52.1.3.3).' : (T.soleil ? 'Sans effet pour la méthode ' + m.methode + ' (E, F, G uniquement).' : 'Non applicable.'), T.Csol === 1);
+    f('Csol (rayonnement solaire)', T.Csol, T.Csol !== 1 ? 'Rayonnement solaire direct, méthode ' + m.methode + ' : ' + mcFr(T.Csol) + ' (§523.4.1, renvoi 512.2.11).' : (T.soleil ? 'Sans effet pour la méthode ' + m.methode + ' (E, F, G uniquement).' : 'Non applicable.'), T.Csol === 1);
     f('Crhosol (résistivité du sol)', T.Crhosol, isD ? 'Tableau 52.11, colonne ' + m.methode + ', ' + mcEsc(T.rhoVal.replace('.', ',')) + ' K.m/W (référence 2,5 K.m/W).' : 'Non applicable (méthode ' + m.methode + ').', T.Crhosol === 1);
     h.push('</tbody></table>');
   }
