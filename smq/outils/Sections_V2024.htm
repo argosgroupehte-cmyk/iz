@@ -121,6 +121,8 @@ body{font-family:Segoe UI,Tahoma,sans-serif;background:#f4f6f8;color:#1a1a2e;pad
   .mc-tab th,.mc-res,.mc-formule{-webkit-print-color-adjust:exact;print-color-adjust:exact}
   .mc-tab tr,.mc-res{break-inside:avoid}
 }
+.avert-cas{background:#fff8e1;border:2px solid #f9a825;border-left:6px solid #e65100;border-radius:8px;padding:7px 12px;margin-bottom:6px;font-size:12px;line-height:1.45;color:#4e342e}.avert-tel{display:none}.grid>.card:first-child{display:flex;flex-direction:column}.avert-ordi{margin-top:auto;margin-bottom:0}.avert-cas b.obl{color:#c62828;letter-spacing:.3px}
+@media(max-width:768px){.avert-tel{display:block}.avert-ordi{display:none}.avert-cas{font-size:12.5px;padding:8px 10px}}
 </style>
 </head>
 <body>
@@ -130,6 +132,7 @@ body{font-family:Segoe UI,Tahoma,sans-serif;background:#f4f6f8;color:#1a1a2e;pad
   <h1>Iz : Détermination des courants admissibles</h1>
   <small>NF C 15-100-1 (V2024) — Tableaux 52.8A à 52.8H.2</small>
 </div>
+<div class="avert-cas avert-tel" role="note"><b>⚠ Domaine d’application :</b> cette application ne traite que les cas les plus courants rencontrés sur le terrain. Si la configuration rencontrée ne peut être intégralement reproduite dans l’interface, un calcul manuel directement avec la norme <span style="white-space:nowrap">NF C 15-100-1 (V2024)</span> et le <span style="white-space:nowrap">FD C 15-105</span> est <b class="obl">OBLIGATOIRE</b>.</div>
 
 <div class="grid">
   <!-- COLONNE GAUCHE : Caractéristiques principales -->
@@ -241,6 +244,7 @@ body{font-family:Segoe UI,Tahoma,sans-serif;background:#f4f6f8;color:#1a1a2e;pad
         <label><input type="radio" name="cSP" value="0" checked> Non</label>
       </div>
     </div>
+    <div class="avert-cas avert-ordi" role="note"><b>⚠ Domaine d’application :</b> cette application ne traite que les cas les plus courants rencontrés sur le terrain. Si la configuration rencontrée ne peut être intégralement reproduite dans l’interface, un calcul manuel directement avec la norme <span style="white-space:nowrap">NF C 15-100-1 (V2024)</span> et le <span style="white-space:nowrap">FD C 15-105</span> est <b class="obl">OBLIGATOIRE</b>.</div>
   </div>
 
   <!-- COLONNE DROITE : Résultat Izc en bannière + Autres caractéristiques -->
@@ -432,7 +436,7 @@ body{font-family:Segoe UI,Tahoma,sans-serif;background:#f4f6f8;color:#1a1a2e;pad
 <div class="hist-panel" id="histPanel"></div>
 
 <div class="footer">
-  ARGOS Bureau de Contrôle — Outil de calcul NF C 15-100-1 V2024 — Données tableaux 52.8A à 52.8H.2 — v13
+  ARGOS Bureau de Contrôle — Outil de calcul NF C 15-100-1 V2024 — Données tableaux 52.8A à 52.8H.2 — v14
   <div style="margin-top:6px;font-size:10px;color:#999;line-height:1.4">Outil réservé aux détenteurs de la norme NF C 15-100-1 (AFNOR). Les données sont issues des tableaux normatifs — toute reproduction ou diffusion est interdite. © ARGOS Bureau de Contrôle.</div>
 </div>
 
