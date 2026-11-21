@@ -131,7 +131,7 @@ body{font-family:Segoe UI,Tahoma,sans-serif;background:#f4f6f8;color:#1a1a2e;pad
 }
 .avert-cas{background:#fff8e1;border:2px solid #f9a825;border-left:6px solid #e65100;border-radius:8px;padding:7px 12px;margin-bottom:6px;font-size:12px;line-height:1.45;color:#4e342e}.avert-tel{display:none}.grid>.card:first-child{display:flex;flex-direction:column}.avert-ordi{margin-top:auto;margin-bottom:0}.avert-cas b.obl{color:#c62828;letter-spacing:.3px}
 @media(max-width:768px){.avert-tel{display:block}.avert-ordi{display:none}.avert-cas{font-size:12.5px;padding:8px 10px}}
-</style>
+#cBE3.be3x{font-weight:bold}</style>
 </head>
 <body>
 
@@ -271,7 +271,7 @@ body{font-family:Segoe UI,Tahoma,sans-serif;background:#f4f6f8;color:#1a1a2e;pad
       <label>Local BE3 (explosion)</label>
       <select id="cBE3" title="NF C 15-100-1:2024 §424.4, Tableau 42.3 : réduction selon la température d'auto-inflammation">
         <option value="0" selected>Non (hors BE3)</option>
-        <option value="x">BE3, T auto-inflammation inconnue : -15 % (prudence)</option>
+        <option value="x" style="font-weight:bold">BE3, T auto-inflammation inconnue : -15 % (PAR PRUDENCE)</option>
         <option value="g1">BE3 gaz/vapeur, T auto-inflammation &gt; 100 °C : 0 %</option>
         <option value="g2">BE3 gaz/vapeur, T auto-inflammation &lt; 100 °C : -15 %</option>
         <option value="n1">BE3 poussières en nuage, T &gt; 150 °C : 0 %</option>
@@ -1159,7 +1159,7 @@ function calculer() { try {
   let Cbe3 = 1;
   if (be3) {
     Cbe3 = ['g2','n2','c2','x'].includes(be3Val) ? FACTORS.BE3 : 1;
-    if (be3Val === 'x') obs.push('BE3 : température d\'auto-inflammation non connue, réduction de 15 % retenue par prudence (choix ARGOS, Tab. 42.3).');
+    if (be3Val === 'x') obs.push('BE3 : température d\'auto-inflammation non connue, réduction de 15 % retenue PAR PRUDENCE (choix ARGOS, Tab. 42.3).');
     else obs.push('BE3 (§424.4, Tab. 42.3) : réduction ' + (Cbe3 < 1 ? 'de 15 %' : 'de 0 %') + ' selon la température d\'auto-inflammation.');
     if (isol === 'pvc') {
       obs.push('BE3 : isolation PVC normalement non autorisée en atmosphère explosive.');
@@ -1687,5 +1687,5 @@ btnInstall.addEventListener('click', function() {
 
 window.addEventListener('appinstalled', function() { banner.style.display = 'none'; });
 </script>
-</body>
+<script>document.addEventListener("DOMContentLoaded",function(){var e=document.getElementById("cBE3");if(!e)return;var f=function(){e.classList.toggle("be3x",e.value==="x")};e.addEventListener("change",f);f();});</script></body>
 </html>
